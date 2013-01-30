@@ -4,6 +4,8 @@
     Author     : Marcelo Maia
 --%>
 
+<%@page import="model.entity.OpicionalVeiculo"%>
+<%@page import="model.dao.OpicionalVeiculoDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="model.entity.TipoVeiculo"%>
 <%@page import="controller.TipoVeiculoController"%>
@@ -107,7 +109,20 @@
                         <input type="text" name="capacidade_carga" id="capacidade_carga" placeholder="Capacidade carga">
                     </div>
                 </div>
-
+                  
+                <div class="control-group">
+                    <div class="controls">
+                        <%
+                        List<OpicionalVeiculo> lista;
+                        OpicionalVeiculoDAO opicionalVeiculoDAO = new OpicionalVeiculoDAO();
+                        lista  = opicionalVeiculoDAO.getTodosOpcionais();
+                        for(int i =0;i<lista.size();i++){
+                         out.println("<input type='checkbox' name='opcional' value=' "+lista.get(i).getDescricao() +"'>"+lista.get(i).getDescricao() +"<br>");
+                        }
+                        %>
+                     </div>
+                </div>
+                 
                 <div class="control-group">
                     <div class="controls">
                         <input type="submit" id="enviar" value="Cadastrar veiculo" class="btn">

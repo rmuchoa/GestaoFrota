@@ -35,7 +35,7 @@
             Veiculo veiculo;
             veiculo =  veiculoDAO.getVeiculoPorId(Integer.parseInt(request.getParameter("id_veiculo")));  
             veiculoDAO.removerVeicupoPorId(veiculo.getId());
-             response.sendRedirect("listaVeiculos.jsp");
+            response.sendRedirect("listaVeiculos.jsp");
            
             %>
             <div class="offset1 span8 offset1 well">
