@@ -30,6 +30,7 @@
         <div class="offset2 span8 offset2">
 
 
+           
             <form action="index.jsp" method="POST" class="form-horizontal well">
 
                 <div class="control-group">
@@ -95,6 +96,7 @@
                     <label class="control-label" for="inputPassageiros">Capacidade de passageiros</label>
                     <div class="controls">
                         <input type="text" id="capacidade_passageiros"  name="capacidade_passageiros" placeholder="Capacidade de passageiros">
+                        
                     </div>
                 </div>
 
@@ -109,6 +111,7 @@
                 <div class="control-group">
                     <div class="controls">
                         <input type="submit" id="enviar" value="Cadastrar veiculo" class="btn">
+                        <div class="btn"><a href="listaVeiculos.jsp">Cancelar</a></div>
                     </div>
                 </div>
 
@@ -123,6 +126,7 @@
     if (request.getMethod().equalsIgnoreCase("post")) {
         VeiculoController veiculoController = new VeiculoController();
         veiculoController.inserirVeiculo(request);
+        response.sendRedirect("listaVeiculos.jsp");
     }
     
 %>

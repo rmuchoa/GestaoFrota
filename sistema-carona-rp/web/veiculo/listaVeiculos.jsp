@@ -24,7 +24,9 @@
        <h3 class="span12 well">Sistema de Caronas Unipampa</h3>
         <div class="offset2 span8 offset2">
  
-        <h3>Lista de Veículos do sistema</h3>    
+        <h3>Lista de Veículos do sistema</h3>
+        <div class="btn"><a href="index.jsp">Novo veículo</a></div>
+        <div class="span12"></div>
         <table class="table table-bordered">
             <thead>
                <tr><td>Placa</td>
