@@ -120,6 +120,7 @@
                 <div class="control-group">
                     <div class="controls">
                         <input type="submit" id="enviar" value="Cadastrar veiculo" class="btn">
+                        <div class="btn"><a href="listaVeiculos.jsp">Cancelar</a></div>
                     </div>
                 </div>
 
