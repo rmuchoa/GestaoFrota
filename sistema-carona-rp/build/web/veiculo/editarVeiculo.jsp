@@ -15,6 +15,15 @@
 <%@ page import="javax.servlet.http.*" %> 
 <!DOCTYPE html>
 
+<%
+    if (request.getMethod().equalsIgnoreCase("post")) {
+        VeiculoController veiculoController = new VeiculoController();
+        veiculoController.alterarVeiculo(request);
+        response.sendRedirect("listaVeiculos.jsp");
+     }
+    
+%>
+
 <html>
     <head>
 
@@ -130,13 +139,3 @@
         </div>
     </body>
 </html>
-
-<%
-    if (request.getMethod().equalsIgnoreCase("post")) {
-        System.out.println("chego aq");
-        VeiculoController veiculoController = new VeiculoController();
-        veiculoController.alterarVeiculo(request);
-        response.sendRedirect("listaVeiculos.jsp");
-     }
-    
-%>
