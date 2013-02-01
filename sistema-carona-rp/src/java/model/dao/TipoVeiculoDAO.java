@@ -24,10 +24,8 @@ public class TipoVeiculoDAO {
     
     public TipoVeiculoDAO(){
         try {
-            this.connection = new ConnectionFactory() {
-
-       }.getConnection();
-    } catch (SQLException e) {
+            this.connection = ConnectionFactory.getConnection();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

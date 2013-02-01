@@ -25,11 +25,9 @@ public class OpicionalVeiculoDAO {
      private List<OpicionalVeiculo> lista = new ArrayList<OpicionalVeiculo>();
      
      public OpicionalVeiculoDAO(){
-          try {
-            this.connection = new ConnectionFactory() {
-
-       }.getConnection();
-    } catch (SQLException e) {
+         try {
+            this.connection = ConnectionFactory.getConnection();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
      }

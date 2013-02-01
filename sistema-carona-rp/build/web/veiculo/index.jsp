@@ -126,7 +126,7 @@
                         OpicionalVeiculoDAO opicionalVeiculoDAO = new OpicionalVeiculoDAO();
                         lista  = opicionalVeiculoDAO.getTodosOpcionais();
                         for(int i =0;i<lista.size();i++){
-                         out.println("<input type='checkbox' name='opcional' value=' "+lista.get(i).getDescricao() +"'>"+lista.get(i).getDescricao() +"<br>");
+                         out.println("<input type='checkbox' name='"+lista.get(i).getDescricao()+"' value=' "+lista.get(i).getId()+"'>"+lista.get(i).getDescricao() +"<br>");
                         }
                         %>
                      </div>
