@@ -6,10 +6,14 @@ package model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import jdbc.ConnectionFactory;
 import model.entity.OpicionalVeiculo;
 import model.entity.Veiculo;
+import model.entity.Veiculo_opcional_veiculo;
 
 /**
  *
@@ -41,5 +45,26 @@ public class Veiculo_opcional_veiculoDAO {
             e.printStackTrace();
         
         }
-    }   
+    }
+    
+    public List<Integer> getPorIdVeiculo(int id_veiculo){
+        String sql = "select * from veiculo_opcionais_veiculo where id_veiculo=?;";
+        List<Integer> lista = new ArrayList<Integer>() ;
+        try {
+            
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setInt(1, id_veiculo);
+            ResultSet rs = stmt.executeQuery();
+            int posicao = 0;
+            while (rs.next()) {
+                lista.add(posicao,rs.getInt("id_opcionais_veiculo"));
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+    
+    
 }
