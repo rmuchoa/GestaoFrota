@@ -136,14 +136,18 @@
                         List<Integer> listaOpcionaisSelecionados = new Veiculo_opcional_veiculoDAO().getPorIdVeiculo(veiculo.getId()); 
                         OpicionalVeiculoDAO opicionalVeiculoDAO = new OpicionalVeiculoDAO();
                         lista  = opicionalVeiculoDAO.getTodosOpcionais();
+                        int status=0;
                         for(int i =0;i<lista.size();i++){
+                            status =0;
                             for(int j = 0;j<listaOpcionaisSelecionados.size();j++){   
                                 if(lista.get(i).getId()==listaOpcionaisSelecionados.get(j)){
-                                out.println("<input type='checkbox' name='"+lista.get(i).getId()+"' value=' "+lista.get(i).getId()+"' CHECKED>"+lista.get(i).getDescricao() +"<br>");
-                                 }
-                                else{out.println("<input type='checkbox' name='"+lista.get(i).getId()+"' value=' "+lista.get(i).getId()+"' >"+lista.get(i).getDescricao() +"<br>");
+                                  out.println("<input type='checkbox' name='"+lista.get(i).getId()+"' value=' "+lista.get(i).getId()+"' CHECKED>"+lista.get(i).getDescricao() +"<br>");
+                                  status = 1; 
                                 }
-                          }      
+                            } 
+                            if(status==0){
+                                  out.println("<input type='checkbox' name='"+lista.get(i).getId()+"' value=' "+lista.get(i).getId()+"' >"+lista.get(i).getDescricao() +"<br>");
+                                 }                                      
                         }
                         %>
                      </div>

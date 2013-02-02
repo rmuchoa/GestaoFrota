@@ -58,6 +58,7 @@ public class Veiculo_opcional_veiculoDAO {
             int posicao = 0;
             while (rs.next()) {
                 lista.add(posicao,rs.getInt("id_opcionais_veiculo"));
+                posicao++;
             }
             
         } catch (SQLException e) {
