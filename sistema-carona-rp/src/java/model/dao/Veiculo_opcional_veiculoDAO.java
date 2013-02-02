@@ -67,5 +67,17 @@ public class Veiculo_opcional_veiculoDAO {
         return lista;
     }
     
+    public void remover(int id_veiculo){
+      String sql = "delete from veiculo_opcionais_veiculo where id_veiculo = ?";
+           
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setInt(1, id_veiculo);
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     
 }

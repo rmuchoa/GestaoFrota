@@ -65,7 +65,10 @@ public class VeiculoController {
         
         veiculo.setId(Integer.parseInt(request.getParameter("id")));
         veiculoDAO = new VeiculoDAO();
-        veiculoDAO.alterarImovel(veiculo);
+        veiculo_opcional_veiculoDAO = new Veiculo_opcional_veiculoDAO();
+        veiculo_opcional_veiculoDAO.remover(veiculo.getId());
+        Veiculo v = veiculoDAO.alterarVeiculo(veiculo);
+        verificaOpcionaisSelecionados(request,v);
         
          
         

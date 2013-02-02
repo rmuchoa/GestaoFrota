@@ -131,7 +131,7 @@ public class VeiculoDAO {
          return veiculo;
      }
       
-      public void alterarImovel(Veiculo veiculo){
+      public Veiculo alterarVeiculo(Veiculo veiculo){
            String sql = "update veiculo set tipo_veiculo=?,placa=?,renavam=?,cor=?,modelo=?,marca=?,ano=?,capacidade_passageiros=?,capacidade_carga=? where id=?";
         
         try {
@@ -152,6 +152,9 @@ public class VeiculoDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } 
+         Veiculo veiculoCadastrado =this.getVeiculoPorPlaca(veiculo.getPlaca());
+            
+        return veiculoCadastrado;
       }
       
       public void removerVeicupoPorId(int id_veiculo){
