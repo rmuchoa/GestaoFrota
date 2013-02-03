@@ -8,29 +8,26 @@
 <%@page import="java.util.List"%>
 <%@page import="model.entity.Cidade"%>
 <%@page import="controller.CidadeController"%>
-
-<%
-    String html = "<option value=''></option></ br>";
-%>
+<%@page import="org.json.JSONObject"%>
 
 <%
     CidadeController cidadeController = new CidadeController();
     EstadoController estadoController = new EstadoController();
     String id = request.getParameter("estado") == null ? "" : request.getParameter("estado");
     Estado estado = estadoController.buscarPorId(Integer.parseInt(id));
-    System.out.println(estado);
     List<Cidade> cidades = cidadeController.listarPorEstado(estado);
-    System.out.println("número de cidades para "+estado+": "+cidades.size());
-
+    
+    JSONObject json = new JSONObject();
+    int i = 0;
+    json.put(""+i, "");
+    
     for (Cidade cidade : cidades) {
+        i++;
         if (cidade.getEstado().getId() == estado.getId()) {
             System.out.println(cidade.getNome());
-
-            html += "<option value='"+cidade.getId()+"'>"+cidade.getNome()+"</option></ br>";          
-
+            json.put(""+i, cidade);
         }
     }
     
-    out.print(html);
-
+    out.print(json);
 %>
