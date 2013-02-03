@@ -34,7 +34,7 @@ public class CidadeDAO {
     
     public Cidade buscarPorId(int id) {
         
-        Cidade cidade = new Cidade();
+        Cidade cidade = null;
         String sql = "select * from cidade where id = ?";
 
         try {
@@ -46,7 +46,7 @@ public class CidadeDAO {
             while (rs.next()) {
                 
                 EstadoDAO estadoDAO = new EstadoDAO();
-                
+                cidade = new Cidade();
                 cidade.setId(rs.getInt("id"));
                 cidade.setNome(rs.getString("nome"));
                 cidade.setEstado(estadoDAO.buscarPorId(rs.getInt("estado")));
@@ -63,7 +63,7 @@ public class CidadeDAO {
 
     public Cidade buscarPorNome(String nome) {
         
-        Cidade cidade = new Cidade();
+        Cidade cidade = null;
         String sql = "select * from cidade where nome = ?";
 
         try {
@@ -75,7 +75,7 @@ public class CidadeDAO {
             while (rs.next()) {
                 
                 EstadoDAO estadoDAO = new EstadoDAO();
-                
+                cidade = new Cidade();
                 cidade.setId(rs.getInt("id"));
                 cidade.setNome(rs.getString("nome"));
                 cidade.setEstado(estadoDAO.buscarPorId(rs.getInt("estado")));

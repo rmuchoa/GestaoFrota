@@ -32,7 +32,7 @@ public class TipoUsuarioDAO {
     
     public TipoUsuario buscarPorId(int id) {
         
-        TipoUsuario tipoUsuario = new TipoUsuario();
+        TipoUsuario tipoUsuario = null;
         String sql = "select * from tipo_usuario where id = ?";
 
         try {
@@ -43,6 +43,7 @@ public class TipoUsuarioDAO {
 
             while (rs.next()) {
                 
+                tipoUsuario = new TipoUsuario();
                 tipoUsuario.setId(rs.getInt("id"));
                 tipoUsuario.setDescricao(rs.getString("descricao"));
 
@@ -57,7 +58,7 @@ public class TipoUsuarioDAO {
 
     public TipoUsuario buscarPorDescricao(String descricao) {
         
-        TipoUsuario tipoUsuario = new TipoUsuario();
+        TipoUsuario tipoUsuario = null;
         String sql = "select * from tipo_usuario where descricao = ?";
 
         try {
@@ -68,6 +69,7 @@ public class TipoUsuarioDAO {
 
             while (rs.next()) {
                 
+                tipoUsuario = new TipoUsuario();
                 tipoUsuario.setId(rs.getInt("id"));
                 tipoUsuario.setDescricao(rs.getString("descricao"));
 

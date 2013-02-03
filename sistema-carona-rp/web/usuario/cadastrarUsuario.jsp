@@ -41,19 +41,22 @@
                 $("#estado").change(function() {
                     $.ajax({
                         url:"cidades.jsp",
-                        context:this,
-                        dataType:"hmtl",
+                        dataType:"json",
                         data:{estado: $("#estado").val()},
                         type:"POST",
-                        success:function(html){
-                            console.log(hmtl);
+                        success:function(data){
+                            console.log(data);
                             this.alert("chegou!!!");
-                            $("#cidade").html(html);
+                            for (var i=0; i<data.length(); i++) {
+                                $("#cidade").append("<option value='"+data.i.getId()+"'>"+data.i.getNome()+"</option>");
+                            }
                         }
                     });
                 });
-            });
+            });            
         </script>
+        
+        
 
         <title>Sistema de Caronas Unipampa</title>
     </head>
@@ -215,14 +218,14 @@
                     <label class="control-label"  for="inputCidade">Cidade</label>
                     <div  class="controls">
                         <select id="cidade" name="cidade">
-                           <!--<option></option> -->
+                           <option></option>
                             <%
-                               /**  CidadeController cidadeController = new CidadeController(); 
+                                 CidadeController cidadeController = new CidadeController(); 
                                  List<Cidade> listaCidades = cidadeController.listar(); 
                                  for (int i = 0; i < listaCidades.size(); i++) {
                                      Cidade cidade = listaCidades.get(i);
                                      out.print("<option value='"+cidade.getId()+"'>"+cidade.getNome()+" - "+cidade.getEstado().getSigla()+"</option>");
-                                 } */
+                                 }
                             %> 
                         </select>
                     </div>

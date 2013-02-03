@@ -13,18 +13,18 @@ import java.util.List;
 import jdbc.ConnectionFactory;
 import model.entity.OpicionalVeiculo;
 import model.entity.Veiculo;
-import model.entity.Veiculo_opcional_veiculo;
+import model.entity.VeiculoOpcionalVeiculo;
 
 /**
  *
  * @author Marcelo Maia
  */
-public class Veiculo_opcional_veiculoDAO {
+public class VeiculoOpcionalVeiculoDAO {
     private Connection connection;
-    private Veiculo_opcional_veiculoDAO veiculo_opcional_veiculoDAO;
+    private VeiculoOpcionalVeiculoDAO veiculo_opcional_veiculoDAO;
     
-    public Veiculo_opcional_veiculoDAO(){
-      try {
+    public VeiculoOpcionalVeiculoDAO(){
+        try {
             this.connection = ConnectionFactory.getConnection();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -49,18 +49,18 @@ public class Veiculo_opcional_veiculoDAO {
     
     public List<Integer> getPorIdVeiculo(int id_veiculo){
         String sql = "select * from veiculo_opcionais_veiculo where id_veiculo=?;";
-        List<Integer> lista = new ArrayList<Integer>() ;
+        List<Integer> lista = new ArrayList<Integer>();
         try {
-            
+
             PreparedStatement stmt = this.connection.prepareStatement(sql);
             stmt.setInt(1, id_veiculo);
             ResultSet rs = stmt.executeQuery();
             int posicao = 0;
             while (rs.next()) {
-                lista.add(posicao,rs.getInt("id_opcionais_veiculo"));
+                lista.add(posicao, rs.getInt("id_opcionais_veiculo"));
                 posicao++;
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

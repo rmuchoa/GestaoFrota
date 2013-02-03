@@ -19,111 +19,93 @@ import model.entity.Veiculo;
  * @author Marcelo Maia
  */
 public class TipoVeiculoDAO {
-   
+
     private Connection connection;
-    
-    public TipoVeiculoDAO(){
+
+    public TipoVeiculoDAO() {
         try {
             this.connection = ConnectionFactory.getConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
-    public void inserirTipoVeiculo(TipoVeiculo tipoVeiculo){
-    
-       
-        String sql = "insert into tipo_veiculo ("
-                + "descricao) values (?)";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            
-            stmt.setString(1, tipoVeiculo.getDescricao());
-            stmt.execute();
-            stmt.close();
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    
-    }
-    
-    
-    public List<TipoVeiculo> listarTodos(){
-        TipoVeiculo tipoVeiculo;
-        List<TipoVeiculo> lista = new ArrayList<TipoVeiculo>();
-        int posicao = 0;
+
+    public List<TipoVeiculo> listarTodos() {
         
+        List<TipoVeiculo> lista = new ArrayList<TipoVeiculo>();
         String sql = "select * from tipo_veiculo";
-         try {
-            
+        
+        try {
+
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
-                tipoVeiculo = new TipoVeiculo();
+                
+                TipoVeiculo tipoVeiculo = new TipoVeiculo();
                 tipoVeiculo.setId(rs.getInt("id"));
                 tipoVeiculo.setDescricao(rs.getString("descricao"));
-                lista.add(posicao,tipoVeiculo);
-                posicao++;
-                
+                lista.add(tipoVeiculo);
+
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-         
-         return lista;
+
+        return lista;
     }
-    
-     public TipoVeiculo getTipoPorDescricao(String descricao){
-        TipoVeiculo  tipoVeiculo = new TipoVeiculo();
+
+    public TipoVeiculo getTipoPorDescricao(String descricao) {
         
+        TipoVeiculo tipoVeiculo = null;
         String sql = "select * from tipo_veiculo where descricao = ?";
-         try {
-            
+        
+        try {
+
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, descricao);
             ResultSet rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
-               
+
+                tipoVeiculo = new TipoVeiculo();
                 tipoVeiculo.setId(rs.getInt("id"));
                 tipoVeiculo.setDescricao(rs.getString("descricao"));
-                
+
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-         
-         return tipoVeiculo;
+
+        return tipoVeiculo;
     }
-     
-     
-     public TipoVeiculo getTipoPorID(int id){
-        TipoVeiculo  tipoVeiculo = new TipoVeiculo();
-        
+
+    public TipoVeiculo getTipoPorID(int id) {
+
+        TipoVeiculo tipoVeiculo = null;
         String sql = "select * from tipo_veiculo where id = ?";
-         try {
-            
+
+        try {
+
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
-               
+                
+                tipoVeiculo = new TipoVeiculo();
                 tipoVeiculo.setId(rs.getInt("id"));
                 tipoVeiculo.setDescricao(rs.getString("descricao"));
-                
+
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-         
-         return tipoVeiculo;
+
+        return tipoVeiculo;
     }
     
-   
 }

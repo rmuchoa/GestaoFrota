@@ -218,7 +218,7 @@
                                 EstadoController estadoController = new EstadoController();
                                 List<Estado> listaEstados = estadoController.listar();
                                 for (int i = 0; i < listaEstados.size(); i++) {
-                                    if (usuario.getCidade().getEstado().getId() == listaEstados.get(i).getId()) {
+                                    if (usuario.getCidade().getEstado().getId().equals(listaEstados.get(i).getId())) {
                                         out.print("<option value='"+listaEstados.get(i).getId()+"' selected='true'>"+listaEstados.get(i).getSigla()+"</option>");
                                     } else {
                                         out.print("<option value='"+listaEstados.get(i).getId()+"'>"+listaEstados.get(i).getSigla()+"</option>");
@@ -238,7 +238,8 @@
                                 List<Cidade> listaCidades = cidadeController.listar();
                                 for (int i = 0; i < listaCidades.size(); i++) {
                                     Cidade cidade = listaCidades.get(i);
-                                    if (usuario.getCidade().getId() == listaCidades.get(i).getId()) {
+                                    System.out.println(usuario.getCidade().getId());
+                                    if (usuario.getCidade().getId().equals(listaCidades.get(i).getId())) {
                                         out.print("<option value='"+cidade.getId()+"' selected='true'>"+cidade.getNome()+" - "+cidade.getEstado().getSigla()+"</option>");
                                     } else {
                                         out.print("<option value='"+cidade.getId()+"'>"+cidade.getNome()+" - "+cidade.getEstado().getSigla()+"</option>");

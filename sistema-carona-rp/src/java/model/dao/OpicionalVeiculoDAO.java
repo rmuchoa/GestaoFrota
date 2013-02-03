@@ -19,63 +19,66 @@ import model.entity.Veiculo;
  * @author Marcelo Maia
  */
 public class OpicionalVeiculoDAO {
-     
-     private Connection connection;
-     private OpicionalVeiculo opicionalVeiculo;
-     private List<OpicionalVeiculo> lista = new ArrayList<OpicionalVeiculo>();
-     
-     public OpicionalVeiculoDAO(){
-         try {
+
+    private Connection connection;
+    private OpicionalVeiculo opicionalVeiculo;
+    private List<OpicionalVeiculo> lista;
+
+    public OpicionalVeiculoDAO() {
+        try {
             this.connection = ConnectionFactory.getConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-     }
-     
-     
-     public List<OpicionalVeiculo> getTodosOpcionais(){
-        String sql = "select * from opcionais_veiculo;";
+    }
+
+    public List<OpicionalVeiculo> getTodosOpcionais() {
         
+        lista = new ArrayList<OpicionalVeiculo>();
+        String sql = "select * from opcionais_veiculo;";
+
         try {
-            
+
             PreparedStatement stmt = this.connection.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
-            int posicao = 0;
             while (rs.next()) {
                 OpicionalVeiculo opicionalVeiculo = new OpicionalVeiculo();
                 opicionalVeiculo.setId(rs.getInt("id"));
                 opicionalVeiculo.setDescricao(rs.getString("descricao"));
-                 lista.add(posicao,opicionalVeiculo);
+                lista.add(opicionalVeiculo);
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return lista;
-     }
-     
-     
-     
-     public List<OpicionalVeiculo> getOpcionalPorId(int id){
-        String sql = "select * from opcionais_veiculo where id=?;";
         
+        return lista;
+    }
+
+    public OpicionalVeiculo getOpcionalPorId(int id) {
+
+        OpicionalVeiculo opcionalVeiculo = null;
+        String sql = "select * from opcionais_veiculo where id=?;";
+
         try {
-            
+
             PreparedStatement stmt = this.connection.prepareStatement(sql);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
-            int posicao = 0;
-            while (rs.next()) {
-                OpicionalVeiculo opicionalVeiculo = new OpicionalVeiculo();
-                opicionalVeiculo.setId(rs.getInt("id"));
-                opicionalVeiculo.setDescricao(rs.getString("descricao"));
-                 lista.add(posicao,opicionalVeiculo);
-            }
             
+            while (rs.next()) {
+
+                opcionalVeiculo = new OpicionalVeiculo();
+                opcionalVeiculo.setId(rs.getInt("id"));
+                opcionalVeiculo.setDescricao(rs.getString("descricao"));
+                
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return lista;
-     }
-     
+        
+        return opcionalVeiculo;
+        
+    }
 }
