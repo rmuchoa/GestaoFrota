@@ -93,7 +93,7 @@
                             <%
                             TipoVeiculoController tipoVeiculoController = new TipoVeiculoController();
                             List<TipoVeiculo>  listaDeTipos;
-                            listaDeTipos = tipoVeiculoController.listarTodosTiposVeiculos();
+                           listaDeTipos = tipoVeiculoController.listarTodosTiposVeiculos();
                             for(int i = 0;i<listaDeTipos.size();i++){        
                                out.print("<option>"+listaDeTipos.get(i).getDescricao() +"</option>");
                              }        
@@ -126,7 +126,7 @@
                         OpicionalVeiculoDAO opicionalVeiculoDAO = new OpicionalVeiculoDAO();
                         lista  = opicionalVeiculoDAO.getTodosOpcionais();
                         for(int i =0;i<lista.size();i++){
-                         out.println("<input type='checkbox' name='opcional' value=' "+lista.get(i).getDescricao() +"'>"+lista.get(i).getDescricao() +"<br>");
+                         out.println("<input type='checkbox' name='"+lista.get(i).getId()+"' value=' "+lista.get(i).getId()+"'>"+lista.get(i).getDescricao() +"<br>");
                         }
                         %>
                      </div>

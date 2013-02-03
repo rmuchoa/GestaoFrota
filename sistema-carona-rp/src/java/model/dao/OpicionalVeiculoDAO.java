@@ -25,11 +25,9 @@ public class OpicionalVeiculoDAO {
      private List<OpicionalVeiculo> lista = new ArrayList<OpicionalVeiculo>();
      
      public OpicionalVeiculoDAO(){
-          try {
-            this.connection = new ConnectionFactory() {
-
-       }.getConnection();
-    } catch (SQLException e) {
+         try {
+            this.connection = ConnectionFactory.getConnection();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
      }
@@ -41,6 +39,30 @@ public class OpicionalVeiculoDAO {
         try {
             
             PreparedStatement stmt = this.connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            int posicao = 0;
+            while (rs.next()) {
+                OpicionalVeiculo opicionalVeiculo = new OpicionalVeiculo();
+                opicionalVeiculo.setId(rs.getInt("id"));
+                opicionalVeiculo.setDescricao(rs.getString("descricao"));
+                 lista.add(posicao,opicionalVeiculo);
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+     }
+     
+     
+     
+     public List<OpicionalVeiculo> getOpcionalPorId(int id){
+        String sql = "select * from opcionais_veiculo where id=?;";
+        
+        try {
+            
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             int posicao = 0;
             while (rs.next()) {

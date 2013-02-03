@@ -4,6 +4,9 @@
     Author     : Marcelo Maia
 --%>
 
+<%@page import="model.dao.Veiculo_opcional_veiculoDAO"%>
+<%@page import="model.entity.OpicionalVeiculo"%>
+<%@page import="model.dao.OpicionalVeiculoDAO"%>
 <%@page import="model.dao.VeiculoDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="model.entity.TipoVeiculo"%>
@@ -125,6 +128,30 @@
                         <input type="text" value="<%out.println(veiculo.getCapacidade_carga());%>" name="capacidade_carga" id="capacidade_carga" placeholder="Capacidade carga">
                     </div>
                 </div>
+                  
+                     <div class="control-group">
+                    <div class="controls">
+                        <%
+                        List<OpicionalVeiculo> lista;
+                        List<Integer> listaOpcionaisSelecionados = new Veiculo_opcional_veiculoDAO().getPorIdVeiculo(veiculo.getId()); 
+                        OpicionalVeiculoDAO opicionalVeiculoDAO = new OpicionalVeiculoDAO();
+                        lista  = opicionalVeiculoDAO.getTodosOpcionais();
+                        int status=0;
+                        for(int i =0;i<lista.size();i++){
+                            status =0;
+                            for(int j = 0;j<listaOpcionaisSelecionados.size();j++){   
+                                if(lista.get(i).getId()==listaOpcionaisSelecionados.get(j)){
+                                  out.println("<input type='checkbox' name='"+lista.get(i).getId()+"' value=' "+lista.get(i).getId()+"' CHECKED>"+lista.get(i).getDescricao() +"<br>");
+                                  status = 1; 
+                                }
+                            } 
+                            if(status==0){
+                                  out.println("<input type='checkbox' name='"+lista.get(i).getId()+"' value=' "+lista.get(i).getId()+"' >"+lista.get(i).getDescricao() +"<br>");
+                                 }                                      
+                        }
+                        %>
+                     </div>
+                </div>   
 
                 <div class="control-group">
                     <div class="controls">

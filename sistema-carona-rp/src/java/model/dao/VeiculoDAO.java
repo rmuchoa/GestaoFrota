@@ -27,22 +27,20 @@ public class VeiculoDAO {
     
     public VeiculoDAO(){
        try {
-            this.connection = new ConnectionFactory() {
-
-       }.getConnection();
-    } catch (SQLException e) {
+            this.connection = ConnectionFactory.getConnection();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
     
-     public void inserir(Veiculo veiculo) {
+     public Veiculo inserir(Veiculo veiculo) {
        
         String sql = "insert into veiculo ("
                 + "placa, renavam,cor,modelo,marca,ano,capacidade_passageiros,"
                 + "capacidade_carga,tipo_veiculo) values (?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            
+            System.out.println("Veiculo aqui :"+ veiculo.getPlaca());
             stmt.setString(1, veiculo.getPlaca());
             stmt.setInt(2, veiculo.getRenavam());
             stmt.setString(3, veiculo.getCor());
@@ -55,9 +53,16 @@ public class VeiculoDAO {
             stmt.execute();
             stmt.close();
             
+            
+            
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        Veiculo veiculoCadastrado =this.getVeiculoPorPlaca(veiculo.getPlaca());
+            
+        return veiculoCadastrado;
+        
     }
      
      public List<Veiculo> getTodosVeiculos(){
@@ -126,7 +131,7 @@ public class VeiculoDAO {
          return veiculo;
      }
       
-      public void alterarImovel(Veiculo veiculo){
+      public Veiculo alterarVeiculo(Veiculo veiculo){
            String sql = "update veiculo set tipo_veiculo=?,placa=?,renavam=?,cor=?,modelo=?,marca=?,ano=?,capacidade_passageiros=?,capacidade_carga=? where id=?";
         
         try {
@@ -147,6 +152,9 @@ public class VeiculoDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } 
+         Veiculo veiculoCadastrado =this.getVeiculoPorPlaca(veiculo.getPlaca());
+            
+        return veiculoCadastrado;
       }
       
       public void removerVeicupoPorId(int id_veiculo){
@@ -162,4 +170,40 @@ public class VeiculoDAO {
             e.printStackTrace();
         }
       }
+      
+      
+      
+       public Veiculo getVeiculoPorPlaca(String placa){
+     
+         List<Veiculo> lista = new ArrayList<Veiculo>();
+         Veiculo veiculo = new Veiculo();
+         String sql = "select * from veiculo where placa = ?";
+         try {
+            
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, placa);
+            ResultSet rs = stmt.executeQuery();
+            
+            int posicao = 0;
+            while (rs.next()) {
+               TipoVeiculoDAO tipoVeiculoDAO = new TipoVeiculoDAO();
+                
+                veiculo.setId(rs.getInt("id"));
+                veiculo.setAno(rs.getInt("ano"));
+                veiculo.setCapacidade_carga(rs.getInt("capacidade_carga"));
+                veiculo.setCapacidade_passageiros(rs.getInt("capacidade_passageiros"));
+                veiculo.setCor(rs.getString("cor"));
+                veiculo.setMarca(rs.getString("marca"));
+                veiculo.setModelo(rs.getString("modelo"));
+                veiculo.setPlaca(rs.getString("placa"));
+                veiculo.setRenavam(rs.getInt("renavam"));
+                veiculo.setTipo_veiculo(tipoVeiculoDAO.getTipoPorID(rs.getInt("tipo_veiculo")));
+               
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+         return veiculo;
+     }
 }

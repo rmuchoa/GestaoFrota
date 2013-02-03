@@ -4,6 +4,7 @@
     Author     : Marcelo Maia
 --%>
 
+<%@page import="model.dao.Veiculo_opcional_veiculoDAO"%>
 <%@page import="model.dao.VeiculoDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="model.entity.TipoVeiculo"%>
@@ -35,6 +36,8 @@
             Veiculo veiculo;
             veiculo =  veiculoDAO.getVeiculoPorId(Integer.parseInt(request.getParameter("id_veiculo")));  
             veiculoDAO.removerVeicupoPorId(veiculo.getId());
+            Veiculo_opcional_veiculoDAO veiculo_opcional_veiculoDAO = new Veiculo_opcional_veiculoDAO();
+            veiculo_opcional_veiculoDAO.remover(veiculo.getId());
             response.sendRedirect("listaVeiculos.jsp");
            
             %>
