@@ -4,6 +4,7 @@
     Author     : Marcelo Maia
 --%>
 
+<%@page import="controller.SolicitacaoViagemController"%>
 <%@page import="model.entity.OpicionalVeiculo"%>
 <%@page import="model.dao.OpicionalVeiculoDAO"%>
 <%@page import="java.util.List"%>
@@ -18,9 +19,9 @@
 
 <%
     if (request.getMethod().equalsIgnoreCase("post")) {
-        VeiculoController veiculoController = new VeiculoController();
-        veiculoController.inserirVeiculo(request);
-        response.sendRedirect("listaVeiculos.jsp");
+        SolicitacaoViagemController solicitacaoViagemController  = new SolicitacaoViagemController();
+        solicitacaoViagemController.inserirSolicitacao(request);
+        //response.sendRedirect("listaVeiculos.jsp");
     }
     
 %>
@@ -42,14 +43,27 @@
 
 
             
-            <form action="index.jsp" method="POST" class="form-horizontal">
+            <form action="solicitar.jsp" method="POST" class="form-horizontal">
                 <legend>Formulario de solicitação de Viagens</legend>
                 <div class="control-group">
                     <label class="control-label" for="inputSolicitante">Nome do solicitante:</label>
                     <div class="controls">
-                        <input class="input-xxlarge" type="text" id="solicitante" name="solicitante" placeholder="Nome do solicitante">
+                        <input class="input-large" type="text" id="solicitante" name="solicitante" placeholder="Nome do solicitante">
+                        
+                       
                     </div>
                 </div>
+                
+                 <div class="control-group">
+                    <label class="control-label" for="inputSolicitante">Todos passageiros são servidores da Unipampa:</label>
+                    <div class="controls">
+                         <input type="radio" name="ehservidor" value="1">Sim
+                         <input type="radio" name="ehservidor" value="0"> Não
+                    </div>
+                </div>
+                
+               
+                
                 
                 <div class="control-group">
                     <label class="control-label" for="inputNumeroPessoas">Numero de pessoas transportadas:</label>
@@ -73,8 +87,8 @@
                     <label class="control-label" for="inputCidadeOrigem">Cidade de origem:</label>
                     <div class="controls">
                         <select name="cidadeOrigem">
-                            <option>Ouro Preto</option>
-                            <option>Belo Horizonte</option>
+                            <option value="1" >Ouro Preto</option>
+                            <option value="2" >Belo Horizonte</option>
                         </select>
                     </div>
                 </div>
@@ -118,8 +132,8 @@
                     <label class="control-label" for="inputCidadeOrigem">Cidade:</label>
                     <div class="controls">
                         <select name="cidadeRetorno">
-                            <option>Ouro Preto</option>
-                            <option>Belo Horizonte</option>
+                            <option value="1">Ouro Preto</option>
+                            <option value="2">Belo Horizonte</option>
                         </select>
                     </div>
                 </div>
@@ -159,7 +173,7 @@
                     <legend>Objetivo/Justificativa para a viagem</legend>
                     <div class="control-group">
                         <div class="controls">
-                            <textarea  rows="4" style="width: 90%" >
+                            <textarea name="objetivo"  rows="4" style="width: 90%" >
 
                             </textarea>
                         </div>    
@@ -170,7 +184,7 @@
                     <legend>Observações</legend>
                     <div class="control-group">
                         <div class="controls">
-                            <textarea  rows="4" style="width: 90%" >
+                            <textarea name="observacao"  rows="4" style="width: 90%" >
 
                             </textarea>
                         </div>    

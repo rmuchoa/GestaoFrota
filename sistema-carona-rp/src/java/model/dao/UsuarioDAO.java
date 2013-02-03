@@ -212,4 +212,49 @@ public class UsuarioDAO {
         return usuario;
         
     }
+    
+    
+    public Usuario buscarPorNome(String  nome) {
+
+        Usuario usuario = new Usuario();
+        String sql = "select * from usuario where nome = ?";
+
+        try {
+
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, nome);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                TipoUsuarioDAO tipoUsuarioDAO = new TipoUsuarioDAO();
+                CidadeDAO cidadeDAO = new CidadeDAO();
+
+                usuario.setId(rs.getInt("id"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setLogin(rs.getString("login"));
+                usuario.setSenha(rs.getString("senha"));
+                usuario.setTipoUsuario(tipoUsuarioDAO.buscarPorId(rs.getInt("tipo_usuario")));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setTelefone(rs.getString("telefone"));
+                usuario.setCelular(rs.getString("celular"));
+                usuario.setRg(rs.getString("rg"));
+                usuario.setSiape(rs.getInt("siape"));
+                usuario.setNumeroCnh(rs.getLong("numero_cnh"));
+                usuario.setValidadeCnh(rs.getDate("validade_cnh"));
+                usuario.setCategoriaCnh(rs.getString("categoria_cnh"));
+                usuario.setRua(rs.getString("rua"));
+                usuario.setNumero(rs.getInt("numero"));
+                usuario.setComplemento(rs.getString("complemento"));
+                usuario.setCep(rs.getString("cep"));
+                usuario.setCidade(cidadeDAO.buscarPorId(rs.getInt("cidade")));
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return usuario;
+        
+    }
 }
