@@ -4,6 +4,8 @@
     Author     : renanmarceluchoa
 --%>
 
+<%@page import="model.entity.Estado"%>
+<%@page import="controller.EstadoController"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="controller.UsuarioController"%>
@@ -35,6 +37,24 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
         <script type="text/javas;cript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#estado").change(function() {
+                    $.ajax({
+                        url:"cidades.jsp",
+                        context:this,
+                        dataType:"hmtl",
+                        data:{estado: $("#estado").val()},
+                        type:"POST",
+                        success:function(response){
+                            console.log(response);
+                            this.alert(response);
+                            $("#cidade").html(response);
+                        }
+                    });
+                });
+            });
+        </script>
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body>
@@ -85,10 +105,10 @@
                                 TipoUsuarioController tipoUsuarioController = new TipoUsuarioController();
                                 List<TipoUsuario> listaTiposUsuario = tipoUsuarioController.listar();
                                 for (int i = 0; i < listaTiposUsuario.size(); i++) {
-                                    if (usuario.getTipoUsuario().getDescricao().equals(listaTiposUsuario.get(i).getDescricao())) {
-                                        out.print("<option selected = 'true'>" + listaTiposUsuario.get(i).getDescricao() + "</option>");
+                                    if (usuario.getTipoUsuario().getId().equals(listaTiposUsuario.get(i).getId())) {
+                                        out.print("<option value='"+listaTiposUsuario.get(i).getId()+"' selected='true'>"+listaTiposUsuario.get(i).getDescricao()+"</option>");
                                     } else {
-                                        out.print("<option>" + listaTiposUsuario.get(i).getDescricao() + "</option>");
+                                        out.print("<option value='"+listaTiposUsuario.get(i).getId()+"'>"+listaTiposUsuario.get(i).getDescricao()+"</option>");
                                     }
                                 }
                             %>
@@ -190,17 +210,38 @@
                 </div>
 
                 <div class="control-group">
+                    <label class="control-label"  for="inputEstado">Estado</label>
+                    <div  class="controls">
+                        <select id="estado" name="estado">
+                            <option></option>
+                            <%
+                                EstadoController estadoController = new EstadoController();
+                                List<Estado> listaEstados = estadoController.listar();
+                                for (int i = 0; i < listaEstados.size(); i++) {
+                                    if (usuario.getCidade().getEstado().getId() == listaEstados.get(i).getId()) {
+                                        out.print("<option value='"+listaEstados.get(i).getId()+"' selected='true'>"+listaEstados.get(i).getSigla()+"</option>");
+                                    } else {
+                                        out.print("<option value='"+listaEstados.get(i).getId()+"'>"+listaEstados.get(i).getSigla()+"</option>");
+                                    }
+                                }
+                            %>
+                        </select>
+                    </div>
+                </div> 
+
+                <div class="control-group">
                     <label class="control-label"  for="inputCidade">Cidade</label>
                     <div  class="controls">
-                        <select id="tipo" name="cidade">
+                        <select id="cidade" name="cidade">
                             <%
                                 CidadeController cidadeController = new CidadeController();
                                 List<Cidade> listaCidades = cidadeController.listar();
                                 for (int i = 0; i < listaCidades.size(); i++) {
-                                    if (usuario.getCidade().getNome().equals(listaCidades.get(i).getNome())) {
-                                        out.print("<option selected = 'true'>" + listaCidades.get(i).getNome() + "</option>");
+                                    Cidade cidade = listaCidades.get(i);
+                                    if (usuario.getCidade().getId() == listaCidades.get(i).getId()) {
+                                        out.print("<option value='"+cidade.getId()+"' selected='true'>"+cidade.getNome()+" - "+cidade.getEstado().getSigla()+"</option>");
                                     } else {
-                                        out.print("<option>" + listaCidades.get(i).getNome() + "</option>");
+                                        out.print("<option value='"+cidade.getId()+"'>"+cidade.getNome()+" - "+cidade.getEstado().getSigla()+"</option>");
                                     }
                                 }
                             %>

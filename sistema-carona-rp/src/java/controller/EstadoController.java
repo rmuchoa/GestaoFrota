@@ -14,18 +14,17 @@ import model.entity.Estado;
  *
  * @author renanmarceluchoa
  */
-public class CidadeController {
+public class EstadoController {
     
     EstadoDAO estadoDAO = new EstadoDAO();
-    CidadeDAO cidadeDAO = new CidadeDAO();
-    Cidade cidade = new Cidade();
+    Estado estado = new Estado();
 
-    public List<Cidade> listar() {
-        return cidadeDAO.listar();
+    public List<Estado> listar() {
+        return estadoDAO.listar();
     }
     
-    public List<Cidade> listarPorEstado(Estado estado) {
-        return cidadeDAO.listarPorEstado(estado);
+    public Estado buscarPorId(int id) {
+        return estadoDAO.buscarPorId(id);
     }
     
 }

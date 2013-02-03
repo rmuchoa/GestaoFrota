@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import jdbc.ConnectionFactory;
 import model.entity.Cidade;
+import model.entity.Estado;
 import model.entity.TipoUsuario;
 
 /**
@@ -107,6 +108,36 @@ public class CidadeDAO {
                 cidade.setId(rs.getInt("id"));
                 cidade.setNome(rs.getString("nome"));
                 cidade.setEstado(estadoDAO.buscarPorId(rs.getInt("estado")));
+
+                lista.add(cidade);
+                
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return lista;
+        
+    }
+    
+    public List<Cidade> listarPorEstado(Estado estado) {
+        
+        List<Cidade> lista = new ArrayList<Cidade>();
+        String sql = "select * from cidade where estado = ?";
+        
+        try {
+
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, estado.getId());
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                
+                Cidade cidade = new Cidade();
+                cidade.setId(rs.getInt("id"));
+                cidade.setNome(rs.getString("nome"));
+                cidade.setEstado(estado);
 
                 lista.add(cidade);
                 

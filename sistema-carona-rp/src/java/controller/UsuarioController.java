@@ -33,7 +33,7 @@ public class UsuarioController {
             usuario.setNome(request.getParameter("nome"));
             usuario.setLogin(request.getParameter("login"));
             usuario.setSenha(request.getParameter("senha"));
-            usuario.setTipoUsuario(tipoUsuarioDAO.buscarPorDescricao(request.getParameter("tipo_usuario")));
+            usuario.setTipoUsuario(tipoUsuarioDAO.buscarPorId(Integer.parseInt(request.getParameter("tipo_usuario"))));
             usuario.setEmail(request.getParameter("email"));
             usuario.setTelefone(request.getParameter("telefone"));
             usuario.setCelular(request.getParameter("celular"));
@@ -46,7 +46,7 @@ public class UsuarioController {
             usuario.setNumero(Integer.parseInt(request.getParameter("numero")));
             usuario.setComplemento(request.getParameter("complemento"));
             usuario.setCep(request.getParameter("cep"));
-            usuario.setCidade(cidadeDAO.buscarPorNome(request.getParameter("cidade")));
+            usuario.setCidade(cidadeDAO.buscarPorId(Integer.parseInt(request.getParameter("cidade"))));
             
             usuarioDAO.inserir(usuario);
         } catch (ParseException ex) {
@@ -63,7 +63,7 @@ public class UsuarioController {
             usuario.setNome(request.getParameter("nome"));
             usuario.setLogin(request.getParameter("login"));
             usuario.setSenha(request.getParameter("senha"));
-            usuario.setTipoUsuario(tipoUsuarioDAO.buscarPorDescricao(request.getParameter("tipo_usuario")));
+            usuario.setTipoUsuario(tipoUsuarioDAO.buscarPorId(Integer.parseInt(request.getParameter("tipo_usuario"))));
             usuario.setEmail(request.getParameter("email"));
             usuario.setTelefone(request.getParameter("telefone"));
             usuario.setCelular(request.getParameter("celular"));
@@ -76,7 +76,7 @@ public class UsuarioController {
             usuario.setNumero(Integer.parseInt(request.getParameter("numero")));
             usuario.setComplemento(request.getParameter("complemento"));
             usuario.setCep(request.getParameter("cep"));
-            usuario.setCidade(cidadeDAO.buscarPorNome(request.getParameter("cidade")));
+            usuario.setCidade(cidadeDAO.buscarPorId(Integer.parseInt(request.getParameter("cidade"))));
             
             usuarioDAO.alterar(usuario);
         } catch (ParseException ex) {

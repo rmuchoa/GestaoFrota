@@ -4,6 +4,8 @@
     Author     : renanmarceluchoa
 --%>
 
+<%@page import="controller.EstadoController"%>
+<%@page import="model.entity.Estado"%>
 <%@page import="java.util.List"%>
 <%@page import="controller.UsuarioController"%>
 <%@page import="controller.TipoUsuarioController"%>
@@ -34,6 +36,25 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#estado").change(function() {
+                    $.ajax({
+                        url:"cidades.jsp",
+                        context:this,
+                        dataType:"hmtl",
+                        data:{estado: $("#estado").val()},
+                        type:"POST",
+                        success:function(html){
+                            console.log(hmtl);
+                            this.alert("chegou!!!");
+                            $("#cidade").html(html);
+                        }
+                    });
+                });
+            });
+        </script>
+
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body>
@@ -73,7 +94,7 @@
                                 TipoUsuarioController tipoVeiculoController = new TipoUsuarioController();
                                 List<TipoUsuario> listaTiposUsuario = tipoVeiculoController.listar();
                                 for (int i = 0; i < listaTiposUsuario.size(); i++) {
-                                    out.print("<option>" + listaTiposUsuario.get(i).getDescricao() + "</option>");
+                                    out.print("<option value='"+listaTiposUsuario.get(i).getId()+"'>" + listaTiposUsuario.get(i).getDescricao() + "</option>");
                                 }
                             %>
 
@@ -175,16 +196,34 @@
                 </div>
 
                 <div class="control-group">
-                    <label class="control-label"  for="inputCidade">Cidade</label>
+                    <label class="control-label"  for="inputEstado">Estado</label>
                     <div  class="controls">
-                        <select id="tipo" name="cidade">
+                        <select id="estado" name="estado">
+                            <option></option>
                             <%
-                                CidadeController cidadeController = new CidadeController();
-                                List<Cidade> listaCidades = cidadeController.listar();
-                                for (int i = 0; i < listaCidades.size(); i++) {
-                                    out.print("<option>" + listaCidades.get(i).getNome() + "</option>");
+                                EstadoController estadoController = new EstadoController();
+                                List<Estado> listaEstados = estadoController.listar();
+                                for (int i = 0; i < listaEstados.size(); i++) {
+                                    out.print("<option value='"+listaEstados.get(i).getId() +"'>" + listaEstados.get(i).getSigla() + "</option>");
                                 }
                             %>
+                        </select>
+                    </div>
+                </div> 
+
+                <div class="control-group">
+                    <label class="control-label"  for="inputCidade">Cidade</label>
+                    <div  class="controls">
+                        <select id="cidade" name="cidade">
+                           <!--<option></option> -->
+                            <%
+                               /**  CidadeController cidadeController = new CidadeController(); 
+                                 List<Cidade> listaCidades = cidadeController.listar(); 
+                                 for (int i = 0; i < listaCidades.size(); i++) {
+                                     Cidade cidade = listaCidades.get(i);
+                                     out.print("<option value='"+cidade.getId()+"'>"+cidade.getNome()+" - "+cidade.getEstado().getSigla()+"</option>");
+                                 } */
+                            %> 
                         </select>
                     </div>
                 </div> 
@@ -201,4 +240,6 @@
 
         </div>
     </body>
+
+
 </html>

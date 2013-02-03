@@ -30,11 +30,11 @@
         <div class="offset2 span8 offset2">
 
             <h3>Alteração dos dados do veículo</h3> 
-            <% UsuarioController usuarioController = new UsuarioController();
-            Usuario usuario = usuarioController.buscarPorId(Integer.parseInt(request.getParameter("id")));  
-            usuarioController.remover(usuario);
-            response.sendRedirect("listaUsuarios.jsp");
-           
+            <%
+                UsuarioController usuarioController = new UsuarioController();
+                Usuario usuario = usuarioController.buscarPorId(Integer.parseInt(request.getParameter("id")));  
+                usuarioController.remover(usuario);
+                response.sendRedirect("listaUsuarios.jsp");
             %>
             <div class="offset1 span8 offset1 well">
                 Usuario removido
