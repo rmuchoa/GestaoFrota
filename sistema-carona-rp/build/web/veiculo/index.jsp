@@ -93,7 +93,7 @@
                             <%
                             TipoVeiculoController tipoVeiculoController = new TipoVeiculoController();
                             List<TipoVeiculo>  listaDeTipos;
-                            listaDeTipos = tipoVeiculoController.listarTodosTiposVeiculos();
+                           listaDeTipos = tipoVeiculoController.listarTodosTiposVeiculos();
                             for(int i = 0;i<listaDeTipos.size();i++){        
                                out.print("<option>"+listaDeTipos.get(i).getDescricao() +"</option>");
                              }        
