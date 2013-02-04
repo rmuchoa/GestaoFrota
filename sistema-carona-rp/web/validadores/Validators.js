@@ -33,13 +33,13 @@ function validaFormularioVeiculo(){
                 required: true
             },
             ano:{
-                required: true
+                required: true,digits: true
             },
             capacidade_passageiros:{
-                required: true
+                required: true,digits: true
             },
             capacidade_carga:{
-                required: true
+                required: true,digits: true
             },
 
         },
@@ -87,15 +87,18 @@ function validaFormularioVeiculo(){
             },
             ano:{
 
-                required: "Informe o ano do veiculo"
+                required: "Informe o ano do veiculo",
+                digits: "Digite apenas numero"
             },
             capacidade_passageiros:{
                 
-                required:" Informe a capacidade de passageiros"
+                required:" Informe a capacidade de passageiros",
+                digits: "Digite apenas numero"
             },
             capacidade_carga:{
                 
-                required:" Informe a capacidade de carga em Kg do veiculo"
+                required:" Informe a capacidade de carga em Kg do veiculo",
+                digits: "Digite apenas numero"
             }
 
         }
@@ -103,6 +106,11 @@ function validaFormularioVeiculo(){
     });
 
 
+}
+
+function verificaCamposNumericos(){
+    
+    
 }
 
 

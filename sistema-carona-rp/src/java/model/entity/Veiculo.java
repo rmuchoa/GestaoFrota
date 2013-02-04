@@ -12,7 +12,7 @@ public class Veiculo {
     
     private Integer id;
     private String placa;
-    private Integer renavam;
+    private Long renavam;
     private String cor;
     private String modelo;
     private String marca;
@@ -37,11 +37,11 @@ public class Veiculo {
         this.placa = placa;
     }
 
-    public Integer getRenavam() {
+    public Long getRenavam() {
         return renavam;
     }
 
-    public void setRenavam(int renavam) {
+    public void setRenavam(Long renavam) {
         this.renavam = renavam;
     }
 

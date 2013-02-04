@@ -4,7 +4,7 @@
     Author     : Marcelo Maia
 --%>
 
-<%@page import="model.dao.Veiculo_opcional_veiculoDAO"%>
+<%@page import="model.dao.VeiculoOpcionalVeiculoDAO"%>
 <%@page import="model.entity.OpicionalVeiculo"%>
 <%@page import="model.dao.OpicionalVeiculoDAO"%>
 <%@page import="model.dao.VeiculoDAO"%>
@@ -36,9 +36,19 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
         <script type="text/javas;cript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
+          <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery-1.9.0.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
+        
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body>
+        <script type="text/javascript">
+            $(document).ready( function() {
+                validaFormularioVeiculo()
+            });
+        </script>
         <h3 class="span12 well">Sistema de Caronas Unipampa</h3>
         <div class="offset2 span8 offset2">
 
@@ -47,7 +57,7 @@
             Veiculo veiculo;
              veiculo =  veiculoDAO.getVeiculoPorId(Integer.parseInt(request.getParameter("id_veiculo")));  
             %>
-            <form action="editarVeiculo.jsp?id_veiculo=<%out.println(request.getParameter("id_veiculo"));%>" method="POST" class="form-horizontal well">
+            <form id="formularioVeiculo" action="editarVeiculo.jsp?id_veiculo=<%out.println(request.getParameter("id_veiculo"));%>" method="POST" class="form-horizontal well">
 
                 <input  style="display:none" name="id" value="<% out.print(veiculo.getId()); %>">
                 <div class="control-group">
@@ -133,7 +143,7 @@
                     <div class="controls">
                         <%
                         List<OpicionalVeiculo> lista;
-                        List<Integer> listaOpcionaisSelecionados = new Veiculo_opcional_veiculoDAO().getPorIdVeiculo(veiculo.getId()); 
+                        List<Integer> listaOpcionaisSelecionados = new VeiculoOpcionalVeiculoDAO().getPorIdVeiculo(veiculo.getId()); 
                         OpicionalVeiculoDAO opicionalVeiculoDAO = new OpicionalVeiculoDAO();
                         lista  = opicionalVeiculoDAO.getTodosOpcionais();
                         int status=0;

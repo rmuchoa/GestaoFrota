@@ -33,7 +33,7 @@ public class VeiculoController {
     public void inserirVeiculo(HttpServletRequest request){
         
         veiculo.setPlaca(request.getParameter("placa"));
-        veiculo.setRenavam(Integer.parseInt(request.getParameter("renavan")));
+        veiculo.setRenavam(Long.parseLong(request.getParameter("renavan")));
         veiculo.setMarca(request.getParameter("marca"));
         veiculo.setModelo(request.getParameter("modelo"));
         veiculo.setCor(request.getParameter("cor"));
@@ -52,7 +52,7 @@ public class VeiculoController {
     public void alterarVeiculo(HttpServletRequest request){
         System.out.println(" Marca"+veiculo.getMarca()+" Tipo:"+veiculo.getTipo_veiculo());
         veiculo.setPlaca(request.getParameter("placa"));
-        veiculo.setRenavam(Integer.parseInt(request.getParameter("renavan")));
+        veiculo.setRenavam(Long.parseLong(request.getParameter("renavan")));
         veiculo.setMarca(request.getParameter("marca"));
         veiculo.setModelo(request.getParameter("modelo"));
         veiculo.setCor(request.getParameter("cor"));

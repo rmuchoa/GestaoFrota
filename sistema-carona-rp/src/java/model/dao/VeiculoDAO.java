@@ -42,7 +42,7 @@ public class VeiculoDAO {
             PreparedStatement stmt = connection.prepareStatement(sql);
             System.out.println("Veiculo aqui :" + veiculo.getPlaca());
             stmt.setString(1, veiculo.getPlaca());
-            stmt.setInt(2, veiculo.getRenavam());
+            stmt.setLong(2, veiculo.getRenavam());
             stmt.setString(3, veiculo.getCor());
             stmt.setString(4, veiculo.getModelo());
             stmt.setString(5, veiculo.getMarca());
@@ -85,7 +85,7 @@ public class VeiculoDAO {
                 veiculo.setMarca(rs.getString("marca"));
                 veiculo.setModelo(rs.getString("modelo"));
                 veiculo.setPlaca(rs.getString("placa"));
-                veiculo.setRenavam(rs.getInt("renavam"));
+                veiculo.setRenavam(rs.getLong("renavam"));
                 veiculo.setTipo_veiculo(tipoVeiculoDAO.getTipoPorID(rs.getInt("tipo_veiculo")));
                 lista.add(posicao, veiculo);
             }
@@ -121,7 +121,7 @@ public class VeiculoDAO {
                 veiculo.setMarca(rs.getString("marca"));
                 veiculo.setModelo(rs.getString("modelo"));
                 veiculo.setPlaca(rs.getString("placa"));
-                veiculo.setRenavam(rs.getInt("renavam"));
+                veiculo.setRenavam(rs.getLong("renavam"));
                 veiculo.setTipo_veiculo(tipoVeiculoDAO.getTipoPorID(rs.getInt("tipo_veiculo")));
 
             }
@@ -142,7 +142,7 @@ public class VeiculoDAO {
 
             stmt.setInt(1, veiculo.getTipo_veiculo().getId());
             stmt.setString(2, veiculo.getPlaca());
-            stmt.setInt(3, veiculo.getRenavam());
+            stmt.setLong(3, veiculo.getRenavam());
             stmt.setString(4, veiculo.getCor());
             stmt.setString(5, veiculo.getModelo());
             stmt.setString(6, veiculo.getMarca());
@@ -197,7 +197,7 @@ public class VeiculoDAO {
                 veiculo.setMarca(rs.getString("marca"));
                 veiculo.setModelo(rs.getString("modelo"));
                 veiculo.setPlaca(rs.getString("placa"));
-                veiculo.setRenavam(rs.getInt("renavam"));
+                veiculo.setRenavam(rs.getLong("renavam"));
                 veiculo.setTipo_veiculo(tipoVeiculoDAO.getTipoPorID(rs.getInt("tipo_veiculo")));
 
             }

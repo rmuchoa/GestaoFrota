@@ -38,6 +38,7 @@
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
+        
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body>
