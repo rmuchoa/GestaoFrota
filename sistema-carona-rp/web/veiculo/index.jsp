@@ -4,8 +4,8 @@
     Author     : Marcelo Maia
 --%>
 
-<%@page import="model.entity.OpicionalVeiculo"%>
-<%@page import="model.dao.OpicionalVeiculoDAO"%>
+<%@page import="model.entity.OpcionalVeiculo"%>
+<%@page import="model.dao.OpcionalVeiculoDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="model.entity.TipoVeiculo"%>
 <%@page import="controller.TipoVeiculoController"%>
@@ -131,9 +131,9 @@
                 <div class="control-group">
                     <div class="controls">
                         <%
-                        List<OpicionalVeiculo> lista;
-                        OpicionalVeiculoDAO opicionalVeiculoDAO = new OpicionalVeiculoDAO();
-                        lista  = opicionalVeiculoDAO.getTodosOpcionais();
+                        List<OpcionalVeiculo> lista;
+                        OpcionalVeiculoDAO opcionalVeiculoDAO = new OpcionalVeiculoDAO();
+                        lista  = opcionalVeiculoDAO.getTodosOpcionais();
                         for(int i =0;i<lista.size();i++){
                          out.println("<input type='checkbox' name='"+lista.get(i).getId()+"' value=' "+lista.get(i).getId()+"'>"+lista.get(i).getDescricao() +"<br>");
                         }

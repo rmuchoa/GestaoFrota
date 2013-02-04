@@ -8,7 +8,7 @@ package model.entity;
  *
  * @author Marcelo Maia
  */
-public class OpicionalVeiculo {
+public class OpcionalVeiculo {
     private Integer id;
     private String descricao;
 

@@ -8,11 +8,11 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
-import model.dao.OpicionalVeiculoDAO;
+import model.dao.OpcionalVeiculoDAO;
 import model.dao.TipoVeiculoDAO;
 import model.dao.VeiculoDAO;
 import model.dao.VeiculoOpcionalVeiculoDAO;
-import model.entity.OpicionalVeiculo;
+import model.entity.OpcionalVeiculo;
 import model.entity.Veiculo;
 /**
  *
@@ -23,9 +23,9 @@ public class VeiculoController {
     private Veiculo veiculo = new Veiculo();
     private VeiculoDAO veiculoDAO = new VeiculoDAO();
     private TipoVeiculoDAO tipoVeiculoDAO = new TipoVeiculoDAO();
-    private OpicionalVeiculoDAO opicionalVeiculoDAO;
-    private OpicionalVeiculo opicionalVeiculo;
-    private List<OpicionalVeiculo> listaDeOpcional;
+    private OpcionalVeiculoDAO opicionalVeiculoDAO;
+    private OpcionalVeiculo opicionalVeiculo;
+    private List<OpcionalVeiculo> listaDeOpcional;
     private VeiculoOpcionalVeiculoDAO veiculoOpcionalVeiculoDAO;
     
     
@@ -76,7 +76,7 @@ public class VeiculoController {
     
     private void verificaOpcionaisSelecionados(HttpServletRequest request, Veiculo v){
        
-        this.opicionalVeiculoDAO = new OpicionalVeiculoDAO();
+        this.opicionalVeiculoDAO = new OpcionalVeiculoDAO();
         listaDeOpcional = this.opicionalVeiculoDAO.getTodosOpcionais();
         System.out.println("Tamnhanho da lista:"+listaDeOpcional.size());
        

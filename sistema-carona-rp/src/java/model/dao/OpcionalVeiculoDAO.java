@@ -11,20 +11,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import jdbc.ConnectionFactory;
-import model.entity.OpicionalVeiculo;
+import model.entity.OpcionalVeiculo;
 import model.entity.Veiculo;
 
 /**
  *
  * @author Marcelo Maia
  */
-public class OpicionalVeiculoDAO {
+public class OpcionalVeiculoDAO {
 
     private Connection connection;
-    private OpicionalVeiculo opicionalVeiculo;
-    private List<OpicionalVeiculo> lista;
+    private OpcionalVeiculo opicionalVeiculo;
+    private List<OpcionalVeiculo> lista;
 
-    public OpicionalVeiculoDAO() {
+    public OpcionalVeiculoDAO() {
         try {
             this.connection = ConnectionFactory.getConnection();
         } catch (SQLException e) {
@@ -32,9 +32,9 @@ public class OpicionalVeiculoDAO {
         }
     }
 
-    public List<OpicionalVeiculo> getTodosOpcionais() {
+    public List<OpcionalVeiculo> getTodosOpcionais() {
         
-        lista = new ArrayList<OpicionalVeiculo>();
+        lista = new ArrayList<OpcionalVeiculo>();
         String sql = "select * from opcionais_veiculo;";
 
         try {
@@ -42,7 +42,7 @@ public class OpicionalVeiculoDAO {
             PreparedStatement stmt = this.connection.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                OpicionalVeiculo opicionalVeiculo = new OpicionalVeiculo();
+                OpcionalVeiculo opicionalVeiculo = new OpcionalVeiculo();
                 opicionalVeiculo.setId(rs.getInt("id"));
                 opicionalVeiculo.setDescricao(rs.getString("descricao"));
                 lista.add(opicionalVeiculo);
@@ -55,9 +55,9 @@ public class OpicionalVeiculoDAO {
         return lista;
     }
 
-    public OpicionalVeiculo getOpcionalPorId(int id) {
+    public OpcionalVeiculo getOpcionalPorId(int id) {
 
-        OpicionalVeiculo opcionalVeiculo = null;
+        OpcionalVeiculo opcionalVeiculo = null;
         String sql = "select * from opcionais_veiculo where id=?;";
 
         try {
@@ -68,7 +68,7 @@ public class OpicionalVeiculoDAO {
             
             while (rs.next()) {
 
-                opcionalVeiculo = new OpicionalVeiculo();
+                opcionalVeiculo = new OpcionalVeiculo();
                 opcionalVeiculo.setId(rs.getInt("id"));
                 opcionalVeiculo.setDescricao(rs.getString("descricao"));
                 

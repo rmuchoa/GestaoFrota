@@ -4,9 +4,12 @@
     Author     : Marcelo Maia
 --%>
 
+<%@page import="model.entity.SolicitacaoViagem"%>
+<%@page import="model.dao.SituacaoSolicitacaoDAO"%>
+<%@page import="model.entity.SituacaoSolicitacao"%>
 <%@page import="controller.SolicitacaoViagemController"%>
-<%@page import="model.entity.OpicionalVeiculo"%>
-<%@page import="model.dao.OpicionalVeiculoDAO"%>
+<%@page import="model.entity.OpcionalVeiculo"%>
+<%@page import="model.dao.OpcionalVeiculoDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="model.entity.TipoVeiculo"%>
 <%@page import="controller.TipoVeiculoController"%>
@@ -21,7 +24,12 @@
     if (request.getMethod().equalsIgnoreCase("post")) {
         SolicitacaoViagemController solicitacaoViagemController  = new SolicitacaoViagemController();
         solicitacaoViagemController.inserirSolicitacao(request);
-        //response.sendRedirect("listaVeiculos.jsp");
+        if (request.getParameter("add") != null) {
+            SolicitacaoViagem solicitacaoViagem = solicitacaoViagemController.buscarPorDataSaida(request);
+            request.setAttribute("solicitacao", solicitacaoViagem.getId());
+            RequestDispatcher dispatcher = request.getRequestDispatcher("passageiros.jsp");
+            dispatcher.forward(request, response);
+        }
     }
     
 %>
@@ -36,7 +44,6 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
-        
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body style="">
@@ -45,7 +52,7 @@
 
 
             
-            <form action="solicitar.jsp" method="POST" class="form-horizontal">
+            <form action="solicitar.jsp" id="formularioSolicitacao" method="POST" class="form-horizontal">
                 <legend>Formulario de solicitação de Viagens</legend>
                 <div class="control-group">
                     <label class="control-label" for="inputSolicitante">Nome do solicitante:</label>
@@ -195,10 +202,10 @@
                 
                 <div class="span11">
                     <div class="span5">    
-                        <input type="submit" value="Enviar Solicitação" class="btn btn-success btn-large">
+                        <input type="submit" name="enviar" value="Enviar Solicitação" class="btn btn-success btn-large">
                     </div>
                     <div class="span5">
-                        <a href=""  class="btn btn-success btn-large">Lista de passageiros</a>
+                        <input type="submit" name="add" value="Adicionar passageiros" class="btn btn-success btn-large">
                     </div>
                 </div>
 

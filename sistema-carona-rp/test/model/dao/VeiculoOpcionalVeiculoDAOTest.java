@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import jdbc.ConnectionFactory;
-import model.entity.OpicionalVeiculo;
+import model.entity.OpcionalVeiculo;
 import model.entity.Veiculo;
 import model.entity.VeiculoOpcionalVeiculo;
 import org.junit.*;
@@ -25,7 +25,7 @@ public class VeiculoOpcionalVeiculoDAOTest {
     
     private static Connection connection;
     private static Veiculo veiculo;
-    private static List<OpicionalVeiculo> opcionais;
+    private static List<OpcionalVeiculo> opcionais;
     
     public VeiculoOpcionalVeiculoDAOTest() {
     }
@@ -40,7 +40,7 @@ public class VeiculoOpcionalVeiculoDAOTest {
         }
         
         VeiculoDAO veiculoDAO = new VeiculoDAO();
-        OpicionalVeiculoDAO opcionalVeiculoDAO = new OpicionalVeiculoDAO();
+        OpcionalVeiculoDAO opcionalVeiculoDAO = new OpcionalVeiculoDAO();
         
         veiculo = new Veiculo();
         veiculo.setAno(1000);
@@ -57,7 +57,7 @@ public class VeiculoOpcionalVeiculoDAOTest {
         opcionais = opcionalVeiculoDAO.getTodosOpcionais();
         int numOp = 2;
         
-        for (OpicionalVeiculo opcional : opcionais) {
+        for (OpcionalVeiculo opcional : opcionais) {
         
             if (numOp >=0) break;
             else numOp--;
@@ -101,7 +101,7 @@ public class VeiculoOpcionalVeiculoDAOTest {
     public void testInserir() {
         System.out.println("inserir");
         int id = veiculo.getId();
-        OpicionalVeiculo opcionalVeiculo = new OpicionalVeiculoDAO().getOpcionalPorId(4);
+        OpcionalVeiculo opcionalVeiculo = new OpcionalVeiculoDAO().getOpcionalPorId(4);
         VeiculoOpcionalVeiculoDAO dao = new VeiculoOpcionalVeiculoDAO();
         dao.inserir(id, opcionalVeiculo);
         
@@ -118,7 +118,7 @@ public class VeiculoOpcionalVeiculoDAOTest {
                 
                 VeiculoOpcionalVeiculo vov = new VeiculoOpcionalVeiculo();
                 vov.setVeiculo(new VeiculoDAO().getVeiculoPorId(rs.getInt("id_veiculo")));
-                vov.setOpicionalVeiculo(new OpicionalVeiculoDAO().getOpcionalPorId(rs.getInt("id_opcionais_veiculo")));
+                vov.setOpicionalVeiculo(new OpcionalVeiculoDAO().getOpcionalPorId(rs.getInt("id_opcionais_veiculo")));
                 lista.add(vov);
                 
             }
@@ -165,7 +165,7 @@ public class VeiculoOpcionalVeiculoDAOTest {
                 
                 VeiculoOpcionalVeiculo vov = new VeiculoOpcionalVeiculo();
                 vov.setVeiculo(new VeiculoDAO().getVeiculoPorId(rs.getInt("id_veiculo")));
-                vov.setOpicionalVeiculo(new OpicionalVeiculoDAO().getOpcionalPorId(rs.getInt("id_opcionais_veiculo")));
+                vov.setOpicionalVeiculo(new OpcionalVeiculoDAO().getOpcionalPorId(rs.getInt("id_opcionais_veiculo")));
                 lista.add(vov);
                 
             }
@@ -191,7 +191,7 @@ public class VeiculoOpcionalVeiculoDAOTest {
     public void testRemover() {
         System.out.println("remover");
         int id = veiculo.getId();
-        OpicionalVeiculo opcionalVeiculo = new OpicionalVeiculoDAO().getOpcionalPorId(4);
+        OpcionalVeiculo opcionalVeiculo = new OpcionalVeiculoDAO().getOpcionalPorId(4);
         VeiculoOpcionalVeiculoDAO dao = new VeiculoOpcionalVeiculoDAO();
         dao.remover(id);
         List<Integer> lista = dao.getPorIdVeiculo(id);

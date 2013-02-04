@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import jdbc.ConnectionFactory;
-import model.entity.OpicionalVeiculo;
+import model.entity.OpcionalVeiculo;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -22,8 +22,8 @@ import static org.junit.Assert.*;
 public class OpicionalVeiculoDAOTest {
     
     private static Connection connection;
-    private static OpicionalVeiculo opcionalVeiculo;
-    private static List<OpicionalVeiculo> opcionais;
+    private static OpcionalVeiculo opcionalVeiculo;
+    private static List<OpcionalVeiculo> opcionais;
     
     
     public OpicionalVeiculoDAOTest() {
@@ -38,7 +38,7 @@ public class OpicionalVeiculoDAOTest {
             e.printStackTrace();
         }
         
-        opcionalVeiculo = new OpicionalVeiculo();
+        opcionalVeiculo = new OpcionalVeiculo();
         String sql1 = "select * from opcionais_veiculo where id=?;";
 
         try {
@@ -58,7 +58,7 @@ public class OpicionalVeiculoDAOTest {
             e.printStackTrace();
         }
         
-        opcionais = new ArrayList<OpicionalVeiculo>();
+        opcionais = new ArrayList<OpcionalVeiculo>();
         String sql2 = "select * from opcionais_veiculo;";
 
         try {
@@ -68,7 +68,7 @@ public class OpicionalVeiculoDAOTest {
             
             while (rs.next()) {
                 
-                OpicionalVeiculo op = new OpicionalVeiculo();
+                OpcionalVeiculo op = new OpcionalVeiculo();
                 op.setId(rs.getInt("id"));
                 op.setDescricao(rs.getString("descricao"));
                 opcionais.add(op);
@@ -94,26 +94,26 @@ public class OpicionalVeiculoDAOTest {
     }
 
     /**
-     * Test of getOpcionalPorId method, of class OpicionalVeiculoDAO.
+     * Test of getOpcionalPorId method, of class OpcionalVeiculoDAO.
      */
     @Test
     public void testGetOpcionalPorId() {
         System.out.println("getOpcionalPorId");
         int id = opcionalVeiculo.getId();
-        OpicionalVeiculoDAO dao = new OpicionalVeiculoDAO();
-        OpicionalVeiculo resultOpcional = dao.getOpcionalPorId(id);
+        OpcionalVeiculoDAO dao = new OpcionalVeiculoDAO();
+        OpcionalVeiculo resultOpcional = dao.getOpcionalPorId(id);
         assertEquals(opcionalVeiculo.getId(), resultOpcional.getId());
         assertEquals(opcionalVeiculo.getDescricao(), resultOpcional.getDescricao());
     }
 
     /**
-     * Test of getTodosOpcionais method, of class OpicionalVeiculoDAO.
+     * Test of getTodosOpcionais method, of class OpcionalVeiculoDAO.
      */
     @Test
     public void testGetTodosOpcionais() {
         System.out.println("getTodosOpcionais");
-        OpicionalVeiculoDAO dao = new OpicionalVeiculoDAO();
-        List<OpicionalVeiculo> resultOpcionais = dao.getTodosOpcionais();
+        OpcionalVeiculoDAO dao = new OpcionalVeiculoDAO();
+        List<OpcionalVeiculo> resultOpcionais = dao.getTodosOpcionais();
         assertEquals(opcionais.size(), resultOpcionais.size());
         if (opcionais.size() == resultOpcionais.size()) {
             for (int i=0; i<opcionais.size(); i++) {

@@ -6,9 +6,11 @@ package model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import jdbc.ConnectionFactory;
 import model.entity.SolicitacaoViagem;
+import model.entity.Usuario;
 
 /**
  *
@@ -58,6 +60,45 @@ public class SolicitacaoViagemDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public SolicitacaoViagem buscarPorDataSaida(String dataSaida, Usuario solicitante) {
+        
+        SolicitacaoViagem solicitacao = null;
+        String sql = "select * from solicitacao_viagem where data_saida = ? and usuario_id = ?;";
+        
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, dataSaida);
+            stmt.setInt(2, solicitante.getId());
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                
+                solicitacao = new SolicitacaoViagem();
+                solicitacao.setId(rs.getInt("id"));
+                solicitacao.setUsuario(new UsuarioDAO().buscarPorId(rs.getInt("usuario_id")));
+                solicitacao.setData_saida(rs.getString("data_saida"));
+                solicitacao.setLogal_saida(rs.getString("local_saida"));
+                solicitacao.setData_retorno(rs.getString("data_retorno"));
+                solicitacao.setLocal_retorno(rs.getString("local_retorno"));
+                solicitacao.setJustificativa(rs.getString("justificativa"));
+                solicitacao.setObservacoes(rs.getString("observacoes"));
+                solicitacao.setOrigem(rs.getInt("origem"));
+                solicitacao.setDestino(rs.getInt("destino"));
+                solicitacao.setNumero_pessoas(rs.getInt("nr_pessoas"));
+                solicitacao.setPercurso(rs.getString("percurso"));
+                solicitacao.setSituacaoSolicitacao(new SituacaoSolicitacaoDAO().buscarPorId(rs.getInt("situacao_solicitacao_id")));
+                solicitacao.setEhservidor(Boolean.parseBoolean("eh_servidor"));
+                
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return solicitacao;
+        
     }
     
 }

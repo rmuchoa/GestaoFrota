@@ -8,7 +8,8 @@ package model.entity;
  *
  * @author Marcelo Maia
  */
-class SituacaoSolicitacao {
+public class SituacaoSolicitacao {
+    
     private Integer id;
     private String descricao;
 
@@ -27,6 +28,5 @@ class SituacaoSolicitacao {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
     
 }

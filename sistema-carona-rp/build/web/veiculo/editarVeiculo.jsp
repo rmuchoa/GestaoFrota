@@ -5,8 +5,8 @@
 --%>
 
 <%@page import="model.dao.VeiculoOpcionalVeiculoDAO"%>
-<%@page import="model.entity.OpicionalVeiculo"%>
-<%@page import="model.dao.OpicionalVeiculoDAO"%>
+<%@page import="model.entity.OpcionalVeiculo"%>
+<%@page import="model.dao.OpcionalVeiculoDAO"%>
 <%@page import="model.dao.VeiculoDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="model.entity.TipoVeiculo"%>
@@ -143,10 +143,10 @@
                      <div class="control-group">
                     <div class="controls">
                         <%
-                        List<OpicionalVeiculo> lista;
+                        List<OpcionalVeiculo> lista;
                         List<Integer> listaOpcionaisSelecionados = new VeiculoOpcionalVeiculoDAO().getPorIdVeiculo(veiculo.getId()); 
-                        OpicionalVeiculoDAO opicionalVeiculoDAO = new OpicionalVeiculoDAO();
-                        lista  = opicionalVeiculoDAO.getTodosOpcionais();
+                        OpcionalVeiculoDAO opcionalVeiculoDAO = new OpcionalVeiculoDAO();
+                        lista  = opcionalVeiculoDAO.getTodosOpcionais();
                         int status=0;
                         for(int i =0;i<lista.size();i++){
                             status =0;

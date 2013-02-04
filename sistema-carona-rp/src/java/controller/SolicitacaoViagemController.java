@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import model.dao.SolicitacaoViagemDAO;
 import model.dao.UsuarioDAO;
 import model.entity.SolicitacaoViagem;
-import model.entity.Usuario;
 
 /**
  *
@@ -37,6 +36,12 @@ public class SolicitacaoViagemController {
       this.solicitacaoViagem.setJustificativa(request.getParameter("objetivo"));
       this.solicitacaoViagemDAO = new SolicitacaoViagemDAO();
       this.solicitacaoViagemDAO.inserir(solicitacaoViagem);
+    }
+    
+    public SolicitacaoViagem buscarPorDataSaida(HttpServletRequest request) {
+        return solicitacaoViagemDAO.buscarPorDataSaida(
+                request.getParameter("dataSaida")+" "+request.getParameter("horarioRetorno"), 
+                new UsuarioDAO().buscarPorNome(request.getParameter("solicitante")));
     }
    
 }

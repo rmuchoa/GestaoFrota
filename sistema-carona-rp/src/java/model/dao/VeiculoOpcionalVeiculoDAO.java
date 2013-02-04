@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import jdbc.ConnectionFactory;
-import model.entity.OpicionalVeiculo;
+import model.entity.OpcionalVeiculo;
 import model.entity.Veiculo;
 import model.entity.VeiculoOpcionalVeiculo;
 
@@ -31,7 +31,7 @@ public class VeiculoOpcionalVeiculoDAO {
         }
     }
     
-    public void inserir(int id_veiculo, OpicionalVeiculo opicionalVeiculo){
+    public void inserir(int id_veiculo, OpcionalVeiculo opicionalVeiculo){
         String sql = "insert into veiculo_opcionais_veiculo (id_veiculo,id_opcionais_veiculo) values (?,?)";
         System.out.println("Id do veiculo : "+id_veiculo);
         try {

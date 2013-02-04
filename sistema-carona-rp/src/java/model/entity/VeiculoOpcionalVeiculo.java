@@ -10,7 +10,7 @@ package model.entity;
  */
 public class VeiculoOpcionalVeiculo {
     private Veiculo veiculo;
-    private OpicionalVeiculo opicionalVeiculo;
+    private OpcionalVeiculo opicionalVeiculo;
 
     public Veiculo getVeiculo() {
         return veiculo;
@@ -20,11 +20,11 @@ public class VeiculoOpcionalVeiculo {
         this.veiculo = veiculo;
     }
 
-    public OpicionalVeiculo getOpicionalVeiculo() {
+    public OpcionalVeiculo getOpicionalVeiculo() {
         return opicionalVeiculo;
     }
 
-    public void setOpicionalVeiculo(OpicionalVeiculo opicionalVeiculo) {
+    public void setOpicionalVeiculo(OpcionalVeiculo opicionalVeiculo) {
         this.opicionalVeiculo = opicionalVeiculo;
     }
     
