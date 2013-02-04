@@ -20,6 +20,7 @@ public class UsuarioDAO {
     private Connection connection;
 
     public UsuarioDAO() {
+        
         try {
             this.connection = ConnectionFactory.getConnection();
         } catch (SQLException e) {
@@ -171,7 +172,7 @@ public class UsuarioDAO {
 
     public Usuario buscarPorId(int id) {
 
-        Usuario usuario = new Usuario();
+        Usuario usuario = null;
         String sql = "select * from usuario where id = ?";
 
         try {
@@ -181,6 +182,9 @@ public class UsuarioDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
+                
+                usuario = new Usuario();
+                
                 TipoUsuarioDAO tipoUsuarioDAO = new TipoUsuarioDAO();
                 CidadeDAO cidadeDAO = new CidadeDAO();
 

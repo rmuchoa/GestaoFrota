@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response;
 import model.dao.OpicionalVeiculoDAO;
 import model.dao.TipoVeiculoDAO;
 import model.dao.VeiculoDAO;
-import model.dao.Veiculo_opcional_veiculoDAO;
+import model.dao.VeiculoOpcionalVeiculoDAO;
 import model.entity.OpicionalVeiculo;
 import model.entity.Veiculo;
 /**
@@ -26,7 +26,7 @@ public class VeiculoController {
     private OpicionalVeiculoDAO opicionalVeiculoDAO;
     private OpicionalVeiculo opicionalVeiculo;
     private List<OpicionalVeiculo> listaDeOpcional;
-    private Veiculo_opcional_veiculoDAO veiculo_opcional_veiculoDAO;
+    private VeiculoOpcionalVeiculoDAO veiculoOpcionalVeiculoDAO;
     
     
     
@@ -65,8 +65,8 @@ public class VeiculoController {
         
         veiculo.setId(Integer.parseInt(request.getParameter("id")));
         veiculoDAO = new VeiculoDAO();
-        veiculo_opcional_veiculoDAO = new Veiculo_opcional_veiculoDAO();
-        veiculo_opcional_veiculoDAO.remover(veiculo.getId());
+        veiculoOpcionalVeiculoDAO = new VeiculoOpcionalVeiculoDAO();
+        veiculoOpcionalVeiculoDAO.remover(veiculo.getId());
         Veiculo v = veiculoDAO.alterarVeiculo(veiculo);
         verificaOpcionaisSelecionados(request,v);
         
@@ -83,8 +83,8 @@ public class VeiculoController {
         for(int i =0;i<listaDeOpcional.size();i++){
           if(request.getParameter(listaDeOpcional.get(i).getId().toString())!=null){
               System.out.println("O opicional é: "+request.getParameter(listaDeOpcional.get(i).getId().toString()));
-              this.veiculo_opcional_veiculoDAO = new Veiculo_opcional_veiculoDAO();
-              this.veiculo_opcional_veiculoDAO.inserir(v.getId(), listaDeOpcional.get(i));
+              this.veiculoOpcionalVeiculoDAO = new VeiculoOpcionalVeiculoDAO();
+              this.veiculoOpcionalVeiculoDAO.inserir(v.getId(), listaDeOpcional.get(i));
           }
         }
     }

@@ -31,7 +31,7 @@ public class EstadoDAO {
     
     public Estado buscarPorId(Integer id) {
         
-        Estado estado = new Estado();
+        Estado estado = null;
         String sql = "select * from estado where id = ?";
 
         try {
@@ -42,6 +42,7 @@ public class EstadoDAO {
 
             while (rs.next()) {
                 
+                estado = new Estado();
                 estado.setId(rs.getInt("id"));
                 estado.setNome(rs.getString("nome"));
                 estado.setSigla(rs.getString("sigla"));
@@ -58,7 +59,7 @@ public class EstadoDAO {
 
     public Estado buscarPorNome(String nomeEstado) {
         
-        Estado estado = new Estado();
+        Estado estado = null;
         String sql = "select * from estado where nome = ?";
 
         try {
@@ -69,6 +70,7 @@ public class EstadoDAO {
 
             while (rs.next()) {
                 
+                estado = new Estado();
                 estado.setId(rs.getInt("id"));
                 estado.setNome(rs.getString("nome"));
                 estado.setSigla(rs.getString("sigla"));
@@ -85,7 +87,7 @@ public class EstadoDAO {
 
     public Estado buscarPorSigla(String siglaEstado) {
         
-        Estado estado = new Estado();
+        Estado estado = null;
         String sql = "select * from estado where sigla = ?";
 
         try {
@@ -96,6 +98,7 @@ public class EstadoDAO {
 
             while (rs.next()) {
                 
+                estado = new Estado();
                 estado.setId(rs.getInt("id"));
                 estado.setNome(rs.getString("nome"));
                 estado.setSigla(rs.getString("sigla"));

@@ -8,7 +8,7 @@ package model.entity;
  *
  * @author Marcelo Maia
  */
-public class Veiculo_opcional_veiculo {
+public class VeiculoOpcionalVeiculo {
     private Veiculo veiculo;
     private OpicionalVeiculo opicionalVeiculo;
 
