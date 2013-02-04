@@ -35,11 +35,13 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
+        
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body style="">
         <h3 style="text-align: center;color: green" class="span12 well">Sistema de Caronas Unipampa</h3>
-        <div class="offset1 span10 offset1">
+        <div class="offset1 hero-unit span9">
 
 
             

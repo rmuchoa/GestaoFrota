@@ -23,12 +23,26 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
+        
         <title>Sistema de Caronas Unipampa</title>
     </head>
-    <body>
-        <h3 class="span12 well">Sistema de Caronas Unipampa</h3>
+    <body style="">
+        <h3 style="color: green;text-align: center" class="span12 well">Sistema de Caronas Unipampa</h3>
         <div class="offset2 span8 offset2">
-            <div></div>
+            <div class="hero-unit">
+                <a href="veiculo/listaVeiculos.jsp"><button class="btn btn-success">
+                        <img src="img/car.png">   
+                    </button></a>
+                <a href="usuario/listaUsuarios.jsp"><button class="btn btn-success">
+                        <img src="img/user-mapping.png">   
+                    </button></a>
+                <a href="viagem/solicitar.jsp"><button class="btn btn-success">
+                        <img src="img/suitcase_travel.png">   
+                    </button></a>
+             
+            </div>
+            
         </div>
     </body>
 </html>

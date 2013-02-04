@@ -40,6 +40,7 @@
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         
         <title>Sistema de Caronas Unipampa</title>
     </head>
@@ -49,7 +50,7 @@
                 validaFormularioVeiculo()
             });
         </script>
-        <h3 class="span12 well">Sistema de Caronas Unipampa</h3>
+        <h3 style="color: green;text-align: center" class="span12 well">Sistema de Caronas Unipampa</h3>
         <div class="offset2 span8 offset2">
 
             <h3>Alteração dos dados do veículo</h3> 

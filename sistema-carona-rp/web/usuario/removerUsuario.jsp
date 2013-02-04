@@ -23,10 +23,12 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
         <script type="text/javas;cript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
+        
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body>
-        <h3 class="span12 well">Sistema de Caronas Unipampa</h3>
+        <h3 style="color: green;text-align: center"  class="span12 well">Sistema de Caronas Unipampa</h3>
         <div class="offset2 span8 offset2">
 
             <h3>Alteração dos dados do veículo</h3> 

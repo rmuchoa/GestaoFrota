@@ -4,7 +4,7 @@
     Author     : Marcelo Maia
 --%>
 
-<%@page import="model.dao.Veiculo_opcional_veiculoDAO"%>
+<%@page import="model.dao.VeiculoOpcionalVeiculoDAO"%>
 <%@page import="model.dao.VeiculoDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="model.entity.TipoVeiculo"%>
@@ -25,10 +25,12 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
         <script type="text/javas;cript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
+        
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body>
-        <h3 class="span12 well">Sistema de Caronas Unipampa</h3>
+        <h3 style="color: green;text-align: center" class="span12 well">Sistema de Caronas Unipampa</h3>
         <div class="offset2 span8 offset2">
 
             <h3>Alteração dos dados do veículo</h3> 
@@ -36,7 +38,7 @@
             Veiculo veiculo;
             veiculo =  veiculoDAO.getVeiculoPorId(Integer.parseInt(request.getParameter("id_veiculo")));  
             veiculoDAO.removerVeicupoPorId(veiculo.getId());
-            Veiculo_opcional_veiculoDAO veiculo_opcional_veiculoDAO = new Veiculo_opcional_veiculoDAO();
+            VeiculoOpcionalVeiculoDAO veiculo_opcional_veiculoDAO = new VeiculoOpcionalVeiculoDAO();
             veiculo_opcional_veiculoDAO.remover(veiculo.getId());
             response.sendRedirect("listaVeiculos.jsp");
            

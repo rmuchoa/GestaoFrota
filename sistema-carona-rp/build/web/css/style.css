@@ -1,0 +1,15 @@
+/* 
+    Document   : style
+    Created on : 4/Fev/2013, 3:02:11
+    Author     : Marcelo Maia
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body{
+    background-color: green;
+}
+
+table{
+    background-color: white;
+}
