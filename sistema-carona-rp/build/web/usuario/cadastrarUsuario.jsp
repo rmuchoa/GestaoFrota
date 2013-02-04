@@ -38,6 +38,9 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function() {
+                
+                validaFormularioVeiculo();
+                
                 $("#estado").change(function() {
                     $.ajax({
                         url:"cidades.jsp",
@@ -67,7 +70,7 @@
 
 
 
-            <form action="cadastrarUsuario.jsp" method="POST" class="form-horizontal well">
+            <form action="cadastrarUsuario.jsp" method="POST" id="formularioUsuario" class="form-horizontal well">
 
                 <div class="control-group">
                     <label class="control-label" for="inputNome">Nome</label>

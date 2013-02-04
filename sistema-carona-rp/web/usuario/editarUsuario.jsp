@@ -39,6 +39,9 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function() {
+                
+                validaFormularioVeiculo();
+                
                 $("#estado").change(function() {
                     $.ajax({
                         url:"cidades.jsp",
@@ -68,7 +71,7 @@
                 UsuarioController usuarioController = new UsuarioController();
                 Usuario usuario = usuarioController.buscarPorId(Integer.parseInt(request.getParameter("id")));
             %>
-            <form action="editarUsuario.jsp?id=<%out.println(request.getParameter("id"));%>" method="POST" class="form-horizontal well">
+            <form action="editarUsuario.jsp?id=<%out.println(request.getParameter("id"));%>" method="POST" id="formularioUsuario" class="form-horizontal well">
 
                 <input  style="display:none" name="id" value="<% out.print(usuario.getId());%>">
                 <div class="control-group">

@@ -59,7 +59,7 @@ public class VeiculoDAOTest {
                 veiculo.setMarca(rs.getString("marca"));
                 veiculo.setModelo(rs.getString("modelo"));
                 veiculo.setPlaca(rs.getString("placa"));
-                veiculo.setRenavam(rs.getInt("renavam"));
+                veiculo.setRenavam(rs.getLong("renavam"));
                 veiculo.setTipo_veiculo(tipoVeiculoDAO.getTipoPorID(rs.getInt("tipo_veiculo")));
 
             }
@@ -86,7 +86,7 @@ public class VeiculoDAOTest {
                 v.setMarca(rs.getString("marca"));
                 v.setModelo(rs.getString("modelo"));
                 v.setPlaca(rs.getString("placa"));
-                v.setRenavam(rs.getInt("renavam"));
+                v.setRenavam(rs.getLong("renavam"));
                 v.setTipo_veiculo(tipoVeiculoDAO.getTipoPorID(rs.getInt("tipo_veiculo")));
                 veiculos.add(v);
             }
@@ -165,7 +165,7 @@ public class VeiculoDAOTest {
         novoVeiculo.setMarca("teste");
         novoVeiculo.setModelo("teste");
         novoVeiculo.setPlaca("teste");
-        novoVeiculo.setRenavam(1000);
+        novoVeiculo.setRenavam(1000L);
         novoVeiculo.setTipo_veiculo(new TipoVeiculoDAO().getTipoPorID(1));
         VeiculoDAO dao = new VeiculoDAO();
         Veiculo v = dao.inserir(novoVeiculo);
