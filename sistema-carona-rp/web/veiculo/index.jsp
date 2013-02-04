@@ -34,15 +34,22 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery-1.9.0.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body>
+        <script type="text/javascript">
+            $(document).ready( function() {
+                validaFormularioVeiculo()
+            });
+        </script>
         <h3 class="span12 well">Sistema de Caronas Unipampa</h3>
         <div class="offset2 span8 offset2">
 
-
-           
-            <form action="index.jsp" method="POST" class="form-horizontal well">
+        <form action="index.jsp" method="POST" id="formularioVeiculo" class="form-horizontal well">
 
                 <div class="control-group">
                     <label class="control-label" for="inputPlaca">Placa</label>
@@ -89,7 +96,7 @@
                 <div class="control-group">
                     <label class="control-label"  for="inputCor">Tipo</label>
                     <div  class="controls">
-                        <select name="tipo_veiculo">
+                        <select id="tipo_veiculo" name="tipo_veiculo">
                             <%
                             TipoVeiculoController tipoVeiculoController = new TipoVeiculoController();
                             List<TipoVeiculo>  listaDeTipos;
