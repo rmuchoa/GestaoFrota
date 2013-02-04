@@ -36,6 +36,11 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery-1.9.0.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <script>
             $(document).ready(function() {
                 
@@ -75,21 +80,21 @@
                 <div class="control-group">
                     <label class="control-label" for="inputNome">Nome</label>
                     <div class="controls">
-                        <input type="text" id="nome" name="nome" placeholder="Nome">
+                        <input type="text" id="nome" name="nome" placeholder="Digite o seu nome">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputLogin">Login</label>
                     <div class="controls">
-                        <input type="text"  id="login" name="login" placeholder="Login">
+                        <input type="text"  id="login" name="login" placeholder="Informa um login">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputSenha">Senha</label>
                     <div class="controls">
-                        <input type="password" name="senha" id="senha" placeholder="Senha">
+                        <input type="password" name="senha" id="senha" placeholder="Informe uma senha">
                     </div>
                 </div>
 
@@ -112,28 +117,28 @@
                 <div class="control-group">
                     <label class="control-label" for="inputEmail">Email</label>
                     <div class="controls">
-                        <input type="text" name="email" id="email" placeholder="Email">
+                        <input type="text" name="email" id="email" placeholder="Informe um e-mail">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputTelefone">telefone</label>
                     <div class="controls">
-                        <input type="text" name="telefone" id="telefone" placeholder="Telefone">
+                        <input type="text" name="telefone" id="telefone" placeholder="(55) 3200-3200">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputCelular">Celular</label>
                     <div class="controls">
-                        <input type="text" name="celular" id="celular" placeholder="Celular">
+                        <input type="text" name="celular" id="celular" placeholder="(55) 8100-8100">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputRg">RG</label>
                     <div class="controls">
-                        <input type="text" id="rg"  name="rg" placeholder="RG">
+                        <input type="text" id="rg"  name="rg" placeholder="Informe o seu rg">
 
                     </div>
                 </div>
@@ -142,7 +147,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputSiape">Siape</label>
                     <div class="controls">
-                        <input type="text" name="siape" id="siape" placeholder="Siape">
+                        <input type="text" name="siape" id="siape" placeholder="Informe seu número siape">
                     </div>
                 </div>
 
@@ -150,7 +155,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputCnh">Habilitação</label>
                     <div class="controls">
-                        <input type="text" name="numero_cnh" id="cnh" placeholder="Habilitação">
+                        <input type="text" name="numero_cnh" id="cnh" placeholder="Carteira de habilitação">
                     </div>
                 </div>
 
@@ -158,7 +163,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputValidade">Validade</label>
                     <div class="controls">
-                        <input type="text" name="validade_cnh" id="validade" placeholder="Validade">
+                        <input type="text" name="validade_cnh" id="validade" placeholder="12/12/2012">
                     </div>
                 </div>
 
@@ -166,7 +171,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputCategoria">Categoria</label>
                     <div class="controls">
-                        <input type="text" name="categoria_cnh" id="categoria" placeholder="Categoria">
+                        <input type="text" name="categoria_cnh" id="categoria" placeholder="ABC">
                     </div>
                 </div>
 
@@ -198,7 +203,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputCep">CEP</label>
                     <div class="controls">
-                        <input type="text" name="cep" id="cep" placeholder="CEP">
+                        <input type="text" name="cep" id="cep" placeholder="99500-000">
                     </div>
                 </div>
 
