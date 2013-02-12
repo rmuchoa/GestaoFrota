@@ -100,7 +100,7 @@ public class TipoVeiculoDAOTest {
         System.out.println("getTipoPorID");
         int id = tipoVeiculo.getId();
         TipoVeiculoDAO dao = new TipoVeiculoDAO();
-        TipoVeiculo resultTipo = dao.getTipoPorID(id);
+        TipoVeiculo resultTipo = dao.getTipoPorId(id);
         assertEquals(tipoVeiculo.getId(), resultTipo.getId());
         assertEquals(tipoVeiculo.getDescricao(), resultTipo.getDescricao());
     }

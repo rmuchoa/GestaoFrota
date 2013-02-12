@@ -50,10 +50,10 @@
                 out.println("<td>"+lista.get(i).getCor()+"</td>");
                 out.println("<td>"+lista.get(i).getModelo()+"</td>");
                 out.println("<td>"+lista.get(i).getMarca()+"</td>");
-                out.println("<td>"+lista.get(i).getCapacidade_passageiros()+"</td>");
-                out.println("<td>"+lista.get(i).getCapacidade_carga()+"</td>"
- + "            <td><a href='editarVeiculo.jsp?id_veiculo="+lista.get(i).getId()+"'><img src='/sistema-carona-rp/img/edit_pencil.png' /></a></td>"
- + "            <td><a href='removerVeiculo.jsp?id_veiculo="+lista.get(i).getId()+"'><img src='/sistema-carona-rp/img/Gnome-Edit-Delete-32.png' /></a></td>"
+                out.println("<td>"+lista.get(i).getCapacidadePassageiros()+"</td>");
+                out.println("<td>"+lista.get(i).getCapacidadeCarga()+"</td>"
+ + "            <td><a href='editarVeiculo.jsp?id="+lista.get(i).getId()+"'><img src='/sistema-carona-rp/img/edit_pencil.png' /></a></td>"
+ + "            <td><a href='removerVeiculo.jsp?id="+lista.get(i).getId()+"'><img src='/sistema-carona-rp/img/Gnome-Edit-Delete-32.png' /></a></td>"
  + "            </tr>");
                }
                %>

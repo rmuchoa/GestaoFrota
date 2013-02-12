@@ -36,7 +36,7 @@
             <h3>Alteração dos dados do veículo</h3> 
             <% VeiculoDAO veiculoDAO = new VeiculoDAO();
             Veiculo veiculo;
-            veiculo =  veiculoDAO.getVeiculoPorId(Integer.parseInt(request.getParameter("id_veiculo")));  
+            veiculo =  veiculoDAO.getVeiculoPorId(Integer.parseInt(request.getParameter("id")));  
             veiculoDAO.removerVeicupoPorId(veiculo.getId());
             VeiculoOpcionalVeiculoDAO veiculo_opcional_veiculoDAO = new VeiculoOpcionalVeiculoDAO();
             veiculo_opcional_veiculoDAO.remover(veiculo.getId());

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import jdbc.ConnectionFactory;
 import model.entity.Passageiro;
+import model.entity.SolicitacaoViagem;
 
 /**
  *
@@ -143,8 +144,8 @@ public class PassageiroDAO {
     public List<Passageiro> buscarPorSolicitacaoId(Integer id) {
     
         List<Passageiro> passageiros = new ArrayList<Passageiro>();
-        String sql = "select p.id, p.nome, p.rg, p.email, p.endereco, p.eh_servidor from passageiro p, solicitacao_viagem_passageiro s"
-                + "where p.id = ? and p.id = s.passageiro";
+        String sql = "select p.id, p.nome, p.rg, p.email, p.endereco, p.eh_servidor from passageiro p, solicitacao_viagem_passageiro s "
+                + "where s.solicitacao_viagem = ? and p.id = s.passageiro";
         
         try {
             
@@ -174,14 +175,14 @@ public class PassageiroDAO {
     
     }
     
-    public void adicionarPassageiro(Integer solicitacaoId, Passageiro passageiro) {
+    public void adicionarPassageiro(SolicitacaoViagem solicitacao, Passageiro passageiro) {
         
         String sql = "insert into solicitacao_viagem_passageiro values (?, ?);";
         
         try {
             
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, solicitacaoId);
+            stmt.setInt(1, solicitacao.getId());
             stmt.setInt(2, passageiro.getId());
             stmt.execute();
             stmt.close();

@@ -104,7 +104,7 @@
                             List<TipoVeiculo>  listaDeTipos;
                            listaDeTipos = tipoVeiculoController.listarTodosTiposVeiculos();
                             for(int i = 0;i<listaDeTipos.size();i++){        
-                               out.print("<option>"+listaDeTipos.get(i).getDescricao() +"</option>");
+                               out.print("<option value='"+listaDeTipos.get(i).getId()+"'>"+listaDeTipos.get(i).getDescricao() +"</option>");
                              }        
                            %>
                           

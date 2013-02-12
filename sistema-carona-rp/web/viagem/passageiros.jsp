@@ -37,19 +37,22 @@
                     PassageiroController passageiroController = new PassageiroController();
                     passageiroController.adicionarSolicitantePassageiro(request);
                 }
+                request.setAttribute("action", "list");
             }
-        
-            if (request.getParameter("add") != null) {
-                if (request.getMethod().equalsIgnoreCase("post")) {
+
+            if (request.getAttribute("action").equals("add")) {
+                if (request.getParameter("add") != null) {
                     SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
                     SolicitacaoViagem solicitacaoViagem = solicitacaoViagemController.buscarPorId(Integer.parseInt(request.getParameter("solicitacao")));
                     request.setAttribute("solicitacao", solicitacaoViagem);
-                    
+                    request.setAttribute("action", "list");
                     PassageiroController passageiroController = new PassageiroController();
                     passageiroController.adicionarPassageiro(request);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("passageiros.jsp");
                     dispatcher.forward(request, response);
                 }
+            } else if (request.getAttribute("action").equals("list")) {
+                request.setAttribute("action", "add");
             }
 
         %>
@@ -58,9 +61,9 @@
 
         <div>
             <form action="passageiros.jsp" method="POST" class="form-actions">
-                
-                <input type="hidden" name="solicitacao" value="<%= ((SolicitacaoViagem) request.getAttribute("solicitacao")).getId() %>" />
-                
+
+                <input type="hidden" name="solicitacao" value="<%= ((SolicitacaoViagem) request.getAttribute("solicitacao")).getId()%>" />
+
                 <table>
                     <tr>
                         <td>
@@ -120,6 +123,8 @@
                 <tr>
                     <th>Nome</th>
                     <th>RG</th>
+                    <th>Email</th>
+                    <th>Endereço</th>
                     <th>Servidor</th>
                     <th>Ações</th>
                 </tr>
@@ -128,12 +133,14 @@
                     List<Passageiro> passageiros = passageiroController.buscarPorSolicitacaoId(((SolicitacaoViagem) request.getAttribute("solicitacao")).getId());
                     for (Passageiro p : passageiros) {
                 %>
-                    <tr>
-                        <td><%= p.getNome()%></td>
-                        <td><%= p.getRg()%></td>
-                        <td><%= p.isServidor() ? "Sim" : "Não"%></td>
-                        <td><a href="" value="Editar" /><a href="" value="Remover" /></td>
-                    </tr>
+                <tr>
+                    <td><%= p.getNome()%></td>
+                    <td><%= p.getRg()%></td>
+                    <td><%= p.getEmail()%></td>
+                    <td><%= p.getEndereco()%></td>
+                    <td><%= p.isServidor() ? "Sim" : "Não"%></td>
+                    <td><a href="" value="Editar" /><a href="" value="Remover" /></td>
+                </tr>
                 <%
                     }
                 %>

@@ -17,9 +17,9 @@ public class Veiculo {
     private String modelo;
     private String marca;
     private Integer ano;
-    private Integer capacidade_passageiros;
-    private Integer capacidade_carga;
-    private TipoVeiculo tipo_veiculo;
+    private Integer capacidadePassageiros;
+    private Integer capacidadeCarga;
+    private TipoVeiculo tipoVeiculo;
 
     public Integer getId() {
         return id;
@@ -77,28 +77,28 @@ public class Veiculo {
         this.ano = ano;
     }
 
-    public Integer getCapacidade_passageiros() {
-        return capacidade_passageiros;
+    public Integer getCapacidadePassageiros() {
+        return capacidadePassageiros;
     }
 
-    public void setCapacidade_passageiros(Integer capacidade_passageiros) {
-        this.capacidade_passageiros = capacidade_passageiros;
+    public void setCapacidadePassageiros(Integer capacidadePassageiros) {
+        this.capacidadePassageiros = capacidadePassageiros;
     }
 
-    public Integer getCapacidade_carga() {
-        return capacidade_carga;
+    public Integer getCapacidadeCarga() {
+        return capacidadeCarga;
     }
 
-    public void setCapacidade_carga(Integer capacidade_carga) {
-        this.capacidade_carga = capacidade_carga;
+    public void setCapacidadeCarga(Integer capacidadeCarga) {
+        this.capacidadeCarga = capacidadeCarga;
     }
 
-    public TipoVeiculo getTipo_veiculo() {
-        return tipo_veiculo;
+    public TipoVeiculo getTipoVeiculo() {
+        return tipoVeiculo;
     }
 
-    public void setTipo_veiculo(TipoVeiculo tipo_veiculo) {
-        this.tipo_veiculo = tipo_veiculo;
+    public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
+        this.tipoVeiculo = tipoVeiculo;
     }
     
     

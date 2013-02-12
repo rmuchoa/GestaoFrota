@@ -49,9 +49,9 @@ public class VeiculoOpcionalVeiculoDAOTest {
         veiculo.setCor("teste");
         veiculo.setPlaca("teste");
         veiculo.setRenavam(1000L);
-        veiculo.setCapacidade_passageiros(1);
-        veiculo.setCapacidade_carga(10);
-        veiculo.setTipo_veiculo(new TipoVeiculoDAO().getTipoPorID(1));
+        veiculo.setCapacidadePassageiros(1);
+        veiculo.setCapacidadeCarga(10);
+        veiculo.setTipoVeiculo(new TipoVeiculoDAO().getTipoPorId(1));
         veiculo = veiculoDAO.inserir(veiculo);
         
         opcionais = opcionalVeiculoDAO.getTodosOpcionais();

@@ -53,14 +53,14 @@ public class VeiculoDAOTest {
 
                 veiculo.setId(rs.getInt("id"));
                 veiculo.setAno(rs.getInt("ano"));
-                veiculo.setCapacidade_carga(rs.getInt("capacidade_carga"));
-                veiculo.setCapacidade_passageiros(rs.getInt("capacidade_passageiros"));
+                veiculo.setCapacidadeCarga(rs.getInt("capacidade_carga"));
+                veiculo.setCapacidadePassageiros(rs.getInt("capacidade_passageiros"));
                 veiculo.setCor(rs.getString("cor"));
                 veiculo.setMarca(rs.getString("marca"));
                 veiculo.setModelo(rs.getString("modelo"));
                 veiculo.setPlaca(rs.getString("placa"));
                 veiculo.setRenavam(rs.getLong("renavam"));
-                veiculo.setTipo_veiculo(tipoVeiculoDAO.getTipoPorID(rs.getInt("tipo_veiculo")));
+                veiculo.setTipoVeiculo(tipoVeiculoDAO.getTipoPorId(rs.getInt("tipo_veiculo")));
 
             }
 
@@ -80,14 +80,14 @@ public class VeiculoDAOTest {
                 Veiculo v = new Veiculo();
                 v.setId(rs.getInt("id"));
                 v.setAno(rs.getInt("ano"));
-                v.setCapacidade_carga(rs.getInt("capacidade_carga"));
-                v.setCapacidade_passageiros(rs.getInt("capacidade_passageiros"));
+                v.setCapacidadeCarga(rs.getInt("capacidade_carga"));
+                v.setCapacidadePassageiros(rs.getInt("capacidade_passageiros"));
                 v.setCor(rs.getString("cor"));
                 v.setMarca(rs.getString("marca"));
                 v.setModelo(rs.getString("modelo"));
                 v.setPlaca(rs.getString("placa"));
                 v.setRenavam(rs.getLong("renavam"));
-                v.setTipo_veiculo(tipoVeiculoDAO.getTipoPorID(rs.getInt("tipo_veiculo")));
+                v.setTipoVeiculo(tipoVeiculoDAO.getTipoPorId(rs.getInt("tipo_veiculo")));
                 veiculos.add(v);
             }
 
@@ -120,14 +120,14 @@ public class VeiculoDAOTest {
         Veiculo resultVeiculo = dao.getVeiculoPorId(id);
         assertEquals(veiculo.getId(), resultVeiculo.getId());
         assertEquals(veiculo.getAno(), resultVeiculo.getAno());
-        assertEquals(veiculo.getCapacidade_passageiros(), resultVeiculo.getCapacidade_passageiros());
-        assertEquals(veiculo.getCapacidade_carga(), resultVeiculo.getCapacidade_carga());
+        assertEquals(veiculo.getCapacidadePassageiros(), resultVeiculo.getCapacidadePassageiros());
+        assertEquals(veiculo.getCapacidadeCarga(), resultVeiculo.getCapacidadeCarga());
         assertEquals(veiculo.getCor(), resultVeiculo.getCor());
         assertEquals(veiculo.getMarca(), resultVeiculo.getMarca());
         assertEquals(veiculo.getModelo(), resultVeiculo.getModelo());
         assertEquals(veiculo.getPlaca(), resultVeiculo.getPlaca());
         assertEquals(veiculo.getRenavam(), resultVeiculo.getRenavam());
-        assertEquals(veiculo.getTipo_veiculo().getId(), resultVeiculo.getTipo_veiculo().getId());
+        assertEquals(veiculo.getTipoVeiculo().getId(), resultVeiculo.getTipoVeiculo().getId());
     }
 
     /**
@@ -141,14 +141,14 @@ public class VeiculoDAOTest {
         Veiculo resultVeiculo = dao.getVeiculoPorPlaca(placa);
         assertEquals(veiculo.getId(), resultVeiculo.getId());
         assertEquals(veiculo.getAno(), resultVeiculo.getAno());
-        assertEquals(veiculo.getCapacidade_passageiros(), resultVeiculo.getCapacidade_passageiros());
-        assertEquals(veiculo.getCapacidade_carga(), resultVeiculo.getCapacidade_carga());
+        assertEquals(veiculo.getCapacidadePassageiros(), resultVeiculo.getCapacidadePassageiros());
+        assertEquals(veiculo.getCapacidadeCarga(), resultVeiculo.getCapacidadeCarga());
         assertEquals(veiculo.getCor(), resultVeiculo.getCor());
         assertEquals(veiculo.getMarca(), resultVeiculo.getMarca());
         assertEquals(veiculo.getModelo(), resultVeiculo.getModelo());
         assertEquals(veiculo.getPlaca(), resultVeiculo.getPlaca());
         assertEquals(veiculo.getRenavam(), resultVeiculo.getRenavam());
-        assertEquals(veiculo.getTipo_veiculo().getId(), resultVeiculo.getTipo_veiculo().getId());
+        assertEquals(veiculo.getTipoVeiculo().getId(), resultVeiculo.getTipoVeiculo().getId());
     }
 
     /**
@@ -159,26 +159,26 @@ public class VeiculoDAOTest {
         System.out.println("inserir");
         novoVeiculo = new Veiculo();
         novoVeiculo.setAno(1000);
-        novoVeiculo.setCapacidade_passageiros(1);
-        novoVeiculo.setCapacidade_carga(1);
+        novoVeiculo.setCapacidadePassageiros(1);
+        novoVeiculo.setCapacidadeCarga(1);
         novoVeiculo.setCor("teste");
         novoVeiculo.setMarca("teste");
         novoVeiculo.setModelo("teste");
         novoVeiculo.setPlaca("teste");
         novoVeiculo.setRenavam(1000L);
-        novoVeiculo.setTipo_veiculo(new TipoVeiculoDAO().getTipoPorID(1));
+        novoVeiculo.setTipoVeiculo(new TipoVeiculoDAO().getTipoPorId(1));
         VeiculoDAO dao = new VeiculoDAO();
         Veiculo v = dao.inserir(novoVeiculo);
         
         assertEquals(novoVeiculo.getAno(), v.getAno());
-        assertEquals(novoVeiculo.getCapacidade_passageiros(), v.getCapacidade_passageiros());
-        assertEquals(novoVeiculo.getCapacidade_carga(), v.getCapacidade_carga());
+        assertEquals(novoVeiculo.getCapacidadePassageiros(), v.getCapacidadePassageiros());
+        assertEquals(novoVeiculo.getCapacidadeCarga(), v.getCapacidadeCarga());
         assertEquals(novoVeiculo.getCor(), v.getCor());
         assertEquals(novoVeiculo.getMarca(), v.getMarca());
         assertEquals(novoVeiculo.getModelo(), v.getModelo());
         assertEquals(novoVeiculo.getPlaca(), v.getPlaca());
         assertEquals(novoVeiculo.getRenavam(), v.getRenavam());
-        assertEquals(novoVeiculo.getTipo_veiculo().getId(), v.getTipo_veiculo().getId());
+        assertEquals(novoVeiculo.getTipoVeiculo().getId(), v.getTipoVeiculo().getId());
         
         if (novoVeiculo.getPlaca().equals(v.getPlaca())) {
             novoVeiculo.setId(v.getId());
@@ -232,14 +232,14 @@ public class VeiculoDAOTest {
             for (int i=0; i<veiculos.size(); i++) {
                 assertEquals(veiculos.get(i).getId(), resultVeiculos.get(i).getId());
                 assertEquals(veiculos.get(i).getAno(), resultVeiculos.get(i).getAno());
-                assertEquals(veiculos.get(i).getCapacidade_passageiros(), resultVeiculos.get(i).getCapacidade_passageiros());
-                assertEquals(veiculos.get(i).getCapacidade_carga(), resultVeiculos.get(i).getCapacidade_carga());
+                assertEquals(veiculos.get(i).getCapacidadePassageiros(), resultVeiculos.get(i).getCapacidadePassageiros());
+                assertEquals(veiculos.get(i).getCapacidadeCarga(), resultVeiculos.get(i).getCapacidadeCarga());
                 assertEquals(veiculos.get(i).getCor(), resultVeiculos.get(i).getCor());
                 assertEquals(veiculos.get(i).getMarca(), resultVeiculos.get(i).getMarca());
                 assertEquals(veiculos.get(i).getModelo(), resultVeiculos.get(i).getModelo());
                 assertEquals(veiculos.get(i).getPlaca(), resultVeiculos.get(i).getPlaca());
                 assertEquals(veiculos.get(i).getRenavam(), resultVeiculos.get(i).getRenavam());
-                assertEquals(veiculos.get(i).getTipo_veiculo().getId(), resultVeiculos.get(i).getTipo_veiculo().getId());
+                assertEquals(veiculos.get(i).getTipoVeiculo().getId(), resultVeiculos.get(i).getTipoVeiculo().getId());
             }
         } else {
             fail("Não encontrou a lista correta!");

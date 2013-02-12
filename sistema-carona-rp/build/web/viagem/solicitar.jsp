@@ -28,16 +28,14 @@
 
 <%
     if (request.getMethod().equalsIgnoreCase("post")) {
-        SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
-        solicitacaoViagemController.inserirSolicitacao(request);
         if (request.getParameter("avancar") != null) {
-            SolicitacaoViagem solicitacaoViagem = solicitacaoViagemController.buscarPorDataSaida(request);
+            SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
+            SolicitacaoViagem solicitacaoViagem = solicitacaoViagemController.inserirSolicitacao(request);
             request.setAttribute("solicitacao", solicitacaoViagem);
             RequestDispatcher dispatcher = request.getRequestDispatcher("passageiros.jsp");
             dispatcher.forward(request, response);
         }
     }
-
 %>
 
 <html>
@@ -159,6 +157,7 @@
                             </select>
                         </div>
                     </div>
+                    
                     <div class="control-group">
                         <label class="control-label" for="inputCidadeOrigem">Cidade:</label>
                         <div class="controls">
@@ -237,9 +236,7 @@
                         <input type="submit" name="avancar" value="Adicionar passageiros" class="btn btn-success btn-large">
                     </div>
                 </div>
-
-
-
+                
             </form>
 
         </div>

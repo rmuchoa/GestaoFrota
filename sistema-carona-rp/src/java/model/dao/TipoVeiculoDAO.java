@@ -82,7 +82,7 @@ public class TipoVeiculoDAO {
         return tipoVeiculo;
     }
 
-    public TipoVeiculo getTipoPorID(int id) {
+    public TipoVeiculo getTipoPorId(int id) {
 
         TipoVeiculo tipoVeiculo = null;
         String sql = "select * from tipo_veiculo where id = ?";

@@ -46,7 +46,7 @@
         <script>
             $(document).ready(function() {
                 
-                validaFormularioVeiculo();
+                validaFormularioUsuarios();
                 
                 $("#estado").change(function() {
                     $.ajax({

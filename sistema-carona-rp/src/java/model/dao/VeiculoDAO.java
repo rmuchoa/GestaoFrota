@@ -4,15 +4,13 @@
  */
 package model.dao;
 
-import jdbc.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.jms.JMSException;
-import javax.swing.JOptionPane;
+import jdbc.ConnectionFactory;
 import model.entity.TipoVeiculo;
 import model.entity.Veiculo;
 
@@ -47,20 +45,17 @@ public class VeiculoDAO {
             stmt.setString(4, veiculo.getModelo());
             stmt.setString(5, veiculo.getMarca());
             stmt.setInt(6, veiculo.getAno());
-            stmt.setInt(7, veiculo.getCapacidade_passageiros());
-            stmt.setInt(8, veiculo.getCapacidade_carga());
-            stmt.setInt(9, veiculo.getTipo_veiculo().getId());
+            stmt.setInt(7, veiculo.getCapacidadePassageiros());
+            stmt.setInt(8, veiculo.getCapacidadeCarga());
+            stmt.setInt(9, veiculo.getTipoVeiculo().getId());
             stmt.execute();
             stmt.close();
-
-
-
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
         Veiculo veiculoCadastrado = this.getVeiculoPorPlaca(veiculo.getPlaca());
-
         return veiculoCadastrado;
 
     }
@@ -79,14 +74,14 @@ public class VeiculoDAO {
                 Veiculo veiculo = new Veiculo();
                 veiculo.setId(rs.getInt("id"));
                 veiculo.setAno(rs.getInt("ano"));
-                veiculo.setCapacidade_carga(rs.getInt("capacidade_carga"));
-                veiculo.setCapacidade_passageiros(rs.getInt("capacidade_passageiros"));
+                veiculo.setCapacidadeCarga(rs.getInt("capacidade_carga"));
+                veiculo.setCapacidadePassageiros(rs.getInt("capacidade_passageiros"));
                 veiculo.setCor(rs.getString("cor"));
                 veiculo.setMarca(rs.getString("marca"));
                 veiculo.setModelo(rs.getString("modelo"));
                 veiculo.setPlaca(rs.getString("placa"));
                 veiculo.setRenavam(rs.getLong("renavam"));
-                veiculo.setTipo_veiculo(tipoVeiculoDAO.getTipoPorID(rs.getInt("tipo_veiculo")));
+                veiculo.setTipoVeiculo(tipoVeiculoDAO.getTipoPorId(rs.getInt("tipo_veiculo")));
                 lista.add(posicao, veiculo);
             }
 
@@ -115,14 +110,14 @@ public class VeiculoDAO {
 
                 veiculo.setId(rs.getInt("id"));
                 veiculo.setAno(rs.getInt("ano"));
-                veiculo.setCapacidade_carga(rs.getInt("capacidade_carga"));
-                veiculo.setCapacidade_passageiros(rs.getInt("capacidade_passageiros"));
+                veiculo.setCapacidadeCarga(rs.getInt("capacidade_carga"));
+                veiculo.setCapacidadePassageiros(rs.getInt("capacidade_passageiros"));
                 veiculo.setCor(rs.getString("cor"));
                 veiculo.setMarca(rs.getString("marca"));
                 veiculo.setModelo(rs.getString("modelo"));
                 veiculo.setPlaca(rs.getString("placa"));
                 veiculo.setRenavam(rs.getLong("renavam"));
-                veiculo.setTipo_veiculo(tipoVeiculoDAO.getTipoPorID(rs.getInt("tipo_veiculo")));
+                veiculo.setTipoVeiculo(tipoVeiculoDAO.getTipoPorId(rs.getInt("tipo_veiculo")));
 
             }
 
@@ -140,15 +135,15 @@ public class VeiculoDAO {
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
 
-            stmt.setInt(1, veiculo.getTipo_veiculo().getId());
+            stmt.setInt(1, veiculo.getTipoVeiculo().getId());
             stmt.setString(2, veiculo.getPlaca());
             stmt.setLong(3, veiculo.getRenavam());
             stmt.setString(4, veiculo.getCor());
             stmt.setString(5, veiculo.getModelo());
             stmt.setString(6, veiculo.getMarca());
             stmt.setInt(7, veiculo.getAno());
-            stmt.setInt(8, veiculo.getCapacidade_passageiros());
-            stmt.setInt(9, veiculo.getCapacidade_carga());
+            stmt.setInt(8, veiculo.getCapacidadePassageiros());
+            stmt.setInt(9, veiculo.getCapacidadeCarga());
             stmt.setInt(10, veiculo.getId());
             stmt.execute();
             stmt.close();
@@ -191,14 +186,14 @@ public class VeiculoDAO {
 
                 veiculo.setId(rs.getInt("id"));
                 veiculo.setAno(rs.getInt("ano"));
-                veiculo.setCapacidade_carga(rs.getInt("capacidade_carga"));
-                veiculo.setCapacidade_passageiros(rs.getInt("capacidade_passageiros"));
+                veiculo.setCapacidadeCarga(rs.getInt("capacidade_carga"));
+                veiculo.setCapacidadePassageiros(rs.getInt("capacidade_passageiros"));
                 veiculo.setCor(rs.getString("cor"));
                 veiculo.setMarca(rs.getString("marca"));
                 veiculo.setModelo(rs.getString("modelo"));
                 veiculo.setPlaca(rs.getString("placa"));
                 veiculo.setRenavam(rs.getLong("renavam"));
-                veiculo.setTipo_veiculo(tipoVeiculoDAO.getTipoPorID(rs.getInt("tipo_veiculo")));
+                veiculo.setTipoVeiculo(tipoVeiculoDAO.getTipoPorId(rs.getInt("tipo_veiculo")));
 
             }
 

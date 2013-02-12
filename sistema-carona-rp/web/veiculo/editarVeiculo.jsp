@@ -23,8 +23,8 @@
         VeiculoController veiculoController = new VeiculoController();
         veiculoController.alterarVeiculo(request);
         response.sendRedirect("listaVeiculos.jsp");
-     }
-    
+    }
+
 %>
 
 <html>
@@ -36,12 +36,12 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
         <script type="text/javas;cript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
-          <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery-1.9.0.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery-1.9.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
-        
+
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body>
@@ -54,13 +54,13 @@
         <div class="offset2 span8 offset2">
 
             <h3>Alteração dos dados do veículo</h3> 
-            <% VeiculoDAO veiculoDAO = new VeiculoDAO();
-            Veiculo veiculo;
-             veiculo =  veiculoDAO.getVeiculoPorId(Integer.parseInt(request.getParameter("id_veiculo")));  
+            <%
+                VeiculoDAO veiculoDAO = new VeiculoDAO();
+                Veiculo veiculo = veiculoDAO.getVeiculoPorId(Integer.parseInt(request.getParameter("id")));
             %>
-            <form id="formularioVeiculo" action="editarVeiculo.jsp?id_veiculo=<%out.println(request.getParameter("id_veiculo"));%>" method="POST" class="form-horizontal well">
+            <form id="formularioVeiculo" action="editarVeiculo.jsp?id=<%out.println(request.getParameter("id"));%>" method="POST" class="form-horizontal well">
 
-                <input  style="display:none" name="id" value="<% out.print(veiculo.getId()); %>">
+                <input  style="display:none" name="id" value="<% out.print(veiculo.getId());%>">
                 <div class="control-group">
                     <label class="control-label" for="inputPlaca">Placa</label>
                     <div class="controls">
@@ -108,19 +108,18 @@
                     <div  class="controls">
                         <select name="tipo_veiculo">
                             <%
-                            TipoVeiculoController tipoVeiculoController = new TipoVeiculoController();
-                            List<TipoVeiculo>  listaDeTipos;
-                            listaDeTipos = tipoVeiculoController.listarTodosTiposVeiculos();
-                            for(int i = 0;i<listaDeTipos.size();i++){
-                               if(veiculo.getTipo_veiculo().getDescricao().equals(listaDeTipos.get(i).getDescricao())){   
-                                out.print("<option selected = 'true'>"+listaDeTipos.get(i).getDescricao() +"</option>");
-                               }
-                              else{
-                                out.print("<option>"+listaDeTipos.get(i).getDescricao() +"</option>");
-                              }
-                            }        
-                           %>
-                           
+                                TipoVeiculoController tipoVeiculoController = new TipoVeiculoController();
+                                List<TipoVeiculo> listaDeTipos;
+                                listaDeTipos = tipoVeiculoController.listarTodosTiposVeiculos();
+                                for (int i = 0; i < listaDeTipos.size(); i++) {
+                                    if (veiculo.getTipoVeiculo().getDescricao().equals(listaDeTipos.get(i).getDescricao())) {
+                                        out.print("<option value='" + listaDeTipos.get(i).getId() + "' selected = 'true'>" + listaDeTipos.get(i).getDescricao() + "</option>");
+                                    } else {
+                                        out.print("<option value='" + listaDeTipos.get(i).getId() + "'>" + listaDeTipos.get(i).getDescricao() + "</option>");
+                                    }
+                                }
+                            %>
+
                         </select>
                     </div>
                 </div> 
@@ -128,7 +127,7 @@
                 <div class="control-group">
                     <label class="control-label"  for="inputPassageiros">Capacidade de passageiros</label>
                     <div class="controls">
-                        <input type="text" value="<%out.println(veiculo.getCapacidade_passageiros());%>" id="capacidade_passageiros"  name="capacidade_passageiros" placeholder="Capacidade de passageiros">
+                        <input type="text" value="<%out.println(veiculo.getCapacidadePassageiros());%>" id="capacidade_passageiros"  name="capacidade_passageiros" placeholder="Capacidade de passageiros">
                     </div>
                 </div>
 
@@ -136,32 +135,32 @@
                 <div class="control-group">
                     <label class="control-label" for="inputCarga">Capacidade de carga(Kg)</label>
                     <div class="controls">
-                        <input type="text" value="<%out.println(veiculo.getCapacidade_carga());%>" name="capacidade_carga" id="capacidade_carga" placeholder="Capacidade carga">
+                        <input type="text" value="<%out.println(veiculo.getCapacidadeCarga());%>" name="capacidade_carga" id="capacidade_carga" placeholder="Capacidade carga">
                     </div>
                 </div>
-                  
-                     <div class="control-group">
+
+                <div class="control-group">
                     <div class="controls">
                         <%
-                        List<OpcionalVeiculo> lista;
-                        List<Integer> listaOpcionaisSelecionados = new VeiculoOpcionalVeiculoDAO().getPorIdVeiculo(veiculo.getId()); 
-                        OpcionalVeiculoDAO opcionalVeiculoDAO = new OpcionalVeiculoDAO();
-                        lista  = opcionalVeiculoDAO.getTodosOpcionais();
-                        int status=0;
-                        for(int i =0;i<lista.size();i++){
-                            status =0;
-                            for(int j = 0;j<listaOpcionaisSelecionados.size();j++){   
-                                if(lista.get(i).getId()==listaOpcionaisSelecionados.get(j)){
-                                  out.println("<input type='checkbox' name='"+lista.get(i).getId()+"' value=' "+lista.get(i).getId()+"' CHECKED>"+lista.get(i).getDescricao() +"<br>");
-                                  status = 1; 
+                            List<OpcionalVeiculo> lista;
+                            List<Integer> listaOpcionaisSelecionados = new VeiculoOpcionalVeiculoDAO().getPorIdVeiculo(veiculo.getId());
+                            OpcionalVeiculoDAO opcionalVeiculoDAO = new OpcionalVeiculoDAO();
+                            lista = opcionalVeiculoDAO.getTodosOpcionais();
+                            int status = 0;
+                            for (int i = 0; i < lista.size(); i++) {
+                                status = 0;
+                                for (int j = 0; j < listaOpcionaisSelecionados.size(); j++) {
+                                    if (lista.get(i).getId() == listaOpcionaisSelecionados.get(j)) {
+                                        out.println("<input type='checkbox' name='" + lista.get(i).getId() + "' value=' " + lista.get(i).getId() + "' CHECKED>" + lista.get(i).getDescricao() + "<br>");
+                                        status = 1;
+                                    }
                                 }
-                            } 
-                            if(status==0){
-                                  out.println("<input type='checkbox' name='"+lista.get(i).getId()+"' value=' "+lista.get(i).getId()+"' >"+lista.get(i).getDescricao() +"<br>");
-                                 }                                      
-                        }
+                                if (status == 0) {
+                                    out.println("<input type='checkbox' name='" + lista.get(i).getId() + "' value=' " + lista.get(i).getId() + "' >" + lista.get(i).getDescricao() + "<br>");
+                                }
+                            }
                         %>
-                     </div>
+                    </div>
                 </div>   
 
                 <div class="control-group">

@@ -84,6 +84,9 @@ function validaFormularioVeiculo(){
             }
         }
     });
+}
+
+function validaFormularioVeiculo(){
 
     $("#formularioUsuario").validate({
 
@@ -153,6 +156,9 @@ function validaFormularioVeiculo(){
             numero: {
                 digits: "Digite apenas números",
                 maxLength: "O número não pode ultrapassar 11 caractéres"
+            },
+            cep: {
+                maxLength: "O cep não pode ultrapassar 8 caracteres"
             }
         }
     });

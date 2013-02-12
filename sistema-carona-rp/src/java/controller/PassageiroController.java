@@ -32,8 +32,6 @@ public class PassageiroController {
     
     public void adicionarPassageiro(HttpServletRequest request) {
         
-        new SolicitacaoViagemDAO();
-        
         passageiro.setNome(request.getParameter("nome"));
         passageiro.setRg(request.getParameter("rg"));
         passageiro.setEmail(request.getParameter("email"));
@@ -68,7 +66,7 @@ public class PassageiroController {
         if (encontrado == null) {
             passageiroDAO.inserir(passageiro);
             Passageiro inserido = passageiroDAO.buscarPorRg(passageiro.getRg());
-            passageiroDAO.adicionarPassageiro(solicitacao.getId(), inserido);
+            passageiroDAO.adicionarPassageiro(solicitacao, inserido);
         } else {
             if (!passageiro.getNome().equals(encontrado.getNome()) ||
                     passageiro.isServidor() != encontrado.isServidor() ||
@@ -79,8 +77,8 @@ public class PassageiroController {
                 encontrado.setEndereco(passageiro.getEndereco());
                 encontrado.setServidor(passageiro.isServidor());
                 passageiroDAO.alterar(encontrado);
-                passageiroDAO.adicionarPassageiro(solicitacao.getId(), encontrado);
             }
+            passageiroDAO.adicionarPassageiro(solicitacao, encontrado);
         }
         
     }

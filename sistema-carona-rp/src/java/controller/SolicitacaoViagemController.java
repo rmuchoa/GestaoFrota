@@ -6,7 +6,6 @@ package controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +14,6 @@ import model.dao.SituacaoSolicitacaoDAO;
 import model.dao.SolicitacaoViagemDAO;
 import model.dao.UsuarioDAO;
 import model.entity.SolicitacaoViagem;
-import model.entity.Usuario;
 
 /**
  *
@@ -27,7 +25,7 @@ public class SolicitacaoViagemController {
     private SolicitacaoViagem solicitacaoViagem;
     private UsuarioDAO usuarioDAO;
     
-    public void inserirSolicitacao(HttpServletRequest request){
+    public SolicitacaoViagem inserirSolicitacao(HttpServletRequest request){
         try {
             this.usuarioDAO = new UsuarioDAO();  
             this.solicitacaoViagem = new SolicitacaoViagem();
@@ -50,18 +48,7 @@ public class SolicitacaoViagemController {
         } catch (ParseException ex) {
             Logger.getLogger(SolicitacaoViagemController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    public SolicitacaoViagem buscarPorDataSaida(HttpServletRequest request) {
-        try {
-            Date dataSolicitacao = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("dataSaida")+" "+request.getParameter("horarioRetorno"));
-            Usuario solicitante = new UsuarioDAO().buscarPorId(Integer.parseInt(request.getParameter("solicitante")));
-            solicitacaoViagemDAO = new SolicitacaoViagemDAO();
-            return solicitacaoViagemDAO.buscarPorDataSaida(dataSolicitacao, solicitante);
-        } catch (ParseException ex) {
-            Logger.getLogger(SolicitacaoViagemController.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+        return solicitacaoViagemDAO.buscarPorDataSaida(solicitacaoViagem.getDataSaida(), solicitacaoViagem.getSolicitante());
     }
     
     public SolicitacaoViagem buscarPorId(Integer id) {
