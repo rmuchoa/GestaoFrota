@@ -44,9 +44,9 @@ public class PassageiroController {
                 
             }
             
-            passageiroDAO.adicionarPassageiro(Integer.parseInt(request.getParameter("solicitacao")), encontrado);
-            
         }
+        
+        passageiroDAO.adicionarPassageiro(Integer.parseInt(request.getAttribute("solicitacao").toString()), encontrado);
         
     }
     

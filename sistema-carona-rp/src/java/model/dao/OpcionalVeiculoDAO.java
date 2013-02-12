@@ -21,7 +21,7 @@ import model.entity.Veiculo;
 public class OpcionalVeiculoDAO {
 
     private Connection connection;
-    private OpcionalVeiculo opicionalVeiculo;
+    private OpcionalVeiculo opcionalVeiculo;
     private List<OpcionalVeiculo> lista;
 
     public OpcionalVeiculoDAO() {
@@ -35,7 +35,7 @@ public class OpcionalVeiculoDAO {
     public List<OpcionalVeiculo> getTodosOpcionais() {
         
         lista = new ArrayList<OpcionalVeiculo>();
-        String sql = "select * from opcionais_veiculo;";
+        String sql = "select * from opcional_veiculo;";
 
         try {
 
@@ -58,7 +58,7 @@ public class OpcionalVeiculoDAO {
     public OpcionalVeiculo getOpcionalPorId(int id) {
 
         OpcionalVeiculo opcionalVeiculo = null;
-        String sql = "select * from opcionais_veiculo where id=?;";
+        String sql = "select * from opcional_veiculo where id=?;";
 
         try {
 

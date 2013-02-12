@@ -136,7 +136,7 @@ public class PassageiroDAO {
     
         List<Passageiro> passageiros = new ArrayList<Passageiro>();
         String sql = "select p.id, p.nome, p.rg, p.eh_servidor from passageiro p, solicitacao_viagem_passageiro s"
-                + "where p.id = ? and p.id = s.passageiro_id";
+                + "where p.id = ? and p.id = s.passageiro";
         
         try {
             

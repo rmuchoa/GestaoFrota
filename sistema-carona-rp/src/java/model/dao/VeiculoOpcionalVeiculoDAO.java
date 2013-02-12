@@ -32,7 +32,7 @@ public class VeiculoOpcionalVeiculoDAO {
     }
     
     public void inserir(int id_veiculo, OpcionalVeiculo opicionalVeiculo){
-        String sql = "insert into veiculo_opcionais_veiculo (id_veiculo,id_opcionais_veiculo) values (?,?)";
+        String sql = "insert into veiculo_opcional_veiculo (veiculo,opcional_veiculo) values (?,?)";
         System.out.println("Id do veiculo : "+id_veiculo);
         try {
         PreparedStatement stmt = connection.prepareStatement(sql);
@@ -48,7 +48,7 @@ public class VeiculoOpcionalVeiculoDAO {
     }
     
     public List<Integer> getPorIdVeiculo(int id_veiculo){
-        String sql = "select * from veiculo_opcionais_veiculo where id_veiculo=?;";
+        String sql = "select * from veiculo_opcional_veiculo where veiculo=?;";
         List<Integer> lista = new ArrayList<Integer>();
         try {
 
@@ -57,7 +57,7 @@ public class VeiculoOpcionalVeiculoDAO {
             ResultSet rs = stmt.executeQuery();
             int posicao = 0;
             while (rs.next()) {
-                lista.add(posicao, rs.getInt("id_opcionais_veiculo"));
+                lista.add(posicao, rs.getInt("opcional_veiculo"));
                 posicao++;
             }
 
@@ -68,7 +68,7 @@ public class VeiculoOpcionalVeiculoDAO {
     }
     
     public void remover(int id_veiculo){
-      String sql = "delete from veiculo_opcionais_veiculo where id_veiculo = ?";
+      String sql = "delete from veiculo_opcional_veiculo where veiculo = ?";
            
         try {
             PreparedStatement stmt = this.connection.prepareStatement(sql);
