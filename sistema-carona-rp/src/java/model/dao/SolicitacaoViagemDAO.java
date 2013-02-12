@@ -30,7 +30,7 @@ public class SolicitacaoViagemDAO {
         String sql = "insert into solicitacao_viagem (solicitante, data_saida ,local_saida, "
                 + "data_retorno, local_retorno, justificativa, observacoes, "
                 + "origem, destino, percurso, situacao_solicitacao, eh_passageiro )"
-                + " values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + " values (?,?,?,?,?,?,?,?,?,?,?,?)";
              
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -43,9 +43,9 @@ public class SolicitacaoViagemDAO {
             stmt.setString(7, solicitacaoViagem.getObservacoes());
             stmt.setInt(8, solicitacaoViagem.getOrigem().getId());
             stmt.setInt(9, solicitacaoViagem.getDestino().getId());
-            stmt.setString(11, solicitacaoViagem.getPercurso());
-            stmt.setInt(12, solicitacaoViagem.getSituacaoSolicitacao().getId());
-            stmt.setBoolean(13, solicitacaoViagem.isPassageiro());
+            stmt.setString(10, solicitacaoViagem.getPercurso());
+            stmt.setInt(11, solicitacaoViagem.getSituacaoSolicitacao().getId());
+            stmt.setBoolean(12, solicitacaoViagem.isPassageiro());
             stmt.execute();
             stmt.close();
             
@@ -82,7 +82,7 @@ public class SolicitacaoViagemDAO {
                 solicitacao.setOrigem(new CidadeDAO().buscarPorId(rs.getInt("origem")));
                 solicitacao.setDestino(new CidadeDAO().buscarPorId(rs.getInt("destino")));
                 solicitacao.setPercurso(rs.getString("percurso"));
-                solicitacao.setSituacaoSolicitacao(new SituacaoSolicitacaoDAO().buscarPorId(rs.getInt("situacao_solicitacao_id")));
+                solicitacao.setSituacaoSolicitacao(new SituacaoSolicitacaoDAO().buscarPorId(rs.getInt("situacao_solicitacao")));
                 solicitacao.setPassageiro(Boolean.parseBoolean("eh_passageiro"));
                 
             }

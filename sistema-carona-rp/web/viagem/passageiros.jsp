@@ -29,7 +29,9 @@
     <body>
 
         <%
-            if (request.getParameter("addPassageiro") != null) {
+       
+        if (request.getParameter("addPassageiro") != null) {
+             System.out.print("add passageiro ");
                 if (request.getMethod().equalsIgnoreCase("post")) {
                     PassageiroController passageiroController = new PassageiroController();
                     passageiroController.adicionarPassageiro(request);
@@ -92,7 +94,7 @@
                 </tr>
                 <%
                     PassageiroController passageiroController = new PassageiroController();
-                    List<Passageiro> passageiros = passageiroController.buscarPorSolicitacaoId(Integer.parseInt(request.getParameter("solicitacao")));
+                    List<Passageiro> passageiros = passageiroController.buscarPorSolicitacaoId(Integer.parseInt(request.getAttribute("solicitacao").toString()));
                     for (Passageiro p : passageiros) {
                 %>
                 <tr>

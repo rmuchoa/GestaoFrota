@@ -92,7 +92,7 @@
                 </tr>
                 <%
                     PassageiroController passageiroController = new PassageiroController();
-                    List<Passageiro> passageiros = passageiroController.buscarPorSolicitacaoId(Integer.parseInt(request.getParameter("solicitacao")));
+                    List<Passageiro> passageiros = passageiroController.buscarPorSolicitacaoId(Integer.parseInt(request.getAttribute("solicitacao").toString()));
                     for (Passageiro p : passageiros) {
                 %>
                 <tr>
