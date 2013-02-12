@@ -57,6 +57,43 @@ public class SolicitacaoViagemDAO {
         }
     }
     
+    public SolicitacaoViagem buscarPorId(Integer id) {
+        SolicitacaoViagem solicitacao = null;
+        String sql = "select * from solicitacao_viagem where id = ?";
+        
+        try {
+            
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+                
+                solicitacao = new SolicitacaoViagem();
+                solicitacao.setId(rs.getInt("id"));
+                solicitacao.setSolicitante(new UsuarioDAO().buscarPorId(rs.getInt("solicitante")));
+                solicitacao.setDataSaida(rs.getDate("data_saida"));
+                solicitacao.setLogalSaida(rs.getString("local_saida"));
+                solicitacao.setDataRetorno(rs.getDate("data_retorno"));
+                solicitacao.setLocalRetorno(rs.getString("local_retorno"));
+                solicitacao.setJustificativa(rs.getString("justificativa"));
+                solicitacao.setObservacoes(rs.getString("observacoes"));
+                solicitacao.setOrigem(new CidadeDAO().buscarPorId(rs.getInt("origem")));
+                solicitacao.setDestino(new CidadeDAO().buscarPorId(rs.getInt("destino")));
+                solicitacao.setPercurso(rs.getString("percurso"));
+                solicitacao.setSituacaoSolicitacao(new SituacaoSolicitacaoDAO().buscarPorId(rs.getInt("situacao_solicitacao")));
+                solicitacao.setPassageiro(Boolean.parseBoolean("eh_passageiro"));
+                
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return solicitacao;
+        
+    }
+    
     public SolicitacaoViagem buscarPorDataSaida(java.util.Date dataSaida, Usuario solicitante) {
         
         SolicitacaoViagem solicitacao = null;

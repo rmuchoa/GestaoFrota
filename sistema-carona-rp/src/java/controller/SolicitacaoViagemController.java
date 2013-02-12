@@ -56,11 +56,17 @@ public class SolicitacaoViagemController {
         try {
             Date dataSolicitacao = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("dataSaida")+" "+request.getParameter("horarioRetorno"));
             Usuario solicitante = new UsuarioDAO().buscarPorId(Integer.parseInt(request.getParameter("solicitante")));
+            solicitacaoViagemDAO = new SolicitacaoViagemDAO();
             return solicitacaoViagemDAO.buscarPorDataSaida(dataSolicitacao, solicitante);
         } catch (ParseException ex) {
             Logger.getLogger(SolicitacaoViagemController.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+    }
+    
+    public SolicitacaoViagem buscarPorId(Integer id) {
+        solicitacaoViagemDAO = new SolicitacaoViagemDAO();
+        return solicitacaoViagemDAO.buscarPorId(id);
     }
    
 }

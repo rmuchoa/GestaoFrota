@@ -47,6 +47,8 @@ public class PassageiroDAO {
                 passageiro.setId(rs.getInt("id"));
                 passageiro.setNome(rs.getString("nome"));
                 passageiro.setRg(rs.getString("rg"));
+                passageiro.setEmail(rs.getString("email"));
+                passageiro.setEndereco(rs.getString("endereco"));
                 passageiro.setServidor(rs.getBoolean("eh_servidor"));
                 
                 passageiros.add(passageiro);
@@ -78,6 +80,8 @@ public class PassageiroDAO {
                 passageiro.setId(rs.getInt("id"));
                 passageiro.setNome(rs.getString("nome"));
                 passageiro.setRg(rs.getString("rg"));
+                passageiro.setEmail(rs.getString("email"));
+                passageiro.setEndereco(rs.getString("endereco"));
                 passageiro.setServidor(rs.getBoolean("eh_servidor"));
                 
             }
@@ -93,14 +97,16 @@ public class PassageiroDAO {
     public Passageiro inserir(Passageiro passageiro) {
         
         String sql = "insert into passageiro ("
-                + "nome, rg, eh_servidor) velues (?,?,?)";
+                + "nome, rg, email, endereco, eh_servidor) values (?,?,?,?,?)";
         
         try {
             
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, passageiro.getNome());
             stmt.setString(2, passageiro.getRg());
-            stmt.setBoolean(3, passageiro.isServidor());
+            stmt.setString(3, passageiro.getEmail());
+            stmt.setString(4, passageiro.getEndereco());
+            stmt.setBoolean(5, passageiro.isServidor());
             stmt.execute();
             stmt.close();
 
@@ -114,15 +120,17 @@ public class PassageiroDAO {
 
     public void alterar(Passageiro passageiro) {
         
-        String sql = "update passageiro set nome = ?, rg = ?, eh_servidor = ? where id = ?;";
+        String sql = "update passageiro set nome = ?, rg = ?, email = ?, endereco = ?, eh_servidor = ? where id = ?;";
         
         try {
             
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, passageiro.getNome());
             stmt.setString(2, passageiro.getRg());
-            stmt.setBoolean(3, passageiro.isServidor());
-            stmt.setInt(4, passageiro.getId());
+            stmt.setString(3, passageiro.getEmail());
+            stmt.setString(4, passageiro.getEndereco());
+            stmt.setBoolean(5, passageiro.isServidor());
+            stmt.setInt(6, passageiro.getId());
             stmt.execute();
             stmt.close();
 
@@ -135,7 +143,7 @@ public class PassageiroDAO {
     public List<Passageiro> buscarPorSolicitacaoId(Integer id) {
     
         List<Passageiro> passageiros = new ArrayList<Passageiro>();
-        String sql = "select p.id, p.nome, p.rg, p.eh_servidor from passageiro p, solicitacao_viagem_passageiro s"
+        String sql = "select p.id, p.nome, p.rg, p.email, p.endereco, p.eh_servidor from passageiro p, solicitacao_viagem_passageiro s"
                 + "where p.id = ? and p.id = s.passageiro";
         
         try {
@@ -150,6 +158,8 @@ public class PassageiroDAO {
                 passageiro.setId(rs.getInt("id"));
                 passageiro.setNome(rs.getString("nome"));
                 passageiro.setRg(rs.getString("rg"));
+                passageiro.setEmail(rs.getString("email"));
+                passageiro.setEndereco(rs.getString("endereco"));
                 passageiro.setServidor(rs.getBoolean("eh_servidor"));
                 
                 passageiros.add(passageiro);

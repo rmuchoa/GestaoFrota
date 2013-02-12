@@ -4,6 +4,7 @@
     Author     : renanmarceluchoa
 --%>
 
+<%@page import="controller.SolicitacaoViagemController"%>
 <%@page import="model.entity.SolicitacaoViagem"%>
 <%@page import="model.entity.Passageiro"%>
 <%@page import="java.util.List"%>
@@ -31,11 +32,22 @@
 
         <%
 
+            if (request.getParameter("avancar") != null) {
+                if (request.getParameter("passageiro").equals("true")) {
+                    PassageiroController passageiroController = new PassageiroController();
+                    passageiroController.adicionarSolicitantePassageiro(request);
+                }
+            }
+        
             if (request.getParameter("add") != null) {
                 if (request.getMethod().equalsIgnoreCase("post")) {
+                    SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
+                    SolicitacaoViagem solicitacaoViagem = solicitacaoViagemController.buscarPorId(Integer.parseInt(request.getParameter("solicitacao")));
+                    request.setAttribute("solicitacao", solicitacaoViagem);
+                    
                     PassageiroController passageiroController = new PassageiroController();
                     passageiroController.adicionarPassageiro(request);
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("passageiros");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("passageiros.jsp");
                     dispatcher.forward(request, response);
                 }
             }
@@ -46,6 +58,9 @@
 
         <div>
             <form action="passageiros.jsp" method="POST" class="form-actions">
+                
+                <input type="hidden" name="solicitacao" value="<%= ((SolicitacaoViagem) request.getAttribute("solicitacao")).getId() %>" />
+                
                 <table>
                     <tr>
                         <td>
@@ -113,12 +128,12 @@
                     List<Passageiro> passageiros = passageiroController.buscarPorSolicitacaoId(((SolicitacaoViagem) request.getAttribute("solicitacao")).getId());
                     for (Passageiro p : passageiros) {
                 %>
-                <tr>
-                    <td><%= p.getNome()%></td>
-                    <td><%= p.getRg()%></td>
-                    <td><%= p.isServidor() ? "Sim" : "Não"%></td>
-                    <td><a href="" value="Editar" /><a href="" value="Remover" /></td>
-                </tr>
+                    <tr>
+                        <td><%= p.getNome()%></td>
+                        <td><%= p.getRg()%></td>
+                        <td><%= p.isServidor() ? "Sim" : "Não"%></td>
+                        <td><a href="" value="Editar" /><a href="" value="Remover" /></td>
+                    </tr>
                 <%
                     }
                 %>
