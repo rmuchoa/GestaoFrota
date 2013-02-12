@@ -4,6 +4,12 @@
     Author     : Marcelo Maia
 --%>
 
+<%@page import="model.entity.Usuario"%>
+<%@page import="controller.UsuarioController"%>
+<%@page import="model.entity.Cidade"%>
+<%@page import="controller.CidadeController"%>
+<%@page import="model.entity.Estado"%>
+<%@page import="controller.EstadoController"%>
 <%@page import="model.entity.SolicitacaoViagem"%>
 <%@page import="model.dao.SituacaoSolicitacaoDAO"%>
 <%@page import="model.entity.SituacaoSolicitacao"%>
@@ -22,7 +28,7 @@
 
 <%
     if (request.getMethod().equalsIgnoreCase("post")) {
-        SolicitacaoViagemController solicitacaoViagemController  = new SolicitacaoViagemController();
+        SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
         solicitacaoViagemController.inserirSolicitacao(request);
         if (request.getParameter("add") != null) {
             SolicitacaoViagem solicitacaoViagem = solicitacaoViagemController.buscarPorDataSaida(request);
@@ -31,7 +37,7 @@
             dispatcher.forward(request, response);
         }
     }
-    
+
 %>
 
 <html>
@@ -51,133 +57,156 @@
         <div class="offset1 hero-unit span9">
 
 
-            
+
             <form action="solicitar.jsp" id="formularioSolicitacao" method="POST" class="form-horizontal">
                 <legend>Formulario de solicitação de Viagens</legend>
                 <div class="control-group">
                     <label class="control-label" for="inputSolicitante">Nome do solicitante:</label>
                     <div class="controls">
-                        <input class="input-large" type="text" id="solicitante" name="solicitante" placeholder="Nome do solicitante">
-                        
-                       
+                        <select name="solicitante">
+                            <option></option>
+                            <%
+                                UsuarioController usuarioController = new UsuarioController();
+                                List<Usuario> usuarios = usuarioController.listar();
+                                for (int i = 0; i < usuarios.size(); i++) {
+                                    out.print("<option value='" + usuarios.get(i).getId() + "'>" + usuarios.get(i).getNome() + " - " + usuarios.get(i).getRg() + "</option>");
+                                }
+                            %>
+                        </select>
                     </div>
                 </div>
-                
-                 <div class="control-group">
-                    <label class="control-label" for="inputSolicitante">Todos passageiros são servidores da Unipampa:</label>
-                    <div class="controls">
-                         <input type="radio" name="ehservidor" value="1">Sim
-                         <input type="radio" name="ehservidor" value="0"> Não
-                    </div>
-                </div>
-                
-               
-                
-                
+
                 <div class="control-group">
-                    <label class="control-label" for="inputNumeroPessoas">Numero de pessoas transportadas:</label>
+                    <label class="control-label" for="Passageiro">Todos passageiros são servidores da Unipampa:</label>
                     <div class="controls">
-                        <input class="input-xxlarge" type="text" id="numeroPessoas" name="numeroPessoas" placeholder="Numero de pessoas transportadas">
+                        <input type="radio" name="passageiro" value="true">Sim
+                        <input type="radio" name="passageiro" value="false"> Não
                     </div>
                 </div>
-                
+
                 <fieldset>
-                <legend>Informações da origem</legend>
-                <div class="control-group">
-                    <label class="control-label" for="inputEstadoOrigem">Estado de origem:</label>
-                    <div class="controls">
-                        <select name="estadoOrigem">
-                            <option>MG</option>
-                            <option>RS</option>
-                        </select>
+                    <legend>Informações da origem</legend>
+                    <div class="control-group">
+                        <label class="control-label" for="inputEstadoOrigem">Estado de origem:</label>
+                        <div class="controls">
+                            <select name="estadoOrigem">
+                                <option></option>
+                                <%
+                                    EstadoController estadoController = new EstadoController();
+                                    List<Estado> listaEstadosOriegem = estadoController.listar();
+                                    for (int i = 0; i < listaEstadosOriegem.size(); i++) {
+                                        out.print("<option value='" + listaEstadosOriegem.get(i).getId() + "'>" + listaEstadosOriegem.get(i).getSigla() + "</option>");
+                                    }
+                                %>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="inputCidadeOrigem">Cidade de origem:</label>
-                    <div class="controls">
-                        <select name="cidadeOrigem">
-                            <option value="1" >Ouro Preto</option>
-                            <option value="2" >Belo Horizonte</option>
-                        </select>
+                    <div class="control-group">
+                        <label class="control-label" for="inputCidadeOrigem">Cidade de origem:</label>
+                        <div class="controls">
+                            <select name="cidadeOrigem">
+                                <option></option>
+                                <%
+                                    CidadeController cidadeController = new CidadeController();
+                                    List<Cidade> listaCidadesOrigem = cidadeController.listar();
+                                    for (int i = 0; i < listaCidadesOrigem.size(); i++) {
+                                        Cidade cidade = listaCidadesOrigem.get(i);
+                                        out.print("<option value='" + cidade.getId() + "'>" + cidade.getNome() + " - " + cidade.getEstado().getSigla() + "</option>");
+                                    }
+                                %> 
+                            </select>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="control-group">
-                    <label class="control-label" for="inputDataSaida">Data de saída:</label>
-                    <div class="controls">
-                        <input class="input-xxlarge" type="text" id="dataSaida" name="dataSaida" placeholder="12/12/2013">
-                   
+
+                    <div class="control-group">
+                        <label class="control-label" for="inputDataSaida">Data de saída:</label>
+                        <div class="controls">
+                            <input class="input-xxlarge" type="text" id="dataSaida" name="dataSaida" placeholder="12/12/2013">
+
+                        </div>
                     </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="inputHorarioSaida">Horario de saída</label>
-                    <div class="controls">
-                        <input class="input-xxlarge" type="text" id="horarioSaida" name="horarioSaida" placeholder="08:24">
-                   
+                    <div class="control-group">
+                        <label class="control-label" for="inputHorarioSaida">Horario de saída</label>
+                        <div class="controls">
+                            <input class="input-xxlarge" type="text" id="horarioSaida" name="horarioSaida" placeholder="08:24">
+
+                        </div>
                     </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="inputLocalSaida">Local de saída</label>
-                    <div class="controls">
-                        <input class="input-xxlarge" type="text" id="localSaida" name="localSaida" placeholder="Em frente a unipampa">
-                   
+                    <div class="control-group">
+                        <label class="control-label" for="inputLocalSaida">Local de saída</label>
+                        <div class="controls">
+                            <input class="input-xxlarge" type="text" id="localSaida" name="localSaida" placeholder="Em frente a unipampa">
+
+                        </div>
                     </div>
-                </div>
                 </fieldset>
-                
-                
+
+
                 <fieldset>
-                <legend>Informações do Retorno</legend>
-                <div class="control-group">
-                    <label class="control-label" for="inputEstadoRetorno">Estado</label>
-                    <div class="controls">
-                        <select name="estadoRetorno">
-                            <option>MG</option>
-                            <option>RS</option>
-                        </select>
+                    <legend>Informações do Retorno</legend>
+                    <div class="control-group">
+                        <label class="control-label" for="inputEstadoRetorno">Estado</label>
+                        <div class="controls">
+                            <select name="estadoRetorno">
+                                <option></option>
+                                <%
+                                    estadoController = new EstadoController();
+                                    List<Estado> listaEstadosDestino = estadoController.listar();
+                                    for (int i = 0; i < listaEstadosDestino.size(); i++) {
+                                        out.print("<option value='" + listaEstadosDestino.get(i).getId() + "'>" + listaEstadosDestino.get(i).getSigla() + "</option>");
+                                    }
+                                %>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="inputCidadeOrigem">Cidade:</label>
-                    <div class="controls">
-                        <select name="cidadeRetorno">
-                            <option value="1">Ouro Preto</option>
-                            <option value="2">Belo Horizonte</option>
-                        </select>
+                    <div class="control-group">
+                        <label class="control-label" for="inputCidadeOrigem">Cidade:</label>
+                        <div class="controls">
+                            <select name="cidadeRetorno">
+                                <option></option>
+                                <%
+                                    cidadeController = new CidadeController();
+                                    List<Cidade> listaCidadesDestino = cidadeController.listar();
+                                    for (int i = 0; i < listaCidadesDestino.size(); i++) {
+                                        Cidade cidade = listaCidadesDestino.get(i);
+                                        out.print("<option value='" + cidade.getId() + "'>" + cidade.getNome() + " - " + cidade.getEstado().getSigla() + "</option>");
+                                    }
+                                %> 
+                            </select>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="control-group">
-                    <label class="control-label" for="inputDataRetorno">Data:</label>
-                    <div class="controls">
-                        <input class="input-xxlarge" type="text" id="dataRetorno" name="dataRetorno" placeholder="12/12/2013">
-                   
+
+                    <div class="control-group">
+                        <label class="control-label" for="inputDataRetorno">Data:</label>
+                        <div class="controls">
+                            <input class="input-xxlarge" type="text" id="dataRetorno" name="dataRetorno" placeholder="12/12/2013">
+
+                        </div>
                     </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="inputHorarioRetorno">Horario:</label>
-                    <div class="controls">
-                        <input class="input-xxlarge" type="text" id="horarioRetorno" name="horarioRetorno" placeholder="08:24">
-                   
+                    <div class="control-group">
+                        <label class="control-label" for="inputHorarioRetorno">Horario:</label>
+                        <div class="controls">
+                            <input class="input-xxlarge" type="text" id="horarioRetorno" name="horarioRetorno" placeholder="08:24">
+
+                        </div>
                     </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="inputLocalRetorno">Local:</label>
-                    <div class="controls">
-                        <input class="input-xxlarge" type="text" id="localRetorno" name="localRetorno" placeholder="Em frente a unipampa">
-                   
+                    <div class="control-group">
+                        <label class="control-label" for="inputLocalRetorno">Local:</label>
+                        <div class="controls">
+                            <input class="input-xxlarge" type="text" id="localRetorno" name="localRetorno" placeholder="Em frente a unipampa">
+
+                        </div>
                     </div>
-                </div>
                 </fieldset>
                 <hr/>
-                 <div class="control-group">
+                <div class="control-group">
                     <label class="control-label" for="inputPercurso">Percurso:</label>
                     <div class="controls">
                         <input class="input-xxlarge" type="text" id="percurso" name="percurso" placeholder="Alegrete/bage/alegrete">
-                   
+
                     </div>
                 </div>
-                
+
                 <fieldset>
                     <legend>Objetivo/Justificativa para a viagem</legend>
                     <div class="control-group">
@@ -188,8 +217,8 @@
                         </div>    
                     </div>    
                 </fieldset>
-                
-                 <fieldset>
+
+                <fieldset>
                     <legend>Observações</legend>
                     <div class="control-group">
                         <div class="controls">
@@ -199,7 +228,7 @@
                         </div>    
                     </div>    
                 </fieldset>
-                
+
                 <div class="span11">
                     <div class="span5">    
                         <input type="submit" name="enviar" value="Enviar Solicitação" class="btn btn-success btn-large">
@@ -209,7 +238,7 @@
                     </div>
                 </div>
 
-                
+
 
             </form>
 

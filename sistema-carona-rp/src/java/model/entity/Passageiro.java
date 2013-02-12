@@ -13,7 +13,7 @@ public class Passageiro {
     private Integer id;
     private String nome;
     private String rg;
-    private Boolean ehServidor;
+    private Boolean servidor;
     
     public Passageiro() {
         
@@ -56,17 +56,17 @@ public class Passageiro {
     }
 
     /**
-     * @return the ehServidor
+     * @return the servidor
      */
-    public Boolean getEhServidor() {
-        return ehServidor;
+    public Boolean isServidor() {
+        return servidor;
     }
 
     /**
-     * @param ehServidor the ehServidor to set
+     * @param servidor the servidor to set
      */
-    public void setEhServidor(Boolean ehServidor) {
-        this.ehServidor = ehServidor;
+    public void setServidor(Boolean servidor) {
+        this.servidor = servidor;
     }
     
 }

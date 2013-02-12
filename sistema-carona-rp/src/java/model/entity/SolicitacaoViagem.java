@@ -4,25 +4,28 @@
  */
 package model.entity;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  *
  * @author Marcelo Maia
  */
 public class SolicitacaoViagem {
     private Integer id;
-    private Usuario usuario;
-    private String data_saida;
-    private String logal_saida;
-    private String data_retorno;
-    private String local_retorno;
+    private Usuario solicitante;
+    private Date dataSaida;
+    private String logalSaida;
+    private Date dataRetorno;
+    private String localRetorno;
     private String justificativa;
     private String observacoes;
-    private Integer id_origem;
-    private Integer id_destino;
-    private Integer numero_pessoas;
+    private Cidade origem;
+    private Cidade destino;
     private String percurso;
     private SituacaoSolicitacao situacaoSolicitacao;
-    private Boolean ehservidor;
+    private Boolean passageiro;
+    private List<Passageiro> passageiros;
 
     public Integer getId() {
         return id;
@@ -32,44 +35,44 @@ public class SolicitacaoViagem {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Usuario getSolicitante() {
+        return solicitante;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setSolicitante(Usuario solicitante) {
+        this.solicitante = solicitante;
     }
 
-    public String getData_saida() {
-        return data_saida;
+    public Date getDataSaida() {
+        return dataSaida;
     }
 
-    public void setData_saida(String data_saida) {
-        this.data_saida = data_saida;
+    public void setDataSaida(Date dataSaida) {
+        this.dataSaida = dataSaida;
     }
 
-    public String getLogal_saida() {
-        return logal_saida;
+    public String getLogalSaida() {
+        return logalSaida;
     }
 
-    public void setLogal_saida(String logal_saida) {
-        this.logal_saida = logal_saida;
+    public void setLogalSaida(String logalSaida) {
+        this.logalSaida = logalSaida;
     }
 
-    public String getData_retorno() {
-        return data_retorno;
+    public Date getDataRetorno() {
+        return dataRetorno;
     }
 
-    public void setData_retorno(String data_retorno) {
-        this.data_retorno = data_retorno;
+    public void setDataRetorno(Date dataRetorno) {
+        this.dataRetorno = dataRetorno;
     }
 
-    public String getLocal_retorno() {
-        return local_retorno;
+    public String getLocalRetorno() {
+        return localRetorno;
     }
 
-    public void setLocal_retorno(String local_retorno) {
-        this.local_retorno = local_retorno;
+    public void setLocalRetorno(String localRetorno) {
+        this.localRetorno = localRetorno;
     }
 
     public String getJustificativa() {
@@ -88,28 +91,20 @@ public class SolicitacaoViagem {
         this.observacoes = observacoes;
     }
 
-    public Integer getOrigem() {
-        return id_origem;
+    public Cidade getOrigem() {
+        return origem;
     }
 
-    public void setOrigem(Integer id_origem) {
-        this.id_origem = id_origem;
+    public void setOrigem(Cidade origem) {
+        this.origem = origem;
     }
 
-    public Integer getDestino() {
-        return id_destino;
+    public Cidade getDestino() {
+        return destino;
     }
 
-    public void setDestino(Integer id_destino) {
-        this.id_destino = id_destino;
-    }
-
-    public Integer getNumero_pessoas() {
-        return numero_pessoas;
-    }
-
-    public void setNumero_pessoas(Integer numero_pessoas) {
-        this.numero_pessoas = numero_pessoas;
+    public void setDestino(Cidade destino) {
+        this.destino = destino;
     }
 
     public String getPercurso() {
@@ -128,12 +123,26 @@ public class SolicitacaoViagem {
         this.situacaoSolicitacao = situacaoSolicitacao;
     }
 
-    public Boolean getEhservidor() {
-        return ehservidor;
+    public Boolean isPassageiro() {
+        return passageiro;
     }
 
-    public void setEhservidor(Boolean ehservidor) {
-        this.ehservidor = ehservidor;
+    public void setPassageiro(Boolean passageiro) {
+        this.passageiro = passageiro;
+    }
+
+    /**
+     * @return the passageiros
+     */
+    public List<Passageiro> getPassageiros() {
+        return passageiros;
+    }
+
+    /**
+     * @param passageiros the passageiros to set
+     */
+    public void setPassageiros(List<Passageiro> passageiros) {
+        this.passageiros = passageiros;
     }
     
     

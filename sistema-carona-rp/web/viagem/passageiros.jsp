@@ -64,7 +64,7 @@
 
                         <td>
                             <div class="control-group">
-                                <label class="control-label" for="inputRg">É Servidor da Unipampa:</label>
+                                <label class="control-label" for="inputServidor">É Servidor da Unipampa:</label>
                                 <div class="controls">
                                     <input id="sim" name="servidor" value="true" type="radio" /><label for="sim"> Sim</label> 
                                     <input id="nao" name="servidor" value="false" type="radio" /><label for="nao"> Não</label> 
@@ -98,7 +98,7 @@
                 <tr>
                     <td><%= p.getNome()%></td>
                     <td><%= p.getRg()%></td>
-                    <td><%= p.getEhServidor() ? "Sim" : "Não"%></td>
+                    <td><%= p.isServidor() ? "Sim" : "Não"%></td>
                     <td><a href="" value="Editar" /><a href="" value="Remover" /></td>
                 </tr>
                 <%

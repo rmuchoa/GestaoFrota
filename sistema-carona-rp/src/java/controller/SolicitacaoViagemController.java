@@ -4,10 +4,18 @@
  */
 package controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
+import model.dao.CidadeDAO;
+import model.dao.SituacaoSolicitacaoDAO;
 import model.dao.SolicitacaoViagemDAO;
 import model.dao.UsuarioDAO;
 import model.entity.SolicitacaoViagem;
+import model.entity.Usuario;
 
 /**
  *
@@ -20,28 +28,39 @@ public class SolicitacaoViagemController {
     private UsuarioDAO usuarioDAO;
     
     public void inserirSolicitacao(HttpServletRequest request){
-      this.usuarioDAO = new UsuarioDAO();  
-      this.solicitacaoViagem = new SolicitacaoViagem();
-      this.solicitacaoViagem.setUsuario(this.usuarioDAO.buscarPorNome(request.getParameter("solicitante")));
-      this.solicitacaoViagem.setNumero_pessoas(Integer.parseInt(request.getParameter("numeroPessoas")));
-      this.solicitacaoViagem.setEhservidor(Boolean.parseBoolean(request.getParameter("ehservidor")));
-      this.solicitacaoViagem.setOrigem(Integer.parseInt(request.getParameter("cidadeOrigem")));
-      this.solicitacaoViagem.setData_saida(request.getParameter("dataSaida")+" "+request.getParameter("horarioSaida"));
-      this.solicitacaoViagem.setLogal_saida(request.getParameter("localSaida"));
-      this.solicitacaoViagem.setDestino(Integer.parseInt(request.getParameter("cidadeRetorno")));
-      this.solicitacaoViagem.setData_retorno(request.getParameter("dataRetorno")+" "+request.getParameter("horarioRetorno"));
-      this.solicitacaoViagem.setLocal_retorno(request.getParameter("localRetorno"));
-      this.solicitacaoViagem.setPercurso(request.getParameter("percurso"));
-      this.solicitacaoViagem.setObservacoes(request.getParameter("observacao"));
-      this.solicitacaoViagem.setJustificativa(request.getParameter("objetivo"));
-      this.solicitacaoViagemDAO = new SolicitacaoViagemDAO();
-      this.solicitacaoViagemDAO.inserir(solicitacaoViagem);
+        try {
+            this.usuarioDAO = new UsuarioDAO();  
+            this.solicitacaoViagem = new SolicitacaoViagem();
+            this.solicitacaoViagem.setSolicitante(this.usuarioDAO.buscarPorId(Integer.parseInt(request.getParameter("solicitante"))));
+            this.solicitacaoViagem.setPassageiro(Boolean.parseBoolean(request.getParameter("passageiro")));
+            this.solicitacaoViagem.setOrigem(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter("cidadeOrigem"))));
+            this.solicitacaoViagem.setDataSaida(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(
+                    request.getParameter("dataSaida")+" "+request.getParameter("horarioSaida")));
+            this.solicitacaoViagem.setLogalSaida(request.getParameter("localSaida"));
+            this.solicitacaoViagem.setDestino(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter("cidadeRetorno"))));
+            this.solicitacaoViagem.setDataRetorno(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(
+                    request.getParameter("dataRetorno")+" "+request.getParameter("horarioRetorno")));
+            this.solicitacaoViagem.setLocalRetorno(request.getParameter("localRetorno"));
+            this.solicitacaoViagem.setPercurso(request.getParameter("percurso"));
+            this.solicitacaoViagem.setObservacoes(request.getParameter("observacao"));
+            this.solicitacaoViagem.setJustificativa(request.getParameter("objetivo"));
+            this.solicitacaoViagem.setSituacaoSolicitacao(new SituacaoSolicitacaoDAO().buscarPorId(1));
+            this.solicitacaoViagemDAO = new SolicitacaoViagemDAO();
+            this.solicitacaoViagemDAO.inserir(solicitacaoViagem);
+        } catch (ParseException ex) {
+            Logger.getLogger(SolicitacaoViagemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public SolicitacaoViagem buscarPorDataSaida(HttpServletRequest request) {
-        return solicitacaoViagemDAO.buscarPorDataSaida(
-                request.getParameter("dataSaida")+" "+request.getParameter("horarioRetorno"), 
-                new UsuarioDAO().buscarPorNome(request.getParameter("solicitante")));
+        try {
+            Date dataSolicitacao = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("dataSaida")+" "+request.getParameter("horarioRetorno"));
+            Usuario solicitante = new UsuarioDAO().buscarPorId(Integer.parseInt(request.getParameter("solicitante")));
+            return solicitacaoViagemDAO.buscarPorDataSaida(dataSolicitacao, solicitante);
+        } catch (ParseException ex) {
+            Logger.getLogger(SolicitacaoViagemController.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
    
 }

@@ -29,7 +29,7 @@ public class PassageiroController {
     public void adicionarPassageiro(HttpServletRequest request) {
         passageiro.setNome(request.getParameter("nome"));
         passageiro.setRg(request.getParameter("rg"));
-        passageiro.setEhServidor(Boolean.parseBoolean(request.getParameter("servidor")));
+        passageiro.setServidor(Boolean.parseBoolean(request.getParameter("servidor")));
         
         Passageiro encontrado = passageiroDAO.buscarPorRg(passageiro.getRg());
         
@@ -37,9 +37,9 @@ public class PassageiroController {
             passageiroDAO.inserir(passageiro);
         } else {
             if (!passageiro.getNome().equals(encontrado.getNome())
-                    || passageiro.getEhServidor() != encontrado.getEhServidor()) {
+                    || passageiro.isServidor() != encontrado.isServidor()) {
                 encontrado.setNome(passageiro.getNome());
-                encontrado.setEhServidor(passageiro.getEhServidor());
+                encontrado.setServidor(passageiro.isServidor());
                 passageiroDAO.alterar(encontrado);
                 
             }

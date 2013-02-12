@@ -47,7 +47,7 @@ public class PassageiroDAO {
                 passageiro.setId(rs.getInt("id"));
                 passageiro.setNome(rs.getString("nome"));
                 passageiro.setRg(rs.getString("rg"));
-                passageiro.setEhServidor(rs.getBoolean("eh_servidor"));
+                passageiro.setServidor(rs.getBoolean("eh_servidor"));
                 
                 passageiros.add(passageiro);
                 
@@ -78,7 +78,7 @@ public class PassageiroDAO {
                 passageiro.setId(rs.getInt("id"));
                 passageiro.setNome(rs.getString("nome"));
                 passageiro.setRg(rs.getString("rg"));
-                passageiro.setEhServidor(rs.getBoolean("eh_servidor"));
+                passageiro.setServidor(rs.getBoolean("eh_servidor"));
                 
             }
             
@@ -100,7 +100,7 @@ public class PassageiroDAO {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, passageiro.getNome());
             stmt.setString(2, passageiro.getRg());
-            stmt.setBoolean(3, passageiro.getEhServidor());
+            stmt.setBoolean(3, passageiro.isServidor());
             stmt.execute();
             stmt.close();
 
@@ -121,7 +121,7 @@ public class PassageiroDAO {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, passageiro.getNome());
             stmt.setString(2, passageiro.getRg());
-            stmt.setBoolean(3, passageiro.getEhServidor());
+            stmt.setBoolean(3, passageiro.isServidor());
             stmt.setInt(4, passageiro.getId());
             stmt.execute();
             stmt.close();
@@ -150,7 +150,7 @@ public class PassageiroDAO {
                 passageiro.setId(rs.getInt("id"));
                 passageiro.setNome(rs.getString("nome"));
                 passageiro.setRg(rs.getString("rg"));
-                passageiro.setEhServidor(rs.getBoolean("eh_servidor"));
+                passageiro.setServidor(rs.getBoolean("eh_servidor"));
                 
                 passageiros.add(passageiro);
                 
