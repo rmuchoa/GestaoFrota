@@ -30,6 +30,8 @@
     if (request.getMethod().equalsIgnoreCase("post")) {
         SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
         solicitacaoViagemController.inserirSolicitacao(request);
+        System.out.print("aq e"+request.getParameter("add"));
+        System.out.print("solicitante e"+request.getParameter("solicitante"));
         if (request.getParameter("add") != null) {
             SolicitacaoViagem solicitacaoViagem = solicitacaoViagemController.buscarPorDataSaida(request);
             request.setAttribute("solicitacao", solicitacaoViagem.getId());
