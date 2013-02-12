@@ -4,6 +4,7 @@
     Author     : renanmarceluchoa
 --%>
 
+<%@page import="model.entity.SolicitacaoViagem"%>
 <%@page import="model.entity.Passageiro"%>
 <%@page import="java.util.List"%>
 <%@page import="controller.PassageiroController"%>
@@ -29,7 +30,8 @@
     <body>
 
         <%
-            if (request.getParameter("addPassageiro") != null) {
+
+            if (request.getParameter("add") != null) {
                 if (request.getMethod().equalsIgnoreCase("post")) {
                     PassageiroController passageiroController = new PassageiroController();
                     passageiroController.adicionarPassageiro(request);
@@ -64,6 +66,22 @@
 
                         <td>
                             <div class="control-group">
+                                <label class="control-label" for="inputEmail">Email do Passageiro:</label>
+                                <div class="controls">
+                                    <input class="input-large" type="text" id="email" name="email" placeholder="Digite o email do passageiro">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="inputEndereco">Endereço do Passageiro:</label>
+                                <div class="controls">
+                                    <input class="input-large" type="text" id="endereco" name="endereco" placeholder="Digite o endereço do passageiro">
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="control-group">
                                 <label class="control-label" for="inputServidor">É Servidor da Unipampa:</label>
                                 <div class="controls">
                                     <input id="sim" name="servidor" value="true" type="radio" /><label for="sim"> Sim</label> 
@@ -74,7 +92,7 @@
 
                         <td>
                             <div class="span5">  
-                                <input type="submit" name="addPassageiro" value="Adicionar Passageiro" class="btn btn-success btn-large"
+                                <input type="submit" name="add" value="Adicionar Passageiro" class="btn btn-success btn-large"
                             </div>
                         </td>
                     </tr>
@@ -92,7 +110,7 @@
                 </tr>
                 <%
                     PassageiroController passageiroController = new PassageiroController();
-                    List<Passageiro> passageiros = passageiroController.buscarPorSolicitacaoId(Integer.parseInt(request.getAttribute("solicitacao").toString()));
+                    List<Passageiro> passageiros = passageiroController.buscarPorSolicitacaoId(((SolicitacaoViagem) request.getAttribute("solicitacao")).getId());
                     for (Passageiro p : passageiros) {
                 %>
                 <tr>

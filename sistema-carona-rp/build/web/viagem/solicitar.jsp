@@ -22,19 +22,17 @@
 <%@page import="controller.VeiculoController"%>
 <%@page import="model.entity.Veiculo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="javax.servlet.*" %> 
-<%@ page import="javax.servlet.http.*" %> 
+<%@page import="javax.servlet.*" %> 
+<%@page import="javax.servlet.http.*" %> 
 <!DOCTYPE html>
 
 <%
     if (request.getMethod().equalsIgnoreCase("post")) {
         SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
         solicitacaoViagemController.inserirSolicitacao(request);
-        System.out.print("aq e"+request.getParameter("add"));
-        System.out.print("solicitante e"+request.getParameter("solicitante"));
-        if (request.getParameter("add") != null) {
+        if (request.getParameter("avancar") != null) {
             SolicitacaoViagem solicitacaoViagem = solicitacaoViagemController.buscarPorDataSaida(request);
-            request.setAttribute("solicitacao", solicitacaoViagem.getId());
+            request.setAttribute("solicitacao", solicitacaoViagem);
             RequestDispatcher dispatcher = request.getRequestDispatcher("passageiros.jsp");
             dispatcher.forward(request, response);
         }
@@ -233,10 +231,10 @@
 
                 <div class="span11">
                     <div class="span5">    
-                        <input type="submit" name="enviar" value="Enviar Solicitação" class="btn btn-success btn-large">
+                        <input type="submit" name="enviar" value="Cancelar" class="btn btn-success btn-large">
                     </div>
                     <div class="span5">
-                        <input type="submit" name="add" value="Adicionar passageiros" class="btn btn-success btn-large">
+                        <input type="submit" name="avancar" value="Adicionar passageiros" class="btn btn-success btn-large">
                     </div>
                 </div>
 
