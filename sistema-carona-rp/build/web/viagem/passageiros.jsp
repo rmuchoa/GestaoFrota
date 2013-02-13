@@ -39,9 +39,11 @@
                 }
                 request.setAttribute("action", "list");
             }
-
-            if (request.getAttribute("action").equals("add")) {
+            
+            if (request.getAttribute("action")==null) {
+                 System.out.println("chego aq");
                 if (request.getParameter("add") != null) {
+                    System.out.println("resquest solicitacao:"+request.getParameter("solicitacao"));
                     SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
                     SolicitacaoViagem solicitacaoViagem = solicitacaoViagemController.buscarPorId(Integer.parseInt(request.getParameter("solicitacao")));
                     request.setAttribute("solicitacao", solicitacaoViagem);
@@ -53,20 +55,20 @@
                 }
             } else if (request.getAttribute("action").equals("list")) {
                 request.setAttribute("action", "add");
+                System.out.println("Brasilll");
+                    
             }
 
         %>
 
-        <div><!-- Algum texto informativo --></div>
-
-        <div>
+        <h3 style="color: green;text-align: center"  class="span12 well">Sistema de Caronas Unipampa</h3>
+        
+        <div class="offset2 span8 offset2 well">
+            <div><h3 class="well">Cadastro de passageiros</h3></div>
             <form action="passageiros.jsp" method="POST" class="form-actions">
 
                 <input type="hidden" name="solicitacao" value="<%= ((SolicitacaoViagem) request.getAttribute("solicitacao")).getId()%>" />
 
-                <table>
-                    <tr>
-                        <td>
                             <div class="control-group">
                                 <label class="control-label" for="inputNome">Nome do Passageiro:</label>
                                 <div class="controls">
@@ -80,9 +82,7 @@
                                     <input class="input-large" type="text" id="rg" name="rg" placeholder="Digite o rg do passageiro">
                                 </div>
                             </div>
-                        </td>
-
-                        <td>
+                        
                             <div class="control-group">
                                 <label class="control-label" for="inputEmail">Email do Passageiro:</label>
                                 <div class="controls">
@@ -96,30 +96,25 @@
                                     <input class="input-large" type="text" id="endereco" name="endereco" placeholder="Digite o endereço do passageiro">
                                 </div>
                             </div>
-                        </td>
-
-                        <td>
-                            <div class="control-group">
+                        <div class="control-group">
                                 <label class="control-label" for="inputServidor">É Servidor da Unipampa:</label>
                                 <div class="controls">
                                     <input id="sim" name="servidor" value="true" type="radio" /><label for="sim"> Sim</label> 
                                     <input id="nao" name="servidor" value="false" type="radio" /><label for="nao"> Não</label> 
                                 </div>
                             </div>
-                        </td>
-
-                        <td>
-                            <div class="span5">  
+                       <div class="span5">  
                                 <input type="submit" name="add" value="Adicionar Passageiro" class="btn btn-success btn-large"
                             </div>
-                        </td>
-                    </tr>
-                </table>
+                      
             </form>
         </div>
+        </div>
 
-        <div>
-            <table>
+        <div class="well offset2 span9 offset2">
+            <div><h3 class="well">Listagem de passageiros</h3></div>
+            <table class="table table-bordered">
+               <thead>
                 <tr>
                     <th>Nome</th>
                     <th>RG</th>
@@ -128,11 +123,13 @@
                     <th>Servidor</th>
                     <th>Ações</th>
                 </tr>
+                </thead>
                 <%
                     PassageiroController passageiroController = new PassageiroController();
                     List<Passageiro> passageiros = passageiroController.buscarPorSolicitacaoId(((SolicitacaoViagem) request.getAttribute("solicitacao")).getId());
                     for (Passageiro p : passageiros) {
                 %>
+                 <tbody>
                 <tr>
                     <td><%= p.getNome()%></td>
                     <td><%= p.getRg()%></td>
@@ -141,6 +138,7 @@
                     <td><%= p.isServidor() ? "Sim" : "Não"%></td>
                     <td><a href="" value="Editar" /><a href="" value="Remover" /></td>
                 </tr>
+                 </tbody>
                 <%
                     }
                 %>
