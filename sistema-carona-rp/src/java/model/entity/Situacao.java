@@ -8,7 +8,7 @@ package model.entity;
  *
  * @author Marcelo Maia
  */
-public class SituacaoSolicitacao {
+public class Situacao {
     
     private Integer id;
     private String descricao;

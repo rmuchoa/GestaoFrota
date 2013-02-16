@@ -13,8 +13,8 @@ import java.util.List;
 import jdbc.ConnectionFactory;
 import model.entity.Cidade;
 import model.entity.Estado;
-import org.junit.*;
 import static org.junit.Assert.*;
+import org.junit.*;
 
 /**
  *

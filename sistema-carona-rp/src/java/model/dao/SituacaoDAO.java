@@ -11,17 +11,17 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jdbc.ConnectionFactory;
-import model.entity.SituacaoSolicitacao;
+import model.entity.Situacao;
 
 /**
  *
  * @author Marcelo Maia
  */
-public class SituacaoSolicitacaoDAO {
+public class SituacaoDAO {
 
     private Connection connection;
 
-    public SituacaoSolicitacaoDAO() {
+    public SituacaoDAO() {
         try {
             this.connection = ConnectionFactory.getConnection();
         } catch (SQLException e) {
@@ -29,10 +29,10 @@ public class SituacaoSolicitacaoDAO {
         }
     }
     
-    public SituacaoSolicitacao buscarPorId(Integer id) {
+    public Situacao buscarPorId(Integer id) {
         
-        SituacaoSolicitacao situacao = null;
-        String sql = "select * from situacao_solicitacao where id = ?";
+        Situacao situacao = null;
+        String sql = "select * from situacao where id = ?";
         
         try {
             
@@ -42,14 +42,14 @@ public class SituacaoSolicitacaoDAO {
             
             while (rs.next()) {
                 
-                situacao = new SituacaoSolicitacao();
+                situacao = new Situacao();
                 situacao.setId(rs.getInt("id"));
                 situacao.setDescricao(rs.getString("descricao"));
                 
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(SituacaoSolicitacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SituacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }    
         
         return situacao;

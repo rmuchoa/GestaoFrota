@@ -21,6 +21,14 @@ public class Passageiro {
         
     }
     
+    public Passageiro(String nome, String rg, String email, String endereco, Boolean servidor) {
+        this.nome = nome;
+        this.rg = rg;
+        this.email = email;
+        this.endereco = endereco;
+        this.servidor = servidor;
+    }
+    
     public Integer getId() {
         return id;
     }

@@ -23,7 +23,7 @@ public class SolicitacaoViagem {
     private Cidade origem;
     private Cidade destino;
     private String percurso;
-    private SituacaoSolicitacao situacaoSolicitacao;
+    private Situacao situacao;
     private Boolean passageiro;
     private List<Passageiro> passageiros;
 
@@ -115,12 +115,12 @@ public class SolicitacaoViagem {
         this.percurso = percurso;
     }
 
-    public SituacaoSolicitacao getSituacaoSolicitacao() {
-        return situacaoSolicitacao;
+    public Situacao getSituacao() {
+        return situacao;
     }
 
-    public void setSituacaoSolicitacao(SituacaoSolicitacao situacaoSolicitacao) {
-        this.situacaoSolicitacao = situacaoSolicitacao;
+    public void setSituacao(Situacao situacao) {
+        this.situacao = situacao;
     }
 
     public Boolean isPassageiro() {

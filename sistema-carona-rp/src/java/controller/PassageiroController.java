@@ -22,10 +22,6 @@ public class PassageiroController {
     private Passageiro passageiro = new Passageiro();
     private PassageiroDAO passageiroDAO = new PassageiroDAO();
     
-    public List<Passageiro> buscarPorNome(String nome) {
-        return passageiroDAO.buscarPorNome(nome);
-    }
-    
     public List<Passageiro> buscarPorSolicitacaoId(Integer id) {
         return passageiroDAO.buscarPorSolicitacaoId(id);
     }

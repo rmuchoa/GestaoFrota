@@ -11,8 +11,6 @@
 <%@page import="model.entity.Estado"%>
 <%@page import="controller.EstadoController"%>
 <%@page import="model.entity.SolicitacaoViagem"%>
-<%@page import="model.dao.SituacaoSolicitacaoDAO"%>
-<%@page import="model.entity.SituacaoSolicitacao"%>
 <%@page import="controller.SolicitacaoViagemController"%>
 <%@page import="model.entity.OpcionalVeiculo"%>
 <%@page import="model.dao.OpcionalVeiculoDAO"%>

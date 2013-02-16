@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import model.dao.CidadeDAO;
-import model.dao.SituacaoSolicitacaoDAO;
+import model.dao.SituacaoDAO;
 import model.dao.SolicitacaoViagemDAO;
 import model.dao.UsuarioDAO;
 import model.entity.SolicitacaoViagem;
@@ -42,7 +42,7 @@ public class SolicitacaoViagemController {
             this.solicitacaoViagem.setPercurso(request.getParameter("percurso"));
             this.solicitacaoViagem.setObservacoes(request.getParameter("observacao"));
             this.solicitacaoViagem.setJustificativa(request.getParameter("objetivo"));
-            this.solicitacaoViagem.setSituacaoSolicitacao(new SituacaoSolicitacaoDAO().buscarPorId(1));
+            this.solicitacaoViagem.setSituacao(new SituacaoDAO().buscarPorId(1));
             this.solicitacaoViagemDAO = new SolicitacaoViagemDAO();
             this.solicitacaoViagemDAO.inserir(solicitacaoViagem);
         } catch (ParseException ex) {

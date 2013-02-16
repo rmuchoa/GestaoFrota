@@ -30,39 +30,6 @@ public class PassageiroDAO {
             e.printStackTrace();
         }
     }
-    
-    public List<Passageiro> buscarPorNome(String nome) {
-        
-        List<Passageiro> passageiros = new ArrayList<Passageiro>();
-        String sql = "select * from passageiro where nome = ?";
-        
-        try {
-            
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, nome);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                
-                Passageiro passageiro = new Passageiro();
-                passageiro.setId(rs.getInt("id"));
-                passageiro.setNome(rs.getString("nome"));
-                passageiro.setRg(rs.getString("rg"));
-                passageiro.setEmail(rs.getString("email"));
-                passageiro.setEndereco(rs.getString("endereco"));
-                passageiro.setServidor(rs.getBoolean("eh_servidor"));
-                
-                passageiros.add(passageiro);
-                
-            }
-            
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
-        
-        return passageiros;
-        
-    }
 
     public Passageiro buscarPorRg(String rg) {
         
@@ -119,7 +86,7 @@ public class PassageiroDAO {
         
     }
 
-    public void alterar(Passageiro passageiro) {
+    public Passageiro alterar(Passageiro passageiro) {
         
         String sql = "update passageiro set nome = ?, rg = ?, email = ?, endereco = ?, eh_servidor = ? where id = ?;";
         
@@ -139,13 +106,16 @@ public class PassageiroDAO {
             e.printStackTrace();
         }
         
+        return buscarPorRg(passageiro.getRg());
+        
     }
     
     public List<Passageiro> buscarPorSolicitacaoId(Integer id) {
     
         List<Passageiro> passageiros = new ArrayList<Passageiro>();
-        String sql = "select p.id, p.nome, p.rg, p.email, p.endereco, p.eh_servidor from passageiro p, solicitacao_viagem_passageiro s "
-                + "where s.solicitacao_viagem = ? and p.id = s.passageiro";
+        String sql = "select p.id, p.nome, p.rg, p.email, p.endereco, p.eh_servidor "
+                + "from passageiro p, solicitacao_viagem_passageiro svp "
+                + "where svp.solicitacao_viagem = ? and p.id = svp.passageiro";
         
         try {
             
@@ -156,12 +126,12 @@ public class PassageiroDAO {
             while (rs.next()) {
                 
                 Passageiro passageiro = new Passageiro();
-                passageiro.setId(rs.getInt("id"));
-                passageiro.setNome(rs.getString("nome"));
-                passageiro.setRg(rs.getString("rg"));
-                passageiro.setEmail(rs.getString("email"));
-                passageiro.setEndereco(rs.getString("endereco"));
-                passageiro.setServidor(rs.getBoolean("eh_servidor"));
+                passageiro.setId(rs.getInt("p.id"));
+                passageiro.setNome(rs.getString("p.nome"));
+                passageiro.setRg(rs.getString("p.rg"));
+                passageiro.setEmail(rs.getString("p.email"));
+                passageiro.setEndereco(rs.getString("p.endereco"));
+                passageiro.setServidor(rs.getBoolean("p.eh_servidor"));
                 
                 passageiros.add(passageiro);
                 
