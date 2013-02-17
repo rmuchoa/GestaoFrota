@@ -20,24 +20,24 @@ import model.entity.SolicitacaoViagem;
  * @author Marcelo Maia
  */
 public class SolicitacaoViagemController {
-    
+
     private SolicitacaoViagemDAO solicitacaoViagemDAO;
     private SolicitacaoViagem solicitacaoViagem;
     private UsuarioDAO usuarioDAO;
-    
-    public SolicitacaoViagem inserirSolicitacao(HttpServletRequest request){
+
+    public SolicitacaoViagem inserirSolicitacao(HttpServletRequest request) {
         try {
-            this.usuarioDAO = new UsuarioDAO();  
+            this.usuarioDAO = new UsuarioDAO();
             this.solicitacaoViagem = new SolicitacaoViagem();
             this.solicitacaoViagem.setSolicitante(this.usuarioDAO.buscarPorId(Integer.parseInt(request.getParameter("solicitante"))));
             this.solicitacaoViagem.setPassageiro(Boolean.parseBoolean(request.getParameter("passageiro")));
             this.solicitacaoViagem.setOrigem(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter("cidadeOrigem"))));
             this.solicitacaoViagem.setDataSaida(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(
-                    request.getParameter("dataSaida")+" "+request.getParameter("horarioSaida")));
+                    request.getParameter("dataSaida") + " " + request.getParameter("horarioSaida")));
             this.solicitacaoViagem.setLogalSaida(request.getParameter("localSaida"));
             this.solicitacaoViagem.setDestino(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter("cidadeRetorno"))));
             this.solicitacaoViagem.setDataRetorno(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(
-                    request.getParameter("dataRetorno")+" "+request.getParameter("horarioRetorno")));
+                    request.getParameter("dataRetorno") + " " + request.getParameter("horarioRetorno")));
             this.solicitacaoViagem.setLocalRetorno(request.getParameter("localRetorno"));
             this.solicitacaoViagem.setPercurso(request.getParameter("percurso"));
             this.solicitacaoViagem.setObservacoes(request.getParameter("observacao"));
@@ -50,10 +50,9 @@ public class SolicitacaoViagemController {
         }
         return solicitacaoViagemDAO.buscarPorDataSaida(solicitacaoViagem.getDataSaida(), solicitacaoViagem.getSolicitante());
     }
-    
+
     public SolicitacaoViagem buscarPorId(Integer id) {
         solicitacaoViagemDAO = new SolicitacaoViagemDAO();
         return solicitacaoViagemDAO.buscarPorId(id);
     }
-   
 }

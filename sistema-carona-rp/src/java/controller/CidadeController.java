@@ -15,7 +15,7 @@ import model.entity.Estado;
  * @author renanmarceluchoa
  */
 public class CidadeController {
-    
+
     EstadoDAO estadoDAO = new EstadoDAO();
     CidadeDAO cidadeDAO = new CidadeDAO();
     Cidade cidade = new Cidade();
@@ -23,9 +23,8 @@ public class CidadeController {
     public List<Cidade> listar() {
         return cidadeDAO.listar();
     }
-    
+
     public List<Cidade> listarPorEstado(Estado estado) {
         return cidadeDAO.listarPorEstado(estado);
     }
-    
 }

@@ -5,10 +5,7 @@
 package controller;
 
 import java.util.List;
-import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.Response;
 import model.dao.OpcionalVeiculoDAO;
 import model.dao.TipoVeiculoDAO;
 import model.dao.VeiculoDAO;

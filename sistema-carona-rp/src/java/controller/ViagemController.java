@@ -19,14 +19,14 @@ import model.entity.Viagem;
  * @author renanmarceluchoa
  */
 public class ViagemController {
-    
+
     private ViagemDAO viagemDAO;
     private Viagem viagem;
-    
+
     public Viagem abrirViagem(HttpServletRequest request) {
-        
+
         try {
-            
+
             viagem = new Viagem();
             viagem.setVeiculo(new VeiculoDAO().getVeiculoPorId(Integer.parseInt(request.getParameter(""))));
             viagem.setMotorista(new UsuarioDAO().buscarPorId(Integer.parseInt(request.getParameter(""))));
@@ -40,15 +40,14 @@ public class ViagemController {
             viagem.setPercurso(request.getParameter(""));
             viagem.setObservacoes(request.getParameter(""));
             viagem.setSolicitacoes((List<SolicitacaoViagem>) request.getAttribute("solicitacoes"));
-            
+
             return viagemDAO.inserir(viagem);
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(SolicitacaoViagemController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return null;
-        
+
     }
-    
 }

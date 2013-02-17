@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import model.dao.CidadeDAO;
 import model.dao.TipoUsuarioDAO;
 import model.dao.UsuarioDAO;
-import model.dao.VeiculoDAO;
 import model.entity.Usuario;
 
 /**
@@ -26,9 +25,9 @@ public class UsuarioController {
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
     private TipoUsuarioDAO tipoUsuarioDAO = new TipoUsuarioDAO();
     private CidadeDAO cidadeDAO = new CidadeDAO();
-    
-    public void inserir(HttpServletRequest request){
-        
+
+    public void inserir(HttpServletRequest request) {
+
         try {
             usuario.setNome(request.getParameter("nome"));
             usuario.setLogin(request.getParameter("login"));
@@ -47,17 +46,16 @@ public class UsuarioController {
             usuario.setComplemento(request.getParameter("complemento"));
             usuario.setCep(request.getParameter("cep"));
             usuario.setCidade(cidadeDAO.buscarPorId(Integer.parseInt(request.getParameter("cidade"))));
-            
+
             usuarioDAO.inserir(usuario);
         } catch (ParseException ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
-    
-    public void alterar(HttpServletRequest request){
-        
+
+    public void alterar(HttpServletRequest request) {
+
         try {
             usuario.setId(Integer.parseInt(request.getParameter("id")));
             usuario.setNome(request.getParameter("nome"));
@@ -77,24 +75,23 @@ public class UsuarioController {
             usuario.setComplemento(request.getParameter("complemento"));
             usuario.setCep(request.getParameter("cep"));
             usuario.setCidade(cidadeDAO.buscarPorId(Integer.parseInt(request.getParameter("cidade"))));
-            
+
             usuarioDAO.alterar(usuario);
         } catch (ParseException ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     public void remover(Usuario usuario) {
         usuarioDAO.remover(usuario);
     }
-    
+
     public List<Usuario> listar() {
         return usuarioDAO.listar();
     }
-    
+
     public Usuario buscarPorId(int id) {
         return usuarioDAO.buscarPorId(id);
     }
-    
 }

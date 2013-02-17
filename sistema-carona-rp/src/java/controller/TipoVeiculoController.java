@@ -13,15 +13,11 @@ import model.entity.TipoVeiculo;
  * @author Marcelo Maia
  */
 public class TipoVeiculoController {
-    
+
     TipoVeiculoDAO tipoVeiculoDao = new TipoVeiculoDAO();
     TipoVeiculo tipoVeiculo = new TipoVeiculo();
-    
-    public List listarTodosTiposVeiculos(){
-      return tipoVeiculoDao.listarTodos();
+
+    public List listarTodosTiposVeiculos() {
+        return tipoVeiculoDao.listarTodos();
     }
-    
-    
-    
-    
 }
