@@ -15,7 +15,7 @@ public class SolicitacaoViagem {
     private Integer id;
     private Usuario solicitante;
     private Date dataSaida;
-    private String logalSaida;
+    private String localSaida;
     private Date dataRetorno;
     private String localRetorno;
     private String justificativa;
@@ -51,12 +51,12 @@ public class SolicitacaoViagem {
         this.dataSaida = dataSaida;
     }
 
-    public String getLogalSaida() {
-        return logalSaida;
+    public String getLocalSaida() {
+        return localSaida;
     }
 
-    public void setLogalSaida(String logalSaida) {
-        this.logalSaida = logalSaida;
+    public void setLocalSaida(String localSaida) {
+        this.localSaida = localSaida;
     }
 
     public Date getDataRetorno() {

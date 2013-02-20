@@ -34,7 +34,7 @@ public class SolicitacaoViagemController {
             this.solicitacaoViagem.setOrigem(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter("cidadeOrigem"))));
             this.solicitacaoViagem.setDataSaida(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(
                     request.getParameter("dataSaida") + " " + request.getParameter("horarioSaida")));
-            this.solicitacaoViagem.setLogalSaida(request.getParameter("localSaida"));
+            this.solicitacaoViagem.setLocalSaida(request.getParameter("localSaida"));
             this.solicitacaoViagem.setDestino(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter("cidadeRetorno"))));
             this.solicitacaoViagem.setDataRetorno(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(
                     request.getParameter("dataRetorno") + " " + request.getParameter("horarioRetorno")));

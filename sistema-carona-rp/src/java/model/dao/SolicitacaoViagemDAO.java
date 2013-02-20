@@ -47,7 +47,7 @@ public class SolicitacaoViagemDAO {
                 solicitacao.setId(rs.getInt("id"));
                 solicitacao.setSolicitante(new UsuarioDAO().buscarPorId(rs.getInt("solicitante")));
                 solicitacao.setDataSaida(new Date(rs.getDate("data_saida").getTime()));
-                solicitacao.setLogalSaida(rs.getString("local_saida"));
+                solicitacao.setLocalSaida(rs.getString("local_saida"));
                 solicitacao.setDataRetorno(new Date(rs.getDate("data_retorno").getTime()));
                 solicitacao.setLocalRetorno(rs.getString("local_retorno"));
                 solicitacao.setJustificativa(rs.getString("justificativa"));
@@ -80,7 +80,7 @@ public class SolicitacaoViagemDAO {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, solicitacaoViagem.getSolicitante().getId());
             stmt.setDate(2, new java.sql.Date(solicitacaoViagem.getDataSaida().getTime()));
-            stmt.setString(3, solicitacaoViagem.getLogalSaida());
+            stmt.setString(3, solicitacaoViagem.getLocalSaida());
             stmt.setDate(4, new java.sql.Date(solicitacaoViagem.getDataRetorno().getTime()));
             stmt.setString(5, solicitacaoViagem.getLocalRetorno());
             stmt.setString(6, solicitacaoViagem.getJustificativa());
@@ -119,7 +119,7 @@ public class SolicitacaoViagemDAO {
                 solicitacao.setId(rs.getInt("id"));
                 solicitacao.setSolicitante(new UsuarioDAO().buscarPorId(rs.getInt("solicitante")));
                 solicitacao.setDataSaida(new Date(rs.getDate("data_saida").getTime()));
-                solicitacao.setLogalSaida(rs.getString("local_saida"));
+                solicitacao.setLocalSaida(rs.getString("local_saida"));
                 solicitacao.setDataRetorno(new Date(rs.getDate("data_retorno").getTime()));
                 solicitacao.setLocalRetorno(rs.getString("local_retorno"));
                 solicitacao.setJustificativa(rs.getString("justificativa"));
@@ -159,7 +159,7 @@ public class SolicitacaoViagemDAO {
                 solicitacao.setPassageiro(rs.getBoolean("eh_passageiro"));
                 solicitacao.setOrigem(new CidadeDAO().buscarPorId(rs.getInt("origem")));
                 solicitacao.setDataSaida(new Date(rs.getDate("data_saida").getTime()));
-                solicitacao.setLogalSaida(rs.getString("local_saida"));
+                solicitacao.setLocalSaida(rs.getString("local_saida"));
                 solicitacao.setDestino(new CidadeDAO().buscarPorId(rs.getInt("destino")));
                 solicitacao.setDataRetorno(new Date(rs.getDate("data_retorno").getTime()));
                 solicitacao.setLocalRetorno(rs.getString("local_retorno"));

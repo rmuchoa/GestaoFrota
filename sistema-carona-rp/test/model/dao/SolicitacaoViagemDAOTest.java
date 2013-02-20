@@ -54,7 +54,7 @@ public class SolicitacaoViagemDAOTest {
                 solicitacao.setId(rs.getInt("id"));
                 solicitacao.setSolicitante(new UsuarioDAO().buscarPorId(rs.getInt("solicitante")));
                 solicitacao.setDataSaida(rs.getDate("data_saida"));
-                solicitacao.setLogalSaida(rs.getString("local_saida"));
+                solicitacao.setLocalSaida(rs.getString("local_saida"));
                 solicitacao.setDataRetorno(rs.getDate("data_retorno"));
                 solicitacao.setLocalRetorno(rs.getString("local_retorno"));
                 solicitacao.setJustificativa(rs.getString("justificativa"));
@@ -141,7 +141,7 @@ public class SolicitacaoViagemDAOTest {
         assertEquals(solicitacao.getSolicitante().getId(), resultSolicitacao.getSolicitante().getId());
         assertEquals(solicitacao.isPassageiro(), resultSolicitacao.isPassageiro());
         assertEquals(solicitacao.getDataSaida(), resultSolicitacao.getDataSaida());
-        assertEquals(solicitacao.getLogalSaida(), resultSolicitacao.getLogalSaida());
+        assertEquals(solicitacao.getLocalSaida(), resultSolicitacao.getLocalSaida());
         assertEquals(solicitacao.getDataRetorno(), resultSolicitacao.getDataRetorno());
         assertEquals(solicitacao.getLocalRetorno(), resultSolicitacao.getLocalRetorno());
         assertEquals(solicitacao.getOrigem().getId(), resultSolicitacao.getOrigem().getId());
@@ -183,7 +183,7 @@ public class SolicitacaoViagemDAOTest {
         assertEquals(solicitacao.getSolicitante().getId(), resultSolicitacao.getSolicitante().getId());
         assertEquals(solicitacao.isPassageiro(), resultSolicitacao.isPassageiro());
         assertEquals(solicitacao.getDataSaida(), resultSolicitacao.getDataSaida());
-        assertEquals(solicitacao.getLogalSaida(), resultSolicitacao.getLogalSaida());
+        assertEquals(solicitacao.getLocalSaida(), resultSolicitacao.getLocalSaida());
         assertEquals(solicitacao.getDataRetorno(), resultSolicitacao.getDataRetorno());
         assertEquals(solicitacao.getLocalRetorno(), resultSolicitacao.getLocalRetorno());
         assertEquals(solicitacao.getOrigem().getId(), resultSolicitacao.getOrigem().getId());
@@ -220,7 +220,7 @@ public class SolicitacaoViagemDAOTest {
         novaSolicitacao.setSolicitante(new UsuarioDAO().buscarPorId(1));
         novaSolicitacao.setPassageiro(Boolean.FALSE);
         novaSolicitacao.setDataSaida(new Date());
-        novaSolicitacao.setLogalSaida("teste");
+        novaSolicitacao.setLocalSaida("teste");
         novaSolicitacao.setDataRetorno(new Date());
         novaSolicitacao.setDestino(new CidadeDAO().buscarPorId(1));
         novaSolicitacao.setPercurso("teste");
@@ -237,7 +237,7 @@ public class SolicitacaoViagemDAOTest {
         assertEquals(novaSolicitacao.getSolicitante().getId(), resultSolicitacao.getSolicitante().getId());
         assertEquals(novaSolicitacao.isPassageiro(), resultSolicitacao.isPassageiro());
         assertEquals(novaSolicitacao.getDataSaida(), resultSolicitacao.getDataSaida());
-        assertEquals(novaSolicitacao.getLogalSaida(), resultSolicitacao.getLogalSaida());
+        assertEquals(novaSolicitacao.getLocalSaida(), resultSolicitacao.getLocalSaida());
         assertEquals(novaSolicitacao.getDataRetorno(), resultSolicitacao.getDataRetorno());
         assertEquals(novaSolicitacao.getLocalRetorno(), resultSolicitacao.getLocalRetorno());
         assertEquals(novaSolicitacao.getOrigem().getId(), resultSolicitacao.getOrigem().getId());
