@@ -73,7 +73,7 @@ public class SolicitacaoViagemDAO {
 
         String sql = "insert into solicitacao_viagem (solicitante, data_saida, local_saida, "
                 + "data_retorno, local_retorno, justificativa, observacoes, "
-                + "origem, destino, percurso, situacao, eh_passageiro )"
+                + "origem, destino, percurso, situacao_solicitacao, eh_passageiro )"
                 + " values (?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {

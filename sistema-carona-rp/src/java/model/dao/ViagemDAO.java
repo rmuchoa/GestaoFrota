@@ -178,7 +178,7 @@ public class ViagemDAO {
                         solicitacao.setSituacao(new SituacaoDAO().buscarPorId(2));
                         try {
                         
-                            String sql2 = "update solicitacao set viagem = ?, situacao = ? where id = ?";
+                            String sql2 = "update solicitacao_viagem set viagem = ?, situacao_solicitacao = ? where id = ?";
                             stmt = connection.prepareStatement(sql2);
                             stmt.setInt(1, viagem.getId());
                             stmt.setInt(2, solicitacao.getSituacao().getId());
