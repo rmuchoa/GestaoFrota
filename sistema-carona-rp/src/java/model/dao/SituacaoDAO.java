@@ -55,5 +55,32 @@ public class SituacaoDAO {
         return situacao;
     
     }
+
+    public Situacao buscarPorDescricao(String descricao) {
+        
+        Situacao situacao = null;
+        String sql = "select * from situacao where descricao = ?";
+        
+        try {
+            
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, descricao);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                
+                situacao = new Situacao();
+                situacao.setId(rs.getInt("id"));
+                situacao.setDescricao(rs.getString("descricao"));
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(SituacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+        
+        return situacao;
+        
+    }
     
 }

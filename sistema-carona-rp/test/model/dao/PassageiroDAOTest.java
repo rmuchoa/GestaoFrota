@@ -114,7 +114,7 @@ public class PassageiroDAOTest {
                 solicitacaoViagem.setId(rs.getInt("id"));
                 solicitacaoViagem.setSolicitante(new UsuarioDAO().buscarPorId(rs.getInt("solicitante")));
                 solicitacaoViagem.setDataSaida(new Date(rs.getDate("data_saida").getTime()));
-                solicitacaoViagem.setLogalSaida(rs.getString("local_saida"));
+                solicitacaoViagem.setLocalSaida(rs.getString("local_saida"));
                 solicitacaoViagem.setDataRetorno(new Date(rs.getDate("data_retorno").getTime()));
                 solicitacaoViagem.setLocalRetorno(rs.getString("local_saida"));
                 solicitacaoViagem.setOrigem(new CidadeDAO().buscarPorId(rs.getInt("origem")));
