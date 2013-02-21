@@ -70,7 +70,7 @@ public class ViagemDAO {
     public List<Viagem> buscarPorDataSaida(Date dataSaida) {
         
         List<Viagem> viagens = new ArrayList<Viagem>();
-        String sql = "select * from viagem where data_saida = ?";
+        String sql = "select * from viagem where data_saida >= ?";
         
         try {
 

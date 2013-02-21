@@ -7,6 +7,8 @@ package controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -22,15 +24,13 @@ public class SolicitacaoViagemController {
 
     private SolicitacaoViagemDAO solicitacaoViagemDAO;
     private SolicitacaoViagem solicitacaoViagem;
-    private UsuarioDAO usuarioDAO;
 
     public SolicitacaoViagem inserirSolicitacao(HttpServletRequest request) {
         
         try {
             
-            this.usuarioDAO = new UsuarioDAO();
             this.solicitacaoViagem = new SolicitacaoViagem();
-            this.solicitacaoViagem.setSolicitante(this.usuarioDAO.buscarPorId(Integer.parseInt(request.getParameter("solicitante"))));
+            this.solicitacaoViagem.setSolicitante(new UsuarioDAO().buscarPorId(Integer.parseInt(request.getParameter("solicitante"))));
             this.solicitacaoViagem.setPassageiro(Boolean.parseBoolean(request.getParameter("passageiro")));
             this.solicitacaoViagem.setOrigem(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter("cidadeOrigem"))));
             this.solicitacaoViagem.setDataSaida(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(
@@ -74,6 +74,20 @@ public class SolicitacaoViagemController {
         
         return null;
         
+    }
+    
+    public List<SolicitacaoViagem> listarPorIntervaloDatas(HttpServletRequest request) {
+        
+        try {
+            Date dataInicio = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("data_inicial"));
+            Date dataFim = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("data_final"));;
+            return new SolicitacaoViagemDAO().buscarPorIntervaloDatas(dataInicio, dataFim);
+        } catch (ParseException ex) {
+            Logger.getLogger(SolicitacaoViagemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    
     }
 
     public SolicitacaoViagem buscarPorId(Integer id) {

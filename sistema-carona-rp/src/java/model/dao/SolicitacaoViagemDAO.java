@@ -107,21 +107,27 @@ public class SolicitacaoViagemDAO {
         return solicitacaoViagem;
 
     }
-
-    public SolicitacaoViagem buscarPorDataSaida(java.util.Date dataSaida, Usuario solicitante) {
-
-        SolicitacaoViagem solicitacao = null;
-        String sql = "select * from solicitacao_viagem where data_saida = ? and solicitante = ?;";
-
+    
+    public List<SolicitacaoViagem> buscarPorIntervaloDatas(Date dataInicio, Date dataFim) {
+        
+        List<SolicitacaoViagem> solicitacoes = new ArrayList<SolicitacaoViagem>();
+        String sql = "select * from solicitacao_viagem where data_saida between ? and ? ;";
+        
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setDate(1, new java.sql.Date(dataSaida.getTime()));
-            stmt.setInt(2, solicitante.getId());
-            ResultSet rs = stmt.executeQuery();
 
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setDate(1, new java.sql.Date(dataInicio.getTime()));
+            stmt.setDate(2, new java.sql.Date(dataFim.getTime()));
+            ResultSet rs = stmt.executeQuery();
+            
             while (rs.next()) {
 
-                solicitacao = new SolicitacaoViagem();
+                Integer viagemId = rs.getInt("viagem");
+                if (viagemId != null) {
+                    continue;
+                }
+                
+                SolicitacaoViagem solicitacao = new SolicitacaoViagem();
                 solicitacao.setId(rs.getInt("id"));
                 solicitacao.setSolicitante(new UsuarioDAO().buscarPorId(rs.getInt("solicitante")));
                 solicitacao.setDataSaida(new Date(rs.getDate("data_saida").getTime()));
@@ -135,21 +141,22 @@ public class SolicitacaoViagemDAO {
                 solicitacao.setPercurso(rs.getString("percurso"));
                 solicitacao.setSituacao(new SituacaoDAO().buscarPorId(rs.getInt("situacao_solicitacao")));
                 solicitacao.setPassageiro(Boolean.parseBoolean("eh_passageiro"));
-
+                
+                solicitacoes.add(solicitacao);
+                
             }
-
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        return solicitacao;
-
+                
+        return null;
     }
 
     public List<SolicitacaoViagem> buscarPorDataSaida(java.util.Date dataSaida) {
 
         List<SolicitacaoViagem> solicitacoes = new ArrayList<SolicitacaoViagem>();
-        String sql = "select * from solicitacao_viagem where data_saida = ? ;";
+        String sql = "select * from solicitacao_viagem where data_saida >= ? ;";
 
         try {
 
@@ -161,14 +168,8 @@ public class SolicitacaoViagemDAO {
 
                 Integer viagemId = rs.getInt("viagem");
                 if (viagemId != null) {
-                    
-                    Viagem viagem = new ViagemDAO().buscarPorId(viagemId);
-                    if (viagem.getSituacao().getId() == new SituacaoDAO().buscarPorDescricao("AUTORIZADA").getId() || 
-                            viagem.getSituacao().getId() == new SituacaoDAO().buscarPorDescricao("AGENDADA").getId()) {
-                        continue;
-                    }
-                    
-                } 
+                    continue;
+                }
 
                 SolicitacaoViagem solicitacao = new SolicitacaoViagem();
                 solicitacao.setId(rs.getInt("id"));
@@ -196,6 +197,44 @@ public class SolicitacaoViagemDAO {
         return solicitacoes;
 
     }
+
+//    public SolicitacaoViagem buscarPorDataSaida(java.util.Date dataSaida, Usuario solicitante) {
+//
+//        SolicitacaoViagem solicitacao = null;
+//        String sql = "select * from solicitacao_viagem where data_saida = ? and solicitante = ?;";
+//
+//        try {
+//            PreparedStatement stmt = connection.prepareStatement(sql);
+//            stmt.setDate(1, new java.sql.Date(dataSaida.getTime()));
+//            stmt.setInt(2, solicitante.getId());
+//            ResultSet rs = stmt.executeQuery();
+//
+//            while (rs.next()) {
+//
+//                solicitacao = new SolicitacaoViagem();
+//                solicitacao.setId(rs.getInt("id"));
+//                solicitacao.setSolicitante(new UsuarioDAO().buscarPorId(rs.getInt("solicitante")));
+//                solicitacao.setDataSaida(new Date(rs.getDate("data_saida").getTime()));
+//                solicitacao.setLocalSaida(rs.getString("local_saida"));
+//                solicitacao.setDataRetorno(new Date(rs.getDate("data_retorno").getTime()));
+//                solicitacao.setLocalRetorno(rs.getString("local_retorno"));
+//                solicitacao.setJustificativa(rs.getString("justificativa"));
+//                solicitacao.setObservacoes(rs.getString("observacoes"));
+//                solicitacao.setOrigem(new CidadeDAO().buscarPorId(rs.getInt("origem")));
+//                solicitacao.setDestino(new CidadeDAO().buscarPorId(rs.getInt("destino")));
+//                solicitacao.setPercurso(rs.getString("percurso"));
+//                solicitacao.setSituacao(new SituacaoDAO().buscarPorId(rs.getInt("situacao_solicitacao")));
+//                solicitacao.setPassageiro(Boolean.parseBoolean("eh_passageiro"));
+//
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return solicitacao;
+//
+//    }
 
     public List<SolicitacaoViagem> buscarPorViagemId(Integer id) {
 
