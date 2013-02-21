@@ -16,5 +16,5 @@ function preencheTabela(dataInicial,dataFinal){
 }
 
 function adicionarNovasSolicitacoes(){
-//      alert($("table#tabela1 tbody td#codigo").html());
+    $('#myModal').modal('show');
 }
