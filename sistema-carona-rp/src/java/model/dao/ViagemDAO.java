@@ -4,16 +4,11 @@
  */
 package model.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import jdbc.ConnectionFactory;
-import model.entity.Passageiro;
 import model.entity.SolicitacaoViagem;
 import model.entity.Viagem;
 
@@ -58,7 +53,7 @@ public class ViagemDAO {
                 viagem.setLocalRetorno(rs.getString("local_retorno"));
                 viagem.setPercurso(rs.getString("percurso"));
                 viagem.setObservacoes(rs.getString("observacoes"));
-                viagem.setSituacao(new SituacaoDAO().buscarPorId(rs.getInt("situacao")));
+                viagem.setSituacao(new SituacaoDAO().buscarPorId(rs.getInt("situacao_viagem")));
                 viagem.setSolicitacoes(new SolicitacaoViagemDAO().buscarPorViagemId(viagem.getId()));
                 
                 return viagem;
@@ -97,7 +92,7 @@ public class ViagemDAO {
                 viagem.setLocalRetorno(rs.getString("local_retorno"));
                 viagem.setPercurso(rs.getString("percurso"));
                 viagem.setObservacoes(rs.getString("observacoes"));
-                viagem.setSituacao(new SituacaoDAO().buscarPorId(rs.getInt("situacao")));
+                viagem.setSituacao(new SituacaoDAO().buscarPorId(rs.getInt("situacao_viagem")));
                 viagem.setSolicitacoes(new SolicitacaoViagemDAO().buscarPorViagemId(viagem.getId()));
                 
                 viagens.add(viagem);
@@ -135,7 +130,7 @@ public class ViagemDAO {
                 viagem.setLocalRetorno(rs.getString("local_retorno"));
                 viagem.setPercurso(rs.getString("percurso"));
                 viagem.setObservacoes(rs.getString("observacoes"));
-                viagem.setSituacao(new SituacaoDAO().buscarPorId(rs.getInt("situacao")));
+                viagem.setSituacao(new SituacaoDAO().buscarPorId(rs.getInt("situacao_viagem")));
                 viagem.setSolicitacoes(new SolicitacaoViagemDAO().buscarPorViagemId(viagem.getId()));
                 
                 viagens.add(viagem);
@@ -151,7 +146,7 @@ public class ViagemDAO {
     
     public Viagem inserir(Viagem viagem) {
         String sql = "insert into viagem (veiculo, motorista, cidade_origem, data_saida, local_saida, "
-                + "cidade_retorno, data_retorno, local_retorno, percurso, observacoes, situacao)"
+                + "cidade_retorno, data_retorno, local_retorno, percurso, observacoes, situacao_viagem)"
                 + " values (?,?,?,?,?,?,?,?,?,?,?)";
              
         try {
@@ -171,7 +166,8 @@ public class ViagemDAO {
             
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next()) {
-                viagem.setId(rs.getInt(1));
+                
+                viagem.setId(rs.getInt("id"));
                 if (!viagem.getSolicitacoes().isEmpty()) {
                     for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
 

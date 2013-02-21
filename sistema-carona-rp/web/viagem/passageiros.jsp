@@ -33,10 +33,10 @@
         <%
 
             if (request.getParameter("avancar") != null) {
-                if (request.getParameter("passageiro").equals("true")) {
+                /*if (request.getParameter("passageiro").equals("true")) {
                     PassageiroController passageiroController = new PassageiroController();
                     passageiroController.adicionarSolicitantePassageiro(request);
-                }
+                }*/
                 request.setAttribute("action", "list");
             }
             

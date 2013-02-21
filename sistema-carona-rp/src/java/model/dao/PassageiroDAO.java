@@ -13,6 +13,7 @@ import java.util.List;
 import jdbc.ConnectionFactory;
 import model.entity.Passageiro;
 import model.entity.SolicitacaoViagem;
+import model.entity.Usuario;
 
 /**
  *
@@ -85,6 +86,30 @@ public class PassageiroDAO {
         return buscarPorRg(passageiro.getRg());
         
     }
+    
+    public Passageiro inserir(Usuario passageiro) {
+        
+        String sql = "insert into passageiro ("
+                + "nome, rg, email, endereco, eh_servidor) values (?,?,?,?,?)";
+        
+        try {
+            
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, passageiro.getNome());
+            stmt.setString(2, passageiro.getRg());
+            stmt.setString(3, passageiro.getEmail());
+            stmt.setString(4, "Rua "+passageiro.getRua()+", "+passageiro.getNumero()+", "+passageiro.getComplemento()+" - CEP "+passageiro.getCep()+", "+passageiro.getCidade().getNome()+"/"+passageiro.getCidade().getEstado().getSigla());
+            stmt.setBoolean(5, Boolean.TRUE);
+            stmt.execute();
+            stmt.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return buscarPorRg(passageiro.getRg());
+        
+    }
 
     public Passageiro alterar(Passageiro passageiro) {
         
@@ -98,6 +123,30 @@ public class PassageiroDAO {
             stmt.setString(3, passageiro.getEmail());
             stmt.setString(4, passageiro.getEndereco());
             stmt.setBoolean(5, passageiro.isServidor());
+            stmt.setInt(6, passageiro.getId());
+            stmt.execute();
+            stmt.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return buscarPorRg(passageiro.getRg());
+        
+    }
+
+    public Passageiro alterar(Usuario passageiro) {
+        
+        String sql = "update passageiro set nome = ?, rg = ?, email = ?, endereco = ?, eh_servidor = ? where id = ?;";
+        
+        try {
+            
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, passageiro.getNome());
+            stmt.setString(2, passageiro.getRg());
+            stmt.setString(3, passageiro.getEmail());
+            stmt.setString(4, "Rua "+passageiro.getRua()+", "+passageiro.getNumero()+", "+passageiro.getComplemento()+" - CEP "+passageiro.getCep()+", "+passageiro.getCidade().getNome()+"/"+passageiro.getCidade().getEstado().getSigla());
+            stmt.setBoolean(5, Boolean.TRUE);
             stmt.setInt(6, passageiro.getId());
             stmt.execute();
             stmt.close();

@@ -4,6 +4,7 @@
  */
 package model.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +30,24 @@ public class Viagem {
     
     public Viagem () {
     
+    }
+    
+    public Viagem(Veiculo veiculo, Usuario motorista, 
+            Cidade cidadeOrigem, Date dataSaida, String localSaida, 
+            Cidade cidadeRetorno,Date dataRetorno, String localRetorno,
+            String percurso, String observacoes, Situacao situacao, List<SolicitacaoViagem> solicitacoes) {
+        this.veiculo = veiculo;
+        this.motorista = motorista;
+        this.cidadeOrigem = cidadeOrigem;
+        this.dataSaida = dataSaida;
+        this.localSaida = localSaida;
+        this.cidadeRetorno = cidadeRetorno;
+        this.dataRetorno = dataRetorno;
+        this.localRetorno = localRetorno;
+        this.percurso = percurso;
+        this.observacoes = observacoes;
+        this.situacao = situacao;
+        this.solicitacoes = solicitacoes;
     }
 
     /**
