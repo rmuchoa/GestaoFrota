@@ -137,6 +137,8 @@ public class ViagemDAO {
                 
             }
             
+            stmt.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -164,16 +166,15 @@ public class ViagemDAO {
             stmt.setString(9, viagem.getPercurso());
             stmt.setString(10, viagem.getObservacoes());
             stmt.setInt(11, viagem.getSituacao().getId());
-            stmt.execute();
+            stmt.executeUpdate();
             
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next()) {
                 
-                viagem.setId(rs.getInt("id"));
+                viagem.setId(rs.getInt(1));
                 if (!viagem.getSolicitacoes().isEmpty()) {
                     for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
 
-                        solicitacao.setSituacao(new SituacaoDAO().buscarPorId(2));
                         try {
                         
                             String sql2 = "update solicitacao_viagem set viagem = ?, situacao_solicitacao = ? where id = ?";
@@ -201,12 +202,23 @@ public class ViagemDAO {
         
     }
     
-    public Boolean rejeitarViagem(Viagem viagem) {
+    public Boolean alterarSituacaoViagem(Viagem viagem) {
         
         String sql = "update viagem set situacao_viagem = ? where id = ?";
+        try {
+            
+            PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, viagem.getSituacao().getId());
+            stmt.setInt(2, viagem.getId());
+            stmt.executeUpdate();
+            stmt.close();
+            return Boolean.TRUE;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         
-        
-        return null;
+        return Boolean.FALSE;
         
     }
     

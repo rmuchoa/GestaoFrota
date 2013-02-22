@@ -11,8 +11,6 @@ import java.util.List;
 import jdbc.ConnectionFactory;
 import model.entity.Passageiro;
 import model.entity.SolicitacaoViagem;
-import model.entity.Usuario;
-import model.entity.Viagem;
 
 /**
  *
@@ -60,6 +58,7 @@ public class SolicitacaoViagemDAO {
                 solicitacao.setPassageiros(new PassageiroDAO().buscarPorSolicitacaoId(solicitacao.getId()));
 
             }
+            stmt.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,7 +87,7 @@ public class SolicitacaoViagemDAO {
             stmt.setInt(8, solicitacaoViagem.getOrigem().getId());
             stmt.setInt(9, solicitacaoViagem.getDestino().getId());
             stmt.setString(10, solicitacaoViagem.getPercurso());
-            stmt.setInt(11, 1);
+            stmt.setInt(11, solicitacaoViagem.getSituacao().getId());
             stmt.setBoolean(12, solicitacaoViagem.isPassageiro());
             stmt.executeUpdate();
 
@@ -99,6 +98,7 @@ public class SolicitacaoViagemDAO {
                     new PassageiroDAO().adicionarPassageiro(solicitacaoViagem, solicitacaoViagem.getPassageiros().get(0));
                 }
             }
+            stmt.close();
             
         } catch (SQLException e) {
             e.printStackTrace();
@@ -146,6 +146,8 @@ public class SolicitacaoViagemDAO {
                 
             }
             
+            stmt.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -189,6 +191,8 @@ public class SolicitacaoViagemDAO {
                 solicitacoes.add(solicitacao);
                 
             }
+            
+            stmt.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -198,7 +202,7 @@ public class SolicitacaoViagemDAO {
 
     }
 
-    public Boolean rejeitarSolicitacao(SolicitacaoViagem solicitacao) {
+    public Boolean alterarSituacaoSolicitacao(SolicitacaoViagem solicitacao) {
         
         String sql = "update solicitacao_viagem set situacao_solicitacao = ? where id = ?";
         
@@ -208,9 +212,11 @@ public class SolicitacaoViagemDAO {
             stmt.setInt(1, solicitacao.getSituacao().getId());
             stmt.setInt(2, solicitacao.getId());
             if (stmt.executeUpdate() >= 1) {
+                stmt.close();
                 return Boolean.TRUE;
             }
             
+            stmt.close();
             return Boolean.FALSE;
         
         } catch (SQLException e) {
@@ -253,7 +259,8 @@ public class SolicitacaoViagemDAO {
                 solicitacoes.add(solicitacao);
 
             }
-
+            
+            stmt.close();
             return solicitacoes;
 
         } catch (SQLException e) {
@@ -278,43 +285,5 @@ public class SolicitacaoViagemDAO {
         return Boolean.FALSE;
 
     }
-    
-    //    public SolicitacaoViagem buscarPorDataSaida(java.util.Date dataSaida, Usuario solicitante) {
-//
-//        SolicitacaoViagem solicitacao = null;
-//        String sql = "select * from solicitacao_viagem where data_saida = ? and solicitante = ?;";
-//
-//        try {
-//            PreparedStatement stmt = connection.prepareStatement(sql);
-//            stmt.setDate(1, new java.sql.Date(dataSaida.getTime()));
-//            stmt.setInt(2, solicitante.getId());
-//            ResultSet rs = stmt.executeQuery();
-//
-//            while (rs.next()) {
-//
-//                solicitacao = new SolicitacaoViagem();
-//                solicitacao.setId(rs.getInt("id"));
-//                solicitacao.setSolicitante(new UsuarioDAO().buscarPorId(rs.getInt("solicitante")));
-//                solicitacao.setDataSaida(new Date(rs.getDate("data_saida").getTime()));
-//                solicitacao.setLocalSaida(rs.getString("local_saida"));
-//                solicitacao.setDataRetorno(new Date(rs.getDate("data_retorno").getTime()));
-//                solicitacao.setLocalRetorno(rs.getString("local_retorno"));
-//                solicitacao.setJustificativa(rs.getString("justificativa"));
-//                solicitacao.setObservacoes(rs.getString("observacoes"));
-//                solicitacao.setOrigem(new CidadeDAO().buscarPorId(rs.getInt("origem")));
-//                solicitacao.setDestino(new CidadeDAO().buscarPorId(rs.getInt("destino")));
-//                solicitacao.setPercurso(rs.getString("percurso"));
-//                solicitacao.setSituacao(new SituacaoDAO().buscarPorId(rs.getInt("situacao_solicitacao")));
-//                solicitacao.setPassageiro(Boolean.parseBoolean("eh_passageiro"));
-//
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return solicitacao;
-//
-//    }
     
 }

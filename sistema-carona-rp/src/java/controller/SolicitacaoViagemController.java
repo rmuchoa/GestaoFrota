@@ -43,6 +43,7 @@ public class SolicitacaoViagemController {
             this.solicitacaoViagem.setPercurso(request.getParameter("percurso"));
             this.solicitacaoViagem.setObservacoes(request.getParameter("observacao"));
             this.solicitacaoViagem.setJustificativa(request.getParameter("objetivo"));
+            this.solicitacaoViagem.setSituacao(new SituacaoDAO().buscarPorDescricao("ABERTA"));
             this.solicitacaoViagem.setPassageiros(new ArrayList<Passageiro>());
             
             if (request.getParameter("passageiro").equals("true")) {
@@ -95,12 +96,15 @@ public class SolicitacaoViagemController {
         
         Integer solicitacaoId = Integer.parseInt(request.getParameter("solicitacao_id"));
         SolicitacaoViagem solicitacao = new SolicitacaoViagemDAO().buscarPorId(solicitacaoId);
-        return new SolicitacaoViagemDAO().rejeitarSolicitacao(solicitacao);
+        solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("REJEITADA"));
+        return new SolicitacaoViagemDAO().alterarSituacaoSolicitacao(solicitacao);
         
     }
 
     public SolicitacaoViagem buscarPorId(Integer id) {
+        
         solicitacaoViagemDAO = new SolicitacaoViagemDAO();
         return solicitacaoViagemDAO.buscarPorId(id);
+        
     }
 }
