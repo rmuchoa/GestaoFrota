@@ -90,7 +90,7 @@
             <div class="span12">
                 <div class="span5"></div>    
                 <div class="span4">
-                    <button onclick="adicionarNovasSolicitacoes()" class="btn btn-large">Adcionar outra solicitação</button>
+                    <a href="" onclick="adicionarNovasSolicitacoes()" data-toggle="modal" class="btn btn-large">Adcionar outra solicitação</a>
                 </div>           
             </div>           
 
@@ -165,14 +165,8 @@
                         <label class="control-label" for="inputEstadoRetorno">Estado</label>
                         <div class="controls">
                             <select name="estadoRetorno">
-                                <option></option>
-                                <%
-                                    estadoController = new EstadoController();
-                                    List<Estado> listaEstadosDestino = estadoController.listar();
-                                    for (int i = 0; i < listaEstadosDestino.size(); i++) {
-                                        out.print("<option value='" + listaEstadosDestino.get(i).getId() + "'>" + listaEstadosDestino.get(i).getSigla() + "</option>");
-                                    }
-                                %>
+                                <option>oi</option>
+                              
                             </select>
                         </div>
                     </div>
@@ -182,14 +176,7 @@
                         <div class="controls">
                             <select name="cidadeRetorno">
                                 <option></option>
-                                <%
-                                    cidadeController = new CidadeController();
-                                    List<Cidade> listaCidadesDestino = cidadeController.listar();
-                                    for (int i = 0; i < listaCidadesDestino.size(); i++) {
-                                        Cidade cidade = listaCidadesDestino.get(i);
-                                        out.print("<option value='" + cidade.getId() + "'>" + cidade.getNome() + " - " + cidade.getEstado().getSigla() + "</option>");
-                                    }
-                                %> 
+                                
                             </select>
                         </div>
                     </div>
@@ -241,5 +228,37 @@
             
         </div>
         <br/>
+        
+        <div id="myModal" title="Lista de solicitação" style="display: none">
+            <table id="tabela1" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>CD Solicitação</td>
+                        <td>Data Saida</td>
+                        <td>Origem</td>
+                        <td>Destino</td>
+                        <td>Status solicitação</td>
+                        <td>Selecionar</td>
+                    </tr>
+                    </head>
+
+                <tbody>
+
+                    <tr>
+                        <td id="codigo">0012</td>
+                        <td>12/02/2012</td>
+                        <td>Alegrete-RS</td>
+                        <td>Bage-RS</td>
+                        <td>Aguardando Processamento</td>
+                        <td>
+                            <input type='checkbox' name='select' value='Bike'>
+                           
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
     </body>
 </html>

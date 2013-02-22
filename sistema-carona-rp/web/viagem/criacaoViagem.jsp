@@ -90,7 +90,7 @@
             <div class="span12">
                 <div class="span5"></div>    
                 <div class="span4">
-                    <a href="#myModal" data-toggle="modal" class="btn btn-large">Adcionar outra solicitação</a>
+                    <a href="" onclick="adicionarNovasSolicitacoes()" data-toggle="modal" class="btn btn-large">Adcionar outra solicitação</a>
                 </div>           
             </div>           
 
@@ -229,7 +229,7 @@
         </div>
         <br/>
         
-        <div id="myModal"  class="modal hide fade">
+        <div id="myModal" title="Lista de solicitação" style="display: none">
             <table id="tabela1" class="table table-bordered">
                 <thead>
                     <tr>
@@ -251,8 +251,8 @@
                         <td>Bage-RS</td>
                         <td>Aguardando Processamento</td>
                         <td>
-                            <a href=""><button class="btn btn-mini">X</button></a>
-                            <a href=""><button class="btn btn-mini">detalhes</button></a>
+                            <input type='checkbox' name='select' value='Bike'>
+                           
                         </td>
                     </tr>
 

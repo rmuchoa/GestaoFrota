@@ -79,8 +79,8 @@ public class SolicitacaoViagemController {
     public List<SolicitacaoViagem> listarPorIntervaloDatas(HttpServletRequest request) {
         
         try {
-            Date dataInicio = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("data_inicial"));
-            Date dataFim = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("data_final"));;
+            Date dataInicio = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("dataInicial"));
+            Date dataFim = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("dataFinal"));;
             return new SolicitacaoViagemDAO().buscarPorIntervaloDatas(dataInicio, dataFim);
         } catch (ParseException ex) {
             Logger.getLogger(SolicitacaoViagemController.class.getName()).log(Level.SEVERE, null, ex);

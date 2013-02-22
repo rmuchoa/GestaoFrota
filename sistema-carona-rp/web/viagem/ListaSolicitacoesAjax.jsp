@@ -4,15 +4,25 @@
     Author     : Marcelo Maia
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="model.entity.SolicitacaoViagem"%>
 <%@page import="controller.SolicitacaoViagemController"%>
 <%@page import="model.dao.SolicitacaoViagemDAO"%>
 
 <%
    if(request.getMethod().equalsIgnoreCase("get")){
+       List<SolicitacaoViagem> listaSolicitacao = new ArrayList<>();
+       SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
+       listaSolicitacao = solicitacaoViagemController.listarPorIntervaloDatas(request);
+       
+       
        String dataInicial = request.getParameter("dataInicial");
        String dataFinal = request.getParameter("dataFinal");
        
        String html;
+       
+       
        html = "<table class='table table-bordered'>"+
                         "<thead>"+
                             "<tr>"+
@@ -25,20 +35,22 @@
                             "</tr>"+
                         "</head>"+
                         
-                        "<tbody>"+
-                            
-                            "<tr>"+
-                                "<td>0012</td>"+
-                                "<td>12/02/2012</td>"+
-                                "<td>Alegrete-RS</td>"+
-                                "<td>Bage-RS</td>"+
-                                "<td>Aguardando Processamento</td>"+
+                        "<tbody>";
+                      for(int i=0;i<listaSolicitacao.size();i++){      
+                          html+= "<tr>"+
+                                "<td>"+listaSolicitacao.get(i).getId() +"</td>"+
+                                "<td>"+listaSolicitacao.get(i).getDataSaida() +"</td>"+
+                                "<td>"+listaSolicitacao.get(i).getOrigem().getNome()+"</td>"+
+                                "<td>"+listaSolicitacao.get(i).getDestino().getNome()+"</td>"+
+                                "<td>"+listaSolicitacao.get(i).getSituacao().getDescricao()+"</td>"+
                                 "<td><input type='checkbox' name='select' value='Bike'></td>"+
-                            "</tr>"+
-                            
-                        "</tbody>"+
+                            "</tr>";
+                      }
+  
+                       html+= "</tbody>"+
                         
                     "</table><input type='submit' class='btn btn-large' value='Criar Viagem'>";
+       System.out.println(html);
        out.print(html);
    }
 %>
