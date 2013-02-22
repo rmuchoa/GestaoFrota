@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import model.dao.*;
+import model.entity.Situacao;
 import model.entity.SolicitacaoViagem;
 import model.entity.Viagem;
 
@@ -30,7 +31,7 @@ public class ViagemController {
             viagem = new Viagem();
             viagem.setVeiculo(new VeiculoDAO().getVeiculoPorId(Integer.parseInt(request.getParameter(""))));
             viagem.setMotorista(new UsuarioDAO().buscarPorId(Integer.parseInt(request.getParameter(""))));
-            viagem.setSituacao(new SituacaoDAO().buscarPorId(Integer.parseInt(request.getParameter(""))));
+            viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("AGENDADA"));
             viagem.setCidadeOrigem(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter(""))));
             viagem.setDataSaida(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("")));
             viagem.setLocalSaida(request.getParameter(""));
@@ -40,8 +41,12 @@ public class ViagemController {
             viagem.setPercurso(request.getParameter(""));
             viagem.setObservacoes(request.getParameter(""));
             viagem.setSolicitacoes((List<SolicitacaoViagem>) request.getAttribute("solicitacoes"));
-
-            return viagemDAO.inserir(viagem);
+            
+            for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
+                solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("AGENDADA"));
+            }
+            
+            return viagemDAO.abrirViagem(viagem);
 
         } catch (ParseException ex) {
             Logger.getLogger(SolicitacaoViagemController.class.getName()).log(Level.SEVERE, null, ex);
@@ -50,4 +55,41 @@ public class ViagemController {
         return null;
 
     }
+    
+    public Boolean autorizarViagem(HttpServletRequest request) {
+        
+        Integer viagemId = Integer.parseInt(request.getParameter("viagemId"));
+        Viagem viagem = viagemDAO.buscarPorId(viagemId);
+        viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("AUTORIZADA"));
+        for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
+            solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("AUTORIZADA"));
+        }
+        return viagemDAO.alterarSituacaoViagem(viagem);
+        
+    }
+    
+    public Boolean rejeitarViagem(HttpServletRequest request) {
+        
+        Integer viagemId = Integer.parseInt(request.getParameter("viagemId"));
+        Viagem viagem = viagemDAO.buscarPorId(viagemId);
+        viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("REJEITADA"));
+        for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
+            solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("REJEITADA"));
+        }
+        return viagemDAO.alterarSituacaoViagem(viagem);
+        
+    }
+    
+    public Boolean finalizarViagem(HttpServletRequest request) {
+        
+        Integer viagemId = Integer.parseInt(request.getParameter("viagemId"));
+        Viagem viagem = viagemDAO.buscarPorId(viagemId);
+        viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("REALIZADA"));
+        for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
+            solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("REALIZADA"));
+        }
+        return viagemDAO.alterarSituacaoViagem(viagem);
+        
+    }
+    
 }

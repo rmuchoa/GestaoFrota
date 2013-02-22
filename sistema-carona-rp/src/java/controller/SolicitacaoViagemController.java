@@ -43,7 +43,7 @@ public class SolicitacaoViagemController {
             this.solicitacaoViagem.setPercurso(request.getParameter("percurso"));
             this.solicitacaoViagem.setObservacoes(request.getParameter("observacao"));
             this.solicitacaoViagem.setJustificativa(request.getParameter("objetivo"));
-            this.solicitacaoViagem.setSituacao(new SituacaoDAO().buscarPorId(1));
+            this.solicitacaoViagem.setSituacao(new SituacaoDAO().buscarPorDescricao("ABERTA"));
             this.solicitacaoViagem.setPassageiros(new ArrayList<Passageiro>());
             
             if (request.getParameter("passageiro").equals("true")) {
@@ -52,7 +52,7 @@ public class SolicitacaoViagemController {
                 if (solicitante == null) {
 
                     this.solicitacaoViagem.getPassageiros().add(new PassageiroDAO().inserir(solicitacaoViagem.getSolicitante()));
-                    new SolicitacaoViagemDAO().inserir(solicitacaoViagem);
+                    return new SolicitacaoViagemDAO().inserir(solicitacaoViagem);
 
                 } else {
 
@@ -63,8 +63,10 @@ public class SolicitacaoViagemController {
                         this.solicitacaoViagem.getPassageiros().add(new PassageiroDAO().alterar(solicitacaoViagem.getSolicitante()));
                         return new SolicitacaoViagemDAO().inserir(solicitacaoViagem);
                         
+                    } else {
+                        this.solicitacaoViagem.getPassageiros().add(solicitante);
+                        return new SolicitacaoViagemDAO().inserir(solicitacaoViagem);
                     }
-
                 }
             }
             
@@ -86,12 +88,23 @@ public class SolicitacaoViagemController {
             Logger.getLogger(SolicitacaoViagemController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return null;
+        return new ArrayList<SolicitacaoViagem>();
     
+    }
+    
+    public Boolean rejeitarSolicitacao(HttpServletRequest request) {
+        
+        Integer solicitacaoId = Integer.parseInt(request.getParameter("solicitacao_id"));
+        SolicitacaoViagem solicitacao = new SolicitacaoViagemDAO().buscarPorId(solicitacaoId);
+        solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("REJEITADA"));
+        return new SolicitacaoViagemDAO().alterarSituacaoSolicitacao(solicitacao);
+        
     }
 
     public SolicitacaoViagem buscarPorId(Integer id) {
+        
         solicitacaoViagemDAO = new SolicitacaoViagemDAO();
         return solicitacaoViagemDAO.buscarPorId(id);
+        
     }
 }
