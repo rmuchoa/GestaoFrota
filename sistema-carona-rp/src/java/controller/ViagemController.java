@@ -30,7 +30,7 @@ public class ViagemController {
             viagem = new Viagem();
             viagem.setVeiculo(new VeiculoDAO().getVeiculoPorId(Integer.parseInt(request.getParameter(""))));
             viagem.setMotorista(new UsuarioDAO().buscarPorId(Integer.parseInt(request.getParameter(""))));
-            viagem.setSituacao(new SituacaoDAO().buscarPorId(Integer.parseInt(request.getParameter(""))));
+            viagem.setSituacao(new SituacaoDAO().buscarPorId(new Integer(2)));
             viagem.setCidadeOrigem(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter(""))));
             viagem.setDataSaida(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("")));
             viagem.setLocalSaida(request.getParameter(""));
@@ -41,7 +41,7 @@ public class ViagemController {
             viagem.setObservacoes(request.getParameter(""));
             viagem.setSolicitacoes((List<SolicitacaoViagem>) request.getAttribute("solicitacoes"));
 
-            return viagemDAO.inserir(viagem);
+            return viagemDAO.abrirViagem(viagem);
 
         } catch (ParseException ex) {
             Logger.getLogger(SolicitacaoViagemController.class.getName()).log(Level.SEVERE, null, ex);

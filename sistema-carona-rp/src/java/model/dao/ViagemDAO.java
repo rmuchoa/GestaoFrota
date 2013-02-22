@@ -144,12 +144,14 @@ public class ViagemDAO {
         return null;
     }
     
-    public Viagem inserir(Viagem viagem) {
+    public Viagem abrirViagem(Viagem viagem) {
+        
         String sql = "insert into viagem (veiculo, motorista, cidade_origem, data_saida, local_saida, "
                 + "cidade_retorno, data_retorno, local_retorno, percurso, observacoes, situacao_viagem)"
                 + " values (?,?,?,?,?,?,?,?,?,?,?)";
              
         try {
+            
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, viagem.getVeiculo().getId());
             stmt.setInt(2, viagem.getMotorista().getId());
@@ -194,6 +196,15 @@ public class ViagemDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+        return null;
+        
+    }
+    
+    public Boolean rejeitarViagem(Viagem viagem) {
+        
+        String sql = "update viagem set situacao_viagem = ? where id = ?";
+        
         
         return null;
         

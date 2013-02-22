@@ -162,7 +162,7 @@ public class ViagemDAOTest {
         Viagem viagem = null;
         ViagemDAO instance = new ViagemDAO();
         Viagem expResult = null;
-        Viagem result = instance.inserir(viagem);
+        Viagem result = instance.abrirViagem(viagem);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
