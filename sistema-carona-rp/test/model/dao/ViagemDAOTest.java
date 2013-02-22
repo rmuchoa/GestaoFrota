@@ -38,7 +38,7 @@ public class ViagemDAOTest {
         }
         List<Usuario> motoristas = new UsuarioDAO().buscarMotoristas();
         
-        viagem = new Viagem(new VeiculoDAO().getVeiculoPorId(1), motoristas.get(1), 
+        viagem = new Viagem(new VeiculoDAO().getVeiculoPorId(1), motoristas.get(0), 
                 new CidadeDAO().buscarPorId(1), new Date(), "teste", 
                 new CidadeDAO().buscarPorId(2), new Date(), "teste",
                 "teste", "teste", new SituacaoDAO().buscarPorId(2),new ArrayList<SolicitacaoViagem>());
@@ -115,13 +115,13 @@ public class ViagemDAOTest {
     @Test
     public void testBuscarPorId() {
         System.out.println("buscarPorId");
-        Integer id = null;
+        Integer id = 1;
         ViagemDAO instance = new ViagemDAO();
         Viagem expResult = null;
         Viagem result = instance.buscarPorId(id);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -163,6 +163,36 @@ public class ViagemDAOTest {
         ViagemDAO instance = new ViagemDAO();
         Viagem expResult = null;
         Viagem result = instance.abrirViagem(viagem);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of abrirViagem method, of class ViagemDAO.
+     */
+    @Test
+    public void testAbrirViagem() {
+        System.out.println("abrirViagem");
+        Viagem viagem = null;
+        ViagemDAO instance = new ViagemDAO();
+        Viagem expResult = null;
+        Viagem result = instance.abrirViagem(viagem);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of alterarSituacaoViagem method, of class ViagemDAO.
+     */
+    @Test
+    public void testAlterarSituacaoViagem() {
+        System.out.println("alterarSituacaoViagem");
+        Viagem viagem = null;
+        ViagemDAO instance = new ViagemDAO();
+        Boolean expResult = null;
+        Boolean result = instance.alterarSituacaoViagem(viagem);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

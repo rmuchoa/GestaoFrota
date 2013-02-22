@@ -98,6 +98,7 @@ public class ViagemDAO {
                 viagens.add(viagem);
                 
             }
+            return viagens;
             
         } catch (SQLException e) {
             e.printStackTrace();
