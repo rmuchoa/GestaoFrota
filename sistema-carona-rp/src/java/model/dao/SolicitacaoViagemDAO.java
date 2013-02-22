@@ -90,12 +90,11 @@ public class SolicitacaoViagemDAO {
             stmt.setString(10, solicitacaoViagem.getPercurso());
             stmt.setInt(11, 1);
             stmt.setBoolean(12, solicitacaoViagem.isPassageiro());
-            stmt.execute();
-            stmt.close();
+            stmt.executeUpdate();
 
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next()) {
-                solicitacaoViagem.setId(rs.getInt("id"));
+                solicitacaoViagem.setId(rs.getInt(1));
                 if (!solicitacaoViagem.getPassageiros().isEmpty()) {
                     new PassageiroDAO().adicionarPassageiro(solicitacaoViagem, solicitacaoViagem.getPassageiros().get(0));
                 }
