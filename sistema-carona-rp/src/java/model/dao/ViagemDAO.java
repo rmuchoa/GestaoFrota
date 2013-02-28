@@ -175,24 +175,23 @@ public class ViagemDAO {
             if (rs.next()) {
                 
                 viagem.setId(rs.getInt(1));
-                if (!viagem.getSolicitacoes().isEmpty()) {
-                    for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
+                for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
+                    
+                    try {
 
-                        try {
-                        
-                            String sql2 = "update solicitacao_viagem set viagem = ?, situacao_solicitacao = ? where id = ?";
-                            stmt = connection.prepareStatement(sql2);
-                            stmt.setInt(1, viagem.getId());
-                            stmt.setInt(2, solicitacao.getSituacao().getId());
-                            stmt.setInt(3, solicitacao.getId());
-                            stmt.executeUpdate();
-                            
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                        
+                        String sql2 = "update solicitacao_viagem set viagem = ?, situacao_solicitacao = ? where id = ?";
+                        stmt = connection.prepareStatement(sql2);
+                        stmt.setInt(1, viagem.getId());
+                        stmt.setInt(2, solicitacao.getSituacao().getId());
+                        stmt.setInt(3, solicitacao.getId());
+                        stmt.executeUpdate();
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
                     }
+
                 }
+                
                 stmt.close();
                 return viagem;
             }
@@ -214,6 +213,22 @@ public class ViagemDAO {
             stmt.setInt(1, viagem.getSituacao().getId());
             stmt.setInt(2, viagem.getId());
             stmt.executeUpdate();
+            
+            for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
+                
+                try {
+
+                    String sql2 = "update solicitacao_viagem set situacao_solicitacao = ? where id = ?";
+                    stmt = connection.prepareStatement(sql2);
+                    stmt.setInt(1, solicitacao.getSituacao().getId());
+                    stmt.setInt(2, solicitacao.getId());
+                    stmt.executeUpdate();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                
+            }
             stmt.close();
             return Boolean.TRUE;
             

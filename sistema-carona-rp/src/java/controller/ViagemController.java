@@ -11,7 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import model.dao.*;
-import model.entity.Situacao;
 import model.entity.SolicitacaoViagem;
 import model.entity.Viagem;
 
@@ -59,7 +58,7 @@ public class ViagemController {
     public Boolean autorizarViagem(HttpServletRequest request) {
         
         Integer viagemId = Integer.parseInt(request.getParameter("viagemId"));
-        Viagem viagem = viagemDAO.buscarPorId(viagemId);
+        viagem = viagemDAO.buscarPorId(viagemId);
         viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("AUTORIZADA"));
         for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
             solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("AUTORIZADA"));
@@ -71,7 +70,7 @@ public class ViagemController {
     public Boolean rejeitarViagem(HttpServletRequest request) {
         
         Integer viagemId = Integer.parseInt(request.getParameter("viagemId"));
-        Viagem viagem = viagemDAO.buscarPorId(viagemId);
+        viagem = viagemDAO.buscarPorId(viagemId);
         viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("REJEITADA"));
         for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
             solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("REJEITADA"));
@@ -83,7 +82,7 @@ public class ViagemController {
     public Boolean finalizarViagem(HttpServletRequest request) {
         
         Integer viagemId = Integer.parseInt(request.getParameter("viagemId"));
-        Viagem viagem = viagemDAO.buscarPorId(viagemId);
+        viagem = viagemDAO.buscarPorId(viagemId);
         viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("REALIZADA"));
         for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
             solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("REALIZADA"));
