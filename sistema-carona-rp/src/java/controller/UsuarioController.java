@@ -38,7 +38,15 @@ public class UsuarioController {
             usuario.setCelular(request.getParameter("celular"));
             usuario.setRg(request.getParameter("rg"));
             usuario.setSiape(Integer.parseInt(request.getParameter("siape")));
-            usuario.setNumeroCnh(Long.parseLong(request.getParameter("numero_cnh")));
+            
+            System.out.println(request.getParameter("numero_cnh").toString());
+            
+            if(!request.getParameter("numero_cnh").equals("")){
+                usuario.setNumeroCnh(Long.parseLong(request.getParameter("numero_cnh")));
+            }else{
+                usuario.setNumeroCnh(Long.parseLong("0"));
+            }
+            
             usuario.setValidadeCnh(new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("validade_cnh")));
             usuario.setCategoriaCnh(request.getParameter("categoria_cnh"));
             usuario.setRua(request.getParameter("rua"));
@@ -47,6 +55,7 @@ public class UsuarioController {
             usuario.setCep(request.getParameter("cep"));
             usuario.setCidade(cidadeDAO.buscarPorId(Integer.parseInt(request.getParameter("cidade"))));
 
+             System.out.println(usuario.getNumeroCnh().toString());
             usuarioDAO.inserir(usuario);
         } catch (ParseException ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);

@@ -92,55 +92,141 @@ function validaFormularioUsuario(){
 
         rules:{
             nome:{
-                required: true
+                required: true,
+                minlength: 6
             },
             login:{
-                required: true
+                required: true,
+                minlength: 6
             },
             senha:{
-                required: true
+                required: true,
+                minlength: 6
             },
             tipo:{
                 required: true
             },
             email:{
-                required: true
+                required: true,
+                email: true
             },
             telefone:{
-                required: true
+                required: true,
+                maxlength: 10,
+                minlength: 10,
+                number: true
             },
             celular:{
-                required: true
+                maxlength: 10,
+                minlength: 10,
+                number: true
             },
             rg:{
-                required: true
+                required: true,
+                maxlength: 20,
+                number: true
             },
             siape:{
+                number: true
+            },
+            numero_cnh:{
+                number: true
+            },
+            validade_cnh:{
+                date: true
+            },
+            categoria_cnh:{
+                maxlength: 3,
+                minlength: 1
+            },
+            rua:{
+                required: true
+            },
+            numero:{
+                required: true,
+                number: true
+            },
+            cep:{
+                required: true,
+                maxlength: 8,
+                minlength: 8,
+                number: true
+            },
+            estado:{
+                required: true
+            },
+            cidade:{
                 required: true
             }
         },
 
         messages:{
             nome:{
-                required: "Campo obrigatorio"
+                required: "Campo obrigatorio",
+                minlength: "Mínimo 6 caracteres"
             },
             login:{
-                required: "Campo obrigatorio"
+                required: "Campo obrigatório",
+                minlength: "Mínimo 6 caracteres"
             },
             senha:{
-                required: "Campo obrigatorio"
+                required: "Campo obrigatório",
+                minlength: "Mínimo 6 caracteres"
             },
             tipo:{
-                required: "Campo obrigatorio"
+                required: "Campo obrigatório"
             },
             email:{
-                required: "Campo obrigatorio"
+                required: "Campo obrigatório",
+                email: "Formato de e-mail incorreto"
             },
             telefone:{
-                required: "Campo obrigatorio"
+                required: "Campo obrigatório",
+                maxlength: "Número inválido",
+                minlength: "Número inválido",
+                number: "Digite apenas números"
             },
             celular:{
-                required: "Campo obrigatorio"
+                maxlength: "Número inválido",
+                minlength: "Número inválido",
+                number: "Digite apenas números"
+            },
+            rg:{
+                required: "Campo obrigatório",
+                maxlength: "Tamanho inválido",
+                number: "Digite apenas números"
+            },
+            siape:{
+                number: "Digite apenas números"
+            },
+            numero_cnh:{
+                number: "Digite apenas números"
+            },
+            validade_cnh:{
+                date: "Data inválida"
+            },
+            categoria_cnh:{
+                maxlength: "Tamanho inválido",
+                minlength: "Tamanho inválido"
+            },
+            rua:{
+                required: "Campo obrigatório"
+            },
+            numero:{
+                required: "Campo obrigatório",
+                number: "Digite apenas números"
+            },
+            cep:{
+                required: "Campo obrigatório",
+                maxlength: "CEP inválido",
+                minlength: "CEP inválido",
+                number: "Digite apenas números"
+            },
+            estado:{
+                required: "Selecione um estado"
+            },
+            cidade:{
+                required: "Selecione uma cidade"
             }
         }
     });

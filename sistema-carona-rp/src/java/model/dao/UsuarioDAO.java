@@ -34,6 +34,7 @@ public class UsuarioDAO {
         String sql = "insert into usuario (nome, login, senha, tipo_usuario, email, telefone, celular, "
                 + "rg, siape, numero_cnh, validade_cnh, categoria_cnh, rua, numero, complemento, cep, cidade) "
                 + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+         System.out.println(usuario.getNumeroCnh().toString());
         try {
             
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -54,6 +55,8 @@ public class UsuarioDAO {
             stmt.setString(15, usuario.getComplemento());
             stmt.setString(16, usuario.getCep());
             stmt.setInt(17, usuario.getCidade().getId());
+           
+            System.out.println(stmt.toString());
             stmt.execute();
             stmt.close();
 

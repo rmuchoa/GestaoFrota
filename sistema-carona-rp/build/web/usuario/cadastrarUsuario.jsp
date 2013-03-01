@@ -124,14 +124,14 @@
                 <div class="control-group">
                     <label class="control-label" for="inputTelefone">telefone</label>
                     <div class="controls">
-                        <input type="text" name="telefone" id="telefone" placeholder="(55) 3200-3200">
+                        <input type="text" name="telefone" id="telefone" placeholder="5532003200">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputCelular">Celular</label>
                     <div class="controls">
-                        <input type="text" name="celular" id="celular" placeholder="(55) 8100-8100">
+                        <input type="text" name="celular" id="celular" placeholder="5581008100">
                     </div>
                 </div>
 
@@ -187,7 +187,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputNumero">Numero</label>
                     <div class="controls">
-                        <input type="text" name="numero" id="numero" placeholder="Numero">
+                        <input type="text" name="numero" id="numero" placeholder="Somente numeros">
                     </div>
                 </div>
 
@@ -203,7 +203,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputCep">CEP</label>
                     <div class="controls">
-                        <input type="text" name="cep" id="cep" placeholder="99500-000">
+                        <input type="text" name="cep" id="cep" placeholder="99500000">
                     </div>
                 </div>
 
