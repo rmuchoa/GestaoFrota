@@ -86,79 +86,61 @@ function validaFormularioVeiculo(){
     });
 }
 
-function validaFormularioVeiculo(){
-
+function validaFormularioUsuario(){
+   
     $("#formularioUsuario").validate({
 
         rules:{
+            nome:{
+                required: true
+            },
+            login:{
+                required: true
+            },
+            senha:{
+                required: true
+            },
             tipo:{
                 required: true
             },
-            telefone: {
-                maxLength: 11
-            },
-            celular: {
-                maxLength: 11
-            },
-            rg: {
-                maxLength: 20
-            },
-            siape:{
-                digits: true, 
-                maxLength: 11
-            },
-            cnh:{
-                digits: true, 
-                maxLength: 20
-            },
-            categoria: {
-                maxLength: 3
-            },
-            cidade:{
+            email:{
                 required: true
             },
-            cep: {
-                maxLength: 8
+            telefone:{
+                required: true
             },
-            numero: {
-                digits: true, 
-                maxLength: 11
+            celular:{
+                required: true
+            },
+            rg:{
+                required: true
+            },
+            siape:{
+                required: true
             }
         },
 
         messages:{
-            telefone:{
-                maxLength: "O telefone deve seguir o padrão: '(99) 9999-9999'"
+            nome:{
+                required: "Campo obrigatorio"
             },
-            celular:{
-                maxLength: "O celular deve seguir o padrão '(99) 9999-9999'"
+            login:{
+                required: "Campo obrigatorio"
             },
-            rg:{
-                maxLength: "O rg não pode passar de 20 caractéres" 
-            },
-            cidade:{
-                required: "Selecione uma cidade para o usuário"
+            senha:{
+                required: "Campo obrigatorio"
             },
             tipo:{
-                required: "Selecione um tipo para o usuário"
+                required: "Campo obrigatorio"
             },
-            siape:{
-                digits: "Digite apenas números",
-                maxLength: "O número de siape não pode ter ultrapassar 11 caractéres"
+            email:{
+                required: "Campo obrigatorio"
             },
-            cnh: {
-                digits: "Digite apenas números",
-                maxLength: "O número da carteira de habilitação não pode ultrapassar 20 caractéres"
+            telefone:{
+                required: "Campo obrigatorio"
             },
-            cetegoria:{
-                maxLength: "A categoria deve ter no máximo 3 caratéres e seguir o padrão: 'ABC'"
-            },
-            numero: {
-                digits: "Digite apenas números",
-                maxLength: "O número não pode ultrapassar 11 caractéres"
-            },
-            cep: {
-                maxLength: "O cep não pode ultrapassar 8 caracteres"
+            celular:{
+                required: "Campo obrigatorio"
             }
         }
     });
