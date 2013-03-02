@@ -111,11 +111,13 @@ public class SolicitacaoViagemDAO {
     public List<SolicitacaoViagem> buscarPorIntervaloDatas(Date dataInicio, Date dataFim) {
         
         List<SolicitacaoViagem> solicitacoes = new ArrayList<SolicitacaoViagem>();
-        String sql = "select * from solicitacao_viagem where data_saida between ? and ? ;";
+        String sql = "select * from solicitacao_viagem where data_saida between ? and ?";
         
         try {
 
             PreparedStatement stmt = connection.prepareStatement(sql);
+            System.out.println(new java.sql.Date(dataInicio.getTime()).toString());
+            System.out.println(new java.sql.Date(dataFim.getTime()));
             stmt.setDate(1, new java.sql.Date(dataInicio.getTime()));
             stmt.setDate(2, new java.sql.Date(dataFim.getTime()));
             ResultSet rs = stmt.executeQuery();
@@ -158,7 +160,7 @@ public class SolicitacaoViagemDAO {
     public List<SolicitacaoViagem> buscarPorDataSaida(java.util.Date dataSaida) {
 
         List<SolicitacaoViagem> solicitacoes = new ArrayList<SolicitacaoViagem>();
-        String sql = "select * from solicitacao_viagem where data_saida >= ? ;";
+        String sql = "select * from solicitacao_viagem where data_saida >= ?";
 
         try {
 

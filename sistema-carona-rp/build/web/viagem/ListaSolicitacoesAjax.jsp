@@ -12,18 +12,12 @@
 
 <%
    if(request.getMethod().equalsIgnoreCase("get")){
-       List<SolicitacaoViagem> listaSolicitacao = new ArrayList<>();
+       List<SolicitacaoViagem> listaSolicitacao = new ArrayList<SolicitacaoViagem>();
        SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
        listaSolicitacao = solicitacaoViagemController.listarPorIntervaloDatas(request);
        
        
-       String dataInicial = request.getParameter("dataInicial");
-       String dataFinal = request.getParameter("dataFinal");
-       
-       String html;
-       
-       
-       html = "<table class='table table-bordered'>"+
+       String html = "<table class='table table-bordered'>"+
                         "<thead>"+
                             "<tr>"+
                             "<td>CD Solicitação</td>"+
