@@ -37,29 +37,27 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery-1.9.0.min.js"></script>
-        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery-1.2.6.pack.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
-        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.maskedinput-1.1.4.pack.js"></script>
-        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.min.js"></script>
+        <!-- <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.maskedinput-1.1.4.pack.js"></script> -->
+        <!--<script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.min.js"></script> -->
         <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
-        <script>
+        <script type="text/javascript">
             $(document).ready(function() {
-                
-                validaFormularioUsuario();
-                
+                    validaFormularioUsuario();
                 $("#estado").change(function() {
                     $.ajax({
-                        url:"cidades.jsp",
-                        dataType:"json",
-                        data:{estado: $("#estado").val()},
-                        type:"POST",
+                        url:'cidades.jsp',
+                        dataType:'html',
+                        data:{estado: $('#estado').val()},
+                        type:'POST',
                         success:function(data){
                             console.log(data);
-                            this.alert("chegou!!!");
-                            for (var i=0; i<data.length(); i++) {
-                                $("#cidade").append("<option value='"+data.i.getId()+"'>"+data.i.getNome()+"</option>");
-                            }
+                            alert('chegou!!!');
+                            $('#cidade').html(data)
+                        },
+                        error:function(status,error){
+                            alert(error)
                         }
                     });
                 });
@@ -75,7 +73,7 @@
         <h3 style="color: green;text-align: center"  class="span12 well">Sistema de Caronas Unipampa</h3>
         <div class="offset2 span8 offset2">
 
-
+            <div id="teste">oi</div>
 
             <form action="cadastrarUsuario.jsp" method="POST" id="formularioUsuario" class="form-horizontal well">
 
@@ -126,14 +124,14 @@
                 <div class="control-group">
                     <label class="control-label" for="inputTelefone">telefone</label>
                     <div class="controls">
-                        <input type="text" name="telefone" id="telefone" placeholder="(55) 3200-3200">
+                        <input type="text" name="telefone" id="telefone" placeholder="5532003200">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputCelular">Celular</label>
                     <div class="controls">
-                        <input type="text" name="celular" id="celular" placeholder="(55) 8100-8100">
+                        <input type="text" name="celular" id="celular" placeholder="5581008100">
                     </div>
                 </div>
 
@@ -189,7 +187,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputNumero">Numero</label>
                     <div class="controls">
-                        <input type="text" name="numero" id="numero" placeholder="Numero">
+                        <input type="text" name="numero" id="numero" placeholder="Somente numeros">
                     </div>
                 </div>
 
@@ -205,7 +203,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputCep">CEP</label>
                     <div class="controls">
-                        <input type="text" name="cep" id="cep" placeholder="99500-000">
+                        <input type="text" name="cep" id="cep" placeholder="99500000">
                     </div>
                 </div>
 
@@ -230,14 +228,6 @@
                     <div  class="controls">
                         <select id="cidade" name="cidade">
                            <option></option>
-                            <%
-                                 CidadeController cidadeController = new CidadeController(); 
-                                 List<Cidade> listaCidades = cidadeController.listar(); 
-                                 for (int i = 0; i < listaCidades.size(); i++) {
-                                     Cidade cidade = listaCidades.get(i);
-                                     out.print("<option value='"+cidade.getId()+"'>"+cidade.getNome()+" - "+cidade.getEstado().getSigla()+"</option>");
-                                 }
-                            %> 
                         </select>
                     </div>
                 </div> 

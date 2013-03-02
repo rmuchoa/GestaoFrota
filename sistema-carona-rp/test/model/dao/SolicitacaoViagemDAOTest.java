@@ -270,5 +270,67 @@ public class SolicitacaoViagemDAOTest {
         }
         
     }
+
+    /**
+     * Test of buscarPorIntervaloDatas method, of class SolicitacaoViagemDAO.
+     */
+    @Test
+    public void testBuscarPorIntervaloDatas() {
+        System.out.println("buscarPorIntervaloDatas");
+        Date dataInicio = null;
+        Date dataFim = null;
+        SolicitacaoViagemDAO instance = new SolicitacaoViagemDAO();
+        List expResult = null;
+        List result = instance.buscarPorIntervaloDatas(dataInicio, dataFim);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of alterarSituacaoSolicitacao method, of class SolicitacaoViagemDAO.
+     */
+    @Test
+    public void testAlterarSituacaoSolicitacao() {
+        System.out.println("alterarSituacaoSolicitacao");
+        SolicitacaoViagem solicitacao = null;
+        SolicitacaoViagemDAO instance = new SolicitacaoViagemDAO();
+        Boolean expResult = null;
+        Boolean result = instance.alterarSituacaoSolicitacao(solicitacao);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of buscarPorViagemId method, of class SolicitacaoViagemDAO.
+     */
+    @Test
+    public void testBuscarPorViagemId() {
+        System.out.println("buscarPorViagemId");
+        Integer id = null;
+        SolicitacaoViagemDAO instance = new SolicitacaoViagemDAO();
+        List expResult = null;
+        List result = instance.buscarPorViagemId(id);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of naoEhRepetido method, of class SolicitacaoViagemDAO.
+     */
+    @Test
+    public void testNaoEhRepetido() {
+        System.out.println("naoEhRepetido");
+        SolicitacaoViagem solicitacao = null;
+        String passageiroRg = "";
+        SolicitacaoViagemDAO instance = new SolicitacaoViagemDAO();
+        Boolean expResult = null;
+        Boolean result = instance.naoEhRepetido(solicitacao, passageiroRg);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }
