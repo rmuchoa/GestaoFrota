@@ -1,7 +1,8 @@
+
 function preencheTabela(dataInicial,dataFinal){
        
     $.ajax({
-        type:'GET',
+        type: 'GET',
         url: '/sistema-carona-rp/viagem/ListaSolicitacoesAjax.jsp?dataInicial='+dataInicial+'&dataFinal?='+dataFinal,
         dataType: 'html',
         data:{
@@ -10,7 +11,7 @@ function preencheTabela(dataInicial,dataFinal){
         },
         success: function(data) {
           
-            $('#tabela').html(data);
+            $('#conteudoForm').html(data);
            
         }
         

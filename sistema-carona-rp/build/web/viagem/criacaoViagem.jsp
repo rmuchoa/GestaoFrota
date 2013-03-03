@@ -47,6 +47,7 @@
                 $("#data_retorno").datepicker($.datepicker.regional['pt-BR']);
                 $("#hora_saida").timePicker();
                 $("#hora_retorno").timePicker();
+                
             });
         </script>
         <title>Sistema de Caronas Unipampa</title>

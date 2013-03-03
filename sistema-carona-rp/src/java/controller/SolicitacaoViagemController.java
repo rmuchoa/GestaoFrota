@@ -25,6 +25,20 @@ public class SolicitacaoViagemController {
     private SolicitacaoViagemDAO solicitacaoViagemDAO;
     private SolicitacaoViagem solicitacaoViagem;
 
+    public List<SolicitacaoViagem> listar() {
+        
+        solicitacaoViagemDAO = new SolicitacaoViagemDAO();
+        return solicitacaoViagemDAO.listar();
+        
+    }
+
+    public SolicitacaoViagem buscarPorId(Integer id) {
+        
+        solicitacaoViagemDAO = new SolicitacaoViagemDAO();
+        return solicitacaoViagemDAO.buscarPorId(id);
+        
+    }
+    
     public SolicitacaoViagem inserirSolicitacao(HttpServletRequest request) {
         
         try {
@@ -82,7 +96,7 @@ public class SolicitacaoViagemController {
         
         try {
             Date dataInicio = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("dataInicial"));
-            Date dataFim = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("dataFinal"));;
+            Date dataFim = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("dataFinal"));
             return new SolicitacaoViagemDAO().buscarPorIntervaloDatas(dataInicio, dataFim);
         } catch (ParseException ex) {
             Logger.getLogger(SolicitacaoViagemController.class.getName()).log(Level.SEVERE, null, ex);
@@ -100,11 +114,5 @@ public class SolicitacaoViagemController {
         return new SolicitacaoViagemDAO().alterarSituacaoSolicitacao(solicitacao);
         
     }
-
-    public SolicitacaoViagem buscarPorId(Integer id) {
-        
-        solicitacaoViagemDAO = new SolicitacaoViagemDAO();
-        return solicitacaoViagemDAO.buscarPorId(id);
-        
-    }
+    
 }

@@ -27,6 +27,47 @@ public class SolicitacaoViagemDAO {
             e.printStackTrace();
         }
     }
+    
+    public List<SolicitacaoViagem> listar() {
+
+        List<SolicitacaoViagem> solicitacoes = new ArrayList<SolicitacaoViagem>();
+        String sql = "select * from solicitacao_viagem ";
+
+        try {
+
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                SolicitacaoViagem solicitacao = new SolicitacaoViagem();
+                solicitacao.setId(rs.getInt("id"));
+                solicitacao.setSolicitante(new UsuarioDAO().buscarPorId(rs.getInt("solicitante")));
+                solicitacao.setDataSaida(new Date(rs.getDate("data_saida").getTime()));
+                solicitacao.setLocalSaida(rs.getString("local_saida"));
+                solicitacao.setDataRetorno(new Date(rs.getDate("data_retorno").getTime()));
+                solicitacao.setLocalRetorno(rs.getString("local_retorno"));
+                solicitacao.setJustificativa(rs.getString("justificativa"));
+                solicitacao.setObservacoes(rs.getString("observacoes"));
+                solicitacao.setOrigem(new CidadeDAO().buscarPorId(rs.getInt("origem")));
+                solicitacao.setDestino(new CidadeDAO().buscarPorId(rs.getInt("destino")));
+                solicitacao.setPercurso(rs.getString("percurso"));
+                solicitacao.setSituacao(new SituacaoDAO().buscarPorId(rs.getInt("situacao_solicitacao")));
+                solicitacao.setPassageiro(Boolean.parseBoolean("eh_passageiro"));
+                solicitacao.setPassageiros(new PassageiroDAO().buscarPorSolicitacaoId(solicitacao.getId()));
+                
+                solicitacoes.add(solicitacao);
+
+            }
+            stmt.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return solicitacoes;
+
+    }
 
     public SolicitacaoViagem buscarPorId(Integer id) {
 
@@ -116,20 +157,19 @@ public class SolicitacaoViagemDAO {
         try {
 
             PreparedStatement stmt = connection.prepareStatement(sql);
-            System.out.println(new java.sql.Date(dataInicio.getTime()).toString());
-            System.out.println(new java.sql.Date(dataFim.getTime()));
             stmt.setDate(1, new java.sql.Date(dataInicio.getTime()));
             stmt.setDate(2, new java.sql.Date(dataFim.getTime()));
             ResultSet rs = stmt.executeQuery();
             
             while (rs.next()) {
-
+                
                 Integer viagemId = rs.getInt("viagem");
-                if (viagemId != null) {
+                if (viagemId != null && viagemId != 0) {
                     continue;
                 }
                 
                 SolicitacaoViagem solicitacao = new SolicitacaoViagem();
+                
                 solicitacao.setId(rs.getInt("id"));
                 solicitacao.setSolicitante(new UsuarioDAO().buscarPorId(rs.getInt("solicitante")));
                 solicitacao.setDataSaida(new Date(rs.getDate("data_saida").getTime()));
@@ -154,7 +194,7 @@ public class SolicitacaoViagemDAO {
             e.printStackTrace();
         }
                 
-        return null;
+        return solicitacoes;
     }
 
     public List<SolicitacaoViagem> buscarPorDataSaida(java.util.Date dataSaida) {
