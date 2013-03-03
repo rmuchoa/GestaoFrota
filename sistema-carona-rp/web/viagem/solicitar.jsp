@@ -45,14 +45,42 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
+        <script type="text/javascript">
+            $(document).ready(function() {
+                
+                $("#estadoOrigem").change(function() {
+                    $.ajax({
+                        url:'../ajax/cidades.jsp',
+                        dataType:'html',
+                        data:{estado: $('#estadoOrigem').val()},
+                        type:'POST',
+                        success:function(data){
+                            $('#cidadeOrigem').html(data)
+                        }
+                    });
+                });
+                
+                $("#estadoRetorno").change(function() {
+                    $.ajax({
+                        url:'../ajax/cidades.jsp',
+                        dataType:'html',
+                        data:{estado: $('#estadoRetorno').val()},
+                        type:'POST',
+                        success:function(data){
+                            $('#cidadeRetorno').html(data)
+                        }
+                    });
+                });
+                
+            });
+        </script>
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body style="">
         <h3 style="text-align: center;color: green" class="span12 well">Sistema de Caronas Unipampa</h3>
         <div class="offset1 hero-unit span9">
-
-
 
             <form action="solicitar.jsp" id="formularioSolicitacao" method="POST" class="form-horizontal">
                 <legend>Formulario de solicitação de Viagens</legend>
@@ -102,14 +130,6 @@
                         <div class="controls">
                             <select name="cidadeOrigem">
                                 <option></option>
-                                <%
-                                    CidadeController cidadeController = new CidadeController();
-                                    List<Cidade> listaCidadesOrigem = cidadeController.listar();
-                                    for (int i = 0; i < listaCidadesOrigem.size(); i++) {
-                                        Cidade cidade = listaCidadesOrigem.get(i);
-                                        out.print("<option value='" + cidade.getId() + "'>" + cidade.getNome() + " - " + cidade.getEstado().getSigla() + "</option>");
-                                    }
-                                %> 
                             </select>
                         </div>
                     </div>
@@ -161,14 +181,6 @@
                         <div class="controls">
                             <select name="cidadeRetorno">
                                 <option></option>
-                                <%
-                                    cidadeController = new CidadeController();
-                                    List<Cidade> listaCidadesDestino = cidadeController.listar();
-                                    for (int i = 0; i < listaCidadesDestino.size(); i++) {
-                                        Cidade cidade = listaCidadesDestino.get(i);
-                                        out.print("<option value='" + cidade.getId() + "'>" + cidade.getNome() + " - " + cidade.getEstado().getSigla() + "</option>");
-                                    }
-                                %> 
                             </select>
                         </div>
                     </div>

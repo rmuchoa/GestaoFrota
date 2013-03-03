@@ -38,33 +38,28 @@
         <script type="text/javas;cript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery-1.9.0.min.js"></script>
-        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.maskedinput-1.1.4.pack.js"></script>
+        <!--        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.maskedinput-1.1.4.pack.js"></script>-->
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
-        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.min.js"></script>
+        <!--        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.min.js"></script>-->
         <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
-        <script>
+        <script type="text/javascript">
             $(document).ready(function() {
-                
-                validaFormularioUsuarios();
-                
+                validaFormularioUsuario();
                 $("#estado").change(function() {
                     $.ajax({
-                        url:"cidades.jsp",
-                        context:this,
-                        dataType:"hmtl",
-                        data:{estado: $("#estado").val()},
-                        type:"POST",
-                        success:function(response){
-                            console.log(response);
-                            this.alert(response);
-                            $("#cidade").html(response);
+                        url:'../ajax/cidades.jsp',
+                        dataType:'html',
+                        data:{estado: $('#estado').val()},
+                        type:'POST',
+                        success:function(data){
+                            $('#cidade').html(data);
                         }
                     });
                 });
             });
         </script>
-        
+
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <title>Sistema de Caronas Unipampa</title>
     </head>
@@ -117,9 +112,9 @@
                                 List<TipoUsuario> listaTiposUsuario = tipoUsuarioController.listar();
                                 for (int i = 0; i < listaTiposUsuario.size(); i++) {
                                     if (usuario.getTipoUsuario().getId().equals(listaTiposUsuario.get(i).getId())) {
-                                        out.print("<option value='"+listaTiposUsuario.get(i).getId()+"' selected='true'>"+listaTiposUsuario.get(i).getDescricao()+"</option>");
+                                        out.print("<option value='" + listaTiposUsuario.get(i).getId() + "' selected='true'>" + listaTiposUsuario.get(i).getDescricao() + "</option>");
                                     } else {
-                                        out.print("<option value='"+listaTiposUsuario.get(i).getId()+"'>"+listaTiposUsuario.get(i).getDescricao()+"</option>");
+                                        out.print("<option value='" + listaTiposUsuario.get(i).getId() + "'>" + listaTiposUsuario.get(i).getDescricao() + "</option>");
                                     }
                                 }
                             %>
@@ -228,11 +223,11 @@
                             <%
                                 EstadoController estadoController = new EstadoController();
                                 List<Estado> listaEstados = estadoController.listar();
-                                for (int i = 0; i < listaEstados.size(); i++) {
-                                    if (usuario.getCidade().getEstado().getId().equals(listaEstados.get(i).getId())) {
-                                        out.print("<option value='"+listaEstados.get(i).getId()+"' selected='true'>"+listaEstados.get(i).getSigla()+"</option>");
+                                for (Estado estado : listaEstados) {
+                                    if (usuario.getCidade().getEstado().getId().equals(estado.getId())) {
+                                        out.print("<option value='" + estado.getId() + "' selected='true'>" + estado.getSigla() + "</option>");
                                     } else {
-                                        out.print("<option value='"+listaEstados.get(i).getId()+"'>"+listaEstados.get(i).getSigla()+"</option>");
+                                        out.print("<option value='" + estado.getId() + "'>" + estado.getSigla() + "</option>");
                                     }
                                 }
                             %>
@@ -246,14 +241,12 @@
                         <select id="cidade" name="cidade">
                             <%
                                 CidadeController cidadeController = new CidadeController();
-                                List<Cidade> listaCidades = cidadeController.listar();
-                                for (int i = 0; i < listaCidades.size(); i++) {
-                                    Cidade cidade = listaCidades.get(i);
-                                    System.out.println(usuario.getCidade().getId());
-                                    if (usuario.getCidade().getId().equals(listaCidades.get(i).getId())) {
-                                        out.print("<option value='"+cidade.getId()+"' selected='true'>"+cidade.getNome()+" - "+cidade.getEstado().getSigla()+"</option>");
+                                List<Cidade> listaCidades = cidadeController.listarPorEstado(usuario.getCidade().getEstado());
+                                for (Cidade cidade : listaCidades) {
+                                    if (usuario.getCidade().getId().equals(cidade.getId())) {
+                                        out.print("<option value='" + cidade.getId() + "' selected='true'>" + cidade.getNome() + "</option>");
                                     } else {
-                                        out.print("<option value='"+cidade.getId()+"'>"+cidade.getNome()+" - "+cidade.getEstado().getSigla()+"</option>");
+                                        out.print("<option value='" + cidade.getId() + "'>" + cidade.getNome() + "</option>");
                                     }
                                 }
                             %>

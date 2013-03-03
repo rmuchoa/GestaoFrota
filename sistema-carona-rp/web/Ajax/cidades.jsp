@@ -17,10 +17,10 @@
     List<Cidade> cidades = cidadeController.listarPorEstado(estado);
     
     String html = "";
-    int i = 0;
+    
     for (Cidade cidade : cidades) {
-        i++;
         html += "<option value='"+cidade.getId()+"'>"+cidade.getNome()+"</option>";
     }
+    
     out.print(html);
 %>

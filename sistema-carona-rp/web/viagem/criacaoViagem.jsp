@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="model.entity.SolicitacaoViagem"%>
 <%@page import="model.entity.Cidade"%>
 <%@page import="controller.CidadeController"%>
 <%@page import="model.entity.Estado"%>
@@ -15,7 +17,21 @@
 <%@page import="javax.servlet.http.*" %> 
 <!DOCTYPE html>
 
+<%
+    List<SolicitacaoViagem> selecionadas = null;
 
+    if (request.getMethod().equalsIgnoreCase("post")) {
+
+        if (request.getParameter("criarViagem") != null) {
+
+            if (request.getAttribute("solicitacoes") != null) {
+                selecionadas = (List<SolicitacaoViagem>) request.getAttribute("solicitacoes");
+            }
+
+        }
+
+    }
+%>
 
 <html>
     <head>
@@ -31,11 +47,10 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.ui.datepicker-pt-BR.js"></script>
-       
+
         <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.min.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/perifer-timePicker-b5195df/timePicker.css">
-
 
         <script type="text/javascript" src="/sistema-carona-rp/Ajax/Viagem.js"></script>
 
@@ -48,42 +63,74 @@
                 $("#hora_saida").timePicker();
                 $("#hora_retorno").timePicker();
                 
+                $("#estadoOrigem").change(function() {
+                    $.ajax({
+                        url:'../Ajax/cidades.jsp',
+                        dataType:'html',
+                        data:{estado: $('#estadoOrigem').val()},
+                        type:'POST',
+                        success:function(data){
+                            $('#cidadeOrigem').html(data)
+                        }
+                    });
+                });
+                
+                $("#estadoRetorno").change(function() {
+                    $.ajax({
+                        url:'../Ajax/cidades.jsp',
+                        dataType:'html',
+                        data:{estado: $('#estadoRetorno').val()},
+                        type:'POST',
+                        success:function(data){
+                            $('#cidadeRetorno').html(data)
+                        }
+                    });
+                });
+                
             });
         </script>
         <title>Sistema de Caronas Unipampa</title>
     </head>
-    
+
     <body style="">
         <h3 style="text-align: center;color: green" class="span12 well">Sistema de Caronas Unipampa</h3>
 
         <div class="offset1 hero-unit span9">
-            <div>Solicitações associadas</div>
+            <div>Solicitações Respondidas</div>
             <br/>
             <table id="tabela1" class="table table-bordered">
                 <thead>
                     <tr>
-                        <td>CD Solicitação</td>
-                        <td>Data Saida</td>
+                        <td>Id</td>
+                        <td>Data de Saida</td>
                         <td>Origem</td>
                         <td>Destino</td>
-                        <td>Status solicitação</td>
+                        <td>Situação</td>
                         <td>Selecionar</td>
                     </tr>
                     </head>
 
                 <tbody>
 
+                    <%
+                        for (SolicitacaoViagem solicitacao : selecionadas) {
+                    %>
+
                     <tr>
-                        <td id="codigo">0012</td>
-                        <td>12/02/2012</td>
-                        <td>Alegrete-RS</td>
-                        <td>Bage-RS</td>
-                        <td>Aguardando Processamento</td>
+                        <td id="codigo"><%= solicitacao.getId()%></td>
+                        <td><%= new SimpleDateFormat("dd/MM/yyyy").format(solicitacao.getDataSaida())%></td>
+                        <td><%= solicitacao.getOrigem().getNome()%></td>
+                        <td><%= solicitacao.getDestino().getNome()%></td>
+                        <td><%= solicitacao.getSituacao().getDescricao()%></td>
                         <td>
-                            <a href=""><button class="btn btn-mini">X</button></a>
+                            <a href="" class="btn btn-mini">X</a>
                             <a href=""><button class="btn btn-mini">detalhes</button></a>
                         </td>
                     </tr>
+
+                    <%
+                        }
+                    %>
 
                 </tbody>
 
@@ -106,7 +153,7 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="control-group">
                     <label class="control-label" for="inputMotorista">Motorista</label>
                     <div class="controls">
@@ -115,7 +162,7 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <fieldset>
                     <legend>Informações da origem</legend>
                     <div class="control-group">
@@ -123,7 +170,7 @@
                         <div class="controls">
                             <select name="estadoOrigem">
                                 <option>oi</option>
-                                
+
                             </select>
                         </div>
                     </div>
@@ -132,7 +179,7 @@
                         <div class="controls">
                             <select name="cidadeOrigem">
                                 <option>oi</option>
-                                
+
                             </select>
                         </div>
                     </div>
@@ -159,25 +206,25 @@
                         </div>
                     </div>
                 </fieldset>
-                            
-                                <fieldset>
+
+                <fieldset>
                     <legend>Informações do Retorno</legend>
                     <div class="control-group">
                         <label class="control-label" for="inputEstadoRetorno">Estado</label>
                         <div class="controls">
                             <select name="estadoRetorno">
                                 <option>oi</option>
-                              
+
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="control-group">
                         <label class="control-label" for="inputCidadeOrigem">Cidade:</label>
                         <div class="controls">
                             <select name="cidadeRetorno">
                                 <option></option>
-                                
+
                             </select>
                         </div>
                     </div>
@@ -204,8 +251,8 @@
                         </div>
                     </div>
                 </fieldset>  
-                            
-              <div class="control-group">
+
+                <div class="control-group">
                     <label class="control-label" for="inputPercurso">Percurso:</label>
                     <div class="controls">
                         <input class="input-xxlarge" type="text" id="percurso" name="percurso" placeholder="Alegrete/bage/alegrete">
@@ -223,40 +270,45 @@
                         </div>    
                     </div>    
                 </fieldset>              
-                
+
             </form>
             <br/>
-            
+
         </div>
         <br/>
-        
+
         <div id="myModal" title="Lista de solicitação" style="display: none">
             <table id="tabela1" class="table table-bordered">
                 <thead>
                     <tr>
-                        <td>CD Solicitação</td>
+                        <td>Id</td>
                         <td>Data Saida</td>
                         <td>Origem</td>
                         <td>Destino</td>
-                        <td>Status solicitação</td>
+                        <td>Situação</td>
                         <td>Selecionar</td>
                     </tr>
                     </head>
 
                 <tbody>
+                    <%
+                        for (SolicitacaoViagem solicitacao : selecionadas) {
+                    %>
 
                     <tr>
-                        <td id="codigo">0012</td>
-                        <td>12/02/2012</td>
-                        <td>Alegrete-RS</td>
-                        <td>Bage-RS</td>
-                        <td>Aguardando Processamento</td>
+                        <td id="codigo"><%= solicitacao.getId()%></td>
+                        <td><%= new SimpleDateFormat("dd/MM/yyyy").format(solicitacao.getDataSaida())%></td>
+                        <td><%= solicitacao.getOrigem().getNome()%></td>
+                        <td><%= solicitacao.getDestino().getNome()%></td>
+                        <td><%= solicitacao.getSituacao().getDescricao()%></td>
                         <td>
-                            <input type='checkbox' name='select' value='Bike'>
-                           
+                            <input type='checkbox' name='solicitacao<%= solicitacao.getId() %>' value='<%= solicitacao.getId() %>'>
                         </td>
                     </tr>
 
+                    <%
+                        }
+                    %>
                 </tbody>
 
             </table>

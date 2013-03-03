@@ -48,7 +48,7 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.ui.datepicker-pt-BR.js"></script>
-        <script type="text/javascript" src="/sistema-carona-rp/Ajax/Viagem.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/ajax/Viagem.js"></script>
 
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <script>

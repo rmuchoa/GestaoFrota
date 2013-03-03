@@ -24,7 +24,6 @@
         usuarioController.inserir(request);
         response.sendRedirect("listaUsuarios.jsp");
     }
-
 %>
 
 <html>
@@ -44,28 +43,23 @@
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <script type="text/javascript">
             $(document).ready(function() {
-                    validaFormularioUsuario();
+                validaFormularioUsuario();
                 $("#estado").change(function() {
                     $.ajax({
-                        url:'cidades.jsp',
+                        url:'../ajax/cidades.jsp',
                         dataType:'html',
                         data:{estado: $('#estado').val()},
                         type:'POST',
                         success:function(data){
-                            console.log(data);
-                            alert('chegou!!!');
                             $('#cidade').html(data)
-                        },
-                        error:function(status,error){
-                            alert(error)
                         }
                     });
                 });
             });            
         </script>
-        
-        
-        
+
+
+
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <title>Sistema de Caronas Unipampa</title>
     </head>
@@ -106,7 +100,7 @@
                                 TipoUsuarioController tipoVeiculoController = new TipoUsuarioController();
                                 List<TipoUsuario> listaTiposUsuario = tipoVeiculoController.listar();
                                 for (int i = 0; i < listaTiposUsuario.size(); i++) {
-                                    out.print("<option value='"+listaTiposUsuario.get(i).getId()+"'>" + listaTiposUsuario.get(i).getDescricao() + "</option>");
+                                    out.print("<option value='" + listaTiposUsuario.get(i).getId() + "'>" + listaTiposUsuario.get(i).getDescricao() + "</option>");
                                 }
                             %>
 
@@ -216,7 +210,7 @@
                                 EstadoController estadoController = new EstadoController();
                                 List<Estado> listaEstados = estadoController.listar();
                                 for (int i = 0; i < listaEstados.size(); i++) {
-                                    out.print("<option value='"+listaEstados.get(i).getId() +"'>" + listaEstados.get(i).getSigla() + "</option>");
+                                    out.print("<option value='" + listaEstados.get(i).getId() + "'>" + listaEstados.get(i).getSigla() + "</option>");
                                 }
                             %>
                         </select>
@@ -227,7 +221,7 @@
                     <label class="control-label"  for="inputCidade">Cidade</label>
                     <div  class="controls">
                         <select id="cidade" name="cidade">
-                           <option></option>
+                            <option></option>
                         </select>
                     </div>
                 </div> 

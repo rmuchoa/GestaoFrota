@@ -37,9 +37,9 @@
             }
             
             if (request.getAttribute("action")==null) {
-                 System.out.println("chego aq");
+                
                 if (request.getParameter("add") != null) {
-                    System.out.println("resquest solicitacao:"+request.getParameter("solicitacao"));
+                    
                     SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
                     SolicitacaoViagem solicitacaoViagem = solicitacaoViagemController.buscarPorId(Integer.parseInt(request.getParameter("solicitacao")));
                     request.setAttribute("solicitacao", solicitacaoViagem);
@@ -48,6 +48,7 @@
                     passageiroController.adicionarPassageiro(request);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("passageiros.jsp");
                     dispatcher.forward(request, response);
+                    
                 }
             } else if (request.getAttribute("action").equals("list")) {
                 request.setAttribute("action", "add");
