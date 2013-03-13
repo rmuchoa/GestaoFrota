@@ -113,7 +113,7 @@
                     <div class="control-group">
                         <label class="control-label" for="inputEstadoOrigem">Estado de origem:</label>
                         <div class="controls">
-                            <select name="estadoOrigem">
+                            <select id="estadoOrigem" name="estadoOrigem">
                                 <option></option>
                                 <%
                                     EstadoController estadoController = new EstadoController();
@@ -128,7 +128,7 @@
                     <div class="control-group">
                         <label class="control-label" for="inputCidadeOrigem">Cidade de origem:</label>
                         <div class="controls">
-                            <select name="cidadeOrigem">
+                            <select id="cidadeOrigem" name="cidadeOrigem">
                                 <option></option>
                             </select>
                         </div>
@@ -163,7 +163,7 @@
                     <div class="control-group">
                         <label class="control-label" for="inputEstadoRetorno">Estado</label>
                         <div class="controls">
-                            <select name="estadoRetorno">
+                            <select id="estadoRetorno" name="estadoRetorno">
                                 <option></option>
                                 <%
                                     estadoController = new EstadoController();
@@ -179,7 +179,7 @@
                     <div class="control-group">
                         <label class="control-label" for="inputCidadeOrigem">Cidade:</label>
                         <div class="controls">
-                            <select name="cidadeRetorno">
+                            <select id="cidadeRetorno" name="cidadeRetorno">
                                 <option></option>
                             </select>
                         </div>
