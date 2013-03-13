@@ -65,7 +65,7 @@
                 
                 $("#estadoOrigem").change(function() {
                     $.ajax({
-                        url:'../Ajax/cidades.jsp',
+                        url:'../ajax/cidades.jsp',
                         dataType:'html',
                         data:{estado: $('#estadoOrigem').val()},
                         type:'POST',
@@ -77,7 +77,7 @@
                 
                 $("#estadoRetorno").change(function() {
                     $.ajax({
-                        url:'../Ajax/cidades.jsp',
+                        url:'../ajax/cidades.jsp',
                         dataType:'html',
                         data:{estado: $('#estadoRetorno').val()},
                         type:'POST',

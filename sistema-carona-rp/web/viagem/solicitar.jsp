@@ -163,7 +163,7 @@
                     <div class="control-group">
                         <label class="control-label" for="inputEstadoRetorno">Estado</label>
                         <div class="controls">
-                            <select name="estadoRetorno">
+                            <select id="estadoRetorno" name="estadoRetorno">
                                 <option></option>
                                 <%
                                     estadoController = new EstadoController();
@@ -179,7 +179,7 @@
                     <div class="control-group">
                         <label class="control-label" for="inputCidadeOrigem">Cidade:</label>
                         <div class="controls">
-                            <select name="cidadeRetorno">
+                            <select id="cidadeRetorno" name="cidadeRetorno">
                                 <option></option>
                             </select>
                         </div>
