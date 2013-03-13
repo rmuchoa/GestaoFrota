@@ -5,7 +5,7 @@
 package model.dao;
 
 import java.sql.*;
-import jdbc.ConnectionFactory;
+import util.ConnectionFactory;
 import java.util.ArrayList;
 import java.util.List;
 import javax.jms.JMSException;
