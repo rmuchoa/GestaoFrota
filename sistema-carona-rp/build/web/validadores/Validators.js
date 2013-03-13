@@ -13,8 +13,8 @@ function validaFormularioVeiculo(){
         rules:{
             placa:{
                 required: true, 
-                minlength: 8,
-                maxlength: 8
+                minlength: 7,
+                maxlength: 7
             },
             renavan:{
                 required: true, 
@@ -50,13 +50,13 @@ function validaFormularioVeiculo(){
         messages:{
             placa:{
                 required: "Digite a placa do veiculo",
-                minlength: "A placa deve seguir o modelo GGG-5454",
-                maxlength: "A placa deve seguir o modelo GGG-5454"
+                minlength: "A placa deve seguir o modelo GGG5454",
+                maxlength: "A placa deve seguir o modelo GGG5454"
             },
             renavan:{
                 required: "Digite um Renavam",
-                minLength: "O renavam deve seguir o modelo 6665556566",
-                maxLength: "O renavam deve seguir o modelo 6665556566"
+                minlength: "O renavam deve seguir o modelo 1234567890",
+                maxlength: "O renavam deve seguir o modelo 1234567890"
             },
             tipo_veiculo:{
                 required: "Selecione o tipo de veiculo"
@@ -72,15 +72,15 @@ function validaFormularioVeiculo(){
             },
             ano:{
                 required: "Informe o ano do veiculo",
-                digits: "Digite apenas numero"
+                digits: "Digite apenas número"
             },
             capacidade_passageiros:{
                 required:" Informe a capacidade de passageiros",
-                digits: "Digite apenas numero"
+                digits: "Digite apenas número"
             },
             capacidade_carga:{
-                required:" Informe a capacidade de carga em Kg do veiculo",
-                digits: "Digite apenas numero"
+                required:" Informe a capacidade de carga em kg do veiculo",
+                digits: "Digite apenas número"
             }
         }
     });
