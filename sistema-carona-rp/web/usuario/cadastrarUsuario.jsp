@@ -46,7 +46,7 @@
                 validaFormularioUsuario();
                 $("#estado").change(function() {
                     $.ajax({
-                        url:'../ajax/cidades.jsp',
+                        url:'/sistema-carona-rp/ajax/cidades.jsp',
                         dataType:'html',
                         data:{estado: $('#estado').val()},
                         type:'POST',
