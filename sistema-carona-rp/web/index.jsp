@@ -54,7 +54,7 @@
             <hr>
             <footer style="text-align: center">
                 <p>
-                    &copy; 2013 <b>IbirapuiTech Coporation</b> - Todos os direitos reservados.
+                    &copy; 2013 <b>IbirapuiTech Corporation</b> - Todos os direitos reservados.
                 </p>
                 <em>
                     Desenvolvido como trabalho para a disciplina de Resolução de Problemas VI.
