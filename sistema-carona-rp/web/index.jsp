@@ -16,7 +16,7 @@
 
 <html>
     <head>
-
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap.css">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap-responsive.css">
@@ -24,25 +24,41 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
-        
+
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body style="">
-        <h3 style="color: green;text-align: center" class="span12 well">Sistema de Caronas Unipampa</h3>
+        <h3 style="color: green; text-align: center" class="span12 well">Sistema de Caronas Unipampa</h3>
         <div class="offset2 span8 offset2">
-            <div class="hero-unit">
-                <a href="veiculo/listaVeiculos.jsp"><button class="btn btn-success">
+            <div class="hero-unit" id="div-menu-home">
+                <a href="veiculo/listaVeiculos.jsp">
+                    <button class="btn btn-success">
                         <img src="img/car.png">   
-                    </button></a>
-                <a href="usuario/listaUsuarios.jsp"><button class="btn btn-success">
+                    </button>
+                </a>
+                <a href="usuario/listaUsuarios.jsp">
+                    <button class="btn btn-success">
                         <img src="img/user-mapping.png">   
-                    </button></a>
-                <a href="viagem/solicitar.jsp"><button class="btn btn-success">
+                    </button>
+                </a>
+                <a href="viagem/solicitar.jsp">
+                    <button class="btn btn-success">
                         <img src="img/suitcase_travel.png">   
-                    </button></a>
-             
+                    </button>
+                </a>
             </div>
-            
+        </div>
+
+        <div class="span12 well">
+            <hr>
+            <footer style="text-align: center">
+                <p>
+                    &copy; 2013 <b>IbirapuiTech Coporation</b> - Todos os direitos reservados.
+                </p>
+                <p>
+                    Desenvolvido como trabalho para a disciplina de Resolução de Problemas VI.
+                </p>
+            </footer>
         </div>
     </body>
 </html>
@@ -52,5 +68,5 @@
         VeiculoController veiculoController = new VeiculoController();
         veiculoController.inserirVeiculo(request);
     }
-    
+
 %>
