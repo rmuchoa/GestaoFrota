@@ -39,6 +39,18 @@
             <hr>           
             <div class="well">
                 <h3>Lista de Veículos</h3>
+                <%
+                    if (request.getAttribute("removido") != null) {
+
+                        Boolean removido = (Boolean) request.getAttribute("removido");
+                        if (removido) {
+                            out.println(""
+                                    + "<div class='alert alert-success'>"
+                                    + "<button type='button' class='close' data-dismiss='alert'>&times;</button>"
+                                    + "<strong> Sucesso: </strong> Veículo Excluido com Sucesso! </div>");
+                        }
+                    }
+                %>                
                 <hr>
                 <br />
                 <div>
