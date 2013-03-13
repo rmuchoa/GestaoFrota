@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jdbc.ConnectionFactory;
+import util.ConnectionFactory;
 import model.entity.Situacao;
 
 /**

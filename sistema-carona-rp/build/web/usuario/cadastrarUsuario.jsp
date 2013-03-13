@@ -46,56 +46,67 @@
                 validaFormularioUsuario();
                 $("#estado").change(function() {
                     $.ajax({
-                        url:'/sistema-carona-rp/ajax/cidades.jsp',
-                        dataType:'html',
-                        data:{estado: $('#estado').val()},
-                        type:'POST',
-                        success:function(data){
+                        url: '/sistema-carona-rp/ajax/cidades.jsp',
+                        dataType: 'html',
+                        data: {estado: $('#estado').val()},
+                        type: 'POST',
+                        success: function(data) {
                             $('#cidade').html(data)
                         }
                     });
                 });
-            });            
+            });
         </script>
-
-
 
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body>
-        <h3 style="color: green;text-align: center"  class="span12 well">Sistema de Caronas Unipampa</h3>
-        <div class="offset2 span8 offset2">
+        <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
+        <div class="offset1 span10 offset1">
 
-            <div id="teste">oi</div>
+            <nav class="navbar">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="../index.jsp">Página Inicial</a><span class="divider">/</span>
+                    </li>
+                    <li>
+                        <a href="listaUsuarios.jsp">Lista de Usuários</a><span class="divider">/</span>                        
+                    </li>                   
+                    <li class="active">
+                        Cadastro de Usuário
+                    </li>
+                </ul>
+            </nav>
+            <hr>           
 
             <form action="cadastrarUsuario.jsp" method="POST" id="formularioUsuario" class="form-horizontal well">
 
                 <div class="control-group">
                     <label class="control-label" for="inputNome">Nome</label>
                     <div class="controls">
-                        <input type="text" id="nome" name="nome" placeholder="Digite o seu nome">
+                        <input type="text" id="nome" name="nome" placeholder="Digite o seu nome" title="Insira o Nome do Usuário" required="true" autofocus>
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputLogin">Login</label>
                     <div class="controls">
-                        <input type="text"  id="login" name="login" placeholder="Informa um login">
+                        <input type="text"  id="login" name="login" placeholder="Informa um login" title="Insira o Login do Usuário" required="true">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputSenha">Senha</label>
                     <div class="controls">
-                        <input type="password" name="senha" id="senha" placeholder="Informe uma senha">
+                        <input type="password" name="senha" id="senha" placeholder="Informe uma senha" title="Insira a Senha do Usuário" required="true">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label"  for="inputTipo">Tipo</label>
                     <div  class="controls">
-                        <select id="tipo" name="tipo_usuario">
+                        <select id="tipo" name="tipo_usuario" title="Selecione o Tipo do Usuário" required="true">
                             <%
                                 TipoUsuarioController tipoVeiculoController = new TipoUsuarioController();
                                 List<TipoUsuario> listaTiposUsuario = tipoVeiculoController.listar();
@@ -111,28 +122,28 @@
                 <div class="control-group">
                     <label class="control-label" for="inputEmail">Email</label>
                     <div class="controls">
-                        <input type="text" name="email" id="email" placeholder="Informe um e-mail">
+                        <input type="email" name="email" id="email" placeholder="Informe um e-mail" title="Insira o E-mail do Usuário" required="true">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputTelefone">telefone</label>
                     <div class="controls">
-                        <input type="text" name="telefone" id="telefone" placeholder="5532003200">
+                        <input type="text" name="telefone" id="telefone" placeholder="5532003200" title="Insira o Telefône do Usuário">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputCelular">Celular</label>
                     <div class="controls">
-                        <input type="text" name="celular" id="celular" placeholder="5581008100">
+                        <input type="text" name="celular" id="celular" placeholder="5581008100" title="Insira o Telefône Celular do Usuário">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputRg">RG</label>
                     <div class="controls">
-                        <input type="text" id="rg"  name="rg" placeholder="Informe o seu rg">
+                        <input type="text" id="rg"  name="rg" placeholder="Informe o seu rg" title="Insira o RG do Usuário" required="true">
 
                     </div>
                 </div>
@@ -141,7 +152,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputSiape">Siape</label>
                     <div class="controls">
-                        <input type="text" name="siape" id="siape" placeholder="Informe seu número siape">
+                        <input type="text" name="siape" id="siape" placeholder="Informe seu número siape" title="Insira o SIAPE do Usuário">
                     </div>
                 </div>
 
@@ -149,7 +160,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputCnh">Habilitação</label>
                     <div class="controls">
-                        <input type="text" name="numero_cnh" id="cnh" placeholder="Carteira de habilitação">
+                        <input type="text" name="numero_cnh" id="cnh" placeholder="Carteira de habilitação" title="Insira a Habilitação do Usuário">
                     </div>
                 </div>
 
@@ -157,7 +168,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputValidade">Validade</label>
                     <div class="controls">
-                        <input type="text" name="validade_cnh" id="validade" placeholder="12/12/2012">
+                        <input type="text" name="validade_cnh" id="validade" placeholder="12/12/2012" title="Insire a Válidade da CNH do Usuário">
                     </div>
                 </div>
 
@@ -165,7 +176,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputCategoria">Categoria</label>
                     <div class="controls">
-                        <input type="text" name="categoria_cnh" id="categoria" placeholder="ABC">
+                        <input type="text" name="categoria_cnh" id="categoria" placeholder="ABC" title="Insira a Categoria">
                     </div>
                 </div>
 
@@ -173,7 +184,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputRua">Rua</label>
                     <div class="controls">
-                        <input type="text" name="rua" id="rua" placeholder="Rua">
+                        <input type="text" name="rua" id="rua" placeholder="Rua" title="Insira a Rua">
                     </div>
                 </div>
 
@@ -181,7 +192,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputNumero">Numero</label>
                     <div class="controls">
-                        <input type="text" name="numero" id="numero" placeholder="Somente numeros">
+                        <input type="text" name="numero" id="numero" placeholder="Somente numeros" title="Insira o Número da Residência">
                     </div>
                 </div>
 
@@ -189,7 +200,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputComplemento">Complemento</label>
                     <div class="controls">
-                        <input type="text" name="complemento" id="complemento" placeholder="Complemento">
+                        <input type="text" name="complemento" id="complemento" placeholder="Complemento" title="Insira o Complemento">
                     </div>
                 </div>
 
@@ -197,14 +208,14 @@
                 <div class="control-group">
                     <label class="control-label" for="inputCep">CEP</label>
                     <div class="controls">
-                        <input type="text" name="cep" id="cep" placeholder="99500000">
+                        <input type="text" name="cep" id="cep" placeholder="99500000" title="Insira o CEP">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label"  for="inputEstado">Estado</label>
                     <div  class="controls">
-                        <select id="estado" name="estado">
+                        <select id="estado" name="estado" title="Selecione o Estado">
                             <option></option>
                             <%
                                 EstadoController estadoController = new EstadoController();
@@ -220,24 +231,33 @@
                 <div class="control-group">
                     <label class="control-label"  for="inputCidade">Cidade</label>
                     <div  class="controls">
-                        <select id="cidade" name="cidade">
+                        <select id="cidade" name="cidade" title="Selecione a Cidade">
                             <option></option>
                         </select>
                     </div>
                 </div> 
+                <hr>
 
-                <div class="control-group">
-                    <div class="controls">
-                        <input type="submit" id="enviar" value="Cadastrar" class="btn">
-                        <div class="btn"><a href="listaUsuarios.jsp">Cancelar</a></div>
-                    </div>
-                </div>
+                <p>
+                    <a href="listaUsuarios.jsp" class="btn btn-info btn" title="Clique aqui para Retornar a Página Anterior!">&laquo; Voltar </a>
 
-
+                    <button type="submit" class="btn btn-success btn" title="Clique aqui para Cadastrar um Novo Usuário!">
+                        <i class="icon-ok"></i> Cadastrar
+                    </button>
+                </p>
             </form>
-
         </div>
+
+        <div class="span12 well">
+            <hr>
+            <footer style="text-align: center">
+                <p>
+                    &copy; 2013 <b>IbirapuiTech Corporation</b> - Todos os direitos reservados.
+                </p>
+                <em>
+                    Desenvolvido como trabalho para a disciplina de Resolução de Problemas VI.
+                </em>
+            </footer>
+        </div>                      
     </body>
-
-
 </html>

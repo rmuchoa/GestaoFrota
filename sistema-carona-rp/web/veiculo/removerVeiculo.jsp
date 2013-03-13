@@ -40,14 +40,11 @@
             veiculoDAO.removerVeicupoPorId(veiculo.getId());
             VeiculoOpcionalVeiculoDAO veiculo_opcional_veiculoDAO = new VeiculoOpcionalVeiculoDAO();
             veiculo_opcional_veiculoDAO.remover(veiculo.getId());
-            response.sendRedirect("listaVeiculos.jsp");
+            request.setAttribute("removido", true);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("listaVeiculos.jsp");
+            dispatcher.forward(request, response);
            
             %>
-            <div class="offset1 span8 offset1 well">
-                Usuario removido
-            </div>
-           
-
         </div>
     </body>
 </html>

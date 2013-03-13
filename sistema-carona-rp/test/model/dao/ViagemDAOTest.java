@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import jdbc.ConnectionFactory;
+import util.ConnectionFactory;
 import model.entity.SolicitacaoViagem;
 import model.entity.Usuario;
 import model.entity.Viagem;
