@@ -28,7 +28,7 @@
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body style="">
-        <h3 style="color: green; text-align: center" class="span12 well">Sistema de Caronas Unipampa</h3>
+         <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
         <div class="offset2 span8 offset2">
             <div class="hero-unit" id="div-menu-home">
                 <a href="veiculo/listaVeiculos.jsp">

@@ -23,26 +23,38 @@
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body>
-        <h3 style="color: green;text-align: center" class="span12 well">Sistema de Caronas Unipampa</h3>
-        <div class=" offset1 span10 well offset1">
+        <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
+        <div class="offset1 span10 well offset1">
 
-            <h3>Lista de Veículos do sistema</h3>
+            <nav class="navbar">
+                 <ul class="breadcrumb">
+                    <li>
+                        <a href="../index.jsp">Página Inicial</a><span class="divider">/</span>
+                    </li>
+                    <li class="active">
+                        Lista de Veículos
+                    </li>
+                </ul>
+            </nav>
+            <hr>           
+            
+            <h3>Lista de Veículos</h3>
             <hr>
             <br />
             <div>
-                <a href="index.jsp" class="btn btn-large btn-primary"  >Novo veículo</a>
+                <a href="index.jsp" class="btn btn btn-primary">Novo Veículo</a>
             </div>
             <br />
-            <table class="table table-bordered">
+            <table class="table table-striped table-bordered table-condensed">
                 <thead>
                     <tr>
-                        <td>Placa</td>
-                        <td>Cor</td>
-                        <td>Modelo</td>
-                        <td>Marca</td>
-                        <td>Capacidade Pessoas</td>
-                        <td>Capacidade Carga</td>
-                        <td>Ações</td>
+                        <th>Placa</th>
+                        <th>Cor</th>
+                        <th>Modelo</th>
+                        <th>Marca</th>
+                        <th>Capacidade Pessoas</th>
+                        <th>Capacidade Carga</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,6 +78,12 @@
 
                 </tbody>
             </table>
+
+            <hr>
+            <br />
+            <div>
+                <a href="../index.jsp" class="btn btn-info btn">&laquo; Voltar </a>
+            </div>
         </div>
 
         <div class="span12 well">
@@ -74,9 +92,9 @@
                 <p>
                     &copy; 2013 <b>IbirapuiTech Coporation</b> - Todos os direitos reservados.
                 </p>
-                <p>
+                <em>
                     Desenvolvido como trabalho para a disciplina de Resolução de Problemas VI.
-                </p>
+                </em>
             </footer>
         </div>
     </body>
