@@ -54,7 +54,7 @@
                 <hr>
                 <br />
                 <div>
-                    <a href="index.jsp" class="btn btn btn-primary">Novo Veículo</a>
+                    <a href="index.jsp" class="btn btn btn-primary" title="Clique aqui para Cadastrar um Novo Veículo!">Novo Veículo</a>
                 </div>
                 <br />
                 <table class="table table-striped table-bordered table-condensed">
@@ -82,8 +82,8 @@
                                 out.println("<td>" + lista.get(i).getMarca() + "</td>");
                                 out.println("<td>" + lista.get(i).getCapacidadePassageiros() + "</td>");
                                 out.println("<td>" + lista.get(i).getCapacidadeCarga() + "</td>"
-                                        + "            <td><a href='editarVeiculo.jsp?id=" + lista.get(i).getId() + "'><img src='/sistema-carona-rp/img/edit_pencil.png' /></a></td>"
-                                        + "            <td><a href='removerVeiculo.jsp?id=" + lista.get(i).getId() + "'><img src='/sistema-carona-rp/img/Gnome-Edit-Delete-32.png' /></a></td>"
+                                        + "            <td title='Clique aqui para Editar o Veículo!'><a href='editarVeiculo.jsp?id=" + lista.get(i).getId() + "'><img src='/sistema-carona-rp/img/edit_pencil.png' /></a></td>"
+                                        + "            <td title='Clique aqui para Excluir o Veículo!'><a href='removerVeiculo.jsp?id=" + lista.get(i).getId() + "'><img src='/sistema-carona-rp/img/Gnome-Edit-Delete-32.png' /></a></td>"
                                         + "            </tr>");
                             }
                         %>
@@ -94,7 +94,7 @@
                 <hr>
                 <br />
                 <div>
-                    <a href="../index.jsp" class="btn btn-info btn">&laquo; Voltar </a>
+                    <a href="../index.jsp" class="btn btn-info btn" title="Clique aqui para Retornar a Página Anterior!">&laquo; Voltar </a>
                 </div>
             </div>
         </div>
