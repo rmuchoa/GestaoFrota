@@ -20,6 +20,7 @@
 <!DOCTYPE html>
 
 <%
+   
     List<SolicitacaoViagem> selecionadas = null;
 
     if (request.getMethod().equalsIgnoreCase("post")) {
@@ -114,19 +115,22 @@
 
                 <tbody>
 
-                    <%
-                        for (SolicitacaoViagem solicitacao : selecionadas) {
+                    <%  
+                       ViagemController viagemController = new ViagemController();
+                       for (SolicitacaoViagem solicitacao : selecionadas) {
                     %>
 
-                    <tr>
-                        <td id="codigo"><%= solicitacao.getId()%></td>
+                    <tr  id="<%= solicitacao.getId()%>">
+                        <td id="identificador" ><%= solicitacao.getId()%></td>
                         <td><%= new SimpleDateFormat("dd/MM/yyyy").format(solicitacao.getDataSaida())%></td>
                         <td><%= solicitacao.getOrigem().getNome()%></td>
                         <td><%= solicitacao.getDestino().getNome()%></td>
                         <td><%= solicitacao.getSituacao().getDescricao()%></td>
                         <td>
-                            <a href="" class="btn btn-mini">X</a>
-                            <a href=""><button class="btn btn-mini">detalhes</button></a>
+                            
+                           
+                            <a href="#" onclick="removerItemTabela(<%= solicitacao.getId()%>)" class="btn btn-mini">X</a>
+                            <a href="#" onclick="exibirDetalhesItemDaTabela(<%= viagemController.criarDetalheItem(solicitacao)%>)" class="btn btn-mini" >detalhes</a>
                         </td>
                     </tr>
 
@@ -140,7 +144,7 @@
             <div class="span12">
                 <div class="span5"></div>    
                 <div class="span4">
-                    <a href="" onclick="adicionarNovasSolicitacoes()" data-toggle="modal" class="btn btn-large">Adcionar outra solicitação</a>
+                    <a href="" onclick="adicionarNovasSolicitacoes()" data-toggle="modal" class="btn btn-large">Adicionar outra solicitação</a>
                 </div>           
             </div>           
 
@@ -280,45 +284,15 @@
         <br/>
 
         <div id="myModal" title="Lista de solicitação" style="display: none">
-            <table id="tabela1" class="table table-bordered">
-                <thead>
-                    <tr>
-                        <td>Id</td>
-                        <td>Data Saida</td>
-                        <td>Origem</td>
-                        <td>Destino</td>
-                        <td>Situação</td>
-                        <td>Selecionar</td>
-                    </tr>
-                    </head>
+            
+                    
 
-                <tbody>
-                    <%
-                        List<SolicitacaoViagem> lista = null; 
-                        SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
-                        lista = solicitacaoViagemController.listaAcrescenta(selecionadas);
-                        for (SolicitacaoViagem solicitacao1 : lista) {
-                            
-                    %>
+                <div id="ResultTabela"></div>
 
-                    <tr>
-                        <td id="codigo"><%= solicitacao1.getId()%></td>
-                        <td><%= new SimpleDateFormat("dd/MM/yyyy").format(solicitacao1.getDataSaida())%></td>
-                        <td><%= solicitacao1.getOrigem().getNome()%></td>
-                        <td><%= solicitacao1.getDestino().getNome()%></td>
-                        <td><%= solicitacao1.getSituacao().getDescricao()%></td>
-                        <td>
-                            <input type='checkbox' name='solicitacao<%= solicitacao1.getId() %>' value='<%= solicitacao1.getId() %>'>
-                        </td>
-                    </tr>
-
-                    <%
-                         
-                      }
-                    %>
-                </tbody>
-
-            </table>
+               
         </div>
+        <div id="ModalItemTabela" title="Lista de solicitação" style="display: none">
+
+        </div>            
     </body>
 </html>

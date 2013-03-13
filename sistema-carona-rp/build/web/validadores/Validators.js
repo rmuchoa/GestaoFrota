@@ -322,8 +322,6 @@ function validaSolicitacaoViagem(){
 function verificaCamposNumericos(){
     
     
-    
-    
 }
 
 

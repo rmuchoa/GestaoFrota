@@ -91,4 +91,17 @@ public class ViagemController {
         
     }
     
+    public String criarDetalheItem(SolicitacaoViagem solicitacao){
+        String mensagem = "'Identificador da solicitação"+solicitacao.getId()+"<br/>"+
+        "Nome do solicitante: "+solicitacao.getSolicitante().getNome()+"<br/>"+
+        "Email: "+solicitacao.getSolicitante().getEmail()+"<br/>"+
+        "Telefone: "+solicitacao.getSolicitante().getTelefone()+"<br/>"+
+        "Data saída: "+solicitacao.getDataSaida()+"<br/>"+
+        "Data retorno: "+solicitacao.getDataRetorno()+"<br/>"+
+        "Origem: "+solicitacao.getOrigem().getNome()+"<br/>"+
+        "Destino: "+solicitacao.getDestino().getNome()+"<br/>"+
+        "Situação: "+solicitacao.getSituacao().getDescricao()+"'";
+        return mensagem;
+    }
+    
 }

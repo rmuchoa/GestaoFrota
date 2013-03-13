@@ -51,6 +51,21 @@
         <h3 style="color: green;text-align: center" class="span12 well">Sistema de Caronas Unipampa</h3>
         <div class="offset2 span8 offset2">
 
+                 <nav class="navbar">
+                 <ul class="breadcrumb">
+                    <li>
+                        <a href="../index.jsp">Página Inicial</a><span class="divider">/</span>
+                    </li>
+                    <li>
+                        <a href="listaVeiculos.jsp">Lista de Veículos</a><span class="divider">/</span>                        
+                    </li>                   
+                    <li class="active">
+                        Lista de Veículos
+                    </li>
+                </ul>
+            </nav>
+            <hr>
+            
         <form action="index.jsp" method="POST" id="formularioVeiculo" class="form-horizontal well">
 
                 <div class="control-group">
