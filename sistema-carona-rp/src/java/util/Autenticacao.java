@@ -17,6 +17,7 @@ public class Autenticacao {
     
     private String page;
     
+    
     public Autenticacao () {
         this.page = "index.jsp";
     }
