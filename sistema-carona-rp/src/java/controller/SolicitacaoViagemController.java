@@ -32,6 +32,23 @@ public class SolicitacaoViagemController {
         
     }
 
+    public List<SolicitacaoViagem> listaAcrescenta(List<SolicitacaoViagem> listaParaRemover) {
+        List<SolicitacaoViagem> lista;
+        solicitacaoViagemDAO = new SolicitacaoViagemDAO();
+        lista =  solicitacaoViagemDAO.listar();
+        for(int i=0;i<lista.size();i++){
+            for(int j=0;j<listaParaRemover.size();j++){
+                if(lista.get(i).getId()==listaParaRemover.get(j).getId()){
+                 lista.remove(i);   
+                }
+               
+            }
+             System.out.println( lista.get(i).getId());
+        }
+        return lista;
+        
+    }
+
     public SolicitacaoViagem buscarPorId(Integer id) {
         
         solicitacaoViagemDAO = new SolicitacaoViagemDAO();
@@ -46,6 +63,7 @@ public class SolicitacaoViagemController {
             this.solicitacaoViagem = new SolicitacaoViagem();
             this.solicitacaoViagem.setSolicitante(new UsuarioDAO().buscarPorId(Integer.parseInt(request.getParameter("solicitante"))));
             this.solicitacaoViagem.setPassageiro(Boolean.parseBoolean(request.getParameter("passageiro")));
+            System.out.println("Cidade "+request.getParameter("cidadeOrigem"));
             this.solicitacaoViagem.setOrigem(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter("cidadeOrigem"))));
             this.solicitacaoViagem.setDataSaida(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(
                     request.getParameter("dataSaida") + " " + request.getParameter("horarioSaida")));

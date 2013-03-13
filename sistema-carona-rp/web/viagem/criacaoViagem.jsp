@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="controller.SolicitacaoViagemController"%>
+<%@page import="controller.ViagemController"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="model.entity.SolicitacaoViagem"%>
 <%@page import="model.entity.Cidade"%>
@@ -52,7 +54,7 @@
         <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.min.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/perifer-timePicker-b5195df/timePicker.css">
 
-        <script type="text/javascript" src="/sistema-carona-rp/Ajax/Viagem.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/ajax/Viagem.js"></script>
 
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <script>
@@ -292,22 +294,27 @@
 
                 <tbody>
                     <%
-                        for (SolicitacaoViagem solicitacao : selecionadas) {
+                        List<SolicitacaoViagem> lista = null; 
+                        SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
+                        lista = solicitacaoViagemController.listaAcrescenta(selecionadas);
+                        for (SolicitacaoViagem solicitacao1 : lista) {
+                            
                     %>
 
                     <tr>
-                        <td id="codigo"><%= solicitacao.getId()%></td>
-                        <td><%= new SimpleDateFormat("dd/MM/yyyy").format(solicitacao.getDataSaida())%></td>
-                        <td><%= solicitacao.getOrigem().getNome()%></td>
-                        <td><%= solicitacao.getDestino().getNome()%></td>
-                        <td><%= solicitacao.getSituacao().getDescricao()%></td>
+                        <td id="codigo"><%= solicitacao1.getId()%></td>
+                        <td><%= new SimpleDateFormat("dd/MM/yyyy").format(solicitacao1.getDataSaida())%></td>
+                        <td><%= solicitacao1.getOrigem().getNome()%></td>
+                        <td><%= solicitacao1.getDestino().getNome()%></td>
+                        <td><%= solicitacao1.getSituacao().getDescricao()%></td>
                         <td>
-                            <input type='checkbox' name='solicitacao<%= solicitacao.getId() %>' value='<%= solicitacao.getId() %>'>
+                            <input type='checkbox' name='solicitacao<%= solicitacao1.getId() %>' value='<%= solicitacao1.getId() %>'>
                         </td>
                     </tr>
 
                     <%
-                        }
+                         
+                      }
                     %>
                 </tbody>
 
