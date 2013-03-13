@@ -49,40 +49,53 @@
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <script type="text/javascript">
             $(document).ready(function() {
-                
+
                 $("#estadoOrigem").change(function() {
                     $.ajax({
-                        url:'../ajax/cidades.jsp',
-                        dataType:'html',
-                        data:{estado: $('#estadoOrigem').val()},
-                        type:'POST',
-                        success:function(data){
+                        url: '../ajax/cidades.jsp',
+                        dataType: 'html',
+                        data: {estado: $('#estadoOrigem').val()},
+                        type: 'POST',
+                        success: function(data) {
                             $('#cidadeOrigem').html(data)
                         }
                     });
                 });
-                
+
                 $("#estadoRetorno").change(function() {
                     $.ajax({
-                        url:'../ajax/cidades.jsp',
-                        dataType:'html',
-                        data:{estado: $('#estadoRetorno').val()},
-                        type:'POST',
-                        success:function(data){
+                        url: '../ajax/cidades.jsp',
+                        dataType: 'html',
+                        data: {estado: $('#estadoRetorno').val()},
+                        type: 'POST',
+                        success: function(data) {
                             $('#cidadeRetorno').html(data)
                         }
                     });
                 });
-                
+
             });
         </script>
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body style="">
         <h3 style="text-align: center;color: green" class="span12 well">Sistema de Caronas Unipampa</h3>
-        <div class="offset1 hero-unit span9">
+        <div class="offset1 span10 offset1">
 
-            <form action="solicitar.jsp" id="formularioSolicitacao" method="POST" class="form-horizontal">
+            <nav class="navbar">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="../index.jsp">Página Inicial</a><span class="divider">/</span>
+                    </li>                   
+                    <li class="active">
+                        Solicitação de Viagem
+                    </li>
+                </ul>
+            </nav>
+            <hr> 
+
+
+            <form action="solicitar.jsp" id="formularioSolicitacao" method="POST" class="form-horizontal well">
                 <legend>Formulario de solicitação de Viagens</legend>
                 <div class="control-group">
                     <label class="control-label" for="inputSolicitante">Nome do solicitante:</label>
@@ -175,7 +188,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="control-group">
                         <label class="control-label" for="inputCidadeOrigem">Cidade:</label>
                         <div class="controls">
@@ -237,19 +250,31 @@
                         </div>    
                     </div>    
                 </fieldset>
+                <hr>
 
-                <div class="span11">
-                    <div class="span5">    
-                        <input type="submit" name="enviar" value="Cancelar" class="btn btn-success btn-large">
-                    </div>
-                    <div class="span5">
-                        <input type="submit" name="avancar" value="Adicionar passageiros" class="btn btn-success btn-large">
-                    </div>
-                </div>
-                
+                <p>
+                    <a href="../index.jsp" class="btn btn-info btn" title="Clique aqui para Retornar a Página Anterior!">&laquo; Voltar </a>
+
+                    <button type="submit" class="btn btn-success btn" title="Clique aqui para Cadastrar um Passageiro!">
+                        <i class="icon-ok"></i> Adicionar Passageiros
+                    </button>
+                </p>
+
             </form>
 
         </div>
+
+        <div class="span12 well">
+            <hr>
+            <footer style="text-align: center">
+                <p>
+                    &copy; 2013 <b>IbirapuiTech Corporation</b> - Todos os direitos reservados.
+                </p>
+                <em>
+                    Desenvolvido como trabalho para a disciplina de Resolução de Problemas VI.
+                </em>
+            </footer>
+        </div>                    
         <br/>
     </body>
 </html>
