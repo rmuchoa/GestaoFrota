@@ -42,7 +42,7 @@
             <hr>
             <br />
             <div>
-                <a href="cadastrarUsuario.jsp" class="btn btn btn-primary">Novo Usuário</a>
+                <a href="cadastrarUsuario.jsp" class="btn btn btn-primary" title="Clique aqui para Cadastrar um Novo Usuário!">Novo Usuário</a>
             </div>
             <br />
             
@@ -67,8 +67,8 @@
                             out.println("<td>" + listaUsuarios.get(i).getLogin() + "</td>");
                             out.println("<td>" + listaUsuarios.get(i).getEmail() + "</td>");
                             out.println("<td>" + listaUsuarios.get(i).getTipoUsuario().getDescricao() + "</td>");
-                            out.println("<td><a href='editarUsuario.jsp?id=" + listaUsuarios.get(i).getId() + "'><img src='/sistema-carona-rp/img/edit_pencil.png' /></a></td>"
-                                    + "  <td><a href='removerUsuario.jsp?id=" + listaUsuarios.get(i).getId() + "'><img src='/sistema-carona-rp/img/Gnome-Edit-Delete-32.png' /></a></td>"
+                            out.println("<td title='Clique aqui para Editar as Informações do Usuário!'><a href='editarUsuario.jsp?id=" + listaUsuarios.get(i).getId() + "'><img src='/sistema-carona-rp/img/edit_pencil.png' /></a></td>"
+                                    + "  <td title='Clique aqui para Excluir o Usuário!'><a href='removerUsuario.jsp?id=" + listaUsuarios.get(i).getId() + "'><img src='/sistema-carona-rp/img/Gnome-Edit-Delete-32.png' /></a></td>"
                                     + "  </tr>");
                         }
                     %>
@@ -79,7 +79,7 @@
             <hr>
             <br />
             <div>
-                <a href="../index.jsp" class="btn btn-info btn">&laquo; Voltar </a>
+                <a href="../index.jsp" class="btn btn-info btn" title="Clique aqui para Retornar a Página Anterior!">&laquo; Voltar </a>
             </div>
         </div>     
         <div class="span12 well">
