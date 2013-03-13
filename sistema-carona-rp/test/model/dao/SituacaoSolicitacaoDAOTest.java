@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import jdbc.ConnectionFactory;
+import util.ConnectionFactory;
 import model.entity.Situacao;
 import org.junit.*;
 import static org.junit.Assert.*;
