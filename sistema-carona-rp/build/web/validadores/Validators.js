@@ -232,7 +232,96 @@ function validaFormularioUsuario(){
     });
 }
 
+function validaSolicitacaoViagem(){
+  
+//      $("#placa").mask("aaa-9999");
+//      $("#renavan").mask("aaa-9999");
+//      $("#telefone").mask("(99) 9999-9999");
+//      $("#celular").mask("(99) 9999-9999");
+//      $("#validade").mask("99/99/9999");
+//      $("#categoria").mask("aaa");
+//      $("#cep").mask("99999-999");
+  
+    $("#formularioSolicitacao").validate({
+
+        rules:{
+            solicitante:{
+                required: true, 
+            },
+            cidadeOrigem:{
+                required: true, 
+            },
+            tipo_veiculo:{
+                required: true
+            },
+            marca:{
+                required: true
+            },
+            modelo:{
+                required: true
+            },
+            cor:{
+                required: true
+            },
+            ano:{
+                required: true,
+                digits: true
+            },
+            capacidade_passageiros:{
+                required: true,
+                digits: true
+            },
+            capacidade_carga:{
+                required: true,
+                digits: true
+            }
+        },
+
+        messages:{
+            solicitante:{
+                required: "Selecione um solicitante",
+            },
+            cidadeOrigem:{
+                required: "Digite um Renavam",
+            },
+            tipo_veiculo:{
+                required: "Selecione o tipo de veiculo"
+            },
+            marca:{
+                required: "Informe a marca do veiculo"
+            },
+            modelo:{
+                required: "Informe o modelo do veiculo"
+            },
+            cor:{
+                required: "Informe a cor do veiculo"
+            },
+            ano:{
+                required: "Informe o ano do veiculo",
+                digits: "Digite apenas número"
+            },
+            capacidade_passageiros:{
+                required:" Informe a capacidade de passageiros",
+                digits: "Digite apenas número"
+            },
+            capacidade_carga:{
+                required:" Informe a capacidade de carga em kg do veiculo",
+                digits: "Digite apenas número"
+            }
+        }
+    });
+}
+
+
+
+
+
+
+
+
 function verificaCamposNumericos(){
+    
+    
     
     
 }
