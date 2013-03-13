@@ -48,9 +48,9 @@
                 validaFormularioVeiculo()
             });
         </script>
-        
+
         <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
-        
+
         <div class="offset1 span10 offset1">
             <nav class="navbar">
                 <ul class="breadcrumb">
@@ -72,7 +72,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputPlaca">Placa</label>
                     <div class="controls">
-                        <input type="text" id="placa" name="placa" placeholder="Placa" title="Insira a Placa" required="true">
+                        <input type="text" id="placa" name="placa" placeholder="Placa" title="Insira a Placa" required="true" autofocus>
                     </div>
                 </div>
 
@@ -114,7 +114,7 @@
                 <div class="control-group">
                     <label class="control-label"  for="inputCor">Tipo</label>
                     <div  class="controls">
-                        <select id="tipo_veiculo" name="tipo_veiculo">
+                        <select id="tipo_veiculo" name="tipo_veiculo" title="Selecione o tipo do Veículo">
                             <%
                                 TipoVeiculoController tipoVeiculoController = new TipoVeiculoController();
                                 List<TipoVeiculo> listaDeTipos;
@@ -136,7 +136,6 @@
                     </div>
                 </div>
 
-
                 <div class="control-group">
                     <label class="control-label" for="inputCarga">Capacidade de carga(Kg)</label>
                     <div class="controls">
@@ -144,42 +143,42 @@
                     </div>
                 </div>
 
-                <div class="control-group">
+                   <div class="control-group">
+                       <label class="control-label" for="itensOpc">Itens Opcionais</label>
                     <div class="controls">
                         <%
                             List<OpcionalVeiculo> lista;
                             OpcionalVeiculoDAO opcionalVeiculoDAO = new OpcionalVeiculoDAO();
                             lista = opcionalVeiculoDAO.getTodosOpcionais();
                             for (int i = 0; i < lista.size(); i++) {
-                                out.println("<input type='checkbox' name='" + lista.get(i).getId() + "' value=' " + lista.get(i).getId() + "'>" + lista.get(i).getDescricao() + "<br>");
+                                out.println("<label class='checkbox'><input type='checkbox' name='" + lista.get(i).getId() + "' value=' " + lista.get(i).getId() + "'>" + lista.get(i).getDescricao() + "</label>");
                             }
                         %>
                     </div>
                 </div>
-
-                <div class="control-group">
-                    <div class="controls">
-                        <input type="submit" id="enviar" value="Cadastrar Veículo" class="btn btn-success" title="Clique aqui para Cadastrar um Novo Veículo"><i class="icon-ok"></i>
-                    </div>
-                </div>
                 <hr>
-                <br />
-                <div>
-                    <a href="listaVeiculos.jsp" class="btn btn-info btn">&laquo; Voltar </a>
-                </div>
-            </form>
-        </div>
-
-        <div class="span12 well">
-            <hr>
-            <footer style="text-align: center">
+                
                 <p>
-                    &copy; 2013 <b>IbirapuiTech Coporation</b> - Todos os direitos reservados.
+                    <a href="listaVeiculos.jsp" class="btn btn-info btn">&laquo; Voltar </a>
+
+                    <button type="submit" class="btn btn-success btn">
+                        <i class="icon-ok"></i> Cadastrar
+                    </button>
                 </p>
-                <em>
-                    Desenvolvido como trabalho para a disciplina de Resolução de Problemas VI.
-                </em>
-            </footer>
-        </div>              
-    </body>
+        </div>
+    </form>
+</div>
+
+<div class="span12 well">
+    <hr>
+    <footer style="text-align: center">
+        <p>
+            &copy; 2013 <b>IbirapuiTech Coporation</b> - Todos os direitos reservados.
+        </p>
+        <em>
+            Desenvolvido como trabalho para a disciplina de Resolução de Problemas VI.
+        </em>
+    </footer>
+</div>              
+</body>
 </html>
