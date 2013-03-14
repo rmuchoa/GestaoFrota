@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="model.entity.Usuario"%>
+<%@page import="controller.UsuarioController"%>
 <%@page import="controller.SolicitacaoViagemController"%>
 <%@page import="controller.ViagemController"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -166,7 +168,16 @@
                     <label class="control-label" for="inputMotorista">Motorista</label>
                     <div class="controls">
                         <select style="width: 90%" name="motorista">
-                            <option>Pitoco Junior</option>
+                            <option>Selecione o motorista</option>
+                             <%
+                                    UsuarioController usuarioController = new UsuarioController();
+                                    List<Usuario> usuarios = usuarioController.listar();
+                                    for (int i = 0; i < usuarios.size(); i++) {
+                                        if(usuarios.get(i).getTipoUsuario().getDescricao().endsWith("MOTORISTA")){
+                                            out.print("<option value='" + usuarios.get(i).getId() + "'>" + usuarios.get(i).getNome() +" - Tel("+ usuarios.get(i).getTelefone()+") </option>");
+                                        }
+                                    }
+                                %>
                         </select>
                     </div>
                 </div>
@@ -177,7 +188,7 @@
                         <label class="control-label" for="inputEstadoOrigem">Estado de origem:</label>
                         <div class="controls">
                             <select id="estadoOrigem" name="estadoOrigem">
-                                <option></option>
+                                <option>Selecione o estado de Origem</option>
                                  <%
                                     EstadoController estadoController = new EstadoController();
                                     List<Estado> listaEstadosOriegem = estadoController.listar();
@@ -193,7 +204,7 @@
                         <label class="control-label" for="inputCidadeOrigem">Cidade de origem:</label>
                         <div class="controls">
                             <select id="cidadeOrigem" name="cidadeOrigem">
-                                <option>oi</option>
+                                <option>Selecione a cidade de origem</option>
 
                             </select>
                         </div>
@@ -228,7 +239,7 @@
                         <label class="control-label" for="inputEstadoRetorno">Estado</label>
                         <div class="controls">
                             <select id="estadoRetorno" name="estadoRetorno">
-                                <option></option>
+                                <option>Selecione o estado de retorno</option>
                                  <%
                                     for (int i = 0; i < listaEstadosOriegem.size(); i++) {
                                         out.print("<option value='" + listaEstadosOriegem.get(i).getId() + "'>" + listaEstadosOriegem.get(i).getSigla() + "</option>");
@@ -243,7 +254,7 @@
                         <label class="control-label" for="inputCidadeOrigem">Cidade:</label>
                         <div class="controls">
                             <select id="cidadeRetorno" name="cidadeRetorno">
-                                <option></option>
+                                <option>Selecione a cidade de retorno</option>
 
                             </select>
                         </div>
@@ -289,7 +300,10 @@
                             </textarea>
                         </div>    
                     </div>    
-                </fieldset>              
+                </fieldset> 
+                   <button type="submit" class="btn btn-success btn" title="Clique aqui para criar a viagem!">
+                        <i class="icon-ok"></i> Criar viagem
+                    </button>              
 
             </form>
             <br/>
