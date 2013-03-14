@@ -39,7 +39,7 @@
                         "<td>"+solicitacao.getDestino().getNome()+"</td>"+
                         "<td>"+solicitacao.getSituacao().getDescricao()+"</td>"+
                         "<td>"+
-                        "<input type='checkbox' name='solicitacao" + solicitacao.getId() + "' value='"+solicitacao.getId()+"'>"+
+                        "<input id='solicitacao"+solicitacao.getId()+"' type='checkbox' name='solicitacao" + solicitacao.getId() + "'  value='"+solicitacao.getId()+"'>"+
                         "</td>"+
                     "</tr>";
                     

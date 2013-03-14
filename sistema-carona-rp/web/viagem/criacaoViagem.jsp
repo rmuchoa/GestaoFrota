@@ -133,11 +133,13 @@
                             <a href="#" onclick="exibirDetalhesItemDaTabela(<%= viagemController.criarDetalheItem(solicitacao)%>)" class="btn btn-mini" >detalhes</a>
                         </td>
                     </tr>
-
+                    
                     <%
                         }
                     %>
-
+                      
+                </tbody>
+                <tbody id="escolhadomodal">
                 </tbody>
 
             </table>
