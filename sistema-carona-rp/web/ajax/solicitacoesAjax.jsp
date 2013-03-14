@@ -32,7 +32,7 @@
     SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
     lista = solicitacaoViagemController.listar();
     for(SolicitacaoViagem solicitacao: lista){
-        html+="<tr id='"+ solicitacao.getId()+"'>"+
+        html+="<tr id='tabela2"+ solicitacao.getId()+"'>"+
         "<td id='codigo'>"+ solicitacao.getId()+"</td>"+
         "<td>"+ new SimpleDateFormat("dd/MM/yyyy").format(solicitacao.getDataSaida())+"</td>"+
                         "<td>"+solicitacao.getOrigem().getNome()+"</td>"+

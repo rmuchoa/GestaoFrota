@@ -17,8 +17,17 @@ function preencheTabela(dataInicial,dataFinal){
 }
 
 function adicionarNovasSolicitacoes(){
+
+    buscarSolicitacoes();
+    $('#tabela1 tbody tr #identificador').each(function()
+        {
+         var id = $(this).text();
+         alert('')
+         removerItemTabela2(id)
+               
+    });
     
-   buscarSolicitacoes();
+   
         $( "#myModal" ).dialog({
             modal: true,
             width: 700 ,
@@ -29,14 +38,12 @@ function adicionarNovasSolicitacoes(){
                 }
             }
         });
-       $('#tabela1 tbody tr #identificador').each(function()
-        {
-         var id = $(this).text();
-         
-         alert($('#tabela2').html());
-        }); 
+       
+       
+}     
+function removerItemTabela2(id){
+   $('#tabela2'+id).remove();
 }
-
 function removerItemTabela(id){
    $("tr#"+id).remove();
 }
@@ -71,3 +78,14 @@ function buscarSolicitacoes(){
         }
     });
 }
+
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+  }
+  
