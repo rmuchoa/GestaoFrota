@@ -63,8 +63,8 @@
    
                 $("#data_saida").datepicker($.datepicker.regional['pt-BR']);
                 $("#data_retorno").datepicker($.datepicker.regional['pt-BR']);
-                $("#hora_saida").timePicker();
-                $("#hora_retorno").timePicker();
+                $("#horario_saida").timePicker();
+                $("#horario_retorno").timePicker();
                 
                 $("#estadoOrigem").change(function() {
                     $.ajax({
@@ -176,8 +176,15 @@
                     <div class="control-group">
                         <label class="control-label" for="inputEstadoOrigem">Estado de origem:</label>
                         <div class="controls">
-                            <select name="estadoOrigem">
-                                <option>oi</option>
+                            <select id="estadoOrigem" name="estadoOrigem">
+                                <option></option>
+                                 <%
+                                    EstadoController estadoController = new EstadoController();
+                                    List<Estado> listaEstadosOriegem = estadoController.listar();
+                                    for (int i = 0; i < listaEstadosOriegem.size(); i++) {
+                                        out.print("<option value='" + listaEstadosOriegem.get(i).getId() + "'>" + listaEstadosOriegem.get(i).getSigla() + "</option>");
+                                    }
+                                %>
 
                             </select>
                         </div>
@@ -185,7 +192,7 @@
                     <div class="control-group">
                         <label class="control-label" for="inputCidadeOrigem">Cidade de origem:</label>
                         <div class="controls">
-                            <select name="cidadeOrigem">
+                            <select id="cidadeOrigem" name="cidadeOrigem">
                                 <option>oi</option>
 
                             </select>
@@ -220,8 +227,13 @@
                     <div class="control-group">
                         <label class="control-label" for="inputEstadoRetorno">Estado</label>
                         <div class="controls">
-                            <select name="estadoRetorno">
-                                <option>oi</option>
+                            <select id="estadoRetorno" name="estadoRetorno">
+                                <option></option>
+                                 <%
+                                    for (int i = 0; i < listaEstadosOriegem.size(); i++) {
+                                        out.print("<option value='" + listaEstadosOriegem.get(i).getId() + "'>" + listaEstadosOriegem.get(i).getSigla() + "</option>");
+                                    }
+                                %>
 
                             </select>
                         </div>
@@ -230,7 +242,7 @@
                     <div class="control-group">
                         <label class="control-label" for="inputCidadeOrigem">Cidade:</label>
                         <div class="controls">
-                            <select name="cidadeRetorno">
+                            <select id="cidadeRetorno" name="cidadeRetorno">
                                 <option></option>
 
                             </select>

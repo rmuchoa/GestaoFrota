@@ -22,7 +22,7 @@ function adicionarNovasSolicitacoes(){
     $('#tabela1 tbody tr #identificador').each(function()
         {
          var id = $(this).text();
-         alert('')
+         alert(id)
          removerItemTabela2(id)
                
     });
@@ -97,7 +97,8 @@ function inserirLinhaEscolhidaDoModalNaTabela2(id){
             id:id
          },
         success: function(data) {
-            $('#escolhadomodal').html(data);
+            var html =  $('#escolhadomodal').html();
+            $('#escolhadomodal').html(html+data);
         }
     });
 }
