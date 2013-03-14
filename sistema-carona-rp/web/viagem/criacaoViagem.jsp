@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="model.entity.Veiculo"%>
+<%@page import="controller.VeiculoController"%>
 <%@page import="model.entity.Usuario"%>
 <%@page import="controller.UsuarioController"%>
 <%@page import="controller.SolicitacaoViagemController"%>
@@ -63,6 +65,7 @@
         <script>
             $(document).ready(function() {
    
+                criarViagemForm()
                 $("#data_saida").datepicker($.datepicker.regional['pt-BR']);
                 $("#data_retorno").datepicker($.datepicker.regional['pt-BR']);
                 $("#horario_saida").timePicker();
@@ -158,8 +161,17 @@
                 <div class="control-group">
                     <label class="control-label" for="inputVeiculo">Veiculo</label>
                     <div class="controls">
-                        <select style="width: 90%" name="veiculo">
-                            <option>Gol branco, 4 pessoas placa 4434</option>
+                        <select id="veiculo" style="width: 90%" name="veiculo">
+                            <option>Selecione o veiculo para a viagem</option>
+                            <%
+                                    VeiculoController veiculoController = new VeiculoController();
+                                    List<Veiculo> veiculos = veiculoController.listar();
+                                    for (int i = 0; i < veiculos.size(); i++) {
+                                       
+                                            out.print("<option value='" + veiculos.get(i).getId() + "'>" + veiculos.get(i).getModelo() +" - "+ veiculos.get(i).getMarca()+" - Capacidade passageiros: "+veiculos.get(i).getCapacidadePassageiros() +" - Capacidade de carga: "+veiculos.get(i).getCapacidadeCarga() +"Kg - Cor: "+veiculos.get(i).getCor() +" </option>");
+                                        
+                                    }
+                                %>
                         </select>
                     </div>
                 </div>
@@ -167,7 +179,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputMotorista">Motorista</label>
                     <div class="controls">
-                        <select style="width: 90%" name="motorista">
+                        <select id="motorista" style="width: 90%" name="motorista">
                             <option>Selecione o motorista</option>
                              <%
                                     UsuarioController usuarioController = new UsuarioController();
@@ -295,7 +307,7 @@
                     <legend>Observações</legend>
                     <div class="control-group">
                         <div class="controls">
-                            <textarea name="observacao"  rows="4" style="width: 90%" >
+                            <textarea id="observacao" name="observacao"  rows="4" style="width: 90%" >
 
                             </textarea>
                         </div>    
