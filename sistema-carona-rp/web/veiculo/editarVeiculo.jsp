@@ -187,8 +187,7 @@
                     <a href="listaVeiculos.jsp" class="btn btn-info btn" title="Clique aqui para Retornar a Página Anterior!">&laquo; Voltar </a>
 
                     <button type="submit" class="btn btn-success btn" title="Clique aqui para Salvar as Alterações nos Dados do Veículo!">
-                        <i class="icon-ok"></i> Salvar Alterações
-                    </button>
+                        <i class="icon-ok"></i> Salvar Alterações </button>
                 </p>
         </div>
     </form>

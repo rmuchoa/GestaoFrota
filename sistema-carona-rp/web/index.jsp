@@ -25,7 +25,7 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
 
-        <title>Sistema de Caronas Unipampa</title>
+        <title class="span12 well">Sistema de Caronas Unipampa</title>
     </head>
     <body style="">
          <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
