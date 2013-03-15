@@ -155,7 +155,7 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="inputHorarioSaida">Horario de saída</label>
+                        <label class="control-label" for="inputHorarioSaida">Horário de saída</label>
                         <div class="controls">
                             <input class="input-xxlarge" type="text" id="horarioSaida" name="horarioSaida" placeholder="08:24">
 
