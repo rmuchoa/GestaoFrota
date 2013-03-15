@@ -237,89 +237,81 @@ function validaFormularioUsuario(){
 
 function validaSolicitacaoViagem(){
   
-//      $("#placa").mask("aaa-9999");
-//      $("#renavan").mask("aaa-9999");
-//      $("#telefone").mask("(99) 9999-9999");
-//      $("#celular").mask("(99) 9999-9999");
-//      $("#validade").mask("99/99/9999");
-//      $("#categoria").mask("aaa");
-//      $("#cep").mask("99999-999");
-  
     $("#formularioSolicitacao").validate({
 
         rules:{
             solicitante:{
-                required: true, 
+                required: true
+                
             },
             cidadeOrigem:{
-                required: true, 
+                required: true 
             },
-            tipo_veiculo:{
+            dataSaida:{
+                date: true,
                 required: true
             },
-            marca:{
+            horaSaida:{
                 required: true
             },
-            modelo:{
+            localSaida:{
                 required: true
             },
-            cor:{
+            cidadeRetorno:{
                 required: true
             },
-            ano:{
-                required: true,
-                digits: true
+            dataRetorno:{
+                date: true,
+                required: true
             },
-            capacidade_passageiros:{
-                required: true,
-                digits: true
+            horaRetorno:{
+                required: true
             },
-            capacidade_carga:{
-                required: true,
-                digits: true
+            localRetorno:{
+                required: true
+            },
+            percurso:{
+                required: true
             }
         },
 
         messages:{
             solicitante:{
-                required: "Selecione um solicitante",
+                required: "Selecione um solicitante"
+                
             },
             cidadeOrigem:{
-                required: "Digite um Renavam",
+                required: "Selecione uma cidade" 
             },
-            tipo_veiculo:{
-                required: "Selecione o tipo de veiculo"
+            dataSaida:{
+                date: "Data inválida",
+                required: "Digite uma data"
             },
-            marca:{
-                required: "Informe a marca do veiculo"
+            horaSaida:{
+                required: "Digite um horário"
             },
-            modelo:{
-                required: "Informe o modelo do veiculo"
+            localSaida:{
+                required: "Digite um local de saída"
             },
-            cor:{
-                required: "Informe a cor do veiculo"
+            cidadeRetorno:{
+                required: "Selecione uma cidade"
             },
-            ano:{
-                required: "Informe o ano do veiculo",
-                digits: "Digite apenas número"
+            dataRetorno:{
+                date: "Data inválida",
+                required: "Digite uma data"
             },
-            capacidade_passageiros:{
-                required:" Informe a capacidade de passageiros",
-                digits: "Digite apenas número"
+            horaRetorno:{
+                required: "Digite um horário"
             },
-            capacidade_carga:{
-                required:" Informe a capacidade de carga em kg do veiculo",
-                digits: "Digite apenas número"
+            localRetorno:{
+                required: "Digite um local de retorno"
+            },
+            percurso:{
+                required: "Digite um percurso a ser seguido"
             }
         }
     });
 }
-
-
-
-
-
-
 
 
 function verificaCamposNumericos(){
