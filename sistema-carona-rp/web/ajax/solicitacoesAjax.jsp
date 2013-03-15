@@ -32,14 +32,14 @@
     SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
     lista = solicitacaoViagemController.listar();
     for(SolicitacaoViagem solicitacao: lista){
-        html+="<tr id='"+ solicitacao.getId()+"'>"+
+        html+="<tr id='tabela2"+ solicitacao.getId()+"'>"+
         "<td id='codigo'>"+ solicitacao.getId()+"</td>"+
         "<td>"+ new SimpleDateFormat("dd/MM/yyyy").format(solicitacao.getDataSaida())+"</td>"+
                         "<td>"+solicitacao.getOrigem().getNome()+"</td>"+
                         "<td>"+solicitacao.getDestino().getNome()+"</td>"+
                         "<td>"+solicitacao.getSituacao().getDescricao()+"</td>"+
                         "<td>"+
-                        "<input type='checkbox' name='solicitacao" + solicitacao.getId() + "' value='"+solicitacao.getId()+"'>"+
+                        "<input id='solicitacao"+solicitacao.getId()+"' type='checkbox' name='solicitacao" + solicitacao.getId() + "'  value='"+solicitacao.getId()+"'>"+
                         "</td>"+
                     "</tr>";
                     
