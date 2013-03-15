@@ -70,7 +70,7 @@ public class Notificacoes {
             + "<meta charset=\"UTF-8\">"
             + "</head>"
             + "<body>"
-             + "<h1>Viagem Cancelada</h1>"
+             + "<h1>Viagem Criada</h1>"
             + "<p>Olá {{solicitante}}</p> "
             + "<p>A sua solicitação de viagem foi agendada, sob o número {{id}}</p>"
             + "<p>porém ainda não foi confirmada</p>"
@@ -174,7 +174,46 @@ public class Notificacoes {
         this.sendmail(solicitacao.getSolicitante().getEmail(),  html);
     }
     
+  /**
+     * Envia e-mail informando que foi cancelada uma viagem para a solicitacao
+     * Destinatário: solicitante
+     * @param solicitacao 
+     */
+    public void notificaViagemCancelada(SolicitacaoViagem solicitacao) {
+        String html = Notificacoes.VIAGEM_CANCELADA_TEMPLATE.replace(
+                "{{solicitante}}", solicitacao.getSolicitante().getNome());
+        html = html.replace("{{cidadeOrigem}}", solicitacao.getOrigem().getNome());
+        html = html.replace("{{dataSaida}}", solicitacao.getDataSaida().toString());
+        html = html.replace("{{cidadeDestino}}", solicitacao.getDestino().getNome());
+        html = html.replace("{{dataRetorno}}", solicitacao.getDataRetorno().toString());
+        html = html.replace("{{justificativa}}", solicitacao.getJustificativa());
+        if(solicitacao.getViagem() != null){
+            html = html.replace("{{id}}", solicitacao.getViagem().getId().toString());
+        }
+        
+        this.sendmail(solicitacao.getSolicitante().getEmail(),  html);
+    }  
     
+    
+    /**
+     * Envia e-mail informando que foi criada uma viagem para a solicitacao
+     * Destinatário: solicitante
+     * @param solicitacao 
+     */
+    public void notificaViagemCriada(SolicitacaoViagem solicitacao) {
+        String html = Notificacoes.VIAGEM_CRIADA_TEMPLATE.replace(
+                "{{solicitante}}", solicitacao.getSolicitante().getNome());
+        html = html.replace("{{cidadeOrigem}}", solicitacao.getOrigem().getNome());
+        html = html.replace("{{dataSaida}}", solicitacao.getDataSaida().toString());
+        html = html.replace("{{cidadeDestino}}", solicitacao.getDestino().getNome());
+        html = html.replace("{{dataRetorno}}", solicitacao.getDataRetorno().toString());
+        html = html.replace("{{justificativa}}", solicitacao.getJustificativa());
+        if (solicitacao.getViagem() != null){
+            html = html.replace("{{id}}", solicitacao.getViagem().getId().toString());
+        }
+        
+        this.sendmail(solicitacao.getSolicitante().getEmail(),  html);
+    }  
     
     
     

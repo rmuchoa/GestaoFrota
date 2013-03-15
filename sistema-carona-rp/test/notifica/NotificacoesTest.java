@@ -47,13 +47,12 @@ public class NotificacoesTest {
         SolicitacaoViagem sv = new SolicitacaoViagem();
         SolicitacaoViagemDAO svdao = new SolicitacaoViagemDAO();
         sv = svdao.buscarPorId(6);
-        
         System.out.println("sendmailSolicita");
         String template = Notificacoes.SOLICITACAO_RECUSADA_TEMPLATE;
         Notificacoes instance = new Notificacoes();
         instance.notificaRecusa(sv);
-        
-        
+        instance.notificaViagemCriada(sv);
+        instance.notificaViagemCancelada(sv);
     }
 
     

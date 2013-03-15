@@ -25,6 +25,7 @@ public class SolicitacaoViagem {
     private String percurso;
     private Situacao situacao;
     private Boolean passageiro;
+    private Viagem viagem;
     private List<Passageiro> passageiros;
 
     public Integer getId() {
@@ -138,6 +139,17 @@ public class SolicitacaoViagem {
         return passageiros;
     }
 
+    public Viagem getViagem() {
+        return viagem;
+    }
+
+    public void setViagem(Viagem viagem) {
+        this.viagem = viagem;
+    }
+
+    
+    
+    
     /**
      * @param passageiros the passageiros to set
      */

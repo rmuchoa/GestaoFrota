@@ -97,6 +97,7 @@ public class SolicitacaoViagemDAO {
                 solicitacao.setSituacao(new SituacaoDAO().buscarPorId(rs.getInt("situacao_solicitacao")));
                 solicitacao.setPassageiro(Boolean.parseBoolean("eh_passageiro"));
                 solicitacao.setPassageiros(new PassageiroDAO().buscarPorSolicitacaoId(solicitacao.getId()));
+                solicitacao.setViagem(new ViagemDAO().buscarPorId(rs.getInt("viagem")));
 
             }
             stmt.close();
