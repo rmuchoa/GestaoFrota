@@ -160,7 +160,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputCnh">Habilitação</label>
                     <div class="controls">
-                        <input type="text" name="numero_cnh" id="cnh" placeholder="Carteira de habilitação" title="Insira a Habilitação do Usuário">
+                        <input type="text" name="numero_cnh" id="cnh" placeholder="12345678901" title="Insira a Habilitação do Usuário">
                     </div>
                 </div>
 

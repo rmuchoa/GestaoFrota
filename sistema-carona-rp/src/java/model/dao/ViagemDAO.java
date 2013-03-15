@@ -8,9 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import util.ConnectionFactory;
 import model.entity.SolicitacaoViagem;
 import model.entity.Viagem;
+import util.ConnectionFactory;
 
 /**
  *

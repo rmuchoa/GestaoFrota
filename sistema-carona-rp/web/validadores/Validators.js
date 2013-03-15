@@ -127,6 +127,8 @@ function validaFormularioUsuario(){
                 number: true
             },
             siape:{
+                
+                required: true,
                 number: true
             },
             numero_cnh:{
@@ -197,6 +199,7 @@ function validaFormularioUsuario(){
                 number: "Digite apenas números"
             },
             siape:{
+                required: "Campo obrigatório",
                 number: "Digite apenas números"
             },
             numero_cnh:{

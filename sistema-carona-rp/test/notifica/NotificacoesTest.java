@@ -6,8 +6,10 @@ package notifica;
 
 import java.util.List;
 import model.dao.SolicitacaoViagemDAO;
+import model.dao.ViagemDAO;
 import model.entity.SolicitacaoViagem;
 import model.entity.Usuario;
+import model.entity.Viagem;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -42,19 +44,17 @@ public class NotificacoesTest {
     }
 
     
-    @Test
-    public void testSendmailSV() {
-        SolicitacaoViagem sv = new SolicitacaoViagem();
-        SolicitacaoViagemDAO svdao = new SolicitacaoViagemDAO();
-        sv = svdao.buscarPorId(6);
-        System.out.println("sendmailSolicita");
-        String template = Notificacoes.SOLICITACAO_RECUSADA_TEMPLATE;
-        Notificacoes instance = new Notificacoes();
-        instance.notificaRecusa(sv);
-        instance.notificaViagemCriada(sv);
-        instance.notificaViagemCancelada(sv);
-    }
+ 
 
+    @Test
+    public void testSendMailAutorizacaoViagem(){
+        Viagem viagem = new Viagem();
+        ViagemDAO vd = new ViagemDAO();
+        viagem = vd.buscarPorId(1);
+        Notificacoes instance2 = new Notificacoes();
+        instance2.notificaAutorizacaoViagem(viagem);
     
+    
+    }
    
 }
