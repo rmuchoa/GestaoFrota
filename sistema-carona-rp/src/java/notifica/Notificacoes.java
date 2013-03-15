@@ -10,6 +10,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import model.entity.SolicitacaoViagem;
 import model.entity.Usuario;
 
 /**
@@ -107,32 +108,7 @@ public class Notificacoes {
             + "</body>"
             + "</html>";
     
-    public static final String CHARLIE_VICTOR_TEMPLATE = "<!DOCTYPE html>"
-            + "<html lang=\"pt-br\">"
-            + "<head>"
-            + "<meta charset=\"UTF-8\">"
-            + "</head>"
-            + "<body>"
-            + "<h1>Veículo Alterado!</h1>"
-            + "<p>Olá {{solicitante}}, o veículo selecionado para "
-            + "a sua viagem foi alterado. Verifique o sistema "
-            + "para mais detalhes.</p>"
-            + OBS
-            + "</body>"
-            + "</html>";
-    public static final String CHARLIE_ROMEO_TEMPLATE = "<!DOCTYPE html>"
-            + "<html lang=\"pt-br\">"
-            + "<head>"
-            + "<meta charset=\"UTF-8\">"
-            + "</head>"
-            + "<body>"
-            + "<h1>Veículo Alterado!</h1>"
-            + "<p>Olá {{solicitante}}, a rota configurada para "
-            + "a sua viagem foi alterada. Verifique o sistema "
-            + "para mais detalhes.</p>"
-            + OBS
-            + "</body>"
-            + "</html>";
+    
     private Session getSession() {
         Properties props = System.getProperties();
         props.put("mail.transport.protocol", "smtp");
@@ -182,6 +158,26 @@ public class Notificacoes {
         String html = template;
         this.sendMail(to, this.getSession(), html);
     }
+    /**
+     * Envia e-mail informando que a solicitação foi recusada
+     * Destinatário: solicitante
+     * @param solicitacao 
+     */
+    public void notificaRecusa(SolicitacaoViagem solicitacao) {
+        String html = Notificacoes.SOLICITACAO_RECUSADA_TEMPLATE.replace(
+                "{{solicitante}}", solicitacao.getSolicitante().getNome());
+        html = html.replace("{{cidadeOrigem}}", solicitacao.getOrigem().getNome());
+        html = html.replace("{{dataSaida}}", solicitacao.getDataSaida().toString());
+        html = html.replace("{{cidadeDestino}}", solicitacao.getDestino().getNome());
+        html = html.replace("{{dataRetorno}}", solicitacao.getDataRetorno().toString());
+        html = html.replace("{{justificativa}}", solicitacao.getJustificativa());
+        this.sendmail(solicitacao.getSolicitante().getEmail(),  html);
+    }
+    
+    
+    
+    
+    
     
     public void sendbatch(List<Usuario> recpts, String template) {
         for (Usuario user: recpts) {

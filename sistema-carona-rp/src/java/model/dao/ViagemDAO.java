@@ -248,6 +248,7 @@ public class ViagemDAO {
         try {
             
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            //seta 6 (REALIZADA) para a situação de solicitação de viagem
             stmt.setInt(1, 6);
             stmt.setDate(2, new java.sql.Date(viagem.getDataInicioReal().getTime()));
             stmt.setInt(3, viagem.getKilometragemInicio());
@@ -263,6 +264,7 @@ public class ViagemDAO {
 
                     String sql2 = "update solicitacao_viagem set situacao_solicitacao = ? where id = ?";
                     stmt = connection.prepareStatement(sql2);
+                    //seta 6 (REALIZADA) para a situação de solicitação de viagem 
                     stmt.setInt(1, 6);
                     stmt.setInt(2, viagem.getId());
                     stmt.executeUpdate();
