@@ -83,15 +83,28 @@ public class ViagemController {
     }
     
     public Boolean finalizarViagem(HttpServletRequest request) {
-        
-        Integer viagemId = Integer.parseInt(request.getParameter("viagemId"));
-        viagem = viagemDAO.buscarPorId(viagemId);
-        viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("REALIZADA"));
-        for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
-            solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("REALIZADA"));
+        try {
+            Integer viagemId = Integer.parseInt(request.getParameter("viagem"));
+            viagem = viagemDAO.buscarPorId(viagemId);
+            viagem.setDataInicioReal(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("dataSaida")+" "+request.getParameter("horaSaida")));
+            viagem.setKilometragemInicio(Integer.parseInt(request.getParameter("quilometragemSaida")));
+            viagem.setDataFimReal(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("dataRetorno")+" "+request.getParameter("horaChegada")));
+            viagem.setKilometragemFim(Integer.parseInt(request.getParameter("quilometragemRetorno")));
+            viagem.setObservacoesPercurso(request.getParameter("observacoes"));
+            Boolean finalizada = viagemDAO.finalizarViagem(viagem);
+            if (finalizada) {
+                viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("REALIZADA"));
+                for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
+                    solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("REALIZADA"));
+                }
+                return viagemDAO.alterarSituacaoViagem(viagem);
+            } else {
+                return Boolean.FALSE;
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(ViagemController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return viagemDAO.alterarSituacaoViagem(viagem);
-        
+        return null;
     }
     
     public Viagem buscarPorId(int id){

@@ -86,7 +86,7 @@
                         <%      }
                                 if (usuario.getTipoUsuario().getId() == 5 || usuario.getTipoUsuario().getId() == 4) {
                         %>
-                        <a href="#">
+                        <a href="viagem/formularioViagem.jsp">
                             <button class="btn btn-success" title="Clique aqui para Registrar as Informações da Viagem!">
                                 <img src="img/relatorio.png">   
                             </button>

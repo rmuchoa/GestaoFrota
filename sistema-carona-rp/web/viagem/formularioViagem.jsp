@@ -4,6 +4,7 @@
     Author     : Bruno
 --%>
 
+<%@page import="util.Autenticacao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.omg.PortableInterceptor.SYSTEM_EXCEPTION"%>
 <%@page import="model.entity.Viagem"%>
@@ -16,11 +17,26 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
+<%
+    if (session.getAttribute("usuario") != null) {
 
+        new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"MOTORISTA","ADMINISTRADOR"});
+        
+        if (request.getMethod().equalsIgnoreCase("post")) {
+            ViagemController viagemController = new ViagemController();
+            viagemController.finalizarViagem(request);
+            response.sendRedirect("/sistema-carona-rp/index.jsp");
+        }
+
+    } else {
+        
+        response.sendRedirect("login.jsp");
+        
+    }
+%>
 
 <html>
     <head>
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap.css">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap-responsive.css">
@@ -39,8 +55,6 @@
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/perifer-timePicker-b5195df/timePicker.css">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/pick/jquery-ui.css">
-
-
         <script>
             $(document).ready(function() {
                 $("#data_saida").datepicker($.datepicker.regional['pt-BR']);
@@ -61,12 +75,9 @@
                 });
             });
         </script>
-
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body>
-
-
         <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
 
         <div class="offset1 span10 offset1">
@@ -82,12 +93,12 @@
             </nav>
             <hr>
 
-            <form action="index.jsp" method="POST" id="formularioViagem" class="form-horizontal well">
+            <form action="formularioViagem.jsp" method="POST" id="formularioViagem" class="form-horizontal well">
 
                 <div class="control-group">
                     <label class="control-label" for="inputViagem">Viagem Realizada</label>
                     <div class="controls">
-                        <select id="viagem" style="width: 80%" placeholder="Viagem Realizada" title="Insira a viagem que foi realizada" required="true">
+                        <select id="viagem" name="viagem" style="width: 80%" placeholder="Viagem Realizada" title="Insira a viagem que foi realizada" required="true">
                             <option value="">Selecione a Viagem Realizada</option>
                             <%
                                 ViagemController viagemController = new ViagemController();
@@ -129,21 +140,21 @@
                 <div class="control-group">
                     <label class="control-label" for="inputQuilometragemSaida">Quilometragem do veículo na saída</label>
                     <div class="controls">
-                        <input type="text" id="quilometragem_saida"  name="quilometragem_saida" placeholder="12.000" title="Insira a quilometragem do veículo na saída" required="true">
+                        <input type="text" id="quilometragem_saida"  name="quilometragemSaida" placeholder="12.000" title="Insira a quilometragem do veículo na saída" required="true">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputDataRetorno">Data do Retorno</label>
                     <div class="controls">
-                        <input type="text" id="data_retorno" name="data_retorno" placeholder="12/12/2013" required="true">
+                        <input type="text" id="data_retorno" name="dataRetorno" placeholder="12/12/2013" required="true">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputHoraChegada">Hora de Chegada</label>
                     <div class="controls">
-                        <input type="text" id="hora_chegada" name="hora_chegada" placeholder="08:24" required="true">
+                        <input type="text" id="hora_chegada" name="horaChegada" placeholder="08:24" required="true">
 
                     </div>
                 </div>
@@ -151,8 +162,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputQuilometragemRetorno">Quilometragem do veículo no retorno</label>
                     <div class="controls">
-                        <input type="text" id="quilometragem_retorno"  name="quilometragem_retorno" placeholder="12.000" title="Insira a quilometragem do veículo no retorno" required="true">
-
+                        <input type="text" id="quilometragem_retorno"  name="quilometragemRetorno" placeholder="12.000" title="Insira a quilometragem do veículo no retorno" required="true">
                     </div>
                 </div>
 
@@ -160,7 +170,7 @@
                     <legend>Observações</legend>
                     <div class="control-group">
                         <div class="controls">
-                            <textarea name="objetivo"  rows="4" style="width: 90%" >
+                            <textarea name="observacoes"  rows="4" style="width: 90%" >
 
                             </textarea>
                         </div>    
@@ -171,7 +181,7 @@
                 <p>
                     <a href="#" class="btn btn-info btn" title="Clique aqui para Retornar a Página Anterior!">&laquo; Voltar </a>
 
-                    <button type="submit" class="btn btn-success btn" title="Clique aqui para Salvar o Relatório!">
+                    <button type="submit" class="btn btn-success btn" title="Clique aqui para Salvar o Formulário!">
                         <i class="icon-ok"></i> Salvar </button>
                 </p>
         </div>
