@@ -25,7 +25,13 @@ public class Viagem {
     private String localRetorno;
     private String percurso;
     private String observacoes;
+    private String justificativaRejeite;
     private Situacao situacao;
+    private Date dataInicioReal;
+    private Integer kilometragemInicio;
+    private Date dataFimReal;
+    private Integer kilometragemFim;
+    private String observacoesPercurso;
     private List<SolicitacaoViagem> solicitacoes;
     
     public Viagem () {
@@ -217,6 +223,105 @@ public class Viagem {
     public void setSituacao(Situacao situacao) {
         this.situacao = situacao;
     }
+
+    /**
+     * 
+     * @return justificativaRejeite
+     */
+    public String getJustificativaRejeite() {
+        return justificativaRejeite;
+    }
+
+    /**
+     * 
+     * @param justificativaRejeite 
+     */
+    public void setJustificativaRejeite(String justificativaRejeite) {
+        this.justificativaRejeite = justificativaRejeite;
+    }
+
+    /**
+     * 
+     * @return dataInicioReal
+     */
+    public Date getDataInicioReal() {
+        return dataInicioReal;
+    }
+
+    
+    /**
+     * 
+     * @param dataInicioReal 
+     */
+    public void setDataInicioReal(Date dataInicioReal) {
+        this.dataInicioReal = dataInicioReal;
+    }
+
+    /**
+     * 
+     * @return kilometragemInicio
+     */
+    public Integer getKilometragemInicio() {
+        return kilometragemInicio;
+    }
+
+    /**
+     * 
+     * @param kilometragemInicio 
+     */
+    public void setKilometragemInicio(Integer kilometragemInicio) {
+        this.kilometragemInicio = kilometragemInicio;
+    }
+
+    /**
+     * 
+     * @return dataFimReal
+     */
+    public Date getDataFimReal() {
+        return dataFimReal;
+    }
+
+    /**
+     * 
+     * @param dataFimReal 
+     */
+    public void setDataFimReal(Date dataFimReal) {
+        this.dataFimReal = dataFimReal;
+    }
+
+    /**
+     * 
+     * @return kilometragemFim
+     */
+    public Integer getKilometragemFim() {
+        return kilometragemFim;
+    }
+
+    /**
+     * 
+     * @param kilometragemFim 
+     */
+    public void setKilometragemFim(Integer kilometragemFim) {
+        this.kilometragemFim = kilometragemFim;
+    }
+
+    /**
+     * 
+     * @return observacoesPercurso
+     */
+    public String getObservacoesPercurso() {
+        return observacoesPercurso;
+    }
+
+    /**
+     * 
+     * @param observacoesPercurso 
+     */
+    public void setObservacoesPercurso(String observacoesPercurso) {
+        this.observacoesPercurso = observacoesPercurso;
+    }
+    
+    
 
     /**
      * @return the solicitacoes

@@ -43,7 +43,6 @@ public class SolicitacaoViagemController {
                 }
                
             }
-             System.out.println( lista.get(i).getId());
         }
         return lista;
         

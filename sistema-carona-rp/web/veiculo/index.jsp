@@ -159,11 +159,10 @@
                 <hr>
                 
                 <p>
-                    <a href="listaVeiculos.jsp" class="btn btn-info btn">&laquo; Voltar </a>
+                    <a href="listaVeiculos.jsp" class="btn btn-info btn" title="Clique aqui para Retornar a Página Anterior!">&laquo; Voltar </a>
 
-                    <button type="submit" class="btn btn-success btn">
-                        <i class="icon-ok"></i> Cadastrar
-                    </button>
+                    <button type="submit" class="btn btn-success btn" title="Clique aqui para Cadastrar um Novo Veículo!">
+                        <i class="icon-ok"></i> Cadastrar </button>
                 </p>
         </div>
     </form>
@@ -173,7 +172,7 @@
     <hr>
     <footer style="text-align: center">
         <p>
-            &copy; 2013 <b>IbirapuiTech Coporation</b> - Todos os direitos reservados.
+            &copy; 2013 <b>IbirapuiTech Corporation</b> - Todos os direitos reservados.
         </p>
         <em>
             Desenvolvido como trabalho para a disciplina de Resolução de Problemas VI.
