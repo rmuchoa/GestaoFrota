@@ -16,7 +16,7 @@
 
 <html>
     <head>
-        
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap.css">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap-responsive.css">
@@ -27,32 +27,40 @@
 
         <title class="span12 well">Sistema de Caronas Unipampa</title>
     </head>
-    <body style="">
-         <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
-        <div class="offset1 span10 offset1">
-            
-            <div class="hero-unit" id="div-menu-home">
-                <a href="veiculo/listaVeiculos.jsp">
-                    <button class="btn btn-success" title="Clique aqui para Acessar a Área de Veículos!">
-                        <img src="img/car.png">   
-                    </button>
-                </a>
-                <a href="usuario/listaUsuarios.jsp">
-                    <button class="btn btn-success" title="Clique aqui para Acessar a Área de Usuários!">
-                        <img src="img/user-mapping.png">   
-                    </button>
-                </a>
-                <a href="viagem/solicitar.jsp">
-                    <button class="btn btn-success" title="Clique aqui para Acessar a Área de Viagens!">
-                        <img src="img/suitcase_travel.png">   
-                    </button>
-                </a>
+    <body>
+        <div id="wrap">
+            <div id="header">
+                <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
+            </div>
+
+            <div id="main">
+                <div class="offset1 span10 offset1">
+
+                    <div class="hero-unit" id="div-menu-home">
+                        <a href="veiculo/listaVeiculos.jsp">
+                            <button class="btn btn-success" title="Clique aqui para Acessar a Área de Veículos!">
+                                <img src="img/car.png">   
+                            </button>
+                        </a>
+                        <a href="usuario/listaUsuarios.jsp">
+                            <button class="btn btn-success" title="Clique aqui para Acessar a Área de Usuários!">
+                                <img src="img/user-mapping.png">   
+                            </button>
+                        </a>
+                        <a href="viagem/index.jsp">
+                            <button class="btn btn-success" title="Clique aqui para Acessar a Área de Viagens!">
+                                <img src="img/suitcase_travel.png">   
+                            </button>
+                        </a>               
+                    </div>
+
+                </div>
             </div>
         </div>
 
-        <div class="span12 well">
+        <div id="footer" class="well">
             <hr>
-            <footer style="text-align: center">
+            <footer>
                 <p>
                     &copy; 2013 <b>IbirapuiTech Corporation</b> - Todos os direitos reservados.
                 </p>
