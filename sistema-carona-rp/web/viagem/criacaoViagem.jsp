@@ -233,14 +233,14 @@
                     <div class="control-group">
                         <label class="control-label" for="inputDataSaida">Data de saída:</label>
                         <div class="controls">
-                            <input class="input-xxlarge" type="text" id="data_saida" name="dataSaida" placeholder="12/12/2013">
+                            <input  type="text" id="data_saida" name="dataSaida" placeholder="12/12/2013">
 
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputHorarioSaida">Horario de saída</label>
                         <div class="controls">
-                            <input class="input-xxlarge"  type="text" id="horario_saida" name="horarioSaida" placeholder="08:24">
+                            <input  type="text" id="horario_saida" name="horarioSaida" placeholder="08:24">
 
                         </div>
                     </div>
@@ -283,14 +283,14 @@
                     <div class="control-group">
                         <label class="control-label" for="inputDataRetorno">Data:</label>
                         <div class="controls">
-                            <input class="input-xxlarge" type="text" id="data_retorno" name="dataRetorno" placeholder="12/12/2013">
+                            <input type="text" id="data_retorno" name="dataRetorno" placeholder="12/12/2013">
 
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="inputHorarioRetorno">Horario:</label>
+                        <label class="control-label" for="inputHorarioRetorno">Horário:</label>
                         <div class="controls">
-                            <input class="input-xxlarge" type="text" id="horario_retorno" name="horarioRetorno" placeholder="08:24">
+                            <input type="text" id="horario_retorno" name="horarioRetorno" placeholder="08:24">
 
                         </div>
                     </div>
