@@ -25,7 +25,13 @@
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
-
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                validaFormularioPassageiros();
+            });
+        </script>
+        
         <title>Sistema Caronas Unipampa</title>
     </head>
     <body>
@@ -62,7 +68,7 @@
         
         <div class="offset2 span8 offset2 well">
             <div><h3 class="well">Cadastro de passageiros</h3></div>
-            <form action="passageiros.jsp" method="POST" class="form-actions">
+            <form action="passageiros.jsp" id="cadastroPassageiros" method="POST" class="form-actions">
 
                 <input type="hidden" name="solicitacao" value="<%= ((SolicitacaoViagem) request.getAttribute("solicitacao")).getId()%>" />
 
