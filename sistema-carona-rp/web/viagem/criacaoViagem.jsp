@@ -64,7 +64,10 @@
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <script>
             $(document).ready(function() {
-   
+               
+               var listaSolicitacoes = new Array();
+               
+                
                 criarViagemForm();
                 $("#data_saida").datepicker($.datepicker.regional['pt-BR']);
                 $("#data_retorno").datepicker($.datepicker.regional['pt-BR']);
@@ -157,7 +160,7 @@
 
             <div class="span12"></div>     
             <form class="form" id="formViagem">
-
+                
                 <div class="control-group">
                     <label class="control-label" for="inputVeiculo">Veiculo</label>
                     <div class="controls">
@@ -315,7 +318,8 @@
                 </fieldset> 
                    <button type="submit" class="btn btn-success btn" title="Clique aqui para criar a viagem!">
                         <i class="icon-ok"></i> Criar viagem
-                    </button>              
+                    </button> 
+                                
 
             </form>
             <br/>
@@ -332,6 +336,9 @@
                
         </div>
         <div id="ModalItemTabela" title="Lista de solicitação" style="display: none">
+
+        </div>            
+        <div id="MensagemDeCadastro" title="Cadastro realizado com sucesso!" style="display: none">
 
         </div>            
     </body>
