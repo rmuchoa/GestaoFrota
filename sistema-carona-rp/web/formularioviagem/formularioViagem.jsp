@@ -60,7 +60,7 @@
                             <option>Selecione a Viagem Realizada</option>
                             <%
                                 ViagemController viagemController = new ViagemController();
-                                List<Viagem> viagens = viagemController.
+                                //List<Viagem> viagens = viagemController.
                             
                             
                             
