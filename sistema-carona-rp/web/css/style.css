@@ -7,7 +7,7 @@
 */
 
 html, body {
-    height: 93%;
+    height: 92%;
 }
 body > #wrap {
     height: auto; 
@@ -18,14 +18,14 @@ body{
     background-color: rgb(69, 199, 53);
 }
 #main {
-    padding-bottom: 75px; /* deve ser a mesma altura do rodapé */
+    padding-bottom: 95px; /* deve ser a mesma altura do rodapé */
 }  
 #footer {
     text-align: center;
     margin-left: 30px;
     position: relative;
     bottom: 0px;
-    height: 75px;
+    height: 95px;
     width: 92%;
     clear: both;
 } 
