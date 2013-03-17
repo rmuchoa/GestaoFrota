@@ -4,6 +4,7 @@
     Author     : renanmarceluchoa
 --%>
 
+<%@page import="util.Autenticacao"%>
 <%@page import="java.util.List"%>
 <%@page import="controller.UsuarioController"%>
 <%@page import="controller.TipoUsuarioController"%>
@@ -14,6 +15,17 @@
 <%@ page import="javax.servlet.http.*" %> 
 <!DOCTYPE html>
 
+<%
+    if (session.getAttribute("usuario") != null) {
+
+        new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"ADMINISTRADOR"});
+
+    } else {
+        
+        response.sendRedirect("login.jsp");
+        
+    }
+%>
 <html>
     <head>
 

@@ -4,6 +4,7 @@
     Author     : renanmarceluchoa
 --%>
 
+<%@page import="util.Autenticacao"%>
 <%@page import="controller.EstadoController"%>
 <%@page import="model.entity.Estado"%>
 <%@page import="java.util.List"%>
@@ -19,10 +20,20 @@
 <!DOCTYPE html>
 
 <%
-    if (request.getMethod().equalsIgnoreCase("post")) {
-        UsuarioController usuarioController = new UsuarioController();
-        usuarioController.inserir(request);
-        response.sendRedirect("listaUsuarios.jsp");
+    if (session.getAttribute("usuario") != null) {
+
+        new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"ADMINISTRADOR"});
+        
+        if (request.getMethod().equalsIgnoreCase("post")) {
+            UsuarioController usuarioController = new UsuarioController();
+            usuarioController.inserir(request);
+            response.sendRedirect("listaUsuarios.jsp");
+        }
+
+    } else {
+        
+        response.sendRedirect("login.jsp");
+        
     }
 %>
 
@@ -38,7 +49,7 @@
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery-1.9.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
-        
+
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.ui.datepicker-pt-BR.js"></script>
@@ -64,8 +75,8 @@
                 });
             });
         </script>
-        
-        
+
+
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <title>Sistema de Caronas Unipampa</title>
     </head>
