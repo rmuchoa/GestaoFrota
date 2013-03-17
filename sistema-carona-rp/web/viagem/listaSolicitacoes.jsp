@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="util.Autenticacao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.entity.SolicitacaoViagem"%>
 <%@page import="java.util.List"%>
@@ -15,23 +16,35 @@
 <!DOCTYPE html>
 
 <%
-    if (request.getMethod().equalsIgnoreCase("POST")) {
-        if (request.getParameter("criarViagem") != null) {
-            SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
-            List<SolicitacaoViagem> solicitacoes = solicitacaoViagemController.listar();
-            List<SolicitacaoViagem> selecionadas = new ArrayList<SolicitacaoViagem>();
 
-            for (SolicitacaoViagem solicitacao : solicitacoes) {
-                if (request.getParameter("solicitacao" + solicitacao.getId()) != null) {
-                    selecionadas.add(solicitacao);
+    if (session.getAttribute("usuario") != null) {
+
+        new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"OPERADOR","ADMINISTRADOR"});
+        if (request.getMethod().equalsIgnoreCase("POST")) {
+            
+            if (request.getParameter("criarViagem") != null) {
+                SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
+                List<SolicitacaoViagem> solicitacoes = solicitacaoViagemController.listar();
+                List<SolicitacaoViagem> selecionadas = new ArrayList<SolicitacaoViagem>();
+
+                for (SolicitacaoViagem solicitacao : solicitacoes) {
+                    if (request.getParameter("solicitacao" + solicitacao.getId()) != null) {
+                        selecionadas.add(solicitacao);
+                    }
                 }
-            }
 
-            request.setAttribute("solicitacoes", selecionadas);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("criacaoViagem.jsp");
-            dispatcher.forward(request, response);
+                request.setAttribute("solicitacoes", selecionadas);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("criacaoViagem.jsp");
+                dispatcher.forward(request, response);
+            }
         }
+
+    } else {
+        
+        response.sendRedirect("login.jsp");
+        
     }
+    
 %>
 
 <html>

@@ -32,6 +32,7 @@
     SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
     lista = solicitacaoViagemController.listar();
     for(SolicitacaoViagem solicitacao: lista){
+        if(solicitacao.getSituacao().getDescricao().equals("ABERTA")){
         html+="<tr id='tabela2"+ solicitacao.getId()+"'>"+
         "<td id='codigo'>"+ solicitacao.getId()+"</td>"+
         "<td>"+ new SimpleDateFormat("dd/MM/yyyy").format(solicitacao.getDataSaida())+"</td>"+
@@ -44,6 +45,7 @@
                     "</tr>";
                     
     }
+    }    
     html+="</tbody></table>";
     
     out.print(html);

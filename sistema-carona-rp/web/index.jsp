@@ -20,9 +20,13 @@
     Usuario usuario = null;
 
     if (session.getAttribute("usuario") != null) {
+        
         usuario = (Usuario) session.getAttribute("usuario");
+        
     } else {
+        
         response.sendRedirect("login.jsp");
+        
     }
 
 %>
@@ -88,7 +92,7 @@
                             </button>
                         </a>
                         <%      }
-                                if (usuario.getTipoUsuario().getId() >= 1 || usuario.getTipoUsuario().getId() <= 5) {
+                                if (usuario.getTipoUsuario().getId() >= 1 && usuario.getTipoUsuario().getId() <= 4) {
                         %>
                         <a href="viagem/solicitar.jsp">
                             <button class="btn btn-success" title="Clique aqui para fazer uma Solicitação de Viagens!">

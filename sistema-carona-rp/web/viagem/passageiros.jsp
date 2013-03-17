@@ -4,6 +4,7 @@
     Author     : renanmarceluchoa
 --%>
 
+<%@page import="util.Autenticacao"%>
 <%@page import="controller.SolicitacaoViagemController"%>
 <%@page import="model.entity.SolicitacaoViagem"%>
 <%@page import="model.entity.Passageiro"%>
@@ -25,99 +26,108 @@
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
-        
+
         <script type="text/javascript">
             $(document).ready(function() {
                 validaFormularioPassageiros();
             });
         </script>
-        
+
         <title>Sistema Caronas Unipampa</title>
     </head>
     <body>
 
         <%
+            if (session.getAttribute("usuario") != null) {
 
-            if (request.getParameter("avancar") != null) {
-                request.setAttribute("action", "list");
-            }
-            
-            if (request.getAttribute("action")==null) {
-                
-                if (request.getParameter("add") != null) {
-                    
-                    SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
-                    SolicitacaoViagem solicitacaoViagem = solicitacaoViagemController.buscarPorId(Integer.parseInt(request.getParameter("solicitacao")));
-                    request.setAttribute("solicitacao", solicitacaoViagem);
+                new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"USUARIO", "OPERADOR", "AUTORIZADOR", "ADMINISTRADOR"});
+                if (request.getParameter("avancar") != null) {
                     request.setAttribute("action", "list");
-                    PassageiroController passageiroController = new PassageiroController();
-                    passageiroController.adicionarPassageiro(request);
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("passageiros.jsp");
-                    dispatcher.forward(request, response);
-                    
                 }
-            } else if (request.getAttribute("action").equals("list")) {
-                request.setAttribute("action", "add");
-                System.out.println("Brasilll");
+
+                if (request.getAttribute("action") == null) {
+
+                    if (request.getParameter("add") != null) {
+
+                        SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
+                        SolicitacaoViagem solicitacaoViagem = solicitacaoViagemController.buscarPorId(Integer.parseInt(request.getParameter("solicitacao")));
+                        request.setAttribute("solicitacao", solicitacaoViagem);
+                        request.setAttribute("action", "list");
+                        PassageiroController passageiroController = new PassageiroController();
+                        passageiroController.adicionarPassageiro(request);
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("passageiros.jsp");
+                        dispatcher.forward(request, response);
+
+                    }
                     
+                } else if (request.getAttribute("action").equals("list")) {
+
+                    request.setAttribute("action", "add");
+
+                }
+
+            } else {
+
+                response.sendRedirect("login.jsp");
+
             }
 
         %>
 
         <h3 style="color: green;text-align: center"  class="span12 well">Sistema de Caronas Unipampa</h3>
-        
+
         <div class="offset2 span8 offset2 well">
             <div><h3 class="well">Cadastro de passageiros</h3></div>
             <form action="passageiros.jsp" id="cadastroPassageiros" method="POST" class="form-actions">
 
                 <input type="hidden" name="solicitacao" value="<%= ((SolicitacaoViagem) request.getAttribute("solicitacao")).getId()%>" />
 
-                            <div class="control-group">
-                                <label class="control-label" for="inputNome">Nome do Passageiro:</label>
-                                <div class="controls">
-                                    <input class="input-large" type="text" id="nome" name="nome" placeholder="Digite o nome do passageiro">
-                                </div>
-                            </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputNome">Nome do Passageiro:</label>
+                    <div class="controls">
+                        <input class="input-large" type="text" id="nome" name="nome" placeholder="Digite o nome do passageiro">
+                    </div>
+                </div>
 
-                            <div class="control-group">
-                                <label class="control-label" for="inputRg">Rg do Passageiro:</label>
-                                <div class="controls">
-                                    <input class="input-large" type="text" id="rg" name="rg" placeholder="Digite o rg do passageiro">
-                                </div>
-                            </div>
-                        
-                            <div class="control-group">
-                                <label class="control-label" for="inputEmail">Email do Passageiro:</label>
-                                <div class="controls">
-                                    <input class="input-large" type="text" id="email" name="email" placeholder="Digite o email do passageiro">
-                                </div>
-                            </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputRg">Rg do Passageiro:</label>
+                    <div class="controls">
+                        <input class="input-large" type="text" id="rg" name="rg" placeholder="Digite o rg do passageiro">
+                    </div>
+                </div>
 
-                            <div class="control-group">
-                                <label class="control-label" for="inputEndereco">Endereço do Passageiro:</label>
-                                <div class="controls">
-                                    <input class="input-large" type="text" id="endereco" name="endereco" placeholder="Digite o endereço do passageiro">
-                                </div>
-                            </div>
-                        <div class="control-group">
-                                <label class="control-label" for="inputServidor">É Servidor da Unipampa:</label>
-                                <div class="controls">
-                                    <input id="sim" name="servidor" value="true" type="radio" /><label for="sim"> Sim</label> 
-                                    <input id="nao" name="servidor" value="false" type="radio" /><label for="nao"> Não</label> 
-                                </div>
-                            </div>
-                       <div class="span5">  
-                                <input type="submit" name="add" value="Adicionar Passageiro" class="btn btn-success btn-large"
-                            </div>
-                      
+                <div class="control-group">
+                    <label class="control-label" for="inputEmail">Email do Passageiro:</label>
+                    <div class="controls">
+                        <input class="input-large" type="text" id="email" name="email" placeholder="Digite o email do passageiro">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="inputEndereco">Endereço do Passageiro:</label>
+                    <div class="controls">
+                        <input class="input-large" type="text" id="endereco" name="endereco" placeholder="Digite o endereço do passageiro">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputServidor">É Servidor da Unipampa:</label>
+                    <div class="controls">
+                        <input id="sim" name="servidor" value="true" type="radio" /><label for="sim"> Sim</label> 
+                        <input id="nao" name="servidor" value="false" type="radio" /><label for="nao"> Não</label> 
+                    </div>
+                </div>
+                <div class="span5">  
+                    <input type="submit" name="add" value="Adicionar Passageiro" class="btn btn-success btn-large"
+                </div>
+
             </form>
         </div>
-        </div>
+    </div>
 
-        <div class="well offset2 span9 offset2">
-            <div><h3 class="well">Listagem de passageiros</h3></div>
-            <table class="table table-bordered">
-               <thead>
+    <div class="well offset2 span9 offset2">
+        <div><h3 class="well">Listagem de passageiros</h3></div>
+        <table class="table table-bordered">
+            <thead>
                 <tr>
                     <th>Nome</th>
                     <th>RG</th>
@@ -126,13 +136,13 @@
                     <th>Servidor</th>
                     <th>Ações</th>
                 </tr>
-                </thead>
-                <%
-                    PassageiroController passageiroController = new PassageiroController();
-                    List<Passageiro> passageiros = passageiroController.buscarPorSolicitacaoId(((SolicitacaoViagem) request.getAttribute("solicitacao")).getId());
-                    for (Passageiro p : passageiros) {
-                %>
-                 <tbody>
+            </thead>
+            <%
+                PassageiroController passageiroController = new PassageiroController();
+                List<Passageiro> passageiros = passageiroController.buscarPorSolicitacaoId(((SolicitacaoViagem) request.getAttribute("solicitacao")).getId());
+                for (Passageiro p : passageiros) {
+            %>
+            <tbody>
                 <tr>
                     <td><%= p.getNome()%></td>
                     <td><%= p.getRg()%></td>
@@ -141,12 +151,12 @@
                     <td><%= p.isServidor() ? "Sim" : "Não"%></td>
                     <td><a href="" value="Editar" /><a href="" value="Remover" /></td>
                 </tr>
-                 </tbody>
-                <%
-                    }
-                %>
-            </table>
-        </div>
+            </tbody>
+            <%
+                }
+            %>
+        </table>
+    </div>
 
-    </body>
+</body>
 </html>

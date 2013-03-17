@@ -6,21 +6,38 @@
 
 
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.dao.SolicitacaoViagemDAO"%>
+<%@page import="java.util.List"%>
+<%@page import="model.entity.SolicitacaoViagem"%>
 <%@page import="model.entity.Viagem"%>
 <%@page import="controller.ViagemController"%>
 <%
 
     if (request.getMethod().equalsIgnoreCase("post")) {
-    
-        Viagem viagem = new Viagem();
+
         ViagemController viagemController = new ViagemController();
-        viagemController.abrirViagem(request);        
+       
+        SolicitacaoViagemDAO solicitacaoViagemDAO = new SolicitacaoViagemDAO();
+        List<SolicitacaoViagem> listaSolicitacao = new ArrayList<SolicitacaoViagem>();
+        String str = request.getParameter("lista");
+        char array[] = str.toCharArray();
         
-        out.println(request.getAttribute(""));
+        for(int i =0; i<array.length; i++){
+             System.out.println(array[i]);
+             String s =String.valueOf(array[i]);
+             
+             listaSolicitacao.add(solicitacaoViagemDAO.buscarPorId(Integer.parseInt(s)));
+        }
+        request.setAttribute("solicitacoes", listaSolicitacao);
         
-        String html = "";
+        viagemController.abrirViagem(request);
 
 
-       out.print(html);
+
+        String html = "Cadastro realizado com sucesso";
+
+
+        out.print(html);
     }
 %>
