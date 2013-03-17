@@ -344,7 +344,7 @@
 
         </div>            
         <div id="MensagemDeCadastro" title="Cadastro realizado com sucesso!" style="display: none">
-
+            <h4>Viagem agendada com sucesso!</h4>
         </div>            
     </body>
 </html>

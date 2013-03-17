@@ -152,7 +152,7 @@ function cadastraViagem(lista,veiculo,motorista,estadoOrigem,cidadeOrigem,data_s
             observacao:observacao
         },
         success: function(data) {
-            $('#MensagemDeCadastro').html(data);
+             //$('#MensagemDeCadastro').html(data);
              $(function() {
                 $( "#ModalItemTabela").dialog({
                     modal: true,

@@ -49,7 +49,7 @@
     <body style="">
         <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
 
-        <div class="offset1 span10 offset1">
+        <div class="offset5 span5">
 
             <form action="login.jsp" method="post">
 
