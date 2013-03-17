@@ -105,25 +105,41 @@ function inserirLinhaEscolhidaDoModalNaTabela2(id){
 
 
 function criarViagemForm(){
-    $('#form').submit(function() {
-//        
-//        var veiculo = $('#veiculo').val();
-//        var motorista = $('#motorista').val();
-//        var estadoOrigem = ('#estadoOrigem').val();
-//       var cidadeOrigem = ('#cidadeOrigem').val();
-//        var data_saida = ('#data_saida').val();
-//        var horario_saida = ('#horario_saida').val();
-//       var  localSaida = ('#localSaida').val();
-//       var  estadoRetorno = ('#estadoRetorno').val();
-//       var  cidadeRetorno = ('#cidadeRetorno').val();
-//       var  data_retorno = ('#data_retorno').val();
-//      var   horario_retorno = ('#horario_retorno').val();
-//      var  localRetorno = ('#localRetorno').val();
-//      var   percurso = ('#percurso').val();
-//      var   observacao = ('#observacao').val();
+    $('#formViagem').submit(function() {
         
-//        alert(veiculo,motorista,estadoOrigem,cidadeOrigem,data_retorno)
-        alert('i')
+       var veiculo = $('#veiculo').val();
+       var motorista = $('#motorista').val();
+       var estadoOrigem = $('#estadoOrigem').val();
+       var cidadeOrigem = $('#cidadeOrigem').val();
+       var data_saida = $("#viagem_data_saida").val();
+       var horario_saida = $('#horario_saida').val();
+       var localSaida = $('#localSaida').val();
+       var estadoRetorno = $('#estadoRetorno').val();
+       var cidadeRetorno = $('#cidadeRetorno').val();
+       var data_retorno = $('#data_retorno').val();
+       var horario_retorno = $('#horario_retorno').val();
+       var localRetorno = $('#localRetorno').val();
+       var percurso = $('#percurso').val();
+       var observacao = $('#observacao').val();
+       
         return false;
+    });
+}
+
+function cadastraViagem(veiculo,motorista,estadoOrigem,cidadeOrigem,data_saida,horario_saida,
+localSaida,estadoRetorno,cidadeRetorno,data_retorno,horario_retorno,localRetorno,percurso,observacao){
+       $.ajax({
+        type: 'POST',
+        url: '../ajax/inserirLinhaNaTabelaModal.jsp?id='+id,
+        dataType: 'html',
+        data:{
+            veiculo:veiculo,motorista:motorista,estadoOrigem:estadoOrigem,cidadeOrigem:cidadeOrigem,data_saida:data_saida,horario_saida:horario_saida,
+            localSaida:localSaida,estadoRetorno:estadoRetorno,cidadeRetorno:cidadeRetorno,data_retorno:data_retorno,horario_retorno:horario_retorno,
+            localRetorno:localRetorno,percurso:percurso,observacao:observacao
+        },
+        success: function(data) {
+            var html =  $('#escolhadomodal').html();
+            $('#escolhadomodal').html(html+data);
+        }
     });
 }
