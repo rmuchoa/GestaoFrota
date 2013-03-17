@@ -76,7 +76,7 @@ function validaFormularioVeiculo(){
             },
             capacidade_passageiros:{
                 required:" Informe a capacidade de passageiros",
-                digits: "Digite apenas número"
+                digits: "Digite apenas números"
             },
             capacidade_carga:{
                 required:" Informe a capacidade de carga em kg do veiculo",
@@ -132,7 +132,9 @@ function validaFormularioUsuario(){
                 number: true
             },
             numero_cnh:{
-                number: true
+                number: true,
+                maxlength: 11,
+                minlength: 11
             },
             validade_cnh:{
                 date: true
@@ -203,7 +205,9 @@ function validaFormularioUsuario(){
                 number: "Digite apenas números"
             },
             numero_cnh:{
-                number: "Digite apenas números"
+                number: "Digite apenas números",
+                maxlength: "Tamanho inválido",
+                minlength: "Tamanho inválido"
             },
             validade_cnh:{
                 date: "Data inválida"
@@ -248,7 +252,7 @@ function validaSolicitacaoViagem(){
                 required: true 
             },
             dataSaida:{
-                date: true,
+                //date: true,
                 required: true
             },
             horaSaida:{
@@ -261,7 +265,7 @@ function validaSolicitacaoViagem(){
                 required: true
             },
             dataRetorno:{
-                date: true,
+               // date: true,
                 required: true
             },
             horaRetorno:{
@@ -284,7 +288,7 @@ function validaSolicitacaoViagem(){
                 required: "Selecione uma cidade" 
             },
             dataSaida:{
-                date: "Data inválida",
+              //  date: "Data inválida",
                 required: "Digite uma data"
             },
             horaSaida:{
@@ -297,7 +301,7 @@ function validaSolicitacaoViagem(){
                 required: "Selecione uma cidade"
             },
             dataRetorno:{
-                date: "Data inválida",
+              //  date: "Data inválida",
                 required: "Digite uma data"
             },
             horaRetorno:{
@@ -313,6 +317,53 @@ function validaSolicitacaoViagem(){
     });
 }
 
+
+function validaFormularioPassageiros(){
+   
+    $("#cadastroPassageiros").validate({
+
+        rules:{
+            nome:{
+                required: true,
+                minlength: 6
+            },
+            
+            rg:{
+                required: true,
+                maxlength: 20,
+                number: true
+            },
+            rua:{
+                required: true
+            },
+            email:{
+                required: true,
+                email: true
+            }
+            
+        },
+
+        messages:{
+            nome:{
+                required: "Campo obrigatório",
+                minlength: "Tamanho inválido"
+            },
+            
+            rg:{
+                required: "Campo obrigatório",
+                maxlength: "Número inválido",
+                number: "Digite apenas números"
+            },
+            rua:{
+                required: "Campo obrigatório"
+            },
+            email:{
+                required: "Campo obrigatório",
+                email: "Digite um e-mail válido"
+            }
+        }
+    });
+}
 
 function verificaCamposNumericos(){
     
