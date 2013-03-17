@@ -8,6 +8,8 @@ import java.sql.*;
 import util.ConnectionFactory;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.jms.JMSException;
 import model.entity.Usuario;
 
@@ -20,7 +22,7 @@ public class UsuarioDAO {
     private Connection connection;
 
     public UsuarioDAO() {
-        
+
         try {
             this.connection = ConnectionFactory.getConnection();
         } catch (SQLException e) {
@@ -29,14 +31,58 @@ public class UsuarioDAO {
 
     }
 
-    public void inserir(Usuario usuario) {
+    public Usuario buscaUsuarioLogin(String login, String senha) {
         
+        String sql = "select * from usuario where login = ? and senha = ? ";
+        Usuario usuario = null;
+        
+        try {
+            
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, login);
+            stmt.setString(2, senha);
+            ResultSet rs = stmt.getResultSet();
+            
+            if (rs.next()) {
+                
+                usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setLogin(rs.getString("login"));
+                usuario.setSenha(rs.getString("senha"));
+                usuario.setTipoUsuario(new TipoUsuarioDAO().buscarPorId(rs.getInt("tipo_usuario")));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setTelefone(rs.getString("telefone"));
+                usuario.setCelular(rs.getString("celular"));
+                usuario.setRg(rs.getString("rg"));
+                usuario.setSiape(rs.getInt("siape"));
+                usuario.setNumeroCnh(rs.getLong("numero_cnh"));
+                usuario.setValidadeCnh(rs.getDate("validade_cnh"));
+                usuario.setCategoriaCnh(rs.getString("categoria_cnh"));
+                usuario.setRua(rs.getString("rua"));
+                usuario.setNumero(rs.getInt("numero"));
+                usuario.setComplemento(rs.getString("complemento"));
+                usuario.setCep(rs.getString("cep"));
+                usuario.setCidade(new CidadeDAO().buscarPorId(rs.getInt("cidade")));
+                
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return usuario;
+
+    }
+
+    public void inserir(Usuario usuario) {
+
         String sql = "insert into usuario (nome, login, senha, tipo_usuario, email, telefone, celular, "
                 + "rg, siape, numero_cnh, validade_cnh, categoria_cnh, rua, numero, complemento, cep, cidade) "
                 + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-         System.out.println(usuario.getNumeroCnh().toString());
+        
         try {
-            
+
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, usuario.getNome());
             stmt.setString(2, usuario.getLogin());
@@ -55,7 +101,7 @@ public class UsuarioDAO {
             stmt.setString(15, usuario.getComplemento());
             stmt.setString(16, usuario.getCep());
             stmt.setInt(17, usuario.getCidade().getId());
-           
+
             System.out.println(stmt.toString());
             stmt.execute();
             stmt.close();
@@ -66,14 +112,14 @@ public class UsuarioDAO {
     }
 
     public void alterar(Usuario usuario) {
-        
+
         String sql = "update usuario set nome = ?, login = ?, senha = ?, tipo_usuario = ?, "
                 + "email = ?, telefone = ?, celular = ?, rg = ?, siape = ?, "
                 + "numero_cnh = ?, validade_cnh = ?, categoria_cnh = ?, "
                 + "rua = ?, numero = ?, complemento = ?, cep = ?, cidade = ? where id = ?";
 
         try {
-            
+
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, usuario.getNome());
             stmt.setString(2, usuario.getLogin());
@@ -95,7 +141,7 @@ public class UsuarioDAO {
             stmt.setInt(18, usuario.getId());
             stmt.execute();
             stmt.close();
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -163,7 +209,7 @@ public class UsuarioDAO {
                 usuario.setCidade(new CidadeDAO().buscarPorId(rs.getInt("cidade")));
 
                 lista.add(usuario);
-                
+
             }
 
         } catch (SQLException e) {
@@ -186,7 +232,7 @@ public class UsuarioDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                
+
                 usuario = new Usuario();
                 usuario.setId(rs.getInt("id"));
                 usuario.setNome(rs.getString("nome"));
@@ -212,13 +258,12 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return usuario;
-        
+
     }
-    
-    
-    public Usuario buscarPorNome(String  nome) {
+
+    public Usuario buscarPorNome(String nome) {
 
         Usuario usuario = new Usuario();
         String sql = "select * from usuario where nome = ?";
@@ -255,13 +300,13 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return usuario;
-        
+
     }
 
     List<Usuario> buscarMotoristas() {
-        
+
         List<Usuario> lista = new ArrayList<Usuario>();
         String sql = "select * from usuario where tipo_usuario = ?";
         try {
@@ -300,6 +345,6 @@ public class UsuarioDAO {
         }
 
         return lista;
-        
+
     }
 }
