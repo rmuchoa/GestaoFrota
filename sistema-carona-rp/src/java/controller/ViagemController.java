@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import model.dao.*;
 import model.entity.SolicitacaoViagem;
+import model.entity.Usuario;
 import model.entity.Viagem;
 
 /**
@@ -20,7 +21,7 @@ import model.entity.Viagem;
  */
 public class ViagemController {
 
-    private ViagemDAO viagemDAO;
+    private ViagemDAO viagemDAO = new ViagemDAO();
     private Viagem viagem;
 
     public Viagem abrirViagem(HttpServletRequest request) {
@@ -89,6 +90,19 @@ public class ViagemController {
         }
         return viagemDAO.alterarSituacaoViagem(viagem);
         
+    }
+    
+    public Viagem buscarPorId(int id){
+        return viagemDAO.buscarPorId(id);
+        
+    }
+    
+    public List<Viagem> listarViagensMotorista (Usuario usuario) {
+    
+        Usuario motorista = new UsuarioDAO().buscarPorId(5);
+        return viagemDAO.listarViagemMotorista(motorista);
+                
+       
     }
     
     public String criarDetalheItem(SolicitacaoViagem solicitacao){

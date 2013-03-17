@@ -38,9 +38,18 @@
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery-1.9.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
+        
+        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.ui.datepicker-pt-BR.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.min.js"></script>
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/perifer-timePicker-b5195df/timePicker.css">
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/pick/jquery-ui.css">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <script type="text/javascript">
             $(document).ready(function() {
+                $("#validade").datepicker($.datepicker.regional['pt-BR']);
                 validaFormularioUsuario();
                 $("#estado").change(function() {
                     $.ajax({
@@ -55,7 +64,8 @@
                 });
             });
         </script>
-
+        
+        
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <title>Sistema de Caronas Unipampa</title>
     </head>
@@ -166,7 +176,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputValidade">Validade</label>
                     <div class="controls">
-                        <input type="text" name="validade_cnh" id="validade" placeholder="12/12/2012" title="Insire a Válidade da CNH do Usuário">
+                        <input id="validade" type="text" name="validade_cnh" id="validade" placeholder="12/12/2012" title="Insire a Válidade da CNH do Usuário">
                     </div>
                 </div>
 
