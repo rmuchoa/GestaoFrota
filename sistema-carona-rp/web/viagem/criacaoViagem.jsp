@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="util.Autenticacao"%>
 <%@page import="model.entity.Veiculo"%>
 <%@page import="controller.VeiculoController"%>
 <%@page import="model.entity.Usuario"%>
@@ -24,18 +25,22 @@
 <!DOCTYPE html>
 
 <%
-   
+    
     List<SolicitacaoViagem> selecionadas = null;
+    if (session.getAttribute("usuario") != null) {
 
-    if (request.getMethod().equalsIgnoreCase("post")) {
-
-        if (request.getParameter("criarViagem") != null) {
-
-            if (request.getAttribute("solicitacoes") != null) {
-                selecionadas = (List<SolicitacaoViagem>) request.getAttribute("solicitacoes");
+        new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"OPERADOR", "ADMINISTRADOR"});
+        if (request.getMethod().equalsIgnoreCase("post")) {
+            if (request.getParameter("criarViagem") != null) {
+                if (request.getAttribute("solicitacoes") != null) {
+                    selecionadas = (List<SolicitacaoViagem>) request.getAttribute("solicitacoes");
+                }
             }
-
         }
+        
+    } else {
+
+        response.sendRedirect("login.jsp");
 
     }
 %>
@@ -64,7 +69,10 @@
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <script>
             $(document).ready(function() {
-   
+               
+                var listaSolicitacoes = new Array();
+               
+                
                 criarViagemForm();
                 $("#data_saida").datepicker($.datepicker.regional['pt-BR']);
                 $("#data_retorno").datepicker($.datepicker.regional['pt-BR']);
@@ -120,9 +128,9 @@
 
                 <tbody>
 
-                    <%  
-                       ViagemController viagemController = new ViagemController();
-                       for (SolicitacaoViagem solicitacao : selecionadas) {
+                    <%
+                        ViagemController viagemController = new ViagemController();
+                        for (SolicitacaoViagem solicitacao : selecionadas) {
                     %>
 
                     <tr  id="<%= solicitacao.getId()%>">
@@ -132,17 +140,17 @@
                         <td><%= solicitacao.getDestino().getNome()%></td>
                         <td><%= solicitacao.getSituacao().getDescricao()%></td>
                         <td>
-                            
-                           
+
+
                             <a href="#" onclick="removerItemTabela(<%= solicitacao.getId()%>)" class="btn btn-mini">X</a>
                             <a href="#" onclick="exibirDetalhesItemDaTabela(<%= viagemController.criarDetalheItem(solicitacao)%>)" class="btn btn-mini" >detalhes</a>
                         </td>
                     </tr>
-                    
+
                     <%
                         }
                     %>
-                      
+
                 </tbody>
                 <tbody id="escolhadomodal">
                 </tbody>
@@ -164,14 +172,14 @@
                         <select id="veiculo" style="width: 90%" name="veiculo">
                             <option>Selecione o veiculo para a viagem</option>
                             <%
-                                    VeiculoController veiculoController = new VeiculoController();
-                                    List<Veiculo> veiculos = veiculoController.listar();
-                                    for (int i = 0; i < veiculos.size(); i++) {
-                                       
-                                            out.print("<option value='" + veiculos.get(i).getId() + "'>" + veiculos.get(i).getModelo() +" - "+ veiculos.get(i).getMarca()+" - Capacidade passageiros: "+veiculos.get(i).getCapacidadePassageiros() +" - Capacidade de carga: "+veiculos.get(i).getCapacidadeCarga() +"Kg - Cor: "+veiculos.get(i).getCor() +" </option>");
-                                        
-                                    }
-                                %>
+                                VeiculoController veiculoController = new VeiculoController();
+                                List<Veiculo> veiculos = veiculoController.listar();
+                                for (int i = 0; i < veiculos.size(); i++) {
+
+                                    out.print("<option value='" + veiculos.get(i).getId() + "'>" + veiculos.get(i).getModelo() + " - " + veiculos.get(i).getMarca() + " - Capacidade passageiros: " + veiculos.get(i).getCapacidadePassageiros() + " - Capacidade de carga: " + veiculos.get(i).getCapacidadeCarga() + "Kg - Cor: " + veiculos.get(i).getCor() + " </option>");
+
+                                }
+                            %>
                         </select>
                     </div>
                 </div>
@@ -181,15 +189,15 @@
                     <div class="controls">
                         <select id="motorista" style="width: 90%" name="motorista">
                             <option>Selecione o motorista</option>
-                             <%
-                                    UsuarioController usuarioController = new UsuarioController();
-                                    List<Usuario> usuarios = usuarioController.listar();
-                                    for (int i = 0; i < usuarios.size(); i++) {
-                                        if(usuarios.get(i).getTipoUsuario().getDescricao().endsWith("MOTORISTA")){
-                                            out.print("<option value='" + usuarios.get(i).getId() + "'>" + usuarios.get(i).getNome() +" - Tel("+ usuarios.get(i).getTelefone()+") </option>");
-                                        }
+                            <%
+                                UsuarioController usuarioController = new UsuarioController();
+                                List<Usuario> usuarios = usuarioController.listar();
+                                for (int i = 0; i < usuarios.size(); i++) {
+                                    if (usuarios.get(i).getTipoUsuario().getDescricao().endsWith("MOTORISTA")) {
+                                        out.print("<option value='" + usuarios.get(i).getId() + "'>" + usuarios.get(i).getNome() + " - Tel(" + usuarios.get(i).getTelefone() + ") </option>");
                                     }
-                                %>
+                                }
+                            %>
                         </select>
                     </div>
                 </div>
@@ -201,7 +209,7 @@
                         <div class="controls">
                             <select id="estadoOrigem" name="estadoOrigem">
                                 <option>Selecione o estado de Origem</option>
-                                 <%
+                                <%
                                     EstadoController estadoController = new EstadoController();
                                     List<Estado> listaEstadosOriegem = estadoController.listar();
                                     for (int i = 0; i < listaEstadosOriegem.size(); i++) {
@@ -225,14 +233,14 @@
                     <div class="control-group">
                         <label class="control-label" for="inputDataSaida">Data de saída:</label>
                         <div class="controls">
-                            <input class="input-xxlarge" type="text" id="data_saida" name="dataSaida" placeholder="12/12/2013">
+                            <input  type="text" id="data_saida" name="dataSaida" placeholder="12/12/2013">
 
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputHorarioSaida">Horario de saída</label>
                         <div class="controls">
-                            <input class="input-xxlarge"  type="text" id="horario_saida" name="horarioSaida" placeholder="08:24">
+                            <input  type="text" id="horario_saida" name="horarioSaida" placeholder="08:24">
 
                         </div>
                     </div>
@@ -252,7 +260,7 @@
                         <div class="controls">
                             <select id="estadoRetorno" name="estadoRetorno">
                                 <option>Selecione o estado de retorno</option>
-                                 <%
+                                <%
                                     for (int i = 0; i < listaEstadosOriegem.size(); i++) {
                                         out.print("<option value='" + listaEstadosOriegem.get(i).getId() + "'>" + listaEstadosOriegem.get(i).getSigla() + "</option>");
                                     }
@@ -275,14 +283,14 @@
                     <div class="control-group">
                         <label class="control-label" for="inputDataRetorno">Data:</label>
                         <div class="controls">
-                            <input class="input-xxlarge" type="text" id="data_retorno" name="dataRetorno" placeholder="12/12/2013">
+                            <input type="text" id="data_retorno" name="dataRetorno" placeholder="12/12/2013">
 
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="inputHorarioRetorno">Horario:</label>
+                        <label class="control-label" for="inputHorarioRetorno">Horário:</label>
                         <div class="controls">
-                            <input class="input-xxlarge" type="text" id="horario_retorno" name="horarioRetorno" placeholder="08:24">
+                            <input type="text" id="horario_retorno" name="horarioRetorno" placeholder="08:24">
 
                         </div>
                     </div>
@@ -313,9 +321,10 @@
                         </div>    
                     </div>    
                 </fieldset> 
-                   <button type="submit" class="btn btn-success btn" title="Clique aqui para criar a viagem!">
-                        <i class="icon-ok"></i> Criar viagem
-                    </button>              
+                <button type="submit" class="btn btn-success btn" title="Clique aqui para criar a viagem!">
+                    <i class="icon-ok"></i> Criar viagem
+                </button> 
+
 
             </form>
             <br/>
@@ -324,15 +333,18 @@
         <br/>
 
         <div id="myModal" title="Lista de solicitação" style="display: none">
-            
-                    
 
-                <div id="ResultTabela"></div>
 
-               
+
+            <div id="ResultTabela"></div>
+
+
         </div>
         <div id="ModalItemTabela" title="Lista de solicitação" style="display: none">
 
+        </div>            
+        <div id="MensagemDeCadastro" title="Cadastro realizado com sucesso!" style="display: none">
+            <h4>Viagem agendada com sucesso!</h4>
         </div>            
     </body>
 </html>

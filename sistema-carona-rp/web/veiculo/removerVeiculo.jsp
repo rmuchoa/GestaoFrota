@@ -4,6 +4,7 @@
     Author     : Marcelo Maia
 --%>
 
+<%@page import="util.Autenticacao"%>
 <%@page import="model.dao.VeiculoOpcionalVeiculoDAO"%>
 <%@page import="model.dao.VeiculoDAO"%>
 <%@page import="java.util.List"%>
@@ -15,6 +16,20 @@
 <%@ page import="javax.servlet.*" %> 
 <%@ page import="javax.servlet.http.*" %> 
 <!DOCTYPE html>
+
+<%
+
+    if (session.getAttribute("usuario") != null) {
+
+        new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"OPERADOR", "ADMINISTRADOR"});
+
+    } else {
+        
+        response.sendRedirect("login.jsp");
+        
+    }
+    
+%>
 
 <html>
     <head>

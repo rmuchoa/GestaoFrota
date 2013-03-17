@@ -46,3 +46,21 @@ table{
 #div-menu-home {
     text-align: center;
 }
+
+#krug-boiola{
+    
+    background-image: url('../img/pr.jpg'); 
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+}
+
+#div-troll{
+    text-align: center;
+}
+
+#cabecalho{
+    
+    color: green;
+    text-align: center
+ }

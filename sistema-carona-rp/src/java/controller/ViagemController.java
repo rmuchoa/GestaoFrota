@@ -33,10 +33,10 @@ public class ViagemController {
             viagem.setMotorista(new UsuarioDAO().buscarPorId(Integer.parseInt(request.getParameter("motorista"))));
             viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("AGENDADA"));
             viagem.setCidadeOrigem(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter("cidadeOrigem"))));
-            viagem.setDataSaida(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("data_saida")));
+            viagem.setDataSaida(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("data_saida")+" "+request.getParameter("horario_saida")));
             viagem.setLocalSaida(request.getParameter("localSaida"));
             viagem.setCidadeRetorno(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter("cidadeRetorno"))));
-            viagem.setDataRetorno(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("data_retorno")));
+            viagem.setDataRetorno(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("data_retorno")+" "+request.getParameter("horario_retorno")));
             viagem.setLocalRetorno(request.getParameter("localRetorno"));
             viagem.setPercurso(request.getParameter("percurso"));
             viagem.setObservacoes(request.getParameter("observacao"));
@@ -44,7 +44,9 @@ public class ViagemController {
             
             for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
                 solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("AGENDADA"));
+                System.out.println("ID"+solicitacao.getId());
             }
+            
             
             return viagemDAO.abrirViagem(viagem);
 
@@ -81,15 +83,28 @@ public class ViagemController {
     }
     
     public Boolean finalizarViagem(HttpServletRequest request) {
-        
-        Integer viagemId = Integer.parseInt(request.getParameter("viagemId"));
-        viagem = viagemDAO.buscarPorId(viagemId);
-        viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("REALIZADA"));
-        for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
-            solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("REALIZADA"));
+        try {
+            Integer viagemId = Integer.parseInt(request.getParameter("viagem"));
+            viagem = viagemDAO.buscarPorId(viagemId);
+            viagem.setDataInicioReal(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("dataSaida")+" "+request.getParameter("horaSaida")));
+            viagem.setKilometragemInicio(Integer.parseInt(request.getParameter("quilometragemSaida")));
+            viagem.setDataFimReal(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("dataRetorno")+" "+request.getParameter("horaChegada")));
+            viagem.setKilometragemFim(Integer.parseInt(request.getParameter("quilometragemRetorno")));
+            viagem.setObservacoesPercurso(request.getParameter("observacoes"));
+            Boolean finalizada = viagemDAO.finalizarViagem(viagem);
+            if (finalizada) {
+                viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("REALIZADA"));
+                for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
+                    solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("REALIZADA"));
+                }
+                return viagemDAO.alterarSituacaoViagem(viagem);
+            } else {
+                return Boolean.FALSE;
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(ViagemController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return viagemDAO.alterarSituacaoViagem(viagem);
-        
+        return null;
     }
     
     public Viagem buscarPorId(int id){

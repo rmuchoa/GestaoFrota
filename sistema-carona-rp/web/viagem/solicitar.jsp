@@ -4,6 +4,7 @@
     Author     : Marcelo Maia
 --%>
 
+<%@page import="util.Autenticacao"%>
 <%@page import="model.entity.Usuario"%>
 <%@page import="controller.UsuarioController"%>
 <%@page import="model.entity.Cidade"%>
@@ -24,15 +25,26 @@
 <%@page import="javax.servlet.http.*" %> 
 <!DOCTYPE html>
 
+
 <%
-    if (request.getMethod().equalsIgnoreCase("post")) {
-        if (request.getParameter("avancar") != null) {
-            SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
-            SolicitacaoViagem solicitacaoViagem = solicitacaoViagemController.inserirSolicitacao(request);
-            request.setAttribute("solicitacao", solicitacaoViagem);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("passageiros.jsp");
-            dispatcher.forward(request, response);
+
+    if (session.getAttribute("usuario") != null) {
+
+        new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"USUARIO", "OPERADOR", "AUTORIZADOR", "ADMINISTRADOR"});
+        if (request.getMethod().equalsIgnoreCase("post")) {
+            if (request.getParameter("avancar") != null) {
+                SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
+                SolicitacaoViagem solicitacaoViagem = solicitacaoViagemController.inserirSolicitacao(request);
+                request.setAttribute("solicitacao", solicitacaoViagem);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("passageiros.jsp");
+                dispatcher.forward(request, response);
+            }
         }
+
+    } else {
+
+        response.sendRedirect("login.jsp");
+
     }
 %>
 
@@ -49,8 +61,22 @@
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/pick/jquery-ui.css">
+        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.ui.datepicker-pt-BR.js"></script>
+
+        <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.min.js"></script>
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/perifer-timePicker-b5195df/timePicker.css">
+        
         <script type="text/javascript">
             $(document).ready(function() {
+                $("#data_saida").datepicker($.datepicker.regional['pt-BR']);
+                $("#data_retorno").datepicker($.datepicker.regional['pt-BR']);
+                $("#hora_saida").timePicker();
+                $("#hora_retorno").timePicker();
+                 });
                 validaSolicitacaoViagem();
                 $("#estadoOrigem").change(function() {
                     $.ajax({
@@ -76,7 +102,7 @@
                     });
                 });
 
-            });
+        
         </script>
         <title>Sistema de Caronas Unipampa</title>
     </head>
@@ -98,7 +124,7 @@
 
 
             <form action="solicitar.jsp" id="formularioSolicitacao" method="POST" class="form-horizontal well">
-                <legend>Formulario de solicitação de Viagens</legend>
+                <legend>Formulario de Solicitação de Viagens</legend>
                 <div class="control-group">
                     <label class="control-label" for="inputSolicitante">Nome do solicitante:</label>
                     <div class="controls">
@@ -124,7 +150,7 @@
                 </div>
 
                 <fieldset>
-                    <legend>Informações da origem</legend>
+                    <legend>Informações da Origem</legend>
                     <div class="control-group">
                         <label class="control-label" for="inputEstadoOrigem">Estado de origem:</label>
                         <div class="controls">
@@ -152,14 +178,14 @@
                     <div class="control-group">
                         <label class="control-label" for="inputDataSaida">Data de saída:</label>
                         <div class="controls">
-                            <input class="input-xxlarge" type="text" id="dataSaida" name="dataSaida" placeholder="12/12/2013">
+                            <input  type="text" id="data_saida" name="dataSaida" placeholder="12/12/2013">
 
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputHorarioSaida">Horario de saída</label>
                         <div class="controls">
-                            <input class="input-xxlarge" type="text" id="horarioSaida" name="horarioSaida" placeholder="08:24">
+                            <input type="text" id="hora_saida" name="horarioSaida" placeholder="08:24">
 
                         </div>
                     </div>
@@ -203,14 +229,14 @@
                     <div class="control-group">
                         <label class="control-label" for="inputDataRetorno">Data:</label>
                         <div class="controls">
-                            <input class="input-xxlarge" type="text" id="dataRetorno" name="dataRetorno" placeholder="12/12/2013">
+                            <input  type="text" id="data_retorno" name="dataRetorno" placeholder="12/12/2013">
 
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputHorarioRetorno">Horario:</label>
                         <div class="controls">
-                            <input class="input-xxlarge" type="text" id="horarioRetorno" name="horarioRetorno" placeholder="08:24">
+                            <input type="text" id="hora_retorno" name="horarioRetorno" placeholder="08:24">
 
                         </div>
                     </div>
