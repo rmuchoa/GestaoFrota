@@ -41,6 +41,7 @@ public class UsuarioDAO {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, login);
             stmt.setString(2, senha);
+            stmt.executeQuery();
             ResultSet rs = stmt.getResultSet();
             
             if (rs.next()) {
@@ -64,14 +65,14 @@ public class UsuarioDAO {
                 usuario.setComplemento(rs.getString("complemento"));
                 usuario.setCep(rs.getString("cep"));
                 usuario.setCidade(new CidadeDAO().buscarPorId(rs.getInt("cidade")));
+                return usuario;
                 
             }
             
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-        return usuario;
+        return null;
 
     }
 
