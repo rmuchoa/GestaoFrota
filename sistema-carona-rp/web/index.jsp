@@ -41,62 +41,71 @@
         <title class="span12 well">Sistema de Caronas Unipampa</title>
 
     </head>
-    <body style="">
+<<<<<<< HEAD
+    <body>
         
-        <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
-        <div class="offset1 span10 offset1">
+        <div id="wrap">
+            
+            <div id="header">
+                <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
+            </div>
 
-            <div class="hero-unit" id="div-menu-home">
-                <%
-                    if (usuario != null) {
-                        if (usuario.getTipoUsuario().getId() == 4) {
-                %>
-                <a href="usuario/listaUsuarios.jsp">
-                    <button class="btn btn-success" title="Clique aqui para Acessar a Área de Usuários!">
-                        <img src="img/user-mapping.png">   
-                    </button>
-                </a>
-                <%      }
-                        if (usuario.getTipoUsuario().getId() == 2 || usuario.getTipoUsuario().getId() == 4) {
-                %>
-                <a href="veiculo/listaVeiculos.jsp">
-                    <button class="btn btn-success" title="Clique aqui para Acessar a Área de Veículos!">
-                        <img src="img/car.png">   
-                    </button>
-                </a>
-                <%      }
-                        if (usuario.getTipoUsuario().getId() == 2 || usuario.getTipoUsuario().getId() == 4) {
-                %>
-                <a href="viagem/listaSolicitacoes.jsp">
-                    <button class="btn btn-success" title="Clique aqui para Acessar a Área de Viagens!">
-                        <img src="img/viagem.png">   
-                    </button>
-                </a>
-                <%      }
-                        if (usuario.getTipoUsuario().getId() == 5 || usuario.getTipoUsuario().getId() == 4) {
-                %>
-                <a href="#">
-                    <button class="btn btn-success" title="Clique aqui para Registrar as Informações da Viagem!">
-                        <img src="img/relatorio.png">   
-                    </button>
-                </a>
-                <%      }
-                        if (usuario.getTipoUsuario().getId() >= 1 || usuario.getTipoUsuario().getId() <= 5) {
-                %>
-                <a href="viagem/solicitar.jsp">
-                    <button class="btn btn-success" title="Clique aqui para fazer uma Solicitação de Viagens!">
-                        <img src="img/solicitar.png">   
-                    </button>
-                </a>
-                <%      }
-                    }
-                %>
+            <div id="main">
+                <div class="offset1 span10 offset1">
+
+                    <div class="hero-unit" id="div-menu-home">
+                        <%
+                            if (usuario != null) {
+                                if (usuario.getTipoUsuario().getId() == 4) {
+                        %>
+                        <a href="usuario/listaUsuarios.jsp">
+                            <button class="btn btn-success" title="Clique aqui para Acessar a Área de Usuários!">
+                                <img src="img/user-mapping.png">   
+                            </button>
+                        </a>
+                        <%      }
+                                if (usuario.getTipoUsuario().getId() == 2 || usuario.getTipoUsuario().getId() == 4) {
+                        %>
+                        <a href="veiculo/listaVeiculos.jsp">
+                            <button class="btn btn-success" title="Clique aqui para Acessar a Área de Veículos!">
+                                <img src="img/car.png">   
+                            </button>
+                        </a>
+                        <%      }
+                                if (usuario.getTipoUsuario().getId() == 2 || usuario.getTipoUsuario().getId() == 4) {
+                        %>
+                        <a href="viagem/listaSolicitacoes.jsp">
+                            <button class="btn btn-success" title="Clique aqui para Acessar a Área de Viagens!">
+                                <img src="img/viagem.png">   
+                            </button>
+                        </a>
+                        <%      }
+                                if (usuario.getTipoUsuario().getId() == 5 || usuario.getTipoUsuario().getId() == 4) {
+                        %>
+                        <a href="#">
+                            <button class="btn btn-success" title="Clique aqui para Registrar as Informações da Viagem!">
+                                <img src="img/relatorio.png">   
+                            </button>
+                        </a>
+                        <%      }
+                                if (usuario.getTipoUsuario().getId() >= 1 || usuario.getTipoUsuario().getId() <= 5) {
+                        %>
+                        <a href="viagem/solicitar.jsp">
+                            <button class="btn btn-success" title="Clique aqui para fazer uma Solicitação de Viagens!">
+                                <img src="img/solicitar.png">   
+                            </button>
+                        </a>
+                        <%      }
+                            }
+                        %>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="span12 well">
+        <div id="footer" class="well">
             <hr>
-            <footer style="text-align: center">
+            <footer>
                 <p>
                     &copy; 2013 <b>IbirapuiTech Corporation</b> - Todos os direitos reservados.
                 </p>

@@ -6,12 +6,17 @@
 
 
 
+<%@page import="model.entity.Viagem"%>
 <%@page import="controller.ViagemController"%>
 <%
 
     if (request.getMethod().equalsIgnoreCase("post")) {
+    
+        Viagem viagem = new Viagem();
         ViagemController viagemController = new ViagemController();
+        viagemController.abrirViagem(request);        
         
+        out.println(request.getAttribute(""));
         
         String html = "";
 

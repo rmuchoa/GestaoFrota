@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import model.dao.*;
 import model.entity.SolicitacaoViagem;
+import model.entity.Usuario;
 import model.entity.Viagem;
 
 /**
@@ -20,7 +21,7 @@ import model.entity.Viagem;
  */
 public class ViagemController {
 
-    private ViagemDAO viagemDAO;
+    private ViagemDAO viagemDAO = new ViagemDAO();
     private Viagem viagem;
 
     public Viagem abrirViagem(HttpServletRequest request) {
@@ -28,17 +29,17 @@ public class ViagemController {
         try {
 
             viagem = new Viagem();
-            viagem.setVeiculo(new VeiculoDAO().getVeiculoPorId(Integer.parseInt(request.getParameter(""))));
-            viagem.setMotorista(new UsuarioDAO().buscarPorId(Integer.parseInt(request.getParameter(""))));
+            viagem.setVeiculo(new VeiculoDAO().getVeiculoPorId(Integer.parseInt(request.getParameter("veiculo"))));
+            viagem.setMotorista(new UsuarioDAO().buscarPorId(Integer.parseInt(request.getParameter("motorista"))));
             viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("AGENDADA"));
-            viagem.setCidadeOrigem(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter(""))));
-            viagem.setDataSaida(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("")));
-            viagem.setLocalSaida(request.getParameter(""));
-            viagem.setCidadeRetorno(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter(""))));
-            viagem.setDataRetorno(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("")));
-            viagem.setLocalRetorno(request.getParameter(""));
-            viagem.setPercurso(request.getParameter(""));
-            viagem.setObservacoes(request.getParameter(""));
+            viagem.setCidadeOrigem(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter("cidadeOrigem"))));
+            viagem.setDataSaida(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("data_saida")));
+            viagem.setLocalSaida(request.getParameter("localSaida"));
+            viagem.setCidadeRetorno(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter("cidadeRetorno"))));
+            viagem.setDataRetorno(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("data_retorno")));
+            viagem.setLocalRetorno(request.getParameter("localRetorno"));
+            viagem.setPercurso(request.getParameter("percurso"));
+            viagem.setObservacoes(request.getParameter("observacao"));
             viagem.setSolicitacoes((List<SolicitacaoViagem>) request.getAttribute("solicitacoes"));
             
             for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
@@ -89,6 +90,19 @@ public class ViagemController {
         }
         return viagemDAO.alterarSituacaoViagem(viagem);
         
+    }
+    
+    public Viagem buscarPorId(int id){
+        return viagemDAO.buscarPorId(id);
+        
+    }
+    
+    public List<Viagem> listarViagensMotorista (Usuario usuario) {
+    
+        Usuario motorista = new UsuarioDAO().buscarPorId(5);
+        return viagemDAO.listarViagemMotorista(motorista);
+                
+       
     }
     
     public String criarDetalheItem(SolicitacaoViagem solicitacao){

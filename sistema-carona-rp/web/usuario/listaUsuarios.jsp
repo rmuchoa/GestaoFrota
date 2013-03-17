@@ -23,68 +23,77 @@
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body>
-        <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
-        
-         <div class="offset1 span10 well offset1">
-
-             <nav class="navbar">
-                 <ul class="breadcrumb">
-                     <li>
-                         <a href="../index.jsp">Página Inicial</a><span class="divider">/</span>
-                     </li>
-                     <li class="active">
-                         Lista de Usuários
-                     </li>
-                 </ul>
-             </nav>
-             <hr>
-            <h3>Lista de Usuários</h3>
-            <hr>
-            <br />
-            <div>
-                <a href="cadastrarUsuario.jsp" class="btn btn btn-primary" title="Clique aqui para Cadastrar um Novo Usuário!">Novo Usuário</a>
+        <div id="wrap">
+            <div id="header">
+                <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
             </div>
-            <br />
-            
-            <table class="table table-striped table-bordered table-condensed">
-                <thead>
-                    <tr>
-                        <th>Nome</rh>
-                        <rh>Login</rh>
-                        <th>Email</th>
-                        <th>Tipo</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
 
-                    <%
-                        List<Usuario> listaUsuarios;
-                        UsuarioController usuarioController = new UsuarioController();
-                        listaUsuarios = usuarioController.listar();
-                        for (int i = 0; i < listaUsuarios.size(); i++) {
-                            out.println("<tr><td>" + listaUsuarios.get(i).getNome() + "</td>");
-                            out.println("<td>" + listaUsuarios.get(i).getLogin() + "</td>");
-                            out.println("<td>" + listaUsuarios.get(i).getEmail() + "</td>");
-                            out.println("<td>" + listaUsuarios.get(i).getTipoUsuario().getDescricao() + "</td>");
-                            out.println("<td title='Clique aqui para Editar as Informações do Usuário!'><a href='editarUsuario.jsp?id=" + listaUsuarios.get(i).getId() + "'><img src='/sistema-carona-rp/img/edit_pencil.png' /></a></td>"
-                                    + "  <td title='Clique aqui para Excluir o Usuário!'><a href='removerUsuario.jsp?id=" + listaUsuarios.get(i).getId() + "'><img src='/sistema-carona-rp/img/Gnome-Edit-Delete-32.png' /></a></td>"
-                                    + "  </tr>");
-                        }
-                    %>
+            <div id="main">
+                <div class="offset1 span10 offset1">
+                    <nav class="navbar">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="../index.jsp">Página Inicial</a><span class="divider">/</span>
+                            </li>
+                            <li class="active">
+                                Lista de Usuários
+                            </li>
+                        </ul>
+                    </nav>
+                    <hr>
+                    <div class="well">
+                        <h3>Lista de Usuários</h3>
+                        <hr>
 
-                </tbody>
-            </table>
+                        <br />
+                        <div>
+                            <a href="cadastrarUsuario.jsp" class="btn btn btn-primary" title="Clique aqui para Cadastrar um Novo Usuário!">Novo Usuário</a>
+                        </div>
+                        <br />
 
-            <hr>
-            <br />
-            <div>
-                <a href="../index.jsp" class="btn btn-info btn" title="Clique aqui para Retornar a Página Anterior!">&laquo; Voltar </a>
+                        <table class="table table-striped table-bordered table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Nome</rh>
+                            <rh>Login</rh>
+                            <th>Email</th>
+                            <th>Tipo</th>
+                            <th>Ações</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                                <%
+                                    List<Usuario> listaUsuarios;
+                                    UsuarioController usuarioController = new UsuarioController();
+                                    listaUsuarios = usuarioController.listar();
+                                    for (int i = 0; i < listaUsuarios.size(); i++) {
+                                        out.println("<tr><td>" + listaUsuarios.get(i).getNome() + "</td>");
+                                        out.println("<td>" + listaUsuarios.get(i).getLogin() + "</td>");
+                                        out.println("<td>" + listaUsuarios.get(i).getEmail() + "</td>");
+                                        out.println("<td>" + listaUsuarios.get(i).getTipoUsuario().getDescricao() + "</td>");
+                                        out.println("<td title='Clique aqui para Editar as Informações do Usuário!'><a href='editarUsuario.jsp?id=" + listaUsuarios.get(i).getId() + "'><img src='/sistema-carona-rp/img/edit_pencil.png' /></a></td>"
+                                                + "  <td title='Clique aqui para Excluir o Usuário!'><a href='removerUsuario.jsp?id=" + listaUsuarios.get(i).getId() + "'><img src='/sistema-carona-rp/img/Gnome-Edit-Delete-32.png' /></a></td>"
+                                                + "  </tr>");
+                                    }
+                                %>
+
+                            </tbody>
+                        </table>
+
+                        <hr>
+                        <br />
+                        <div>
+                            <a href="../index.jsp" class="btn btn-info btn" title="Clique aqui para Retornar a Página Anterior!">&laquo; Voltar </a>
+                        </div>
+                    </div> 
+                </div>
             </div>
-        </div>     
-        <div class="span12 well">
+        </div>                               
+
+        <div class="well" id="footer">
             <hr>
-            <footer style="text-align: center">
+            <footer>
                 <p>
                     &copy; 2013 <b>IbirapuiTech Corporation</b> - Todos os direitos reservados.
                 </p>

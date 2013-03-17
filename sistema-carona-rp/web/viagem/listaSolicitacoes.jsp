@@ -20,13 +20,13 @@
             SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
             List<SolicitacaoViagem> solicitacoes = solicitacaoViagemController.listar();
             List<SolicitacaoViagem> selecionadas = new ArrayList<SolicitacaoViagem>();
-            
+
             for (SolicitacaoViagem solicitacao : solicitacoes) {
-                if (request.getParameter("solicitacao"+solicitacao.getId()) != null) {
+                if (request.getParameter("solicitacao" + solicitacao.getId()) != null) {
                     selecionadas.add(solicitacao);
                 }
             }
-            
+
             request.setAttribute("solicitacoes", selecionadas);
             RequestDispatcher dispatcher = request.getRequestDispatcher("criacaoViagem.jsp");
             dispatcher.forward(request, response);
@@ -64,17 +64,39 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#formFiltro').submit(function() {
-                var dataInicial =  $('#data_inicial').val();
-                var dataFinal =  $('#data_final').val();
+                var dataInicial = $('#data_inicial').val();
+                var dataFinal = $('#data_final').val();
                 preencheTabela(dataInicial, dataFinal);
                 return false;
-            });      
+            });
         });
     </script>
-    <body style="">
-        <h3 style="text-align: center;color: green" class="span12 well">Sistema de Caronas Unipampa</h3>
+    <body>
+               <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
+        <div class="offset1 span10 offset1">
+            <nav class="navbar">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="../index.jsp">Página Inicial</a><span class="divider">/</span>
+                    </li>
+                    
+                    <li>
+                        <a href="index.jsp">Área de Viagens</a><span class="divider">/</span>
+                    </li>
+                    
+                    <li class="active">
+                        Lista de Solicitações
+                    </li>
+                </ul>
+            </nav>
+            <hr>  
+            
+            <div class="well">
 
-        <div class="offset1 hero-unit span9">
+                <h3>Área de Viagens</h3>
+                <hr>
+            
+            
             <div style="font-size: 9px;">Sejá bem vindo pitoco</div>
             <div>Listagem de solicitações de viagens do sistema</div>
             <br/>
@@ -91,7 +113,21 @@
                     </div>
                 </form>
             </div>
+            </div>
         </div>
-        <br/>
+
+
+
+        <div class="span12 well">
+            <hr>
+            <footer style="text-align: center">
+                <p>
+                    &copy; 2013 <b>IbirapuiTech Corporation</b> - Todos os direitos reservados.
+                </p>
+                <em>
+                    Desenvolvido como trabalho para a disciplina de Resolução de Problemas VI.
+                </em>
+            </footer>
+        </div>
     </body>
 </html>
