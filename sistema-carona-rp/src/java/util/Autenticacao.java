@@ -26,19 +26,20 @@ public class Autenticacao {
         this.page = page;
     }
     
-    public void valida(HttpSession session, HttpServletResponse response, String[] tiposUsuario) throws IOException {
-        
-        Usuario usuario = null;
+    public void valida(HttpSession session, HttpServletResponse response, String[] usuariosPermitidos) throws IOException {
         
         if (session.getAttribute("usuario") == null) {
-            usuario = (Usuario) session.getAttribute("usuario");
+            
             response.sendRedirect(page);
             return;
+            
         }
         
-        for (String tipo : tiposUsuario) {
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        
+        for (String tipoUsuario : usuariosPermitidos) {
             
-            if (!usuario.getTipoUsuario().getDescricao().equals(tipo)) {
+            if (!usuario.getTipoUsuario().getDescricao().equals(tipoUsuario)) {
                 response.sendRedirect(page);
             }
             
