@@ -41,7 +41,7 @@
         <title class="span12 well">Sistema de Caronas Unipampa</title>
 
     </head>
-<<<<<<< HEAD
+
     <body>
         
         <div id="wrap">
