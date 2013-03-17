@@ -82,11 +82,3 @@
         </div>
     </body>
 </html>
-
-<%
-    if (request.getMethod().equalsIgnoreCase("post")) {
-        VeiculoController veiculoController = new VeiculoController();
-        veiculoController.inserirVeiculo(request);
-    }
-
-%>

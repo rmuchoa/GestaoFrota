@@ -4,12 +4,28 @@
     Author     : Marcelo Maia
 --%>
 
+<%@page import="util.Autenticacao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="model.entity.Veiculo"%>
 <%@page import="model.dao.VeiculoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<%
+    
+    if (session.getAttribute("usuario") != null) {
+
+        new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"OPERADOR", "ADMINISTRADOR"});
+
+    } else {
+        
+        response.sendRedirect("login.jsp");
+        
+    }
+
+%>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

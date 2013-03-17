@@ -36,13 +36,18 @@ public class Autenticacao {
         }
         
         Usuario usuario = (Usuario) session.getAttribute("usuario");
+        boolean permissao = false;
         
         for (String tipoUsuario : usuariosPermitidos) {
             
-            if (!usuario.getTipoUsuario().getDescricao().equals(tipoUsuario)) {
-                response.sendRedirect(page);
+            if (usuario.getTipoUsuario().getDescricao().equals(tipoUsuario)) {
+                permissao = true;
             }
             
+        }
+        
+        if (!permissao) {
+            response.sendRedirect(page);
         }
         
     }
