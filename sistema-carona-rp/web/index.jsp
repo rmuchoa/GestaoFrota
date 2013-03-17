@@ -20,9 +20,13 @@
     Usuario usuario = null;
 
     if (session.getAttribute("usuario") != null) {
+        
         usuario = (Usuario) session.getAttribute("usuario");
+        
     } else {
+        
         response.sendRedirect("login.jsp");
+        
     }
 
 %>

@@ -19,7 +19,9 @@
         new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"OPERADOR", "ADMINISTRADOR"});
 
     } else {
+        
         response.sendRedirect("login.jsp");
+        
     }
 
 %>

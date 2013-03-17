@@ -32,7 +32,9 @@
         }
 
     } else {
+        
         response.sendRedirect("login.jsp");
+        
     }
 
 %>
