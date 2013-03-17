@@ -19,6 +19,8 @@
 <%
     if (request.getMethod().equalsIgnoreCase("post")) {
         VeiculoController veiculoController = new VeiculoController();
+        System.out.println(request.getParameter("placa"));
+        System.out.println(request.getParameter("renavan"));
         veiculoController.inserirVeiculo(request);
         response.sendRedirect("listaVeiculos.jsp");
     }
@@ -175,7 +177,7 @@
 
             <div id="footer" class="well">
                 <hr>
-                <footer style="text-align: center">
+                <footer>
                     <p>
                         &copy; 2013 <b>IbirapuiTech Corporation</b> - Todos os direitos reservados.
                     </p>
