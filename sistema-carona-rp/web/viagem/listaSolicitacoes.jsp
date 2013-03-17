@@ -60,7 +60,7 @@
             });
         </script>
         <title>Sistema de Caronas Unipampa</title>
-    </head>
+    </head>    
     <script type="text/javascript">
         $(document).ready(function() {
             $('#formFiltro').submit(function() {
@@ -72,53 +72,65 @@
         });
     </script>
     <body>
-               <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
-        <div class="offset1 span10 offset1">
-            <nav class="navbar">
-                <ul class="breadcrumb">
-                    <li>
-                        <a href="../index.jsp">Página Inicial</a><span class="divider">/</span>
-                    </li>
-                    
-                    <li>
-                        <a href="index.jsp">Área de Viagens</a><span class="divider">/</span>
-                    </li>
-                    
-                    <li class="active">
-                        Lista de Solicitações
-                    </li>
-                </ul>
-            </nav>
-            <hr>  
-            
-            <div class="well">
-
-                <h3>Área de Viagens</h3>
-                <hr>
-            
-            
-            <div style="font-size: 9px;">Sejá bem vindo pitoco</div>
-            <div>Listagem de solicitações de viagens do sistema</div>
-            <br/>
-            <form id="formFiltro">
-                Data Inicial:<input id="data_inicial" class="input-small" value="" type="text">
-                Data Final<input id="data_final" class="input-small" value="" type="text">
-                <input class="btn btn-success" type="submit" value="Filtrar">
-            </form>
-            <br/>
-            <div class="well">
-                <form id="formTabela" action="listaSolicitacoes.jsp" method="POST">
-                    <div id="conteudoForm">
-
-                    </div>
-                </form>
+        <div id="wrap">
+            <div id="header">
+                <h2 id="cabecalho" class="span12 well">Sistema de Caronas - Unipampa</h2>
             </div>
+            
+            <div id="main">
+                <div class="offset1 span10 offset1">
+                    <nav class="navbar">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="../index.jsp">Página Inicial</a><span class="divider">/</span>
+                            </li>
+
+                            <li>
+                                <a href="index.jsp">Área de Viagens</a><span class="divider">/</span>
+                            </li>
+
+                            <li class="active">
+                                Lista de Solicitações
+                            </li>
+                        </ul>
+                    </nav>
+                    <hr>  
+
+                    <div class="well">
+                        <h3>Área de Viagens</h3>
+                        <hr>
+                        <p>
+                            Listagem de solicitações de viagens do sistema:
+                        </p>
+                        <br/>
+
+                        <form id="formFiltro" class="form-horizontal">
+                            <strong> Data Inicial:</strong> <input id="data_inicial" class="input-small" value="" type="text" title="Clique aqui para Selecionar uma Data." placeholder="01/03/2013">
+                            <strong> Data Final:</strong> <input id="data_final" class="input-small" value="" type="text" title="Clique aqui para Selecionar uma Data." placeholder="07/03/2013">
+                            <button type="submit" class="btn btn-success" title="Clique aqui para realizar a Filtragem!">
+                                <i class="icon-calendar"></i> Filtrar
+                            </button>
+                        </form>
+                        <br/>
+                        <div class="well">
+                            <form id="formTabela" action="listaSolicitacoes.jsp" method="POST">
+                                <div id="conteudoForm">
+
+                                </div>
+                            </form>
+                        </div>
+
+                        <hr>
+                        <br />
+                        <div>
+                            <a href="../index.jsp" class="btn btn-info btn" title="Clique aqui para Retornar a Página Anterior!">&laquo; Voltar </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-
-
-        <div class="span12 well">
+        <div id="footer" class="well">
             <hr>
             <footer style="text-align: center">
                 <p>
