@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import model.entity.SolicitacaoViagem;
+import model.entity.Usuario;
 import model.entity.Viagem;
 import util.ConnectionFactory;
 
@@ -284,6 +285,48 @@ public class ViagemDAO {
         
         return Boolean.FALSE;
         
+    }
+    
+    public List<Viagem> listarViagemMotorista(Usuario motorista){
+       List<Viagem> viagens = new ArrayList<Viagem>();
+        String sql = "select * from viagem where motorista = ?";
+        
+        try {
+
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, motorista.getId());
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                
+                Viagem viagem = new Viagem();
+                viagem.setId(rs.getInt("id"));
+                viagem.setVeiculo(new VeiculoDAO().getVeiculoPorId(rs.getInt("veiculo")));
+                viagem.setMotorista(new UsuarioDAO().buscarPorId(rs.getInt("motorista")));
+                viagem.setCidadeOrigem(new CidadeDAO().buscarPorId(rs.getInt("cidade_origem")));
+                viagem.setDataSaida(new Date(rs.getDate("data_saida").getTime()));
+                viagem.setLocalSaida(rs.getString("local_saida"));
+                viagem.setCidadeRetorno(new CidadeDAO().buscarPorId(rs.getInt("cidade_retorno")));
+                viagem.setDataRetorno(new Date(rs.getDate("data_retorno").getTime()));
+                viagem.setLocalRetorno(rs.getString("local_retorno"));
+                viagem.setPercurso(rs.getString("percurso"));
+                viagem.setObservacoes(rs.getString("observacoes"));
+                viagem.setSituacao(new SituacaoDAO().buscarPorId(rs.getInt("situacao_viagem")));
+                viagem.setSolicitacoes(new SolicitacaoViagemDAO().buscarPorViagemId(viagem.getId()));
+                
+                viagens.add(viagem);
+                
+            }
+            
+            stmt.close();
+            
+            return viagens;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return null;
     }
     
 }

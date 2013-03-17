@@ -8,12 +8,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <title>Setup</title>
     </head>
     <body>
-        <a href="./create.jsp">Criar banco de dados</a><br><br>
-        <a href="./bancodev.jsp">Inserir dados de desenvolvimento</a><br><br>
-        <a href="./bancoprod.jsp">Inserir dados de produção</a><br><br>
+        <div id="krug-boiola">
+
+            <a href="./create.jsp">Criar banco de dados</a><br><br>
+            <a href="./bancodev.jsp">Inserir dados de desenvolvimento</a><br><br>
+            <a href="./bancoprod.jsp">Inserir dados de produção</a><br><br>
+
+            <div id="div-troll">
+                <h1>
+                    Krug Seu Viado!
+                </h1>
+            </div>
+            <br />
+        </div>
     </body>
 </html>
