@@ -4,6 +4,7 @@
     Author     : Marcelo Maia
 --%>
 
+<%@page import="util.Autenticacao"%>
 <%@page import="model.entity.Usuario"%>
 <%@page import="controller.UsuarioController"%>
 <%@page import="model.entity.Cidade"%>
@@ -26,14 +27,24 @@
 
 
 <%
-    if (request.getMethod().equalsIgnoreCase("post")) {
-        if (request.getParameter("avancar") != null) {
-            SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
-            SolicitacaoViagem solicitacaoViagem = solicitacaoViagemController.inserirSolicitacao(request);
-            request.setAttribute("solicitacao", solicitacaoViagem);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("passageiros.jsp");
-            dispatcher.forward(request, response);
+
+    if (session.getAttribute("usuario") != null) {
+
+        new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"USUARIO", "OPERADOR", "AUTORIZADOR", "ADMINISTRADOR"});
+        if (request.getMethod().equalsIgnoreCase("post")) {
+            if (request.getParameter("avancar") != null) {
+                SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
+                SolicitacaoViagem solicitacaoViagem = solicitacaoViagemController.inserirSolicitacao(request);
+                request.setAttribute("solicitacao", solicitacaoViagem);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("passageiros.jsp");
+                dispatcher.forward(request, response);
+            }
         }
+
+    } else {
+
+        response.sendRedirect("login.jsp");
+
     }
 %>
 

@@ -4,6 +4,8 @@
     Author     : Marcelo Maia
 --%>
 
+<%@page import="util.Autenticacao"%>
+<%@page import="model.entity.Usuario"%>
 <%@page import="model.entity.OpcionalVeiculo"%>
 <%@page import="model.dao.OpcionalVeiculoDAO"%>
 <%@page import="java.util.List"%>
@@ -17,12 +19,21 @@
 <!DOCTYPE html>
 
 <%
-    if (request.getMethod().equalsIgnoreCase("post")) {
-        VeiculoController veiculoController = new VeiculoController();
-        System.out.println(request.getParameter("placa"));
-        System.out.println(request.getParameter("renavan"));
-        veiculoController.inserirVeiculo(request);
-        response.sendRedirect("listaVeiculos.jsp");
+
+    if (session.getAttribute("usuario") != null) {
+
+        new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"OPERADOR", "ADMINISTRADOR"});
+
+        if (request.getMethod().equalsIgnoreCase("post")) {
+            VeiculoController veiculoController = new VeiculoController();
+            veiculoController.inserirVeiculo(request);
+            response.sendRedirect("listaVeiculos.jsp");
+        }
+
+    } else {
+        
+        response.sendRedirect("login.jsp");
+        
     }
 
 %>

@@ -152,6 +152,7 @@ public class ViagemDAO {
     
     public Viagem abrirViagem(Viagem viagem) {
         
+        
         String sql = "insert into viagem (veiculo, motorista, cidade_origem, data_saida, local_saida, "
                 + "cidade_retorno, data_retorno, local_retorno, percurso, observacoes, situacao_viagem)"
                 + " values (?,?,?,?,?,?,?,?,?,?,?)";
