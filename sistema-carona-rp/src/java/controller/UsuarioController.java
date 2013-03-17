@@ -25,6 +25,12 @@ public class UsuarioController {
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
     private TipoUsuarioDAO tipoUsuarioDAO = new TipoUsuarioDAO();
     private CidadeDAO cidadeDAO = new CidadeDAO();
+    
+    public Usuario fazerLogin(String login, String senha) {
+        
+        return usuarioDAO.buscaUsuarioLogin(login, senha);
+        
+    }
 
     public void inserir(HttpServletRequest request) {
 

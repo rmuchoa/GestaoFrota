@@ -48,11 +48,11 @@
                 validaFormularioUsuario();
                 $("#estado").change(function() {
                     $.ajax({
-                        url:'../ajax/cidades.jsp',
-                        dataType:'html',
-                        data:{estado: $('#estado').val()},
-                        type:'POST',
-                        success:function(data){
+                        url: '../ajax/cidades.jsp',
+                        dataType: 'html',
+                        data: {estado: $('#estado').val()},
+                        type: 'POST',
+                        success: function(data) {
                             $('#cidade').html(data);
                         }
                     });
@@ -65,15 +65,30 @@
     </head>
     <body>
         <h3 style="color: green;text-align: center"  class="span12 well">Sistema de Caronas Unipampa</h3>
-        <div class="offset2 span8 offset2">
 
-            <h3>Alteração dos dados do veículo</h3> 
+        <div class="offset1 span10 offset1">
+            <nav class="navbar">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="../index.jsp">Página Inicial</a><span class="divider">/</span>
+                    </li>
+                    <li>
+                        <a href="listaUsuarios.jsp">Lista de Usuários</a><span class="divider">/</span>                        
+                    </li>                   
+                    <li class="active">
+                        Editar Usuário
+                    </li>
+                </ul>
+            </nav>
+            <hr>
+
             <%
                 UsuarioController usuarioController = new UsuarioController();
                 Usuario usuario = usuarioController.buscarPorId(Integer.parseInt(request.getParameter("id")));
             %>
             <form action="editarUsuario.jsp?id=<%out.println(request.getParameter("id"));%>" method="POST" id="formularioUsuario" class="form-horizontal well">
-
+                <h3>Alteração dos dados do usuário</h3> 
+                <hr />
                 <input  style="display:none" name="id" value="<% out.print(usuario.getId());%>">
                 <div class="control-group">
                     <label class="control-label" for="inputId">Id</label>
@@ -265,5 +280,17 @@
             </form>
 
         </div>
+
+        <div class="span12 well">
+            <hr>
+            <footer style="text-align: center">
+                <p>
+                    &copy; 2013 <b>IbirapuiTech Corporation</b> - Todos os direitos reservados.
+                </p>
+                <em>
+                    Desenvolvido como trabalho para a disciplina de Resolução de Problemas VI.
+                </em>
+            </footer>
+        </div>  
     </body>
 </html>

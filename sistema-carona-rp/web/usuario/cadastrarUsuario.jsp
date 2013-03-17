@@ -37,8 +37,6 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery-1.9.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
-        <!-- <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.maskedinput-1.1.4.pack.js"></script> -->
-        <!--<script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.min.js"></script> -->
         <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <script type="text/javascript">
@@ -160,7 +158,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputCnh">Habilitação</label>
                     <div class="controls">
-                        <input type="text" name="numero_cnh" id="cnh" placeholder="Carteira de habilitação" title="Insira a Habilitação do Usuário">
+                        <input type="text" name="numero_cnh" id="cnh" placeholder="12345678901" title="Insira a Habilitação do Usuário">
                     </div>
                 </div>
 
