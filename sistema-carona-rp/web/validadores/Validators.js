@@ -318,6 +318,53 @@ function validaSolicitacaoViagem(){
 }
 
 
+function validaFormularioPassageiros(){
+   
+    $("#cadastroPassageiros").validate({
+
+        rules:{
+            nome:{
+                required: true,
+                minlength: 6
+            },
+            
+            rg:{
+                required: true,
+                maxlength: 20,
+                number: true
+            },
+            rua:{
+                required: true
+            },
+            email:{
+                required: true,
+                email: true
+            }
+            
+        },
+
+        messages:{
+            nome:{
+                required: "Campo obrigatório",
+                minlength: "Tamanho inválido"
+            },
+            
+            rg:{
+                required: "Campo obrigatório",
+                maxlength: "Número inválido",
+                number: "Digite apenas números"
+            },
+            rua:{
+                required: "Campo obrigatório"
+            },
+            email:{
+                required: "Campo obrigatório",
+                email: "Digite um e-mail válido"
+            }
+        }
+    });
+}
+
 function verificaCamposNumericos(){
     
     

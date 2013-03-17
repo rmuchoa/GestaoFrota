@@ -4,6 +4,8 @@
     Author     : Bruno
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="org.omg.PortableInterceptor.SYSTEM_EXCEPTION"%>
 <%@page import="model.entity.Viagem"%>
 <%@page import="controller.ViagemController"%>
 <%@page import="model.entity.Usuario"%>
@@ -28,8 +30,37 @@
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery-1.9.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.ui.datepicker-pt-BR.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/perifer-timePicker-b5195df/timePicker.css">
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/pick/jquery-ui.css">
+
+
+        <script>
+            $(document).ready(function() {
+                $("#data_saida").datepicker($.datepicker.regional['pt-BR']);
+                $("#data_retorno").datepicker($.datepicker.regional['pt-BR']);
+                $("#hora_saida").timePicker();
+                $("#hora_chegada").timePicker();
+                
+                 $("#viagem").change(function() {
+                    $.ajax({
+                        url: '/sistema-carona-rp/ajax/dadosViagem.jsp',
+                        dataType: 'html',
+                        data: {viagem: $('#viagem').val()},
+                        type: 'POST',
+                        success: function(data) {
+                            $('#dados_viagem').html(data)
+                        }
+                    });
+                });
+            });
+        </script>
 
         <title>Sistema de Caronas Unipampa</title>
     </head>
@@ -56,96 +87,63 @@
                 <div class="control-group">
                     <label class="control-label" for="inputViagem">Viagem Realizada</label>
                     <div class="controls">
-                        <select id="viagem" placeholder="Viagem Realizada" title="Insira a viagem que foi realizada" required="true">
-                            <option>Selecione a Viagem Realizada</option>
+                        <select id="viagem" style="width: 80%" placeholder="Viagem Realizada" title="Insira a viagem que foi realizada" required="true">
+                            <option value="">Selecione a Viagem Realizada</option>
                             <%
                                 ViagemController viagemController = new ViagemController();
-                                //List<Viagem> viagens = viagemController.
-                            
-                            
-                            
-                            
-                            %>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="control-group">
-                    <label class="control-label" for="inputMotorista">Motorista</label>
-                    <div class="controls">
-                        <select id="motorista" style="width: 50%" name="motorista">
-                            <option>Selecione o motorista</option>
-                             <%
-                                    UsuarioController usuarioController = new UsuarioController();
-                                    List<Usuario> usuarios = usuarioController.listar();
-                                    for (int i = 0; i < usuarios.size(); i++) {
-                                        if(usuarios.get(i).getTipoUsuario().getDescricao().endsWith("MOTORISTA")){
-                                            out.print("<option value='" + usuarios.get(i).getId() + "'>" + usuarios.get(i).getNome() +" - Tel("+ usuarios.get(i).getTelefone()+") </option>");
-                                        }
-                                    }
-                                %>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label"  for="inputVeiculo">Veiculo</label>
-                    <div  class="controls">
-                        <select id="veiculo" name="veiculo" title="Selecione o Veículo utilizado" required="true">
-                            <%
-                                VeiculoController veiculoController = new VeiculoController();
-                                List<Veiculo> listaDeVeiculos;
-                                listaDeVeiculos = veiculoController.listar();
-                                for (int i = 0; i < listaDeVeiculos.size(); i++) {
-                                    out.print("<option value='" + listaDeVeiculos.get(i).getId() + "'>" + listaDeVeiculos.get(i).getMarca() +" - "+ listaDeVeiculos.get(i).getModelo() + " - "+ listaDeVeiculos.get(i).getPlaca()+ "</option>");
+                                List<Viagem> viagens = viagemController.listarViagensMotorista(null);
+                                for (int i = 0; i < viagens.size(); i++) {
+                                    out.print("<option value='" + viagens.get(i).getId() + "'> Cidade de Origem: " + viagens.get(i).getCidadeOrigem().getNome()
+                                            + " | Destino: " + viagens.get(i).getCidadeRetorno().getNome() 
+                                            + " | Data Saída: " + new SimpleDateFormat("dd/MM/yyyy").format(viagens.get(i).getDataSaida()) 
+                                            + " | Data Retorno: " + new SimpleDateFormat("dd/MM/yyyy").format(viagens.get(i).getDataRetorno()) 
+                                            + " </option>");
                                 }
                             %>
-
                         </select>
+                    </div>
+                </div>
+
+                <div class="container-fluid well">     
+                    <div id="dados_viagem" class="row-fluid">
+                        <div class="span6">Motorista:</div>  
+                        <div class="span6">Veiculo:</div>  
                     </div>
                 </div> 
 
-                
                 <div class="control-group">
                     <label class="control-label" for="inputDataSaida">Data de Saída</label>
                     <div class="controls">
-                        <input class="input-xxlarge" type="text" id="dataSaida" name="dataSaida" placeholder="12/12/2013" required="true">
+                        <input type="text" id="data_saida" name="dataSaida" placeholder="12/12/2013" required="true">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputHorarioSaida">Hora de saída</label>
                     <div class="controls">
-                        <input class="input-xxlarge" type="text" id="horaSaida" name="horaSaida" placeholder="08:24" required="true">
+                        <input  type="text" id="hora_saida" name="horaSaida" placeholder="08:24" required="true">
 
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label" for="inputResponsavelViagem">Responsável pela Viagem</label>
-                    <div class="controls">
-                        <input type="text" name="responsavel" id="responsavel" placeholder="Responsável" title="Insira o nome da pessoa responsável pela viagem" required="true">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputQuilometragemSaida">Quilometragem do veículo na saída</label>
                     <div class="controls">
-                        <input type="text" id="quilometragem_saida"  name="quilometragem_saida" placeholder="12.000 KM" title="Insira a quilometragem do veículo na saída" required="true">
+                        <input type="text" id="quilometragem_saida"  name="quilometragem_saida" placeholder="12.000" title="Insira a quilometragem do veículo na saída" required="true">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputDataRetorno">Data do Retorno</label>
                     <div class="controls">
-                        <input class="input-xxlarge" type="text" id="data_retorno" name="data_retorno" placeholder="12/12/2013" required="true">
+                        <input type="text" id="data_retorno" name="data_retorno" placeholder="12/12/2013" required="true">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputHoraChegada">Hora de Chegada</label>
                     <div class="controls">
-                        <input class="input-xxlarge" type="text" id="hora_chegada" name="hora_chegada" placeholder="08:24" required="true">
+                        <input type="text" id="hora_chegada" name="hora_chegada" placeholder="08:24" required="true">
 
                     </div>
                 </div>
@@ -153,7 +151,7 @@
                 <div class="control-group">
                     <label class="control-label" for="inputQuilometragemRetorno">Quilometragem do veículo no retorno</label>
                     <div class="controls">
-                        <input type="text" id="quilometragem_retorno"  name="quilometragem_retorno" placeholder="12.000 KM" title="Insira a quilometragem do veículo no retorno" required="true">
+                        <input type="text" id="quilometragem_retorno"  name="quilometragem_retorno" placeholder="12.000" title="Insira a quilometragem do veículo no retorno" required="true">
 
                     </div>
                 </div>
@@ -171,7 +169,7 @@
                 <hr>
 
                 <p>
-                    <a href="listaVeiculos.jsp" class="btn btn-info btn" title="Clique aqui para Retornar a Página Anterior!">&laquo; Voltar </a>
+                    <a href="#" class="btn btn-info btn" title="Clique aqui para Retornar a Página Anterior!">&laquo; Voltar </a>
 
                     <button type="submit" class="btn btn-success btn" title="Clique aqui para Salvar o Relatório!">
                         <i class="icon-ok"></i> Salvar </button>
