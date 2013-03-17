@@ -28,17 +28,17 @@ public class ViagemController {
         try {
 
             viagem = new Viagem();
-            viagem.setVeiculo(new VeiculoDAO().getVeiculoPorId(Integer.parseInt(request.getParameter(""))));
-            viagem.setMotorista(new UsuarioDAO().buscarPorId(Integer.parseInt(request.getParameter(""))));
+            viagem.setVeiculo(new VeiculoDAO().getVeiculoPorId(Integer.parseInt(request.getParameter("veiculo"))));
+            viagem.setMotorista(new UsuarioDAO().buscarPorId(Integer.parseInt(request.getParameter("motorista"))));
             viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("AGENDADA"));
-            viagem.setCidadeOrigem(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter(""))));
-            viagem.setDataSaida(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("")));
-            viagem.setLocalSaida(request.getParameter(""));
-            viagem.setCidadeRetorno(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter(""))));
-            viagem.setDataRetorno(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("")));
-            viagem.setLocalRetorno(request.getParameter(""));
-            viagem.setPercurso(request.getParameter(""));
-            viagem.setObservacoes(request.getParameter(""));
+            viagem.setCidadeOrigem(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter("cidadeOrigem"))));
+            viagem.setDataSaida(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("data_saida")));
+            viagem.setLocalSaida(request.getParameter("localSaida"));
+            viagem.setCidadeRetorno(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter("cidadeRetorno"))));
+            viagem.setDataRetorno(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("data_retorno")));
+            viagem.setLocalRetorno(request.getParameter("localRetorno"));
+            viagem.setPercurso(request.getParameter("percurso"));
+            viagem.setObservacoes(request.getParameter("observacao"));
             viagem.setSolicitacoes((List<SolicitacaoViagem>) request.getAttribute("solicitacoes"));
             
             for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
