@@ -77,8 +77,11 @@ public class VeiculoController {
             }
         }
     }
-    
-    public List<Veiculo> listar(){
-     return veiculoDAO.getTodosVeiculos();
+     public List<Veiculo> listar() {
+        return veiculoDAO.getTodosVeiculos();
+    }
+
+    public Veiculo buscarPorId(int id) {
+        return veiculoDAO.getVeiculoPorId(id);
     }
 }

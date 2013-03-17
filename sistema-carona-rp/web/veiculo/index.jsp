@@ -162,8 +162,7 @@
                     <a href="listaVeiculos.jsp" class="btn btn-info btn" title="Clique aqui para Retornar a Página Anterior!">&laquo; Voltar </a>
 
                     <button type="submit" class="btn btn-success btn" title="Clique aqui para Cadastrar um Novo Veículo!">
-                        <i class="icon-ok"></i> Cadastrar
-                    </button>
+                        <i class="icon-ok"></i> Cadastrar </button>
                 </p>
         </div>
     </form>
