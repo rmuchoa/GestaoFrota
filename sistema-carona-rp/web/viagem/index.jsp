@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
-    Created on : 27/Jan/2013, 12:44:03
-    Author     : Marcelo Maia
+    Created on : 16-mar-2013, 23:44:52
+    Author     : PC
 --%>
 
 <%@page import="java.util.List"%>
@@ -32,28 +32,39 @@
             <div id="header">
                 <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
             </div>
-
             <div id="main">
                 <div class="offset1 span10 offset1">
+                    <nav class="navbar">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="../index.jsp">Página Inicial</a><span class="divider">/</span>
+                            </li>
+                            <li class="active">
+                                Área de Viagens
+                            </li>
+                        </ul>
+                    </nav>
+                    <hr>  
 
-                    <div class="hero-unit" id="div-menu-home">
-                        <a href="veiculo/listaVeiculos.jsp">
-                            <button class="btn btn-success" title="Clique aqui para Acessar a Área de Veículos!">
-                                <img src="img/car.png">   
-                            </button>
-                        </a>
-                        <a href="usuario/listaUsuarios.jsp">
-                            <button class="btn btn-success" title="Clique aqui para Acessar a Área de Usuários!">
-                                <img src="img/user-mapping.png">   
-                            </button>
-                        </a>
-                        <a href="viagem/index.jsp">
-                            <button class="btn btn-success" title="Clique aqui para Acessar a Área de Viagens!">
-                                <img src="img/suitcase_travel.png">   
-                            </button>
-                        </a>               
+                    <div class="well">
+
+                        <h3>Área de Viagens</h3>
+                        <hr>
+
+                        <div class="hero-unit" id="div-menu-home">
+                            <a href="listaSolicitacoes.jsp">
+                                <button class="btn btn-success" title="Clique aqui para Acessar a Área de Veículos!">
+                                    <img src="../img/car.png">   
+                                </button>
+                            </a>           
+                        </div>
+
+                        <hr>
+                        <br />
+                        <div>
+                            <a href="../index.jsp" class="btn btn-info btn" title="Clique aqui para Retornar a Página Anterior!">&laquo; Voltar </a>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
