@@ -4,11 +4,18 @@
     Author     : Bruno
 --%>
 
+<%@page import="model.entity.Viagem"%>
+<%@page import="controller.ViagemController"%>
+<%@page import="model.entity.Usuario"%>
+<%@page import="controller.UsuarioController"%>
 <%@page import="model.entity.Veiculo"%>
 <%@page import="java.util.List"%>
 <%@page import="controller.VeiculoController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+
+
 <html>
     <head>
 
@@ -47,9 +54,37 @@
             <form action="index.jsp" method="POST" id="formularioViagem" class="form-horizontal well">
 
                 <div class="control-group">
-                    <label class="control-label" for="inputNome">Nome do Motorista</label>
+                    <label class="control-label" for="inputViagem">Viagem Realizada</label>
                     <div class="controls">
-                        <input type="text" id="placa" name="Nome" placeholder="Placa" title="Insira o nome do Motorista" required="true" autofocus>
+                        <select id="viagem" placeholder="Viagem Realizada" title="Insira a viagem que foi realizada" required="true">
+                            <option>Selecione a Viagem Realizada</option>
+                            <%
+                                ViagemController viagemController = new ViagemController();
+                                //List<Viagem> viagens = viagemController.
+                            
+                            
+                            
+                            
+                            %>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label" for="inputMotorista">Motorista</label>
+                    <div class="controls">
+                        <select id="motorista" style="width: 50%" name="motorista">
+                            <option>Selecione o motorista</option>
+                             <%
+                                    UsuarioController usuarioController = new UsuarioController();
+                                    List<Usuario> usuarios = usuarioController.listar();
+                                    for (int i = 0; i < usuarios.size(); i++) {
+                                        if(usuarios.get(i).getTipoUsuario().getDescricao().endsWith("MOTORISTA")){
+                                            out.print("<option value='" + usuarios.get(i).getId() + "'>" + usuarios.get(i).getNome() +" - Tel("+ usuarios.get(i).getTelefone()+") </option>");
+                                        }
+                                    }
+                                %>
+                        </select>
                     </div>
                 </div>
 
@@ -62,7 +97,7 @@
                                 List<Veiculo> listaDeVeiculos;
                                 listaDeVeiculos = veiculoController.listar();
                                 for (int i = 0; i < listaDeVeiculos.size(); i++) {
-                                    out.print("<option value='" + listaDeVeiculos.get(i).getId() + "'>" + listaDeVeiculos.get(i).getModelo() + listaDeVeiculos.get(i).getMarca() + "</option>");
+                                    out.print("<option value='" + listaDeVeiculos.get(i).getId() + "'>" + listaDeVeiculos.get(i).getMarca() +" - "+ listaDeVeiculos.get(i).getModelo() + " - "+ listaDeVeiculos.get(i).getPlaca()+ "</option>");
                                 }
                             %>
 
@@ -70,13 +105,7 @@
                     </div>
                 </div> 
 
-                <div class="control-group">
-                    <label class="control-label" for="inputDestino">Destino</label>
-                    <div class="controls">
-                        <input type="text" name="destino" id="destino" placeholder="Destino" title="Insira o destino da viagem" required="true">
-                    </div>
-                </div>
-
+                
                 <div class="control-group">
                     <label class="control-label" for="inputDataSaida">Data de Saída</label>
                     <div class="controls">
@@ -103,7 +132,6 @@
                     <label class="control-label" for="inputQuilometragemSaida">Quilometragem do veículo na saída</label>
                     <div class="controls">
                         <input type="text" id="quilometragem_saida"  name="quilometragem_saida" placeholder="12.000 KM" title="Insira a quilometragem do veículo na saída" required="true">
-
                     </div>
                 </div>
 

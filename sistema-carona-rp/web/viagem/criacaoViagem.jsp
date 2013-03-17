@@ -65,7 +65,7 @@
         <script>
             $(document).ready(function() {
    
-                criarViagemForm()
+                criarViagemForm();
                 $("#data_saida").datepicker($.datepicker.regional['pt-BR']);
                 $("#data_retorno").datepicker($.datepicker.regional['pt-BR']);
                 $("#horario_saida").timePicker();
@@ -156,7 +156,7 @@
             </div>           
 
             <div class="span12"></div>     
-            <form class="form" id="form">
+            <form class="form" id="formViagem">
 
                 <div class="control-group">
                     <label class="control-label" for="inputVeiculo">Veiculo</label>
