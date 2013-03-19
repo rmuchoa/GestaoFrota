@@ -189,28 +189,34 @@ INSERT INTO `tipo_usuario` (`descricao`) VALUES ('AUTORIZADOR');
 INSERT INTO `tipo_usuario` (`descricao`) VALUES ('ADMINISTRADOR');
 INSERT INTO `tipo_usuario` (`descricao`) VALUES ('MOTORISTA');
 
+
 -- -----------------------------------------------------
 -- Table `frota`.`usuario`
 -- -----------------------------------------------------
+INSERT INTO `usuario` (`id`, `nome`, `login`, `senha`, `tipo_usuario`, `email`, 
+`telefone`, `celular`, `rg`, `siape`, `numero_cnh`, `validade_cnh`, `categoria_cnh`, `rua`,
+ `numero`, `complemento`, `cep`, `cidade`) VALUES (NULL, 'admin', 'admin', '12345', '4', 
+'admin@admin.com', '5534413443', '5598999778', '635342617', NULL, NULL, NULL, NULL, 'Teste', '12', NULL, '12349870', '12');
 
-INSERT INTO `usuario` (`nome`,`login`,`senha`,`tipo_usuario`,`email`,`telefone`,`celular`,`rg`,`siape`,`numero_cnh`,`validade_cnh`,`categoria_cnh`,`rua`,`numero`,`complemento`,`cep`,`cidade`) 
-	VALUES ('Teste da Silva', 'teste', '12345', 4, 'teste@email.com', '5533033330', '5584441234', '12345678910', 1234567, 123456789, 			'2014-01-01', 'AB', 'Andradas', '310', 'apto. 101', '99500000', 1);
+INSERT INTO `usuario` (`id`, `nome`, `login`, `senha`, `tipo_usuario`, `email`, 
+`telefone`, `celular`, `rg`, `siape`, `numero_cnh`, `validade_cnh`, `categoria_cnh`, `rua`,
+ `numero`, `complemento`, `cep`, `cidade`) VALUES (NULL, 'user', 'user', '12345', '1', 
+'user@user.com', '5534488443', '5594499778', '634342617', NULL, NULL, NULL, NULL, 'Tiradentes', '120', NULL, '12459870', '34');
 
-INSERT INTO `usuario` (`nome`,`login`,`senha`,`tipo_usuario`,`email`,`telefone`,`celular`,`rg`,`siape`,`numero_cnh`,`validade_cnh`,`categoria_cnh`,`rua`,`numero`,`complemento`,`cep`,`cidade`) 
-	VALUES ('Teste da Silva Junior', 'teste2', '12345', 3, 'teste2@email.com', '5533033330', '5584441234', '12345678911', 2345678, 234567890, 
-		'2014-01-01', 'AB', 'Andradas', '310', 'apto. 101', '99500000', 1);
+INSERT INTO `usuario` (`id`, `nome`, `login`, `senha`, `tipo_usuario`, `email`, 
+`telefone`, `celular`, `rg`, `siape`, `numero_cnh`, `validade_cnh`, `categoria_cnh`, `rua`,
+ `numero`, `complemento`, `cep`, `cidade`) VALUES (NULL, 'operador', 'operador', '12345', '2', 
+'operador@operador.com', '5539888443', '5522499778', '634622617', NULL, NULL, NULL, NULL, 'Dom Pedro II', '2120', NULL, '19049870', '89');
 
-INSERT INTO `usuario` (`nome`,`login`,`senha`,`tipo_usuario`,`email`,`telefone`,`celular`,`rg`,`siape`,`numero_cnh`,`validade_cnh`,`categoria_cnh`,`rua`,`numero`,`complemento`,`cep`,`cidade`) 
-	VALUES ('Teste da Silva Filho', 'teste3', '12345', 2, 'teste3@email.com', '5533033330', '5584441234', '12345678912', 3456789, 345678901, 
-		'2014-01-01', 'AB', 'Andradas', '310', 'apto. 101', '99500000', 1);
+INSERT INTO `usuario` (`id`, `nome`, `login`, `senha`, `tipo_usuario`, `email`, 
+`telefone`, `celular`, `rg`, `siape`, `numero_cnh`, `validade_cnh`, `categoria_cnh`, `rua`,
+ `numero`, `complemento`, `cep`, `cidade`) VALUES (NULL, 'autorizador', 'autorizador', '12345', '3', 
+'autorizador@autorizador.com', '5539888993', '5527899778', '634663617', NULL, NULL, NULL, NULL, 'Cristovam Colombo', '2900', NULL, '19049280', '120');
 
-INSERT INTO `usuario` (`nome`,`login`,`senha`,`tipo_usuario`,`email`,`telefone`,`celular`,`rg`,`siape`,`numero_cnh`,`validade_cnh`,`categoria_cnh`,`rua`,`numero`,`complemento`,`cep`,`cidade`) 
-	VALUES ('Teste da Silva Neto', 'teste4', '12345', 1, 'teste4@email.com', '5533033330', '5584441234', '12345678913', 4567890, 456789012, 
-		'2014-01-01', 'AB', 'Andradas', '310', 'apto. 101', '99500000', 1);
-
-INSERT INTO `usuario` (`nome`,`login`,`senha`,`tipo_usuario`,`email`,`telefone`,`celular`,`rg`,`siape`,`numero_cnh`,`validade_cnh`,`categoria_cnh`,`rua`,`numero`,`complemento`,`cep`,`cidade`) 
-	VALUES ('Motorista da Silva', 'teste5', '12345', 5, 'teste5@email.com', '5533033330', '5584441234', '12345678914', 1234568, 567890123,
-		'2014-01-01', 'AB', 'Andradas', '310', 'apto. 101', '99500000', 1);
+INSERT INTO `usuario` (`id`, `nome`, `login`, `senha`, `tipo_usuario`, `email`, 
+`telefone`, `celular`, `rg`, `siape`, `numero_cnh`, `validade_cnh`, `categoria_cnh`, `rua`,
+ `numero`, `complemento`, `cep`, `cidade`) VALUES (NULL, 'motorista', 'motorista', '12345', '5', 
+'motorista@motorista.com', '5597888993', '5697899778', '634612617', NULL, NULL, NULL, NULL, 'Jose Bonifacio', '100', NULL, '19067287', '129');
 
 -- -----------------------------------------------------
 -- Table `frota`.`veiculo_opcional_veiculo`
@@ -239,8 +245,23 @@ INSERT INTO `situacao` (`descricao`) VALUES ('REALIZADA');
 -- Table `frota`.`solicitacao_viagem`
 -- -----------------------------------------------------
 
+INSERT INTO `solicitacao_viagem` (`solicitante`, `data_saida`, `local_saida`, `data_retorno`, `local_retorno`, `justificativa`,	`observacoes`, `origem`, `destino`, `percurso`, `situacao_solicitacao`, `eh_passageiro`, viagem) 
+	VALUES (4, '2013-04-10','Unipampa','2013-04-10','PUC-RS','Participacao no Fisl','alguma coisa',1,2,'trajeto',4,1,1);
+
+INSERT INTO `solicitacao_viagem` (`solicitante`, `data_saida`, `local_saida`, `data_retorno`, `local_retorno`, `justificativa`,	`observacoes`, `origem`, `destino`, `percurso`, `situacao_solicitacao`, `eh_passageiro`, viagem) 
+	VALUES (4, '2013-04-11','Unipampa','2013-04-11','PUC-RS','Participacao no Fisl','alguma coisa',1,2,'trajeto',2,1,2);
+
+INSERT INTO `solicitacao_viagem` (`solicitante`, `data_saida`, `local_saida`, `data_retorno`, `local_retorno`, `justificativa`,	`observacoes`, `origem`, `destino`, `percurso`, `situacao_solicitacao`, `eh_passageiro`, viagem) 
+	VALUES (4, '2013-04-12','Unipampa','2013-04-12','PUC-RS','Participacao no Fisl','alguma coisa',1,2,'trajeto',2,1,2);
+
 INSERT INTO `solicitacao_viagem` (`solicitante`, `data_saida`, `local_saida`, `data_retorno`, `local_retorno`, `justificativa`,	`observacoes`, `origem`, `destino`, `percurso`, `situacao_solicitacao`, `eh_passageiro`) 
-	VALUES (4, '2013-04-10','Unipampa','2013-04-10','PUC-RS','Participacao no Fisl','alguma coisa',1,2,'trajeto',1,1);
+	VALUES (4, '2013-04-13','Unipampa','2013-04-13','PUC-RS','Participacao no Fisl','alguma coisa',1,2,'trajeto',1,1);
+
+INSERT INTO `solicitacao_viagem` (`solicitante`, `data_saida`, `local_saida`, `data_retorno`, `local_retorno`, `justificativa`,	`observacoes`, `origem`, `destino`, `percurso`, `situacao_solicitacao`, `eh_passageiro`) 
+	VALUES (4, '2013-04-14','Unipampa','2013-04-14','PUC-RS','Participacao no Fisl','alguma coisa',1,2,'trajeto',1,1);
+
+INSERT INTO `solicitacao_viagem` (`solicitante`, `data_saida`, `local_saida`, `data_retorno`, `local_retorno`, `justificativa`,	`observacoes`, `origem`, `destino`, `percurso`, `situacao_solicitacao`, `eh_passageiro`) 
+	VALUES (4, '2013-04-15','Unipampa','2013-04-15','PUC-RS','Participacao no Fisl','alguma coisa',1,2,'trajeto',1,1);
 
 -- -----------------------------------------------------
 -- Table `frota`.`passageiro`
@@ -272,4 +293,10 @@ INSERT INTO `frota`.`viagem` (`id`, `veiculo`, `motorista`, `cidade_origem`,
 `data_saida`, `local_saida`, `cidade_retorno`, `data_retorno`, `local_retorno`, `percurso`, 
 `observacoes`, `justificativa_rejeite`, `situacao_viagem`, `data_inicio_real`, `kilometragem_inicio`, 
 `data_fim_real`, `kilometragem_fim`, `observacoes_percurso`) VALUES (NULL, '2', '5', '3', '2013-03-06 00:00:00', 
-'Unipampa Alegrete', '5', '2013-03-08 00:00:00', 'casa', 'naum sei', NULL, NULL, '5', NULL, NULL, NULL, NULL, NULL);
+'Unipampa Alegrete', '5', '2013-03-08 00:00:00', 'casa', 'naum sei', NULL, NULL, '4', NULL, NULL, NULL, NULL, NULL);
+
+INSERT INTO `frota`.`viagem` (`id`, `veiculo`, `motorista`, `cidade_origem`, 
+`data_saida`, `local_saida`, `cidade_retorno`, `data_retorno`, `local_retorno`, `percurso`, 
+`observacoes`, `justificativa_rejeite`, `situacao_viagem`, `data_inicio_real`, `kilometragem_inicio`, 
+`data_fim_real`, `kilometragem_fim`, `observacoes_percurso`) VALUES (NULL, '3', '5', '3', '2013-03-06 00:00:00', 
+'Unipampa Alegrete', '5', '2013-03-08 00:00:00', 'casa', 'naum sei', NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL);

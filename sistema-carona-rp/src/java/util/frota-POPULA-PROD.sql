@@ -5695,31 +5695,3 @@ INSERT INTO `situacao` (`descricao`) VALUES ('AUTORIZADA');
 INSERT INTO `situacao` (`descricao`) VALUES ('REJEITADA');
 INSERT INTO `situacao` (`descricao`) VALUES ('EM PERCURSO');
 INSERT INTO `situacao` (`descricao`) VALUES ('REALIZADA');
-
--- -----------------------------------------------------
--- Table `frota`.`usuario`
--- -----------------------------------------------------
-INSERT INTO `frota`.`usuario` (`id`, `nome`, `login`, `senha`, `tipo_usuario`, `email`, 
-`telefone`, `celular`, `rg`, `siape`, `numero_cnh`, `validade_cnh`, `categoria_cnh`, `rua`,
- `numero`, `complemento`, `cep`, `cidade`) VALUES (NULL, 'admin', 'admin', '12345', '4', 
-'admin@admin.com', '5534413443', '5598999778', '635342617', NULL, NULL, NULL, NULL, 'Teste', '12', NULL, '12349870', '12');
-
-INSERT INTO `frota`.`usuario` (`id`, `nome`, `login`, `senha`, `tipo_usuario`, `email`, 
-`telefone`, `celular`, `rg`, `siape`, `numero_cnh`, `validade_cnh`, `categoria_cnh`, `rua`,
- `numero`, `complemento`, `cep`, `cidade`) VALUES (NULL, 'user', 'user', '12345', '1', 
-'user@user.com', '5534488443', '5594499778', '634342617', NULL, NULL, NULL, NULL, 'Tiradentes', '120', NULL, '12459870', '34');
-
-INSERT INTO `frota`.`usuario` (`id`, `nome`, `login`, `senha`, `tipo_usuario`, `email`, 
-`telefone`, `celular`, `rg`, `siape`, `numero_cnh`, `validade_cnh`, `categoria_cnh`, `rua`,
- `numero`, `complemento`, `cep`, `cidade`) VALUES (NULL, 'operador', 'operador', '12345', '2', 
-'operador@operador.com', '5539888443', '5522499778', '634622617', NULL, NULL, NULL, NULL, 'Dom Pedro II', '2120', NULL, '19049870', '89');
-
-INSERT INTO `frota`.`usuario` (`id`, `nome`, `login`, `senha`, `tipo_usuario`, `email`, 
-`telefone`, `celular`, `rg`, `siape`, `numero_cnh`, `validade_cnh`, `categoria_cnh`, `rua`,
- `numero`, `complemento`, `cep`, `cidade`) VALUES (NULL, 'autorizador', 'autorizador', '12345', '3', 
-'autorizador@autorizador.com', '5539888993', '5527899778', '634663617', NULL, NULL, NULL, NULL, 'Cristovam Colombo', '2900', NULL, '19049280', '120');
-
-INSERT INTO `frota`.`usuario` (`id`, `nome`, `login`, `senha`, `tipo_usuario`, `email`, 
-`telefone`, `celular`, `rg`, `siape`, `numero_cnh`, `validade_cnh`, `categoria_cnh`, `rua`,
- `numero`, `complemento`, `cep`, `cidade`) VALUES (NULL, 'motorista', 'motorista', '12345', '5', 
-'motorista@motorista.com', '5597888993', '5697899778', '634612617', NULL, NULL, NULL, NULL, 'Jose Bonifacio', '100', NULL, '19067287', '129');
