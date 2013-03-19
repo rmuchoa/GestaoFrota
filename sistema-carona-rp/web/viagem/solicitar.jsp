@@ -228,7 +228,7 @@
                 <div class="control-group">
                     <label class="control-label" for="Passageiro">O Solicitante é passageiro:</label>
                     <div class="controls">
-                        <input type="radio" name="passageiro" value="true"> Sim
+                        <input type="radio" name="passageiro" value="true" CHECKED> Sim
                         <input type="radio" name="passageiro" value="false"> Não
                     </div>
                 </div>
