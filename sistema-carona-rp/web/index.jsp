@@ -72,7 +72,7 @@
                                 if (login.getTipoUsuario().getId() == 2 || login.getTipoUsuario().getId() == 4) {
                             %>
                             <li class="divider-vertical"></li>
-                            <li><a href="veiculo/listaVeiculos.jsp"><i class="icon-lock"></i> Veiculos</a></li>
+                            <li><a href="veiculo/listaVeiculos.jsp"><i class="icon-tags"></i> Veiculos</a></li>
                             <%           }
                                 if (login.getTipoUsuario().getId() == 2 || login.getTipoUsuario().getId() == 4) {
                             %>
@@ -82,7 +82,7 @@
                                 if (login.getTipoUsuario().getId() == 5 || login.getTipoUsuario().getId() == 4) {
                             %>      
                             <li class="divider-vertical"></li>
-                            <li><a href="viagem/formularioViagem.jsp"><i class="icon-envelope"></i> Relatorio Viagem</a></li>
+                            <li><a href="viagem/formularioViagem.jsp"><i class="icon-road"></i> Relatorio Viagem</a></li>
                             <%           }
                                 if (login.getTipoUsuario().getId() >= 1 && login.getTipoUsuario().getId() <= 4) {
                             %>
@@ -184,9 +184,9 @@
                         %>
                     </div>
                 </div>
-            </div>
+            </div>       
         </div>
-
+                    
         <div id="footer" class="well">
             <hr>
             <footer>
