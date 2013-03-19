@@ -24,11 +24,13 @@
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
         usuario = new UsuarioController().fazerLogin(login, senha);
-        System.out.print(usuario.getLogin() + "-" + usuario.getSenha());
-        System.out.print(usuario.getTipoUsuario().getId());
         
         session.setAttribute("usuario", usuario);
         response.sendRedirect("index.jsp");
+        
+    } else if (request.getMethod().equalsIgnoreCase("get")) {
+        
+        session.setAttribute("usuario", null);
         
     }
 %>

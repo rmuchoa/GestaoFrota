@@ -55,6 +55,22 @@
             </div>
 
             <div id="main">
+<%
+                if (usuario != null) {
+%>                
+<div style="clear:both" class="">
+                    <div class="">
+                        <div class="">
+                            <p style="color: green"><%= usuario.getNome()+" ("+usuario.getLogin()+")" %></p>
+                        </div>
+                        <div class="">
+                            <p style="color: green"><a class="btn btn-mini btn-info" href="/sistema-carona-rp/login.jsp">logout</a></p>
+                        </div>
+                    </div>
+                </div>
+<%
+                }
+%>      
                 <div class="offset1 span10 offset1">
 
                     <div class="hero-unit" id="div-menu-home">
