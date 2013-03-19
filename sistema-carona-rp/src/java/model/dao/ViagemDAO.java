@@ -244,45 +244,25 @@ public class ViagemDAO {
     
     public Boolean finalizarViagem(Viagem viagem) {
         
-        String sql = "update viagem set situacao_viagem = ?, data_inicio_real = ?, kilometragem_inicio = ?, "
+        String sql = "update viagem set data_inicio_real = ?, kilometragem_inicio = ?, "
                 + "data_fim_real = ?, kilometragem_fim = ? , observacoes_percurso = ? "
                 + " where id = ?";
         try {
             
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            //seta 6 (REALIZADA) para a situação de solicitação de viagem
-            stmt.setInt(1, 6);
-            stmt.setDate(2, new java.sql.Date(viagem.getDataInicioReal().getTime()));
-            stmt.setInt(3, viagem.getKilometragemInicio());
-            stmt.setDate(4, new java.sql.Date(viagem.getDataFimReal().getTime()));
-            stmt.setInt(5, viagem.getKilometragemFim());
-            stmt.setString(6, viagem.getObservacoesPercurso());
-            stmt.setInt(7, viagem.getId());
+            stmt.setDate(1, new java.sql.Date(viagem.getDataInicioReal().getTime()));
+            stmt.setInt(2, viagem.getKilometragemInicio());
+            stmt.setDate(3, new java.sql.Date(viagem.getDataFimReal().getTime()));
+            stmt.setInt(4, viagem.getKilometragemFim());
+            stmt.setString(5, viagem.getObservacoesPercurso());
+            stmt.setInt(6, viagem.getId());
             stmt.executeUpdate();
-            
-            for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
-                
-                try {
-
-                    String sql2 = "update solicitacao_viagem set situacao_solicitacao = ? where id = ?";
-                    stmt = connection.prepareStatement(sql2);
-                    //seta 6 (REALIZADA) para a situação de solicitação de viagem 
-                    stmt.setInt(1, 6);
-                    stmt.setInt(2, viagem.getId());
-                    stmt.executeUpdate();
-                    
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                
-            }
             stmt.close();
             return Boolean.TRUE;
             
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
         return Boolean.FALSE;
         
     }

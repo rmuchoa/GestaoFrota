@@ -65,7 +65,7 @@ public class ViagemDAOTest {
             if (rs.next()) {
 
                 viagem.setId(rs.getInt(1));
-                viagem.getSolicitacoes().add(new SolicitacaoViagemDAO().buscarPorId(1));
+                viagem.getSolicitacoes().add(new SolicitacaoViagemDAO().buscarPorId(6));
 
                 if (!viagem.getSolicitacoes().isEmpty()) {
                     for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
