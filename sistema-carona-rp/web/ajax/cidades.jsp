@@ -10,17 +10,27 @@
 <%@page import="controller.CidadeController"%>
 
 <%
-    CidadeController cidadeController = new CidadeController();
-    EstadoController estadoController = new EstadoController();
-    String id = request.getParameter("estado") == null ? "" : request.getParameter("estado");
-    Estado estado = estadoController.buscarPorId(Integer.parseInt(id));
-    List<Cidade> cidades = cidadeController.listarPorEstado(estado);
-    
-    String html = "";
-    
-    for (Cidade cidade : cidades) {
-        html += "<option value='"+cidade.getId()+"'>"+cidade.getNome()+"</option>";
+
+    if (session.getAttribute("usuario") != null) {
+
+        CidadeController cidadeController = new CidadeController();
+        EstadoController estadoController = new EstadoController();
+        String id = request.getParameter("estado") == null ? "" : request.getParameter("estado");
+        Estado estado = estadoController.buscarPorId(Integer.parseInt(id));
+        List<Cidade> cidades = cidadeController.listarPorEstado(estado);
+
+        String html = "";
+
+        for (Cidade cidade : cidades) {
+            html += "<option value='" + cidade.getId() + "'>" + cidade.getNome() + "</option>";
+        }
+
+        out.print(html);
+
+    } else {
+
+        response.sendRedirect("login.jsp");
+
     }
-    
-    out.print(html);
+
 %>

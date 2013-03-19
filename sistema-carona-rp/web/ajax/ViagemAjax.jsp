@@ -6,6 +6,8 @@
 
 
 
+<%@page import="util.Autenticacao"%>
+<%@page import="model.entity.Usuario"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.dao.SolicitacaoViagemDAO"%>
 <%@page import="java.util.List"%>
@@ -14,30 +16,35 @@
 <%@page import="controller.ViagemController"%>
 <%
 
-    if (request.getMethod().equalsIgnoreCase("post")) {
+    if (session.getAttribute("usuario") != null) {
 
-        ViagemController viagemController = new ViagemController();
-       
-        SolicitacaoViagemDAO solicitacaoViagemDAO = new SolicitacaoViagemDAO();
-        List<SolicitacaoViagem> listaSolicitacao = new ArrayList<SolicitacaoViagem>();
-        String str = request.getParameter("lista");
-        char array[] = str.toCharArray();
-        
-        for(int i =0; i<array.length; i++){
-             System.out.println(array[i]);
-             String s =String.valueOf(array[i]);
-             
-             listaSolicitacao.add(solicitacaoViagemDAO.buscarPorId(Integer.parseInt(s)));
+        if (request.getMethod().equalsIgnoreCase("post")) {
+
+            ViagemController viagemController = new ViagemController();
+            SolicitacaoViagemDAO solicitacaoViagemDAO = new SolicitacaoViagemDAO();
+            List<SolicitacaoViagem> listaSolicitacao = new ArrayList<SolicitacaoViagem>();
+            String str = request.getParameter("lista");
+            char array[] = str.toCharArray();
+
+            for (int i = 0; i < array.length; i++) {
+                
+                String s = String.valueOf(array[i]);
+                listaSolicitacao.add(solicitacaoViagemDAO.buscarPorId(Integer.parseInt(s)));
+                
+            }
+            
+            request.setAttribute("solicitacoes", listaSolicitacao);
+            viagemController.abrirViagem(request);
+            String html = "Cadastro realizado com sucesso";
+
+            out.print(html);
+            
         }
-        request.setAttribute("solicitacoes", listaSolicitacao);
-        
-        viagemController.abrirViagem(request);
 
+    } else {
 
+        response.sendRedirect("login.jsp");
 
-        String html = "Cadastro realizado com sucesso";
-
-
-        out.print(html);
     }
+
 %>

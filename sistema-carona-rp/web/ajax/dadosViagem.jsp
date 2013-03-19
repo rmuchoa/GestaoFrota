@@ -12,21 +12,36 @@
 <%@page import="controller.CidadeController"%>
 
 <%
-    ViagemController viagemController = new ViagemController();
-    String id = request.getParameter("viagem") == null ? "" : request.getParameter("viagem");
-    String html = "";
 
-    if (!id.equals("")) {
-        Viagem viagem = viagemController.buscarPorId(Integer.parseInt(id));
-        html += " <div id='dados_viagem' class='row-fluid'> ";
-        html += "     <div class='span6'>Motorista: " + viagem.getMotorista().getNome() + "</div> ";
-        html += "     <div class='span6'>Veiculo: " + viagem.getVeiculo().getMarca() + " - " + viagem.getVeiculo().getModelo() + " - " + viagem.getVeiculo().getPlaca() + "</div> ";
-        html += " </div> ";
+    if (session.getAttribute("usuario") != null) {
+
+        ViagemController viagemController = new ViagemController();
+        String id = request.getParameter("viagem") == null ? "" : request.getParameter("viagem");
+        String html = "";
+
+        if (!id.equals("")) {
+            
+            Viagem viagem = viagemController.buscarPorId(Integer.parseInt(id));
+            html += " <div id='dados_viagem' class='row-fluid'> ";
+            html += "     <div class='span6'>Motorista: " + viagem.getMotorista().getNome() + "</div> ";
+            html += "     <div class='span6'>Veiculo: " + viagem.getVeiculo().getMarca() + " - " + viagem.getVeiculo().getModelo() + " - " + viagem.getVeiculo().getPlaca() + "</div> ";
+            html += " </div> ";
+            
+        } else {
+            
+            html += " <div id='dados_viagem' class='row-fluid'> ";
+            html += "     <div class='span6'>Motorista: </div> ";
+            html += "     <div class='span6'>Veiculo: </div> ";
+            html += " </div> ";
+            
+        }
+        
+        out.print(html);
+
     } else {
-        html += " <div id='dados_viagem' class='row-fluid'> ";
-        html += "     <div class='span6'>Motorista: </div> ";
-        html += "     <div class='span6'>Veiculo: </div> ";
-        html += " </div> ";
+
+        response.sendRedirect("login.jsp");
+
     }
-    out.print(html);
+
 %>

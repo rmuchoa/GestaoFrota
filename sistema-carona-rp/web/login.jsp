@@ -19,6 +19,7 @@
 <%
 
     Usuario usuario = null;
+    
     if (request.getMethod().equalsIgnoreCase("post")) {
 
         String login = request.getParameter("login");
