@@ -20,13 +20,13 @@
     Usuario usuario = null;
 
     if (session.getAttribute("usuario") != null) {
-        
+
         usuario = (Usuario) session.getAttribute("usuario");
-        
+
     } else {
-        
+
         response.sendRedirect("login.jsp");
-        
+
     }
 
 %>
@@ -39,7 +39,6 @@
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap-responsive.css">
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
-        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
 
         <title class="span12 well">Sistema de Caronas Unipampa</title>
@@ -47,30 +46,95 @@
     </head>
 
     <body>
-        
+
+        <div class="navbar nav">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/sistema-carona-rp/index.jsp">Sistema Caronas</a>
+
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="divider-vertical"></li>
+                            <li class="active"><a href="/sistema-carona-rp/index.jsp"><i class="icon-home"></i> Home</a></li>
+                            <%
+                                if (usuario != null) {
+                                    if (usuario.getTipoUsuario().getId() == 4) {
+                            %>
+                            <li class="divider-vertical"></li>
+                            <li><a href="usuario/listaUsuarios.jsp"><i class="icon-user"></i> Usuarios</a></li>
+
+                            <%           }
+                                if (usuario.getTipoUsuario().getId() == 2 || usuario.getTipoUsuario().getId() == 4) {
+                            %>
+                            <li class="divider-vertical"></li>
+                            <li><a href="veiculo/listaVeiculos.jsp"><i class="icon-lock"></i> Veiculos</a></li>
+                            <%           }
+                                if (usuario.getTipoUsuario().getId() == 2 || usuario.getTipoUsuario().getId() == 4) {
+                            %>
+                            <li class="divider-vertical"></li>
+                            <li><a href="viagem/listaSolicitacoes.jsp"><i class="icon-calendar"></i> Reservas</a></li>
+                            <%           }
+                                if (usuario.getTipoUsuario().getId() == 5 || usuario.getTipoUsuario().getId() == 4) {
+                            %>      
+                            <li class="divider-vertical"></li>
+                            <li><a href="viagem/formularioViagem.jsp"><i class="icon-envelope"></i> Relatorio Viagem</a></li>
+                            <%           }
+                                if (usuario.getTipoUsuario().getId() >= 1 && usuario.getTipoUsuario().getId() <= 4) {
+                            %>
+                            <li class="divider-vertical"></li>
+                            <li><a href="viagem/solicitar.jsp"><i class="icon-envelope"></i> Solicitação</a></li>
+                            <%           }
+                                    }
+                            %>
+                        </ul>
+                        <%
+                            if (usuario != null) {
+                        %>
+                        <div class="pull-right">
+                            <ul class="nav pull-right">
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="icon-user"></i> Bem vindo, <%= usuario.getNome()%> <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/sistema-carona-rp/login.jsp"><i class="icon-off"></i> Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <%
+                            } else {
+                        %>
+                        <div class="pull-right">
+                            <ul class="nav pull-right">
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="/sistema-carona-rp/login.jsp">
+                                        <i class="icon-user"></i> Login
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <%
+                            }
+                        %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="wrap">
-            
+
             <div id="header">
                 <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
             </div>
 
             <div id="main">
-<%
-                if (usuario != null) {
-%>                
-<div style="clear:both" class="">
-                    <div class="">
-                        <div class="">
-                            <p style="color: green"><%= usuario.getNome()+" ("+usuario.getLogin()+")" %></p>
-                        </div>
-                        <div class="">
-                            <p style="color: green"><a class="btn btn-mini btn-info" href="/sistema-carona-rp/login.jsp">logout</a></p>
-                        </div>
-                    </div>
-                </div>
-<%
-                }
-%>      
+
                 <div class="offset1 span10 offset1">
 
                     <div class="hero-unit" id="div-menu-home">
@@ -84,7 +148,7 @@
                             </button>
                         </a>
                         <%      }
-                                if (usuario.getTipoUsuario().getId() == 2 || usuario.getTipoUsuario().getId() == 4) {
+                            if (usuario.getTipoUsuario().getId() == 2 || usuario.getTipoUsuario().getId() == 4) {
                         %>
                         <a href="veiculo/listaVeiculos.jsp">
                             <button class="btn btn-success" title="Clique aqui para Acessar a Área de Veículos!">
@@ -92,7 +156,7 @@
                             </button>
                         </a>
                         <%      }
-                                if (usuario.getTipoUsuario().getId() == 2 || usuario.getTipoUsuario().getId() == 4) {
+                            if (usuario.getTipoUsuario().getId() == 2 || usuario.getTipoUsuario().getId() == 4) {
                         %>
                         <a href="viagem/listaSolicitacoes.jsp">
                             <button class="btn btn-success" title="Clique aqui para Acessar a Área de Viagens!">
@@ -100,7 +164,7 @@
                             </button>
                         </a>
                         <%      }
-                                if (usuario.getTipoUsuario().getId() == 5 || usuario.getTipoUsuario().getId() == 4) {
+                            if (usuario.getTipoUsuario().getId() == 5 || usuario.getTipoUsuario().getId() == 4) {
                         %>
                         <a href="viagem/formularioViagem.jsp">
                             <button class="btn btn-success" title="Clique aqui para Registrar as Informações da Viagem!">
@@ -108,7 +172,7 @@
                             </button>
                         </a>
                         <%      }
-                                if (usuario.getTipoUsuario().getId() >= 1 && usuario.getTipoUsuario().getId() <= 4) {
+                            if (usuario.getTipoUsuario().getId() >= 1 && usuario.getTipoUsuario().getId() <= 4) {
                         %>
                         <a href="viagem/solicitar.jsp">
                             <button class="btn btn-success" title="Clique aqui para fazer uma Solicitação de Viagens!">
@@ -134,6 +198,6 @@
                 </em>
             </footer>
         </div>
-            
+
     </body>
 </html>

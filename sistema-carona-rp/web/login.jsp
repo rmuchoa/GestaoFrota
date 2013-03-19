@@ -48,7 +48,88 @@
 
         <title class="span12 well">Sistema de Caronas Unipampa</title>
     </head>
-    <body style="">
+    <body>
+        
+        <div class="navbar nav">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/sistema-carona-rp/index.jsp">Sistema Caronas</a>
+
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="divider-vertical"></li>
+                            <li class="active"><a href="/sistema-carona-rp/index.jsp"><i class="icon-home"></i> Home</a></li>
+                            <%
+                                if (usuario != null) {
+                                    if (usuario.getTipoUsuario().getId() == 4) {
+                            %>
+                            <li class="divider-vertical"></li>
+                            <li><a href="usuario/listaUsuarios.jsp"><i class="icon-user"></i> Usuarios</a></li>
+
+                            <%           }
+                                if (usuario.getTipoUsuario().getId() == 2 || usuario.getTipoUsuario().getId() == 4) {
+                            %>
+                            <li class="divider-vertical"></li>
+                            <li><a href="veiculo/listaVeiculos.jsp"><i class="icon-lock"></i> Veiculos</a></li>
+                            <%           }
+                                if (usuario.getTipoUsuario().getId() == 2 || usuario.getTipoUsuario().getId() == 4) {
+                            %>
+                            <li class="divider-vertical"></li>
+                            <li><a href="viagem/listaSolicitacoes.jsp"><i class="icon-calendar"></i> Reservas</a></li>
+                            <%           }
+                                if (usuario.getTipoUsuario().getId() == 5 || usuario.getTipoUsuario().getId() == 4) {
+                            %>      
+                            <li class="divider-vertical"></li>
+                            <li><a href="viagem/formularioViagem.jsp"><i class="icon-envelope"></i> Relatorio Viagem</a></li>
+                            <%           }
+                                if (usuario.getTipoUsuario().getId() >= 1 && usuario.getTipoUsuario().getId() <= 4) {
+                            %>
+                            <li class="divider-vertical"></li>
+                            <li><a href="viagem/solicitar.jsp"><i class="icon-envelope"></i> Solicitação</a></li>
+                            <%           }
+                                    }
+                            %>
+                        </ul>
+                        <%
+                            if (usuario != null) {
+                        %>
+                        <div class="pull-right">
+                            <ul class="nav pull-right">
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="icon-user"></i> Bem vindo, <%= usuario.getNome()%> <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/sistema-carona-rp/login.jsp"><i class="icon-off"></i> Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <%
+                            } else {
+                        %>
+                        <div class="pull-right">
+                            <ul class="nav pull-right">
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="/sistema-carona-rp/login.jsp">
+                                        <i class="icon-user"></i> Login
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <%
+                            }
+                        %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <h2 style="color: green;text-align: center" class="span12 well">Sistema de Caronas - Unipampa</h2>
 
         <div class="offset5 span5">
