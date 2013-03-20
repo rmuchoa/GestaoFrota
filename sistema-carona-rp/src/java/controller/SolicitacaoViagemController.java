@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import model.dao.*;
 import model.entity.Passageiro;
 import model.entity.SolicitacaoViagem;
+import notifica.Notificacoes;
 
 /**
  *
@@ -24,6 +25,8 @@ public class SolicitacaoViagemController {
 
     private SolicitacaoViagemDAO solicitacaoViagemDAO;
     private SolicitacaoViagem solicitacaoViagem;
+    Notificacoes notifica = new Notificacoes();         
+
 
     public List<SolicitacaoViagem> listar() {
 
@@ -128,6 +131,7 @@ public class SolicitacaoViagemController {
         Integer solicitacaoId = Integer.parseInt(request.getParameter("solicitacao_id"));
         SolicitacaoViagem solicitacao = new SolicitacaoViagemDAO().buscarPorId(solicitacaoId);
         solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("REJEITADA"));
+        notifica.notificaRecusaSolicitacao(solicitacao);
         return new SolicitacaoViagemDAO().alterarSituacaoSolicitacao(solicitacao);
 
     }

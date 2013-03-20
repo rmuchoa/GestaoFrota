@@ -14,6 +14,7 @@ import model.dao.*;
 import model.entity.SolicitacaoViagem;
 import model.entity.Usuario;
 import model.entity.Viagem;
+import notifica.Notificacoes;
 
 /**
  *
@@ -23,6 +24,7 @@ public class ViagemController {
 
     private ViagemDAO viagemDAO = new ViagemDAO();
     private Viagem viagem;
+    Notificacoes notifica = new Notificacoes();
 
     public Viagem abrirViagem(HttpServletRequest request) {
 
@@ -44,9 +46,9 @@ public class ViagemController {
             
             for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
                 solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("AGENDADA"));
+                notifica.notificaViagemCriada(solicitacao);
                 System.out.println("ID"+solicitacao.getId());
             }
-            
             
             return viagemDAO.abrirViagem(viagem);
 
@@ -66,6 +68,7 @@ public class ViagemController {
         for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
             solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("AUTORIZADA"));
         }
+        notifica.notificaAutorizacaoViagem(viagem);
         return viagemDAO.alterarSituacaoViagem(viagem);
         
     }
@@ -78,6 +81,8 @@ public class ViagemController {
         for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
             solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("REJEITADA"));
         }
+        
+        notifica.notificaCanceladaViagem(viagem);
         return viagemDAO.alterarSituacaoViagem(viagem);
         
     }
