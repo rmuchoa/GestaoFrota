@@ -249,13 +249,13 @@ INSERT INTO `situacao` (`descricao`) VALUES ('REALIZADA');
 INSERT INTO `frota`.`viagem` (`id`, `veiculo`, `motorista`, `cidade_origem`, 
 `data_saida`, `local_saida`, `cidade_retorno`, `data_retorno`, `local_retorno`, `percurso`, 
 `observacoes`, `justificativa_rejeite`, `situacao_viagem`, `data_inicio_real`, `kilometragem_inicio`, 
-`data_fim_real`, `kilometragem_fim`, `observacoes_percurso`) VALUES (NULL, '2', '5', '3', '2013-03-06 00:00:00', 
+`data_fim_real`, `kilometragem_fim`, `observacoes_percurso`) VALUES (NULL, '1', '5', '3', '2013-03-06 00:00:00', 
 'Unipampa Alegrete', '5', '2013-03-08 00:00:00', 'casa', 'naum sei', NULL, NULL, '4', NULL, NULL, NULL, NULL, NULL);
 
 INSERT INTO `frota`.`viagem` (`id`, `veiculo`, `motorista`, `cidade_origem`, 
 `data_saida`, `local_saida`, `cidade_retorno`, `data_retorno`, `local_retorno`, `percurso`, 
 `observacoes`, `justificativa_rejeite`, `situacao_viagem`, `data_inicio_real`, `kilometragem_inicio`, 
-`data_fim_real`, `kilometragem_fim`, `observacoes_percurso`) VALUES (NULL, '3', '5', '3', '2013-03-06 00:00:00', 
+`data_fim_real`, `kilometragem_fim`, `observacoes_percurso`) VALUES (NULL, '2', '5', '3', '2013-03-06 00:00:00', 
 'Unipampa Alegrete', '5', '2013-03-08 00:00:00', 'casa', 'naum sei', NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL);
 
 -- -----------------------------------------------------
