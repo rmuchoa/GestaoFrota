@@ -44,7 +44,8 @@
          for(int i=0;i<list.size();i++){
              if(list.get(i).getSituacao().getDescricao().equalsIgnoreCase(situacao.getDescricao())){
                 System.out.println(list.get(i).getSituacao().getDescricao()+situacao.getDescricao());
-                                        html+= "<td>"+list.get(i).getId() +"</td>"+
+                                        html+= "<tr>"+
+                                                "<td>"+list.get(i).getId() +"</td>"+
                                             "<td>"+ new SimpleDateFormat("dd/MM/yyyy").format(list.get(i).getDataSaida()) +"</td>"+
                                             "<td>"+list.get(i).getCidadeOrigem().getNome() +"</td>"+
                                             "<td>"+list.get(i).getCidadeRetorno().getNome()+"</td>"+
@@ -62,7 +63,8 @@
                                                 "<a  onclick='cancelarViagem("+list.get(i).getId()+")' class='btn btn-success btn' title='Clique aqui para Salvar o Formulário!'>"+
                                                 "<i class='icon-remove'></i>"+
                                                 "</a>"+
-                                            "</td>";
+                                            "</td>"+
+                                            "</tr>";
                                         
              }
                 

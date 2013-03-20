@@ -205,7 +205,7 @@ public class Notificacoes {
      */
     public void notificaCanceladaViagem(Viagem viagem) {
         String html = Notificacoes.VIAGEM_CANCELADA_TEMPLATE;
-
+        html = html.replace("{{id}}", viagem.getId().toString());
         html = html.replace("{{cidadeOrigem}}", viagem.getCidadeOrigem().getNome());
         html = html.replace("{{dataSaida}}", Datas.getDate(viagem.getDataSaida()));
         html = html.replace("{{horaSaida}}", Datas.getTime(viagem.getDataSaida()));

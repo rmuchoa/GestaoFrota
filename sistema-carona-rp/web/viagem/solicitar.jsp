@@ -314,9 +314,7 @@
                     <legend>Objetivo/Justificativa para a viagem</legend>
                     <div class="control-group">
                         <div class="controls">
-                            <textarea name="objetivo"  rows="4" style="width: 90%" >
-
-                            </textarea>
+                            <textarea name="objetivo"  rows="4" style="width: 90%" ></textarea>
                         </div>    
                     </div>    
                 </fieldset>
@@ -325,9 +323,7 @@
                     <legend>Observações</legend>
                     <div class="control-group">
                         <div class="controls">
-                            <textarea name="observacao"  rows="4" style="width: 90%" >
-
-                            </textarea>
+                            <textarea name="observacao"  rows="4" style="width: 90%" ></textarea>
                         </div>    
                     </div>    
                 </fieldset>

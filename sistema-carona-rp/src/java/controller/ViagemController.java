@@ -36,10 +36,11 @@ public class ViagemController {
             viagem.setMotorista(new UsuarioDAO().buscarPorId(Integer.parseInt(request.getParameter("motorista"))));
             viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("AGENDADA"));
             viagem.setCidadeOrigem(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter("cidadeOrigem"))));
-            viagem.setDataSaida(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("data_saida")+" "+request.getParameter("horario_saida")));
+            System.out.println(request.getParameter("data_saida")+" "+request.getParameter("horario_saida"));
+            viagem.setDataSaida(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(request.getParameter("data_saida")+" "+request.getParameter("horario_saida")+":00"));
             viagem.setLocalSaida(request.getParameter("localSaida"));
             viagem.setCidadeRetorno(new CidadeDAO().buscarPorId(Integer.parseInt(request.getParameter("cidadeRetorno"))));
-            viagem.setDataRetorno(new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(request.getParameter("data_retorno")+" "+request.getParameter("horario_retorno")));
+            viagem.setDataRetorno(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(request.getParameter("data_retorno")+" "+request.getParameter("horario_retorno")+":00"));
             viagem.setLocalRetorno(request.getParameter("localRetorno"));
             viagem.setPercurso(request.getParameter("percurso"));
             viagem.setObservacoes(request.getParameter("observacao"));

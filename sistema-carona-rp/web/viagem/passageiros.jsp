@@ -199,8 +199,8 @@
                 <div class="control-group">
                     <label class="control-label" for="inputServidor">É Servidor da Unipampa:</label>
                     <div class="controls">
-                        <input id="sim" name="servidor" value="true" type="radio" /><label for="sim"> Sim</label> 
-                        <input id="nao" name="servidor" value="false" type="radio" /><label for="nao" CHECKED> Não</label> 
+                        <input id="sim" name="servidor" value="true" type="radio" /> Sim 
+                        <input id="nao" name="servidor" value="false" type="radio" CHECKED/>Não
                     </div>
                 </div>
                 <div class="span5">  
