@@ -52,13 +52,13 @@
     <head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap.css">
+<!--        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap.css">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap-responsive.css">
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
 
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/pick/jquery-ui.css">
-     <!--   <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.min.js"></script> -->
+        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.min.js"></script> 
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.ui.datepicker-pt-BR.js"></script>
 
@@ -68,6 +68,25 @@
         <script type="text/javascript" src="/sistema-carona-rp/ajax/Viagem.js"></script>
 
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
+        
+        -->
+        
+           <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap.css">
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap-responsive.css">
+        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
+
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/pick/jquery-ui.css">
+        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.ui.datepicker-pt-BR.js"></script>
+        <script type="text/javascript" src="/sistema-carona-rp/ajax/Viagem.js"></script>
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
+        
+        
+        
+        
         <script>
             $(document).ready(function() {
                
