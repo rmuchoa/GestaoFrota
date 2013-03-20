@@ -300,13 +300,11 @@ public class ViagemDAO {
             
             stmt.close();
             
-            return viagens;
-            
         } catch (SQLException e) {
             e.printStackTrace();
         }
         
-        return null;
+        return viagens;
     }
     
 }

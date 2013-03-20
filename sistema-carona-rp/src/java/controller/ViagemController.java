@@ -114,7 +114,7 @@ public class ViagemController {
     
     public List<Viagem> listarViagensMotorista (Usuario usuario) {
     
-        Usuario motorista = new UsuarioDAO().buscarPorId(5);
+        Usuario motorista = new UsuarioDAO().buscarPorId(usuario.getId());
         return viagemDAO.listarViagemMotorista(motorista);
                 
        
