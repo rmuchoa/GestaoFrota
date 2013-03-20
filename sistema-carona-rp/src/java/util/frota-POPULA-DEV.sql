@@ -158,10 +158,10 @@ INSERT INTO `tipo_veiculo`(`descricao`) VALUES ('VAN');
 -- -----------------------------------------------------
 
 INSERT INTO `veiculo`(`placa`,`renavam`,`cor`,`modelo`,`marca`,`ano`,`capacidade_passageiros`,`capacidade_carga`,`tipo_veiculo`) 
-	VALUES ('ABU1234',12345678910,'Preto','Uno','Fiat',2010,4,200,1);
+	VALUES ('ABU1234',12345671,'Preto','Uno','Fiat',2010,4,200,1);
 
 INSERT INTO `veiculo`(`placa`,`renavam`,`cor`,`modelo`,`marca`,`ano`,`capacidade_passageiros`,`capacidade_carga`,`tipo_veiculo`) 
-	VALUES ('PPA1234',12345678911,'Branco','Fiesta','Ford',2005,4,300,1);
+	VALUES ('PPA1234',12345678,'Branco','Fiesta','Ford',2005,4,300,1);
 
 -- -----------------------------------------------------
 -- Table `frota`.`opcional_veiculo`
@@ -216,7 +216,7 @@ INSERT INTO `usuario` (`id`, `nome`, `login`, `senha`, `tipo_usuario`, `email`,
 INSERT INTO `usuario` (`id`, `nome`, `login`, `senha`, `tipo_usuario`, `email`, 
 `telefone`, `celular`, `rg`, `siape`, `numero_cnh`, `validade_cnh`, `categoria_cnh`, `rua`,
  `numero`, `complemento`, `cep`, `cidade`) VALUES (NULL, 'motorista', 'motorista', '12345', '5', 
-'motorista@motorista.com', '5597888993', '5697899778', '634612617', NULL, NULL, NULL, NULL, 'Jose Bonifacio', '100', NULL, '19067287', '129');
+'motorista@motorista.com', '5597888993', '5697899778', '634612617', NULL, NULL, NULL, NULL, 'Jose Bonifacio', '100', NULL, '19067287', '122');
 
 -- -----------------------------------------------------
 -- Table `frota`.`veiculo_opcional_veiculo`
@@ -240,6 +240,23 @@ INSERT INTO `situacao` (`descricao`) VALUES ('AUTORIZADA');
 INSERT INTO `situacao` (`descricao`) VALUES ('REJEITADA');
 INSERT INTO `situacao` (`descricao`) VALUES ('EM PERCURSO');
 INSERT INTO `situacao` (`descricao`) VALUES ('REALIZADA');
+
+-- -----------------------------------------------------
+-- Table `frota`.`viagem`
+-- -----------------------------------------------------
+
+
+INSERT INTO `frota`.`viagem` (`id`, `veiculo`, `motorista`, `cidade_origem`, 
+`data_saida`, `local_saida`, `cidade_retorno`, `data_retorno`, `local_retorno`, `percurso`, 
+`observacoes`, `justificativa_rejeite`, `situacao_viagem`, `data_inicio_real`, `kilometragem_inicio`, 
+`data_fim_real`, `kilometragem_fim`, `observacoes_percurso`) VALUES (NULL, '2', '5', '3', '2013-03-06 00:00:00', 
+'Unipampa Alegrete', '5', '2013-03-08 00:00:00', 'casa', 'naum sei', NULL, NULL, '4', NULL, NULL, NULL, NULL, NULL);
+
+INSERT INTO `frota`.`viagem` (`id`, `veiculo`, `motorista`, `cidade_origem`, 
+`data_saida`, `local_saida`, `cidade_retorno`, `data_retorno`, `local_retorno`, `percurso`, 
+`observacoes`, `justificativa_rejeite`, `situacao_viagem`, `data_inicio_real`, `kilometragem_inicio`, 
+`data_fim_real`, `kilometragem_fim`, `observacoes_percurso`) VALUES (NULL, '3', '5', '3', '2013-03-06 00:00:00', 
+'Unipampa Alegrete', '5', '2013-03-08 00:00:00', 'casa', 'naum sei', NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL);
 
 -- -----------------------------------------------------
 -- Table `frota`.`solicitacao_viagem`
@@ -283,20 +300,3 @@ INSERT INTO `passageiro` (`nome`,`rg`,`email`,`endereco`,`eh_servidor`)
 INSERT INTO `solicitacao_viagem_passageiro` (`solicitacao_viagem`, `passageiro`) VALUES (1,1);
 INSERT INTO `solicitacao_viagem_passageiro` (`solicitacao_viagem`, `passageiro`) VALUES (1,2);
 INSERT INTO `solicitacao_viagem_passageiro` (`solicitacao_viagem`, `passageiro`) VALUES (1,3);
-
--- -----------------------------------------------------
--- Table `frota`.`viagem`
--- -----------------------------------------------------
-
-
-INSERT INTO `frota`.`viagem` (`id`, `veiculo`, `motorista`, `cidade_origem`, 
-`data_saida`, `local_saida`, `cidade_retorno`, `data_retorno`, `local_retorno`, `percurso`, 
-`observacoes`, `justificativa_rejeite`, `situacao_viagem`, `data_inicio_real`, `kilometragem_inicio`, 
-`data_fim_real`, `kilometragem_fim`, `observacoes_percurso`) VALUES (NULL, '2', '5', '3', '2013-03-06 00:00:00', 
-'Unipampa Alegrete', '5', '2013-03-08 00:00:00', 'casa', 'naum sei', NULL, NULL, '4', NULL, NULL, NULL, NULL, NULL);
-
-INSERT INTO `frota`.`viagem` (`id`, `veiculo`, `motorista`, `cidade_origem`, 
-`data_saida`, `local_saida`, `cidade_retorno`, `data_retorno`, `local_retorno`, `percurso`, 
-`observacoes`, `justificativa_rejeite`, `situacao_viagem`, `data_inicio_real`, `kilometragem_inicio`, 
-`data_fim_real`, `kilometragem_fim`, `observacoes_percurso`) VALUES (NULL, '3', '5', '3', '2013-03-06 00:00:00', 
-'Unipampa Alegrete', '5', '2013-03-08 00:00:00', 'casa', 'naum sei', NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL);
