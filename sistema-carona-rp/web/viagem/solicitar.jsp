@@ -59,19 +59,15 @@
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap-responsive.css">
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
-        
-        <!-- <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script> -->
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery-1.9.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/pick/jquery-ui.css">
-         <!-- <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.min.js"></script>   -->
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.ui.datepicker-pt-BR.js"></script>
 
         <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.js"></script>
-        <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.min.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/perifer-timePicker-b5195df/timePicker.css">
         
         <script type="text/javascript">
@@ -84,19 +80,22 @@
                 validaSolicitacaoViagem();
                 $("#estadoOrigem").change(function() {
                     $.ajax({
-                        url: '../ajax/cidades.jsp',
+                        url: '/sistema-carona-rp/ajax/cidades.jsp',
                         dataType: 'html',
                         data: {estado: $('#estadoOrigem').val()},
                         type: 'POST',
                         success: function(data) {
                             $('#cidadeOrigem').html(data)
+                        },
+                        error: function(error, status) {
+                            alert(error);
                         }
                     });
                 });
 
                 $("#estadoRetorno").change(function() {
                     $.ajax({
-                        url: '../ajax/cidades.jsp',
+                        url: '/sistema-carona-rp/ajax/cidades.jsp',
                         dataType: 'html',
                         data: {estado: $('#estadoRetorno').val()},
                         type: 'POST',
@@ -229,7 +228,6 @@
                 <div class="control-group">
                     <label class="control-label" for="Passageiro">O Solicitante é passageiro:</label>
                     <div class="controls">
-                        <input type="radio" name="passageiro" value="true" CHECKED> Sim
                         <input type="radio" name="passageiro" value="false"> Não
                     </div>
                 </div>
