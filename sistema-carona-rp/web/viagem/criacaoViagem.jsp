@@ -71,60 +71,25 @@
         
         -->
         
-           <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap.css">
+         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap.css">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap-responsive.css">
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
+
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
-        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
 
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/pick/jquery-ui.css">
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.ui.datepicker-pt-BR.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/ajax/Viagem.js"></script>
+        
+        <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.js"></script>
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/perifer-timePicker-b5195df/timePicker.css">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
+       
         
         
         
-        
-        <script>
-            $(document).ready(function() {
-               
-                var listaSolicitacoes = new Array();
-               
-                
-                criarViagemForm();
-                $("#data_saida").datepicker($.datepicker.regional['pt-BR']);
-                $("#data_retorno").datepicker($.datepicker.regional['pt-BR']);
-                $("#horario_saida").timePicker();
-                $("#horario_retorno").timePicker();
-                
-                $("#estadoOrigem").change(function() {
-                    $.ajax({
-                        url:'../ajax/cidades.jsp',
-                        dataType:'html',
-                        data:{estado: $('#estadoOrigem').val()},
-                        type:'POST',
-                        success:function(data){
-                            $('#cidadeOrigem').html(data)
-                        }
-                    });
-                });
-                
-                $("#estadoRetorno").change(function() {
-                    $.ajax({
-                        url:'../ajax/cidades.jsp',
-                        dataType:'html',
-                        data:{estado: $('#estadoRetorno').val()},
-                        type:'POST',
-                        success:function(data){
-                            $('#cidadeRetorno').html(data)
-                        }
-                    });
-                });
-                
-            });
-        </script>
         <title>Sistema de Caronas Unipampa</title>
     </head>
 
@@ -446,6 +411,45 @@
         </div>            
         <div id="MensagemDeCadastro" title="Cadastro realizado com sucesso!" style="display: none">
             <h4>Viagem agendada com sucesso!</h4>
-        </div>            
+        </div> 
+        <script>
+            $(document).ready(function() {
+               
+                var listaSolicitacoes = new Array();
+               
+                
+                criarViagemForm();
+                $("#data_saida").datepicker($.datepicker.regional['pt-BR']);
+                $("#data_retorno").datepicker($.datepicker.regional['pt-BR']);
+                $("#horario_saida").timePicker();
+                $("#horario_retorno").timePicker();
+                
+                $("#estadoOrigem").change(function() {
+                    $.ajax({
+                        url:'../ajax/cidades.jsp',
+                        dataType:'html',
+                        data:{estado: $('#estadoOrigem').val()},
+                        type:'POST',
+                        success:function(data){
+                            $('#cidadeOrigem').html(data)
+                        }
+                    });
+                });
+                
+                $("#estadoRetorno").change(function() {
+                    $.ajax({
+                        url:'../ajax/cidades.jsp',
+                        dataType:'html',
+                        data:{estado: $('#estadoRetorno').val()},
+                        type:'POST',
+                        success:function(data){
+                            $('#cidadeRetorno').html(data)
+                        }
+                    });
+                });
+                
+            });
+        </script>
+        
     </body>
 </html>
