@@ -46,15 +46,20 @@ public class NotificacoesTest {
     
  
 
+    
+   
     @Test
-    public void testSendMailAutorizacaoViagem(){
+    public void testSendMailConfirmaViagem(){
         Viagem viagem = new Viagem();
         ViagemDAO vd = new ViagemDAO();
-        viagem = vd.buscarPorId(1);
+        viagem = vd.buscarPorId(3);
         Notificacoes instance2 = new Notificacoes();
         instance2.notificaAutorizacaoViagem(viagem);
     
     
     }
-   
+    
+    
+    
+    
 }

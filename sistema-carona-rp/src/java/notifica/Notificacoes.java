@@ -30,17 +30,17 @@ public class Notificacoes {
             + "</head>"
             + "<body>"
             + "<h1>Viagem Confirmada!</h1>"
-            + "<p>Olá {{solicitante}}</p> "
+            + "<p>Olá <strong>{{solicitante}}</strong></p> "
             + "<p>A viagem abaixo está confirmada!</p>"
             + "<p>Caso haja algum erro nas informações, </p>"
             + "<p>favor informar ao operador da frota imediatamente.</p>"
             + "<p>Abaixo seguem os dados da viagem:</p>"
-            + "<p>Cidade de origem: {{cidadeOrigem}}</p>"
-            + "<p>Data de saída: {{dataSaida}}</p>"
-            + "<p>Hora de saída: {{horaSaida}}</p>"
-            + "<p>Cidade de destino: {{cidadeDestino}}</p>"
-            + "<p>Data de retorno: {{dataRetorno}}</p>"
-            + "<p>Hora de retorno: {{horaRetorno}}</p>"
+            + "<p>Cidade de origem: <strong>{{cidadeOrigem}}</strong></p>"
+            + "<p>Data de saída: <strong>{{dataSaida}}</strong></p>"
+            + "<p>Hora de saída: <strong>{{horaSaida}}</strong></p>"
+            + "<p>Cidade de destino: <strong>{{cidadeDestino}}</strong></p>"
+            + "<p>Data de retorno: <strong>{{dataRetorno}}</strong></p>"
+            + "<p>Hora de retorno: <strong>{{horaRetorno}}</strong></p>"
             + OBS
             + "</body>"
             + "</html>";
@@ -51,15 +51,15 @@ public class Notificacoes {
             + "</head>"
             + "<body>"
             + "<h1>Viagem Cancelada</h1>"
-            + "<p>Olá {{solicitante}}</p> "
-            + "<p>A viagem com o número {{id}} foi cancelada</p>"
+            + "<p>Olá <strong>{{solicitante}}</strong></p> "
+            + "<p>A viagem com o número <strong>{{id}} foi cancelada</p>"
             + "<p>Abaixo os dados:</p>"
-            + "<p>Cidade de origem: {{cidadeOrigem}}</p>"
-            + "<p>Data de saída: {{dataSaida}}</p>"
-            + "<p>Hora de saída: {{horaSaida}}</p>"
-            + "<p>Cidade de destino: {{cidadeDestino}}</p>"
-            + "<p>Data de retorno: {{dataRetorno}}</p>"
-            + "<p>Hora de retorno: {{horaRetorno}}</p>"
+            + "<p>Cidade de origem: <strong>{{cidadeOrigem}}</strong></p>"
+            + "<p>Data de saída: <strong>{{dataSaida}}</strong></p>"
+            + "<p>Hora de saída: <strong>{{horaSaida}}</strong></p>"
+            + "<p>Cidade de destino: <strong>{{cidadeDestino}}</strong></p>"
+            + "<p>Data de retorno: <strong>{{dataRetorno}}</strong></p>"
+            + "<p>Hora de retorno: <strong>{{horaRetorno}}</strong></p>"
             + OBS
             + "</body>"
             + "</html>";
@@ -70,16 +70,16 @@ public class Notificacoes {
             + "</head>"
             + "<body>"
             + "<h1>Viagem Criada</h1>"
-            + "<p>Olá {{solicitante}}</p> "
-            + "<p>A sua solicitação de viagem foi agendada, sob o número {{id}}</p>"
+            + "<p>Olá <strong>{{solicitante}}</strong></p> "
+            + "<p>A sua solicitação de viagem foi agendada, sob o número <strong>{{id}}</strong></p>"
             + "<p>porém ainda não foi confirmada</p>"
-            + "<p>Cidade de origem: {{cidadeOrigem}}</p>"
-            + "<p>Data de saída: {{dataSaida}}</p>"
-            + "<p>Hora de saída: {{horaSaida}}</p>"
-            + "<p>Cidade de destino: {{cidadeDestino}}</p>"
-            + "<p>Data de retorno: {{dataRetorno}}</p>"
-            + "<p>Hora de retorno: {{horaRetorno}}</p>"
-            + "<p>Lista de passageiros: {{listaPassageiros}}</p>"
+            + "<p>Cidade de origem: <strong>{{cidadeOrigem}}</strong></p>"
+            + "<p>Data de saída: <strong>{{dataSaida}}</strong></p>"
+            + "<p>Hora de saída: <strong>{{horaSaida}}</strong></p>"
+            + "<p>Cidade de destino: <strong>{{cidadeDestino}}</strong></p>"
+            + "<p>Data de retorno: <strong>{{dataRetorno}}</strong></p>"
+            + "<p>Hora de retorno: <strong>{{horaRetorno}}</strong></p>"
+            + "<p>Lista de passageiros: <strong>{{listaPassageiros}}</strong></p>"
             + OBS
             + "</body>"
             + "</html>";
@@ -90,17 +90,17 @@ public class Notificacoes {
             + "</head>"
             + "<body>"
             + "<h1>Solicitação Recusada</h1>"
-            + "<p>Olá {{solicitante}}</p> "
+            + "<p>Olá <strong>{{solicitante}}</strong></p> "
             + "<p>Sua solicitação de viagem foi recusada pelo operador da frota</p>"
             + "<p>Abaixo, seguem os dados da solicitação recusada, juntamente com a justificativa.</p>"
-            + "<p>Cidade de origem: {{cidadeOrigem}}</p>"
-            + "<p>Data de saída: {{dataSaida}}</p>"
-            + "<p>Hora de saída: {{horaSaida}}</p>"
-            + "<p>Cidade de destino: {{cidadeDestino}}</p>"
-            + "<p>Data de retorno: {{dataRetorno}}</p>"
-            + "<p>Hora de retorno: {{horaRetorno}}</p>"
-            + "<p>Lista de passageiros: {{listaPassageiros}}</p>"
-            + "<p>Justificativa: {{justificativa}}</p>"
+            + "<p>Cidade de origem: <strong>{{cidadeOrigem}}</strong></p>"
+            + "<p>Data de saída: <strong>{{dataSaida}}</strong></p>"
+            + "<p>Hora de saída: <strong>{{horaSaida}}</strong></p>"
+            + "<p>Cidade de destino: <strong>{{cidadeDestino}}</strong></p>"
+            + "<p>Data de retorno: <strong>{{dataRetorno}}</strong></p>"
+            + "<p>Hora de retorno: <strong>{{horaRetorno}}</strong></p>"
+            + "<p>Lista de passageiros: <strong>{{listaPassageiros}}</strong></p>"
+            + "<p>Justificativa: <strong>{{justificativa}}</strong></p>"
             + OBS
             + "</body>"
             + "</html>";
@@ -248,7 +248,8 @@ public class Notificacoes {
                 this.sendmail(viagem.getSolicitacoes().get(i).getPassageiros().get(j).getEmail(), html2);
             }
         }
-
+        
+        html = html.replace("{{solicitante}}", viagem.getMotorista().getEmail());
         this.sendmail(viagem.getMotorista().getEmail(), html);
 
     }

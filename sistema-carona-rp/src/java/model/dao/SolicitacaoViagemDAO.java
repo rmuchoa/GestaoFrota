@@ -20,7 +20,6 @@ import model.entity.SolicitacaoViagem;
 public class SolicitacaoViagemDAO {
 
     private Connection connection;
-
     public SolicitacaoViagemDAO() {
         try {
             this.connection = ConnectionFactory.getConnection();
@@ -147,7 +146,7 @@ public class SolicitacaoViagemDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        
         return solicitacaoViagem;
 
     }
