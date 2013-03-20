@@ -150,6 +150,8 @@ function adicionarNovasSolicitacoes(){
                
     });
     
+   setTimeout(function(){
+       
    
     $( "#myModal" ).dialog({
         modal: true,
@@ -170,6 +172,7 @@ function adicionarNovasSolicitacoes(){
             }
         }
     });
+    },1000);
        
        
 }     
