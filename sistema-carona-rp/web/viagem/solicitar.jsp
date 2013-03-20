@@ -59,55 +59,18 @@
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap-responsive.css">
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
-        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery-1.9.0.min.js"></script>
+        
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/pick/jquery-ui.css">
-        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.ui.datepicker-pt-BR.js"></script>
 
         <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/perifer-timePicker-b5195df/timePicker.css">
         
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $("#data_saida").datepicker($.datepicker.regional['pt-BR']);
-                $("#data_retorno").datepicker($.datepicker.regional['pt-BR']);
-                $("#hora_saida").timePicker();
-                $("#hora_retorno").timePicker();
-                 });
-                validaSolicitacaoViagem();
-                $("#estadoOrigem").change(function() {
-                    $.ajax({
-                        url: '/sistema-carona-rp/ajax/cidades.jsp',
-                        dataType: 'html',
-                        data: {estado: $('#estadoOrigem').val()},
-                        type: 'POST',
-                        success: function(data) {
-                            $('#cidadeOrigem').html(data)
-                        },
-                        error: function(error, status) {
-                            alert(error);
-                        }
-                    });
-                });
-
-                $("#estadoRetorno").change(function() {
-                    $.ajax({
-                        url: '/sistema-carona-rp/ajax/cidades.jsp',
-                        dataType: 'html',
-                        data: {estado: $('#estadoRetorno').val()},
-                        type: 'POST',
-                        success: function(data) {
-                            $('#cidadeRetorno').html(data)
-                        }
-                    });
-                });
-
-        
-        </script>
+       
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body style="">
@@ -389,5 +352,42 @@
             </footer>
         </div>                    
         <br/>
+         <script type="text/javascript">
+            $(document).ready(function() {
+                $("#data_saida").datepicker($.datepicker.regional['pt-BR']);
+                $("#data_retorno").datepicker($.datepicker.regional['pt-BR']);
+                $("#hora_saida").timePicker();
+                $("#hora_retorno").timePicker();
+                 });
+                validaSolicitacaoViagem();
+                $("#estadoOrigem").change(function() {
+                    $.ajax({
+                        url: '/sistema-carona-rp/ajax/cidades.jsp',
+                        dataType: 'html',
+                        data: {estado: $('#estadoOrigem').val()},
+                        type: 'POST',
+                        success: function(data) {
+                            $('#cidadeOrigem').html(data)
+                        },
+                        error: function(error, status) {
+                            alert(error);
+                        }
+                    });
+                });
+
+                $("#estadoRetorno").change(function() {
+                    $.ajax({
+                        url: '/sistema-carona-rp/ajax/cidades.jsp',
+                        dataType: 'html',
+                        data: {estado: $('#estadoRetorno').val()},
+                        type: 'POST',
+                        success: function(data) {
+                            $('#cidadeRetorno').html(data)
+                        }
+                    });
+                });
+
+        
+        </script>
     </body>
 </html>
