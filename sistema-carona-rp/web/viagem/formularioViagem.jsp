@@ -46,15 +46,11 @@
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap-responsive.css">
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
-        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery-1.9.0.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.js"></script>
-        <script type="text/javascript" src="/sistema-carona-rp/validadores/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.ui.datepicker-pt-BR.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.js"></script>
-        <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/validadores/Validators.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/perifer-timePicker-b5195df/timePicker.css">
@@ -187,7 +183,7 @@
                             <option value="">Selecione a Viagem Realizada</option>
                             <%
                                 ViagemController viagemController = new ViagemController();
-                                List<Viagem> viagens = viagemController.listarViagensMotorista(null);
+                                List<Viagem> viagens = viagemController.listarViagensMotorista(login);
                                 for (int i = 0; i < viagens.size(); i++) {
                                     out.print("<option value='" + viagens.get(i).getId() + "'> Cidade de Origem: " + viagens.get(i).getCidadeOrigem().getNome()
                                             + " | Destino: " + viagens.get(i).getCidadeRetorno().getNome() 

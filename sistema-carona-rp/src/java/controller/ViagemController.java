@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controller;
 
 import java.text.ParseException;
@@ -10,10 +7,15 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
-import model.dao.*;
+import model.dao.CidadeDAO;
+import model.dao.SituacaoDAO;
+import model.dao.UsuarioDAO;
+import model.dao.VeiculoDAO;
+import model.dao.ViagemDAO;
 import model.entity.SolicitacaoViagem;
 import model.entity.Usuario;
 import model.entity.Viagem;
+import notifica.Notificacoes;
 
 /**
  *
@@ -23,6 +25,7 @@ public class ViagemController {
 
     private ViagemDAO viagemDAO = new ViagemDAO();
     private Viagem viagem;
+    Notificacoes notifica = new Notificacoes();
 
     public Viagem abrirViagem(HttpServletRequest request) {
 
@@ -44,9 +47,9 @@ public class ViagemController {
             
             for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
                 solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("AGENDADA"));
+                notifica.notificaViagemCriada(solicitacao);
                 System.out.println("ID"+solicitacao.getId());
             }
-            
             
             return viagemDAO.abrirViagem(viagem);
 
@@ -66,6 +69,7 @@ public class ViagemController {
         for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
             solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("AUTORIZADA"));
         }
+        notifica.notificaAutorizacaoViagem(viagem);
         return viagemDAO.alterarSituacaoViagem(viagem);
         
     }
@@ -79,6 +83,8 @@ public class ViagemController {
         for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
             solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("REJEITADA"));
         }
+        
+        notifica.notificaCanceladaViagem(viagem);
         return viagemDAO.rejeitarViagem(viagem);
         
     }

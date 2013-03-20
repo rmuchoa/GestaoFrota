@@ -301,7 +301,7 @@ public class SolicitacaoViagemDAO {
                 solicitacao.setObservacoes(rs.getString("observacoes"));
                 solicitacao.setSituacao(new SituacaoDAO().buscarPorId(rs.getInt("situacao_solicitacao")));
                 solicitacao.setPassageiros(new PassageiroDAO().buscarPorSolicitacaoId(solicitacao.getId()));
-                solicitacao.setViagem(new ViagemDAO().buscarPorId(rs.getInt("viagem")));
+               // solicitacao.setViagem(new ViagemDAO().buscarPorId(rs.getInt("viagem")));
 
                 solicitacoes.add(solicitacao);
 

@@ -181,9 +181,11 @@ public class Notificacoes {
         String html = Notificacoes.VIAGEM_CRIADA_TEMPLATE.replace(
                 "{{solicitante}}", solicitacao.getSolicitante().getNome());
         html = html.replace("{{cidadeOrigem}}", solicitacao.getOrigem().getNome());
-        html = html.replace("{{dataSaida}}", solicitacao.getDataSaida().toString());
+        html = html.replace("{{dataSaida}}", Datas.getDate(solicitacao.getDataSaida()));
+         html = html.replace("{{horaSaida}}", Datas.getTime(solicitacao.getDataSaida()));
         html = html.replace("{{cidadeDestino}}", solicitacao.getDestino().getNome());
-        html = html.replace("{{dataRetorno}}", solicitacao.getDataRetorno().toString());
+        html = html.replace("{{dataRetorno}}", Datas.getDate(solicitacao.getDataRetorno()));
+        html = html.replace("{{horaRetorno}}", Datas.getTime(solicitacao.getDataRetorno()));
         html = html.replace("{{justificativa}}", solicitacao.getJustificativa());
         if (solicitacao.getViagem() != null) {
             html = html.replace("{{id}}", solicitacao.getViagem().getId().toString());

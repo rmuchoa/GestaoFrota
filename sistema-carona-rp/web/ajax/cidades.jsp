@@ -10,9 +10,6 @@
 <%@page import="controller.CidadeController"%>
 
 <%
-
-    if (session.getAttribute("usuario") != null) {
-
         CidadeController cidadeController = new CidadeController();
         EstadoController estadoController = new EstadoController();
         String id = request.getParameter("estado") == null ? "" : request.getParameter("estado");
@@ -26,11 +23,5 @@
         }
 
         out.print(html);
-
-    } else {
-
-        response.sendRedirect("login.jsp");
-
-    }
 
 %>

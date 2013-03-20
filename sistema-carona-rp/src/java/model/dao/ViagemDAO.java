@@ -56,6 +56,7 @@ public class ViagemDAO {
                 viagem.setPercurso(rs.getString("percurso"));
                 viagem.setObservacoes(rs.getString("observacoes"));
                 viagem.setSituacao(new SituacaoDAO().buscarPorId(rs.getInt("situacao_viagem")));
+                
                 viagem.setSolicitacoes(new SolicitacaoViagemDAO().buscarPorViagemId(viagem.getId()));
                 
                 return viagem;
@@ -339,13 +340,11 @@ public class ViagemDAO {
             
             stmt.close();
             
-            return viagens;
-            
         } catch (SQLException e) {
             e.printStackTrace();
         }
         
-        return null;
+        return viagens;
     }
     
     public List<Viagem> getViagensPor(String chave,String valor){
