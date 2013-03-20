@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import model.entity.Situacao;
 import model.entity.SolicitacaoViagem;
 import model.entity.Usuario;
 import model.entity.Viagem;
@@ -242,6 +243,44 @@ public class ViagemDAO {
         
     }
     
+    public Boolean rejeitarViagem(Viagem viagem) {
+        
+        String sql = "update viagem set situacao_viagem = ?, justificativa_rejeite=? where id = ?";
+        try {
+            
+            PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, viagem.getSituacao().getId());
+            stmt.setString(2, viagem.getJustificativaRejeite());
+            stmt.setInt(3, viagem.getId());
+           
+            stmt.executeUpdate();
+            
+            for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
+                
+                try {
+
+                    String sql2 = "update solicitacao_viagem set situacao_solicitacao = ? where id = ?";
+                    stmt = connection.prepareStatement(sql2);
+                    stmt.setInt(1, viagem.getSituacao().getId());
+                    stmt.setInt(2, viagem.getId());
+                    stmt.executeUpdate();
+                    
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                
+            }
+            stmt.close();
+            return Boolean.TRUE;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return Boolean.FALSE;
+        
+    }
+    
     public Boolean finalizarViagem(Viagem viagem) {
         
         String sql = "update viagem set data_inicio_real = ?, kilometragem_inicio = ?, "
@@ -268,7 +307,7 @@ public class ViagemDAO {
     }
     
     public List<Viagem> listarViagemMotorista(Usuario motorista){
-       List<Viagem> viagens = new ArrayList<Viagem>();
+        List<Viagem> viagens = new ArrayList<Viagem>();
         String sql = "select * from viagem where motorista = ?";
         
         try {
@@ -307,6 +346,47 @@ public class ViagemDAO {
         }
         
         return null;
+    }
+    
+    public List<Viagem> getViagensPor(String chave,String valor){
+        List<Viagem> viagens = new ArrayList<Viagem>();
+        String sql = "select * from viagem where "+chave+" = ?";
+        
+        try {
+
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, valor);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                
+                Viagem viagem = new Viagem();
+                viagem.setId(rs.getInt("id"));
+                viagem.setVeiculo(new VeiculoDAO().getVeiculoPorId(rs.getInt("veiculo")));
+                viagem.setMotorista(new UsuarioDAO().buscarPorId(rs.getInt("motorista")));
+                viagem.setCidadeOrigem(new CidadeDAO().buscarPorId(rs.getInt("cidade_origem")));
+                viagem.setDataSaida(new Date(rs.getDate("data_saida").getTime()));
+                viagem.setLocalSaida(rs.getString("local_saida"));
+                viagem.setCidadeRetorno(new CidadeDAO().buscarPorId(rs.getInt("cidade_retorno")));
+                viagem.setDataRetorno(new Date(rs.getDate("data_retorno").getTime()));
+                viagem.setLocalRetorno(rs.getString("local_retorno"));
+                viagem.setPercurso(rs.getString("percurso"));
+                viagem.setObservacoes(rs.getString("observacoes"));
+                viagem.setSituacao(new SituacaoDAO().buscarPorId(rs.getInt("situacao_viagem")));
+                viagem.setSolicitacoes(new SolicitacaoViagemDAO().buscarPorViagemId(viagem.getId()));
+                
+                viagens.add(viagem);
+                
+            }
+            
+            stmt.close();
+            
+           
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+      return viagens;
+            
     }
     
 }

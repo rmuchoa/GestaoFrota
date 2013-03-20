@@ -1,4 +1,127 @@
+function detalheViagem(id){
+   $.ajax({
+        type: 'POST',
+        url: '/sistema-carona-rp/ajax/detalheViagem.jsp',
+        dataType: 'html',
+        
+        data:{
+            id:id
+        },
+        success: function(data) {
+           $('#detalheViagem').html(data); 
+           $( "#detalheViagem" ).dialog({
+                modal: true,
+                width: 700 ,
+                height: 500,
+                buttons: {
+                    Ok: function() {
 
+
+                        $( this ).dialog( "close" );
+                    }
+        }
+    });
+        },
+        error:function(status,error) {
+             $('#conteudoTable').html(error+"-"+status);
+             console.log(error)
+        }
+    }) 
+}
+
+
+function postCancelaViagem(id,justificativa){
+    
+    $.ajax({
+        type: 'POST',
+        url: '/sistema-carona-rp/ajax/cancelaViagem.jsp',
+        dataType: 'html',
+        
+        data:{
+            id:id,
+            justificativa:justificativa
+        },
+        success: function(data) {
+            $('#conteudoTable').html(data);
+        },
+        error:function(status,error) {
+             $('#conteudoTable').html(error+"-"+status);
+             console.log(error)
+        }
+    })
+}
+
+
+function cancelarViagem(id){
+      $( "#modalJustificativa" ).dialog({
+        modal: true,
+        width: 400 ,
+        height: 300,
+        buttons: {
+            Ok: function() {
+               var justificativa =  $('#justificativa').val();
+                postCancelaViagem(id, justificativa);
+                $( this ).dialog( "close" );
+            },
+            Cancelar: function() {
+                
+                $( this ).dialog( "close" );
+            }
+        }
+    });
+}
+
+
+function autorizarViagem(id){
+    
+    $.ajax({
+        type: 'POST',
+        url: '/sistema-carona-rp/ajax/autorizaViagem.jsp',
+        dataType: 'html',
+        
+        data:{
+            id:id
+        },
+        success: function(data) {
+            $('#conteudoTable').html(data);
+        },
+        error:function(status,error) {
+             $('#conteudoTable').html(error+"-"+status);
+             console.log(error)
+        }
+    }) 
+}
+
+
+function buscaViagensAjax(pesquisa,valor_pesquisa){
+   $.ajax({
+        type: 'POST',
+        url: '/sistema-carona-rp/ajax/viagens.jsp',
+        dataType: 'html',
+        
+        data:{
+            pesquisa:pesquisa,
+            valor_pesquisa:valor_pesquisa
+        },
+        success: function(data) {
+            $('#conteudoTable').html(data);
+        },
+        error:function(status,error) {
+            alert(error)
+        }
+    }) 
+}
+
+function listaViagens(){
+    
+    $('#formBuscaViagem').submit(function() {
+    
+    var pesquisa= $('#pesquisa').val();
+    var valor_pesquisa = $('#valor_pesquisa').val();
+    buscaViagensAjax(pesquisa, valor_pesquisa);
+    return false;
+   });
+}
 function preencheTabela(dataInicial,dataFinal){
        
     $.ajax({

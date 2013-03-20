@@ -60,7 +60,7 @@ public class ViagemController {
     
     public Boolean autorizarViagem(HttpServletRequest request) {
         
-        Integer viagemId = Integer.parseInt(request.getParameter("viagemId"));
+        Integer viagemId = Integer.parseInt(request.getParameter("id"));
         viagem = viagemDAO.buscarPorId(viagemId);
         viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("AUTORIZADA"));
         for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
@@ -71,14 +71,15 @@ public class ViagemController {
     }
     
     public Boolean rejeitarViagem(HttpServletRequest request) {
-        
-        Integer viagemId = Integer.parseInt(request.getParameter("viagemId"));
+        System.out.println(request.getParameter("id")+"--"+request.getParameter("justificativa"));
+        Integer viagemId = Integer.parseInt(request.getParameter("id"));
         viagem = viagemDAO.buscarPorId(viagemId);
+        viagem.setJustificativaRejeite(request.getParameter("justificativa"));
         viagem.setSituacao(new SituacaoDAO().buscarPorDescricao("REJEITADA"));
         for (SolicitacaoViagem solicitacao : viagem.getSolicitacoes()) {
             solicitacao.setSituacao(new SituacaoDAO().buscarPorDescricao("REJEITADA"));
         }
-        return viagemDAO.alterarSituacaoViagem(viagem);
+        return viagemDAO.rejeitarViagem(viagem);
         
     }
     

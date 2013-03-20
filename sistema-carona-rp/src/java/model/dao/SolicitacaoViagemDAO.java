@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import util.ConnectionFactory;
 import model.entity.Passageiro;
+import model.entity.Situacao;
 import model.entity.SolicitacaoViagem;
 
 /**
@@ -68,7 +69,7 @@ public class SolicitacaoViagemDAO {
         return solicitacoes;
 
     }
-
+    
     public SolicitacaoViagem buscarPorId(Integer id) {
 
         SolicitacaoViagem solicitacao = null;
