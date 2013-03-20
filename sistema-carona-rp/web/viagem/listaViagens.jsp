@@ -23,9 +23,9 @@
     if (session.getAttribute("usuario") != null) {
 
         login = (Usuario) session.getAttribute("usuario");
-        new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"OPERADOR","ADMINISTRADOR"});
+        new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"OPERADOR", "AUTORIZADOR", "ADMINISTRADOR"});
         if (request.getMethod().equalsIgnoreCase("POST")) {
-            
+
             if (request.getParameter("criarViagem") != null) {
                 SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
                 List<SolicitacaoViagem> solicitacoes = solicitacaoViagemController.listar();
@@ -44,11 +44,11 @@
         }
 
     } else {
-        
+
         response.sendRedirect("login.jsp");
-        
+
     }
-    
+
 %>
 
 <html>
@@ -77,7 +77,7 @@
     </head>    
 
     <body>
-        
+
         <div class="navbar nav">
             <div class="navbar-inner">
                 <div class="container">
@@ -108,7 +108,12 @@
                                 if (login.getTipoUsuario().getId() == 2 || login.getTipoUsuario().getId() == 4) {
                             %>
                             <li class="divider-vertical"></li>
-                            <li class="active"><a href="/sistema-carona-rp/viagem/listaSolicitacoes.jsp"><i class="icon-calendar"></i> Reservas</a></li>
+                            <li><a href="/sistema-carona-rp/viagem/listaSolicitacoes.jsp"><i class="icon-calendar"></i> Reservas</a></li>
+                            <%           }
+                                if (login.getTipoUsuario().getId() >= 2 && login.getTipoUsuario().getId() <= 4) {
+                            %>
+                            <li class="divider-vertical"></li>
+                            <li class="active"><a href="/sistema-carona-rp/viagem/listaViagens.jsp"><i class="icon-globe"></i> Viagens</a></li>
                             <%           }
                                 if (login.getTipoUsuario().getId() == 5 || login.getTipoUsuario().getId() == 4) {
                             %>      
@@ -120,7 +125,7 @@
                             <li class="divider-vertical"></li>
                             <li><a href="/sistema-carona-rp/viagem/solicitar.jsp"><i class="icon-envelope"></i> Solicitação</a></li>
                             <%           }
-                                    }
+                                }
                             %>
                         </ul>
                         <%
@@ -139,7 +144,7 @@
                             </ul>
                         </div>
                         <%
-                            } else {
+                        } else {
                         %>
                         <div class="pull-right">
                             <ul class="nav pull-right">
@@ -150,8 +155,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <%
-                            }
+                        <%                            }
                         %>
                     </div>
                 </div>
@@ -162,7 +166,7 @@
             <div id="header">
                 <h2 id="cabecalho" class="span12 well">Sistema de Caronas - Unipampa</h2>
             </div>
-            
+
             <div id="main">
                 <div class="offset1 span10 offset1">
                     <nav class="navbar">
@@ -197,18 +201,18 @@
                                 <option value="cidade_origem" id="origem">Origem</option>
                                 <option value="cidade_retorno" id="destino">Destino</option>
                             </select>
-                            
+
                             <strong> Valor:</strong> <input id="valor_pesquisa" class="input-large" value="" type="text">
                             <button type="submit" class="btn btn-success" title="Clique aqui para pesquisar viagens!">
                                 <i class="icon-ok"></i> Pesquisar
                             </button>
-                            
+
                         </form>
                         <br/>
                         <div class="well">
                             <form id="formTabela" action="listaSolicitacoes.jsp" method="POST">
                                 <div id="conteudoTable">
-                                    
+
                                 </div>
                             </form>
                         </div>
@@ -223,12 +227,12 @@
             </div>
         </div>
         <div style="display: none" title="Justificativa de rejeição de viagem" id="modalJustificativa">
-             <form class="form-horizontal">
-                 <label>Insira a justificativa</label>
-                 <textarea id="justificativa" name="observacoes"  rows="4" style="width: 90%" ></textarea>
-             </form>
-         </div> 
-                    <div style="display: none" title="Detalhe Viagem" id="detalheViagem"></div>            
+            <form class="form-horizontal">
+                <label>Insira a justificativa</label>
+                <textarea id="justificativa" name="observacoes"  rows="4" style="width: 90%" ></textarea>
+            </form>
+        </div> 
+        <div style="display: none" title="Detalhe Viagem" id="detalheViagem"></div>            
         <div id="footer" class="well">
             <hr>
             <footer style="text-align: center">

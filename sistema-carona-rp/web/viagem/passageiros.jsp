@@ -37,9 +37,9 @@
     <body>
 
         <%
-        
-        Usuario login = null;
-        
+
+            Usuario login = null;
+
             if (session.getAttribute("usuario") != null) {
 
                 login = (Usuario) session.getAttribute("usuario");
@@ -62,7 +62,7 @@
                         dispatcher.forward(request, response);
 
                     }
-                    
+
                 } else if (request.getAttribute("action").equals("list")) {
 
                     request.setAttribute("action", "add");
@@ -109,6 +109,11 @@
                             <li class="divider-vertical"></li>
                             <li><a href="/sistema-carona-rp/viagem/listaSolicitacoes.jsp"><i class="icon-calendar"></i> Reservas</a></li>
                             <%           }
+                                if (login.getTipoUsuario().getId() >= 2 && login.getTipoUsuario().getId() <= 4) {
+                            %>
+                            <li class="divider-vertical"></li>
+                            <li><a href="/sistema-carona-rp/viagem/listaViagens.jsp"><i class="icon-globe"></i> Viagens</a></li>
+                            <%           }
                                 if (login.getTipoUsuario().getId() == 5 || login.getTipoUsuario().getId() == 4) {
                             %>
                             <li class="divider-vertical"></li>
@@ -119,7 +124,7 @@
                             <li class="divider-vertical"></li>
                             <li class="active"><a href="/sistema-carona-rp/viagem/solicitar.jsp"><i class="icon-envelope"></i> Solicitação</a></li>
                             <%           }
-                                    }
+                                }
                             %>
                         </ul>
                         <%
@@ -138,7 +143,7 @@
                             </ul>
                         </div>
                         <%
-                            } else {
+                        } else {
                         %>
                         <div class="pull-right">
                             <ul class="nav pull-right">
@@ -149,8 +154,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <%
-                            }
+                        <%                            }
                         %>
                     </div>
                 </div>

@@ -25,10 +25,10 @@
 <!DOCTYPE html>
 
 <%
-    
+
     List<SolicitacaoViagem> selecionadas = null;
     Usuario login = null;
-    
+
     if (session.getAttribute("usuario") != null) {
 
         login = (Usuario) session.getAttribute("usuario");
@@ -40,7 +40,7 @@
                 }
             }
         }
-        
+
     } else {
 
         response.sendRedirect("login.jsp");
@@ -52,26 +52,8 @@
     <head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!--        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap.css">
-        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap-responsive.css">
-        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
-        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/bootstrap.js"></script>
 
-        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/pick/jquery-ui.css">
-        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.min.js"></script> 
-        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.ui.datepicker-pt-BR.js"></script>
-
-        <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.js"></script>
-        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/perifer-timePicker-b5195df/timePicker.css">
-
-        <script type="text/javascript" src="/sistema-carona-rp/ajax/Viagem.js"></script>
-
-        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
-        
-        -->
-        
-         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap.css">
+        <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap.css">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/bootstrapt/css/bootstrap-responsive.css">
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/js/jquery-1.8.0.min.js"></script>
 
@@ -82,19 +64,19 @@
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/bootstrapt/pick/jquery.ui.datepicker-pt-BR.js"></script>
         <script type="text/javascript" src="/sistema-carona-rp/ajax/Viagem.js"></script>
-        
+
         <script type="text/javascript" src="/sistema-carona-rp/perifer-timePicker-b5195df/jquery.timePicker.js"></script>
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/perifer-timePicker-b5195df/timePicker.css">
         <link rel=stylesheet type="text/css" href="/sistema-carona-rp/css/style.css">
-       
-        
-        
-        
+
+
+
+
         <title>Sistema de Caronas Unipampa</title>
     </head>
 
     <body style="">
-        
+
         <div class="navbar nav">
             <div class="navbar-inner">
                 <div class="container">
@@ -127,6 +109,11 @@
                             <li class="divider-vertical"></li>
                             <li class="active"><a href="/sistema-carona-rp/viagem/listaSolicitacoes.jsp"><i class="icon-calendar"></i> Reservas</a></li>
                             <%           }
+                                if (login.getTipoUsuario().getId() >= 2 && login.getTipoUsuario().getId() <= 4) {
+                            %>
+                            <li class="divider-vertical"></li>
+                            <li><a href="/sistema-carona-rp/viagem/listaViagens.jsp"><i class="icon-globe"></i> Viagens</a></li>
+                            <%           }
                                 if (login.getTipoUsuario().getId() == 5 || login.getTipoUsuario().getId() == 4) {
                             %>      
                             <li class="divider-vertical"></li>
@@ -137,7 +124,7 @@
                             <li class="divider-vertical"></li>
                             <li><a href="/sistema-carona-rp/viagem/solicitar.jsp"><i class="icon-envelope"></i> Solicitação</a></li>
                             <%           }
-                                    }
+                                }
                             %>
                         </ul>
                         <%
@@ -156,7 +143,7 @@
                             </ul>
                         </div>
                         <%
-                            } else {
+                        } else {
                         %>
                         <div class="pull-right">
                             <ul class="nav pull-right">
@@ -167,8 +154,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <%
-                            }
+                        <%                            }
                         %>
                     </div>
                 </div>
@@ -450,6 +436,6 @@
                 
             });
         </script>
-        
+
     </body>
 </html>

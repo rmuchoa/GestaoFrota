@@ -23,9 +23,9 @@
     if (session.getAttribute("usuario") != null) {
 
         login = (Usuario) session.getAttribute("usuario");
-        new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"OPERADOR","ADMINISTRADOR"});
+        new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"OPERADOR", "ADMINISTRADOR"});
         if (request.getMethod().equalsIgnoreCase("POST")) {
-            
+
             if (request.getParameter("criarViagem") != null) {
                 SolicitacaoViagemController solicitacaoViagemController = new SolicitacaoViagemController();
                 List<SolicitacaoViagem> solicitacoes = solicitacaoViagemController.listar();
@@ -44,11 +44,11 @@
         }
 
     } else {
-        
+
         response.sendRedirect("login.jsp");
-        
+
     }
-    
+
 %>
 
 <html>
@@ -88,7 +88,7 @@
         });
     </script>
     <body>
-        
+
         <div class="navbar nav">
             <div class="navbar-inner">
                 <div class="container">
@@ -121,6 +121,11 @@
                             <li class="divider-vertical"></li>
                             <li class="active"><a href="/sistema-carona-rp/viagem/listaSolicitacoes.jsp"><i class="icon-calendar"></i> Reservas</a></li>
                             <%           }
+                                if (login.getTipoUsuario().getId() >= 2 && login.getTipoUsuario().getId() <= 4) {
+                            %>
+                            <li class="divider-vertical"></li>
+                            <li><a href="/sistema-carona-rp/viagem/listaViagens.jsp"><i class="icon-globe"></i> Viagens</a></li>
+                            <%           }
                                 if (login.getTipoUsuario().getId() == 5 || login.getTipoUsuario().getId() == 4) {
                             %>      
                             <li class="divider-vertical"></li>
@@ -131,7 +136,7 @@
                             <li class="divider-vertical"></li>
                             <li><a href="/sistema-carona-rp/viagem/solicitar.jsp"><i class="icon-envelope"></i> Solicitação</a></li>
                             <%           }
-                                    }
+                                }
                             %>
                         </ul>
                         <%
@@ -150,7 +155,7 @@
                             </ul>
                         </div>
                         <%
-                            } else {
+                        } else {
                         %>
                         <div class="pull-right">
                             <ul class="nav pull-right">
@@ -161,8 +166,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <%
-                            }
+                        <%                            }
                         %>
                     </div>
                 </div>
@@ -173,7 +177,7 @@
             <div id="header">
                 <h2 id="cabecalho" class="span12 well">Sistema de Caronas - Unipampa</h2>
             </div>
-            
+
             <div id="main">
                 <div class="offset1 span10 offset1">
                     <nav class="navbar">

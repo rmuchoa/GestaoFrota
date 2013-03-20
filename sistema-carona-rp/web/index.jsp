@@ -66,28 +66,33 @@
                                     if (login.getTipoUsuario().getId() == 4) {
                             %>
                             <li class="divider-vertical"></li>
-                            <li><a href="usuario/listaUsuarios.jsp"><i class="icon-user"></i> Usuarios</a></li>
+                            <li><a href="/sistema-carona-rp/usuario/listaUsuarios.jsp"><i class="icon-user"></i> Usuarios</a></li>
 
                             <%           }
                                 if (login.getTipoUsuario().getId() == 2 || login.getTipoUsuario().getId() == 4) {
                             %>
                             <li class="divider-vertical"></li>
-                            <li><a href="veiculo/listaVeiculos.jsp"><i class="icon-tags"></i> Veiculos</a></li>
+                            <li><a href="/sistema-carona-rp/veiculo/listaVeiculos.jsp"><i class="icon-tags"></i> Veiculos</a></li>
                             <%           }
                                 if (login.getTipoUsuario().getId() == 2 || login.getTipoUsuario().getId() == 4) {
                             %>
                             <li class="divider-vertical"></li>
-                            <li><a href="viagem/listaSolicitacoes.jsp"><i class="icon-calendar"></i> Reservas</a></li>
+                            <li><a href="/sistema-carona-rp/viagem/listaSolicitacoes.jsp"><i class="icon-calendar"></i> Reservas</a></li>
+                            <%           }
+                                if (login.getTipoUsuario().getId() >= 2 && login.getTipoUsuario().getId() <= 4) {
+                            %>
+                            <li class="divider-vertical"></li>
+                            <li><a href="/sistema-carona-rp/viagem/listaViagens.jsp"><i class="icon-globe"></i> Viagens</a></li>
                             <%           }
                                 if (login.getTipoUsuario().getId() == 5 || login.getTipoUsuario().getId() == 4) {
                             %>      
                             <li class="divider-vertical"></li>
-                            <li><a href="viagem/formularioViagem.jsp"><i class="icon-road"></i> Relatorio Viagem</a></li>
+                            <li><a href="/sistema-carona-rp/viagem/formularioViagem.jsp"><i class="icon-road"></i> Relatorio Viagem</a></li>
                             <%           }
                                 if (login.getTipoUsuario().getId() >= 1 && login.getTipoUsuario().getId() <= 4) {
                             %>
                             <li class="divider-vertical"></li>
-                            <li><a href="viagem/solicitar.jsp"><i class="icon-envelope"></i> Solicitação</a></li>
+                            <li><a href="/sistema-carona-rp/viagem/solicitar.jsp"><i class="icon-envelope"></i> Solicitação</a></li>
                             <%           }
                                     }
                             %>

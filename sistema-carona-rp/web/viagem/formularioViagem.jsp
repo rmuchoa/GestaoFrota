@@ -24,8 +24,8 @@
     if (session.getAttribute("usuario") != null) {
 
         login = (Usuario) session.getAttribute("usuario");
-        new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"MOTORISTA","ADMINISTRADOR"});
-        
+        new Autenticacao("/sistema-carona-rp/index.jsp").valida(session, response, new String[]{"MOTORISTA", "ADMINISTRADOR"});
+
         if (request.getMethod().equalsIgnoreCase("post")) {
             ViagemController viagemController = new ViagemController();
             viagemController.finalizarViagem(request);
@@ -33,9 +33,9 @@
         }
 
     } else {
-        
+
         response.sendRedirect("login.jsp");
-        
+
     }
 %>
 
@@ -62,7 +62,7 @@
                 $("#hora_saida").timePicker();
                 $("#hora_chegada").timePicker();
                 
-                 $("#viagem").change(function() {
+                $("#viagem").change(function() {
                     $.ajax({
                         url: '/sistema-carona-rp/ajax/dadosViagem.jsp',
                         dataType: 'html',
@@ -78,7 +78,7 @@
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body>
-        
+
         <div class="navbar nav">
             <div class="navbar-inner">
                 <div class="container">
@@ -111,6 +111,11 @@
                             <li class="divider-vertical"></li>
                             <li><a href="/sistema-carona-rp/viagem/listaSolicitacoes.jsp"><i class="icon-calendar"></i> Reservas</a></li>
                             <%           }
+                                if (login.getTipoUsuario().getId() >= 2 && login.getTipoUsuario().getId() <= 4) {
+                            %>
+                            <li class="divider-vertical"></li>
+                            <li><a href="/sistema-carona-rp/viagem/listaViagens.jsp"><i class="icon-globe"></i> Viagens</a></li>
+                            <%           }
                                 if (login.getTipoUsuario().getId() == 5 || login.getTipoUsuario().getId() == 4) {
                             %>      
                             <li class="divider-vertical"></li>
@@ -121,7 +126,7 @@
                             <li class="divider-vertical"></li>
                             <li><a href="/sistema-carona-rp/viagem/solicitar.jsp"><i class="icon-envelope"></i> Solicitação</a></li>
                             <%           }
-                                    }
+                                }
                             %>
                         </ul>
                         <%
@@ -140,7 +145,7 @@
                             </ul>
                         </div>
                         <%
-                            } else {
+                        } else {
                         %>
                         <div class="pull-right">
                             <ul class="nav pull-right">
@@ -151,8 +156,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <%
-                            }
+                        <%                            }
                         %>
                     </div>
                 </div>
@@ -186,9 +190,9 @@
                                 List<Viagem> viagens = viagemController.listarViagensMotorista(login);
                                 for (int i = 0; i < viagens.size(); i++) {
                                     out.print("<option value='" + viagens.get(i).getId() + "'> Cidade de Origem: " + viagens.get(i).getCidadeOrigem().getNome()
-                                            + " | Destino: " + viagens.get(i).getCidadeRetorno().getNome() 
-                                            + " | Data Saída: " + new SimpleDateFormat("dd/MM/yyyy").format(viagens.get(i).getDataSaida()) 
-                                            + " | Data Retorno: " + new SimpleDateFormat("dd/MM/yyyy").format(viagens.get(i).getDataRetorno()) 
+                                            + " | Destino: " + viagens.get(i).getCidadeRetorno().getNome()
+                                            + " | Data Saída: " + new SimpleDateFormat("dd/MM/yyyy").format(viagens.get(i).getDataSaida())
+                                            + " | Data Retorno: " + new SimpleDateFormat("dd/MM/yyyy").format(viagens.get(i).getDataRetorno())
                                             + " </option>");
                                 }
                             %>

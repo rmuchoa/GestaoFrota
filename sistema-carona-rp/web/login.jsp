@@ -19,20 +19,20 @@
 <%
 
     Usuario usuario = null;
-    
+
     if (request.getMethod().equalsIgnoreCase("post")) {
 
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
         usuario = new UsuarioController().fazerLogin(login, senha);
-        
+
         session.setAttribute("usuario", usuario);
         response.sendRedirect("index.jsp");
-        
+
     } else if (request.getMethod().equalsIgnoreCase("get")) {
-        
+
         session.setAttribute("usuario", null);
-        
+
     }
 %>
 
@@ -49,7 +49,7 @@
         <title class="span12 well">Sistema de Caronas Unipampa</title>
     </head>
     <body>
-        
+
         <div class="navbar nav">
             <div class="navbar-inner">
                 <div class="container">
@@ -82,6 +82,11 @@
                             <li class="divider-vertical"></li>
                             <li><a href="viagem/listaSolicitacoes.jsp"><i class="icon-calendar"></i> Reservas</a></li>
                             <%           }
+                                if (usuario.getTipoUsuario().getId() >= 2 && usuario.getTipoUsuario().getId() <= 4) {
+                            %>
+                            <li class="divider-vertical"></li>
+                            <li><a href="/sistema-carona-rp/viagem/listaViagens.jsp"><i class="icon-globe"></i> Viagens</a></li>
+                            <%           }
                                 if (usuario.getTipoUsuario().getId() == 5 || usuario.getTipoUsuario().getId() == 4) {
                             %>      
                             <li class="divider-vertical"></li>
@@ -92,7 +97,7 @@
                             <li class="divider-vertical"></li>
                             <li><a href="viagem/solicitar.jsp"><i class="icon-envelope"></i> Solicitação</a></li>
                             <%           }
-                                    }
+                                }
                             %>
                         </ul>
                         <%
@@ -111,7 +116,7 @@
                             </ul>
                         </div>
                         <%
-                            } else {
+                        } else {
                         %>
                         <div class="pull-right">
                             <ul class="nav pull-right">
@@ -122,8 +127,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <%
-                            }
+                        <%                            }
                         %>
                     </div>
                 </div>

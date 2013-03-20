@@ -36,9 +36,9 @@
         }
 
     } else {
-        
+
         response.sendRedirect("login.jsp");
-        
+
     }
 
 %>
@@ -59,7 +59,7 @@
         <title>Sistema de Caronas Unipampa</title>
     </head>
     <body>
-        
+
         <div class="navbar nav">
             <div class="navbar-inner">
                 <div class="container">
@@ -92,6 +92,11 @@
                             <li class="divider-vertical"></li>
                             <li><a href="/sistema-carona-rp/viagem/listaSolicitacoes.jsp"><i class="icon-calendar"></i> Reservas</a></li>
                             <%           }
+                                if (login.getTipoUsuario().getId() >= 2 && login.getTipoUsuario().getId() <= 4) {
+                            %>
+                            <li class="divider-vertical"></li>
+                            <li><a href="/sistema-carona-rp/viagem/listaViagens.jsp"><i class="icon-globe"></i> Viagens</a></li>
+                            <%           }
                                 if (login.getTipoUsuario().getId() == 5 || login.getTipoUsuario().getId() == 4) {
                             %>      
                             <li class="divider-vertical"></li>
@@ -102,7 +107,7 @@
                             <li class="divider-vertical"></li>
                             <li><a href="/sistema-carona-rp/viagem/solicitar.jsp"><i class="icon-envelope"></i> Solicitação</a></li>
                             <%           }
-                                    }
+                                }
                             %>
                         </ul>
                         <%
@@ -121,7 +126,7 @@
                             </ul>
                         </div>
                         <%
-                            } else {
+                        } else {
                         %>
                         <div class="pull-right">
                             <ul class="nav pull-right">
@@ -132,8 +137,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <%
-                            }
+                        <%                            }
                         %>
                     </div>
                 </div>
