@@ -22,7 +22,7 @@ public class ConnectionFactory {
         
         if (connection == null) {
             try {
-                connection = DriverManager.getConnection("jdbc:mysql://localhost/frota", "root", "");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost/frota", "root", "123456");
             } catch (SQLException e) {
                 e.printStackTrace();
                 throw new SQLException(e);

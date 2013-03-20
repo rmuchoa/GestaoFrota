@@ -196,7 +196,7 @@
                     <label class="control-label" for="inputServidor">É Servidor da Unipampa:</label>
                     <div class="controls">
                         <input id="sim" name="servidor" value="true" type="radio" /><label for="sim"> Sim</label> 
-                        <input id="nao" name="servidor" value="false" type="radio" /><label for="nao"> Não</label> 
+                        <input id="nao" name="servidor" value="false" type="radio" /><label for="nao" CHECKED> Não</label> 
                     </div>
                 </div>
                 <div class="span5">  
